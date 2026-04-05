@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zpěvník</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: 'Gentium Book Plus', serif;
+  }
+
+  #page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 16px 16px 80px 16px;
+  }
+
+  audio {
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .controls {
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 10px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+    font-family: sans-serif;
+  }
+
+  button {
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    font-weight: bold;
+    color: #333;
+    font-size: 15px;
+  }
+
+  button:active { background: #e0e0e0; }
+
+  #key-display {
+    font-size: 13px;
+    color: #333;
+    margin-right: 10px;
+  }
+
+  .back-link {
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-left: auto;
+    text-decoration: none;
+  }
+
+  .back-link:hover { color: #333; }
+
+  .song-title {
+    font-weight: bold;
+    color: #222;
+    display: block;
+    margin-bottom: 0.1em;
+  }
+
+  .song-subtitle {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1em;
+    display: block;
+  }
+
+  .chorus-block {
+    border-left: 4px solid #d35400;
+    padding-left: 15px;
+    margin: 15px 0;
+    background: rgba(211, 84, 0, 0.05);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .chord-stack {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: bottom;
+  }
+
+  .chord {
+    color: #d35400;
+    font-family: sans-serif;
+    font-size: 0.8em;
+    font-weight: bold;
+    height: 1.4em;
+    line-height: 1.4em;
+    text-align: left;
+  }
+
+  .chord.marker {
+    color: #95a5a6;
+    font-size: 1.1em;
+    line-height: 0.8em;
+  }
+
+  .lyric {
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #000;
+  }
+
+  .line {
+    margin-bottom: 0.8em;
+    display: block;
+  }
+
+  .comment {
+    margin-top: 1.2em;
+    margin-bottom: 0.6em;
+    font-weight: bold;
+    color: #444;
+    font-style: italic;
+  }
+
+  .spacer { height: 0.8em; }
+
+  #loading {
+    color: #999;
+    font-family: sans-serif;
+    padding: 20px 0;
+  }
+
+  #error {
+    color: #c0392b;
+    font-family: sans-serif;
+    padding: 20px 0;
+    display: none;
+  }
+</style>
+</head>
+<body>
+<div id="page">
+  <audio id="audio-player" controls style="display:none;">
+    Váš prohlížeč nepodporuje přehrávání audia.
+  </audio>
+  <div id="loading">Načítám písničku…</div>
+  <div id="error">Písničku se nepodařilo načíst. Zkontroluj URL.</div>
+  <div id="chord-app" style="display:none;"></div>
+</div>
+
+<script>
+(function() {
+  // --- Čtení parametrů z URL ---
+  const params = new URLSearchParams(window.location.search);
+  const songName = params.get('s');
+  const audioUrl = params.get('audio');
+
+  // Audio přehrávač
+  const audioEl = document.getElementById('audio-player');
+  if (audioUrl) {
+    audioEl.src = audioUrl;
+    audioEl.style.display = 'block';
+  }
+
+  // --- Transpozice ---
+  const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+  let currentShift = 0;
+  let currentFontSize = 21;
+  let songData = '';
+
+  function transposeChord(chord, amount) {
+    if (chord === '.') return '.';
+    return chord.replace(/[A-G][b#]?/g, (match) => {
+      let note = match;
+      const flats = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
+      if (note.endsWith('b')) note = flats[note] || note;
+      let index = notes.indexOf(note);
+      if (index === -1) return match;
+      let newIndex = (index + amount) % 12;
+      while (newIndex < 0) newIndex += 12;
+      return notes[newIndex];
+    });
+  }
+
+  // --- Render ---
+  window.renderSong = function() {
+    const app = document.getElementById('chord-app');
+    if (!app || !songData) return;
+
+    const lines = songData.trim().split('\n');
+    let html = `<div class="controls">
+      <button onclick="changeShift(-1)">♭</button>
+      <button onclick="changeShift(1)">♯</button>
+      <span id="key-display">Posun: ${currentShift}</span>
+      <button onclick="changeSize(-2)">A–</button>
+      <button onclick="changeSize(2)">A+</button>
+      <a class="back-link" href="index.html">← Seznam</a>
+    </div><div id="output-area">`;
+
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+      if (trimmed.toLowerCase() === '{soc}') { html += '<div class="chorus-block">'; return; }
+      if (trimmed.toLowerCase() === '{eoc}') { html += '</div>'; return; }
+      if (trimmed === '') { html += '<div class="spacer"></div>'; return; }
+      if (trimmed.startsWith('{')) {
+        let m;
+        m = line.match(/\{t(?:itle)?:\s*(.*?)\}/i);
+        if (m) { html += `<div class="song-title" style="font-size:${currentFontSize * 1.4}px;">${m[1]}</div>`; return; }
+        m = line.match(/\{st(?:ubtitle)?:\s*(.*?)\}/i);
+        if (m) { html += `<div class="song-subtitle" style="font-size:${currentFontSize * 0.9}px;">${m[1]}</div>`; return; }
+        m = line.match(/\{c(?:omment)?:\s*(.*?)\}/i);
+        if (m) { html += `<div class="comment" style="font-size:${currentFontSize * 0.85}px;">${m[1]}</div>`; return; }
+        return;
+      }
+
+      let lineHtml = '<div class="line">';
+      const regex = /\[(.*?)\]/g;
+      let match;
+      const firstMatch = line.match(/\[/);
+      const startPos = firstMatch ? firstMatch.index : line.length;
+
+      if (startPos > 0) {
+        lineHtml += `<span class="chord-stack"><span class="chord"></span><span class="lyric" style="font-size:${currentFontSize}px;">${line.substring(0, startPos)}</span></span>`;
+      }
+
+      while ((match = regex.exec(line)) !== null) {
+        const chord = transposeChord(match[1], currentShift);
+        const nextPos = line.indexOf('[', regex.lastIndex);
+        const lyric = line.substring(regex.lastIndex, nextPos !== -1 ? nextPos : line.length);
+        const isMarker = chord === '.' ? 'marker' : '';
+        lineHtml += `<span class="chord-stack"><span class="chord ${isMarker}">${chord}</span><span class="lyric" style="font-size:${currentFontSize}px;">${lyric}</span></span>`;
+      }
+      html += lineHtml + '</div>';
+    });
+
+    html += '<div style="height:80px;"></div></div>';
+    app.innerHTML = html;
+  };
+
+  window.changeShift = (n) => { currentShift += n; window.renderSong(); };
+  window.changeSize = (n) => { currentFontSize = Math.max(10, currentFontSize + n); window.renderSong(); };
+
+  // --- Načtení písničky ---
+  if (!songName) {
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('error').style.display = 'block';
+    document.getElementById('error').textContent = 'Chybí parametr ?s= v URL.';
+    return;
+  }
+
+  fetch('songs/' + songName + '.txt')
+    .then(r => {
+      if (!r.ok) throw new Error('Soubor nenalezen');
+      return r.text();
+    })
+    .then(text => {
+      songData = text;
+      document.getElementById('loading').style.display = 'none';
+      const app = document.getElementById('chord-app');
+      app.style.display = 'block';
+
+      // Nastav titulek stránky podle písničky
+      const titleMatch = text.match(/\{t(?:itle)?:\s*(.*?)\}/i);
+      if (titleMatch) document.title = titleMatch[1] + ' – Zpěvník';
+
+      window.renderSong();
+    })
+    .catch(() => {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'block';
+    });
+})();
+</script>
+</body>
+</html>
