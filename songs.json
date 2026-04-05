@@ -3,10 +3,10 @@
     "name": "Radhe Kishori",
     "subtitle": "Radha - Krishna",
     "file": "radhe-kishori",
-    "audio": "https://samhita.cz/zpivani/audio/buddham_b6_2013_05_01_k.mp3"
+    "audio": "https://samhita.cz/zpivani/audio/sri_guru_saranam_io1_2014_09_24_k.mp3"
   },
   {
-    "name": "śrī gaṅgāṣṭakam",
+    "name": "Šrí Gangáštakam",
     "subtitle": "Ganga",
     "file": "gangastakam",
     "audio": "https://samhita.cz/zpivani/audio/buddham_b6_2013_05_01_k.mp3"
@@ -22,5 +22,17 @@
     "subtitle": "Hanuman",
     "file": "hanuman_bolo",
     "audio": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3"
+  },
+  {
+    "name": "Mano Javam Maruta Tulya Vegam",
+    "subtitle": "Hanuman",
+    "file": "mano_javam",
+    "audio": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3"
+  },
+  {
+    "name": "Karagre vasate lakshmi",
+    "subtitle": "Lakshmi, Saraswati, Govinda",
+    "file": "karagre_vasate",
+    "audio": ""
   }
 ]
