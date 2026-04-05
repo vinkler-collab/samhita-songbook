@@ -1,0 +1,39 @@
+Starý formát (stále funguje):
+{
+  "name": "xxx",
+  "subtitle": "xxx",
+  "file": "xxx",
+  "audio": "https://odkaz.na/audio.mp3"
+}
+
+Nový formát - více nahrávek s popisky:
+{
+  "name": "xxx",
+  "subtitle": "xxx",
+  "file": "xxx",
+  "audio": [
+    {
+      "url": "https://odkaz.na/audio.mp3",
+      "label": "Verze 1"
+    },
+    {
+      "url": "https://odkaz.na/audio.mp3",
+      "label": "Verze 2"
+    },
+    {
+      "url": "https://odkaz.na/audio.mp3",
+      "label": "Verze 3"
+    }
+  ]
+}
+
+Nebo bez popisků (jen několik odkazů):
+{
+  "name": "xxx",
+  "subtitle": "xxx",
+  "file": "xxx",
+  "audio": [
+    "https://odkaz.na/audio.mp3",
+    "https://odkaz.na/audio.mp3"
+  ]
+}

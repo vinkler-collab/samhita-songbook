@@ -20,7 +20,16 @@
     "name": "Hanuman Bolo",
     "subtitle": "Hanuman",
     "file": "hanuman_bolo",
-    "audio": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3"
+    "audio": [
+    {
+      "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
+      "label": "Verze 1 - 2016_04_06"
+    },
+    {
+      "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3",
+      "label": "Verze 2 - 2016_05_11"
+    }
+      ]
   },
   {
     "name": "Mano Javam Maruta Tulya Vegam",
