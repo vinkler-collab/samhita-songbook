@@ -1,2 +1,212 @@
-<h1>Samhita Songbook</h1>
-<p>Niza niza prabho1</p>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seznam songů</title>
+<style>
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: 'Georgia', serif;
+    color: #222;
+  }
+
+  header {
+    background: #d35400;
+    color: white;
+    padding: 24px 20px 16px;
+  }
+
+  header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  header p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  #search-wrap {
+    padding: 16px 20px;
+    background: #fdf3ec;
+    border-bottom: 1px solid #f0d5c0;
+  }
+
+  #search {
+    width: 100%;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    font-family: sans-serif;
+  }
+
+  #search:focus { border-color: #d35400; }
+
+  #song-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  #song-list li {
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  #song-list li a {
+    display: flex;
+    align-items: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    color: #222;
+    transition: background 0.15s;
+  }
+
+  #song-list li a:hover,
+  #song-list li a:active {
+    background: #fdf3ec;
+  }
+
+  .song-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .song-info { flex: 1; }
+
+  .song-name {
+    font-size: 17px;
+    font-weight: bold;
+    display: block;
+  }
+
+  .song-sub {
+    font-size: 13px;
+    color: #888;
+    display: block;
+    margin-top: 2px;
+    font-style: italic;
+  }
+
+  .song-arrow {
+    color: #ccc;
+    font-size: 18px;
+    margin-left: 8px;
+  }
+
+  #no-results {
+    padding: 30px 20px;
+    color: #999;
+    font-family: sans-serif;
+    font-size: 15px;
+    display: none;
+  }
+
+  footer {
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #bbb;
+    font-family: sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🎵 Samhita Songbook</h1>
+  <p>Klikni na písničku a otevře se s akordy a přehrávačem</p>
+</header>
+
+<div id="search-wrap">
+  <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
+</div>
+
+<ul id="song-list"></ul>
+<div id="no-results">Žádná písničká nenalezena.</div>
+
+<footer>Zpěvník • GitHub Pages</footer>
+
+<script>
+// ============================================================
+// SEZNAM PÍSNIČEK – přidávej sem nové záznamy
+// ============================================================
+const songs = [
+   {
+    name: "Radhe Kishori",
+    subtitle: "Radha - Krishna",
+    file: "radhe-kishori",
+    audio: "https://samhita.cz/zpivani/audio/buddham_b6_2013_05_01_k.mp3"
+  },
+  // Další písničky přidávej takto:
+  // {
+  //   name: "Název písničky",
+  //   subtitle: "Podtitulek nebo interpret",
+  //   file: "nazev-souboru",        // odpovídá songs/nazev-souboru.txt
+  //   audio: "https://odkaz.na/audio.mp3"   // nebo "" pokud není audio
+  // },
+ {
+    name: "śrī gaṅgāṣṭakam",
+    subtitle: "Ganga",
+    file: "gangastakam",
+    audio: "https://samhita.cz/zpivani/audio/buddham_b6_2013_05_01_k.mp3"
+  },
+ {
+    name: "Niza niza prabho1",
+    subtitle: "Guru",
+    file: "niza_prabho",
+    audio: "https://samhita.cz/zpivani/audio/buddham_b6_2013_05_01_k.mp3"  },
+];
+// ============================================================
+
+function buildUrl(song) {
+  let url = 'song.html?s=' + encodeURIComponent(song.file);
+  if (song.audio) url += '&audio=' + encodeURIComponent(song.audio);
+  return url;
+}
+
+function renderList(list) {
+  const ul = document.getElementById('song-list');
+  const noRes = document.getElementById('no-results');
+  ul.innerHTML = '';
+  if (list.length === 0) {
+    noRes.style.display = 'block';
+    return;
+  }
+  noRes.style.display = 'none';
+  list.forEach(song => {
+    const li = document.createElement('li');
+    li.innerHTML = `
+      <a href="${buildUrl(song)}">
+        <span class="song-icon">🎵</span>
+        <span class="song-info">
+          <span class="song-name">${song.name}</span>
+          ${song.subtitle ? `<span class="song-sub">${song.subtitle}</span>` : ''}
+        </span>
+        <span class="song-arrow">›</span>
+      </a>`;
+    ul.appendChild(li);
+  });
+}
+
+function filterSongs() {
+  const q = document.getElementById('search').value.toLowerCase();
+  renderList(songs.filter(s =>
+    s.name.toLowerCase().includes(q) ||
+    (s.subtitle && s.subtitle.toLowerCase().includes(q))
+  ));
+}
+
+renderList(songs);
+</script>
+</body>
+</html>
