@@ -5,7 +5,6 @@
 {key: C}
 {duration: 395}
 {tempo: 90}
-#{zoom: 3}
 
 {start_of_chorus}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
