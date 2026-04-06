@@ -9,13 +9,13 @@
     "name": "Šrí Gangáštakam",
     "subtitle": "Ganga",
     "file": "gangastakam",
-    "audio": "https://www.dropbox.com/scl/fi/ogq4hz7x08xgzpbrlnjmw/Pandit-Jasraj-Ganga-Aarti.mp3?rlkey=xjg81ypxnwro4210orxp5m646&st=43bp1oso&dl=1"
+    "audio": "audio/gangastakam.mp3"
   },
   {
     "name": "Niza niza prabho",
     "subtitle": "Guru",
     "file": "niza_prabho",
-    "audio": "https://www.dropbox.com/scl/fi/cj9vagsc4lvckk0c9fo2f/10_niza_niza_prabho.mp3?rlkey=877oqm4c46updu63n8wr13nsc&st=ovu6jvg9&dl=1"
+    "audio": "audio/niza_prabho.mp3"
   },
   {
     "name": "Hanuman Bolo",
@@ -36,30 +36,30 @@
     "name": "Mano Javam Maruta Tulya Vegam",
     "subtitle": "Hanuman",
     "file": "mano_javam",
-    "audio": "https://www.dropbox.com/scl/fi/wnw37kd7i3wy58nhtl8fq/Mano-Javam-Maruta-Tulya-Vegam.mp3?rlkey=aykrakeitf77whhletp3zsd25&st=ock4g4dx&dl=1"
+    "audio": "audio/mano_javam.mp3"
   },
   {
     "name": "Karagre vasate lakshmi",
     "subtitle": "Lakshmi, Saraswati, Govinda",
     "file": "karagre_vasate",
-    "audio": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3"
+    "audio": "audio/karagre_vasate.mp3"
   },
   {
     "name": "Deva puja",
     "subtitle": "Puja",
     "file": "deva_puja",
-    "audio": "https://www.dropbox.com/scl/fi/ivrzlb9cmsjzn7zq2s4ta/09_Deva_Puja.mp3?rlkey=mxtjgnvfincmisgg1gj32z616&st=5dfpx868&dl=1"
+    "audio": "audio/deva_puja.mp3"
   },
   {
     "name": "Om aim sarasvatyai namah",
     "subtitle": "Saraswati",
     "file": "om_aim_sarasvatyai_namaha",
-    "audio": "https://www.dropbox.com/scl/fi/veisvnxt5jriuahgyrmvm/Saraswati-Krishna-Das.mp3?rlkey=yhzzh54hhsln5cc1ud8v8kuoa&st=rigqf1pa&dl=1"
+    "audio": "audio/om_aim_sarasvatyai_namaha.mp3"
   },
   {
     "name": "Prema Hare Ram",
     "subtitle": "Rama, Sita",
     "file": "prema_hare_ram",
-    "audio": "https://www.dropbox.com/scl/fi/t8vacp7w7ehhtmqehxsuw/Prema-Hare-Ram-Krishna-Das.mp3?rlkey=3h3mg79d8xnx7t5yx3sqqu32r&st=50l3uee4&dl=1"
+    "audio": "audio/prema_hare_ram.mp3"
   }
 ]
