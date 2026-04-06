@@ -74,12 +74,30 @@
   .back-link {
     font-family: sans-serif;
     font-size: 13px;
-    color: #888;
+    font-weight: 700;
+    color: #245a2f;
     margin-left: auto;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #e6f7e8; /* stejný tón jako 3. tag v seznamu */
+    border: 1px solid rgba(36, 90, 47, 0.14);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
   }
 
-  .back-link:hover { color: #333; }
+  .back-link:hover,
+  .back-link:focus-visible {
+    background: #d7f2da;
+    border-color: rgba(36, 90, 47, 0.22);
+    color: #1f4d28;
+  }
+
+  .back-link:active {
+    transform: translateY(1px);
+  }
 
   .song-title {
     font-weight: bold;
