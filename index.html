@@ -21,6 +21,17 @@
     padding: 24px 20px 16px;
   }
 
+  .header-inner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-text {
+    min-width: 0;
+  }
+
   header h1 {
     margin: 0;
     font-size: 28px;
@@ -31,6 +42,33 @@
     margin: 4px 0 0;
     font-size: 14px;
     opacity: 0.85;
+  }
+
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+    outline: none;
+  }
+
+  .header-logo:hover,
+  .header-logo:focus-visible {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .header-logo img {
+    height: 46px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
+  }
+
+  @media (max-width: 420px) {
+    .header-logo img { height: 40px; }
   }
 
   #search-wrap {
@@ -198,8 +236,15 @@
 <body>
 
 <header>
-  <h1>🎵 Samhita Songbook</h1>
-  <p>Klikni na písničku a otevře se s akordy a přehrávačem</p>
+  <div class="header-inner">
+    <div class="header-text">
+      <h1>🎵 Samhita Songbook</h1>
+      <p>Klikni na písničku a otevře se s akordy a přehrávačem</p>
+    </div>
+    <a class="header-logo" href="https://www.samhita.cz" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web Samhita">
+      <img src="assets/logo_top.png" alt="Samhita" />
+    </a>
+  </div>
 </header>
 
 <div id="search-wrap">
