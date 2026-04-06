@@ -70,5 +70,28 @@
     "file": "prema_hare_ram",
     "audio": "audio/prema_hare_ram.mp3",
     "tags": ["Rama", "Sita", "Krishna Das"]
+  },
+  {
+    "name": "Bernie's Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_bernie",
+    "audio": [
+      {
+        "url": "audio/hanuman_chalisa_bernie_door.mp3",
+        "label": "Krishna Das - Door of Faith"
+      },
+      {
+        "url": "audio/hanuman_chalisa_bernie_flow.mp3",
+        "label": "Krishna Das - Flow of Grace"
+      }
+    ],
+    "tags": ["Hanuman", "Hanuman Chalisa", "Krishna Das"]
+  },
+  {
+    "name": "Nina Hanuman Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_nina",
+    "audio": "audio/hanuman_chalisa_nina.mp3",
+    "tags": ["Hanuman", "Hanuman Chalisa", "Nina Rao"]
   }
 ]
