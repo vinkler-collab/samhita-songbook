@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Seznam songů</title>
+<title>Samhita zpěvník</title>
 <style>
   * { box-sizing: border-box; }
 
@@ -15,6 +15,14 @@
     color: #222;
   }
 
+  /* Fixní horní lišta */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  }
+
   header {
     background: #d35400;
     color: white;
@@ -23,7 +31,7 @@
 
   .header-inner {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
   }
@@ -31,6 +39,33 @@
   .header-text {
     min-width: 0;
   }
+
+  .header-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+
+  .menu-btn {
+    appearance: none;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.10);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s, transform 0.06s;
+  }
+
+  .menu-btn:hover { background: rgba(255, 255, 255, 0.16); border-color: rgba(255, 255, 255, 0.35); }
+  .menu-btn:active { transform: translateY(1px); }
+  .menu-btn:focus-visible { outline: 2px solid rgba(255,255,255,0.75); outline-offset: 2px; }
 
   header h1 {
     margin: 0;
@@ -44,31 +79,12 @@
     opacity: 0.85;
   }
 
-  .header-logo {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 6px;
-    border-radius: 10px;
-    text-decoration: none;
-    flex-shrink: 0;
-    outline: none;
-  }
-
-  .header-logo:hover,
-  .header-logo:focus-visible {
-    background: rgba(255, 255, 255, 0.12);
-  }
-
-  .header-logo img {
-    height: 46px;
-    width: auto;
-    display: block;
-    filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.18));
-  }
-
-  @media (max-width: 420px) {
-    .header-logo img { height: 40px; }
+  .last-update {
+    margin-top: 6px;
+    font-size: 12px;
+    font-family: sans-serif;
+    opacity: 0.8;
+    white-space: nowrap;
   }
 
   #search-wrap {
@@ -89,18 +105,140 @@
 
   #search:focus { border-color: #d35400; }
 
-  .sort-controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
-    flex-wrap: wrap;
+  /* Aktivní filtr nad seznamem */
+  #active-filter {
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    display: none;
   }
 
-  .sort-btn {
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #f3f4f6;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    font-family: sans-serif;
+    font-size: 13px;
+    color: #444;
+  }
+
+  .filter-pill strong { font-weight: 800; }
+
+  .filter-clear {
     appearance: none;
-    border: 1px solid #e7c6ae;
-    background: #fff;
+    border: 0;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 2px 4px;
+    border-radius: 8px;
+  }
+
+  .filter-clear:hover,
+  .filter-clear:focus-visible {
+    background: rgba(0,0,0,0.06);
+    color: #222;
+    outline: none;
+  }
+
+  /* Sidebar */
+  #sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+    z-index: 90;
+  }
+
+  #sidebar-backdrop.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  #sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100dvh;
+    width: min(360px, 86vw);
+    background: #ffffff;
+    border-left: 1px solid rgba(0,0,0,0.08);
+    transform: translateX(102%);
+    transition: transform 0.22s ease;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #sidebar.is-open { transform: translateX(0); }
+
+  .sidebar-header {
+    padding: 14px 14px 10px;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    background: #fdf3ec;
+  }
+
+  .sidebar-title {
+    font-family: sans-serif;
+    font-weight: 800;
     color: #5a3a2a;
+  }
+
+  .sidebar-close {
+    appearance: none;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: #fff;
+    color: #333;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  .sidebar-close:hover { border-color: rgba(0,0,0,0.18); }
+  .sidebar-close:active { transform: translateY(1px); }
+
+  .sidebar-content {
+    padding: 14px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .sidebar-section + .sidebar-section { margin-top: 16px; }
+
+  .sidebar-section h3 {
+    margin: 0 0 10px;
+    font-size: 13px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #777;
+  }
+
+  .sidebar-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .pill-btn {
+    appearance: none;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: #fff;
+    color: #333;
     padding: 8px 12px;
     border-radius: 999px;
     font-size: 14px;
@@ -110,15 +248,54 @@
     user-select: none;
   }
 
-  .sort-btn:hover { border-color: #d35400; }
+  .pill-btn:hover { border-color: #d35400; }
+  .pill-btn:active { transform: translateY(1px); }
 
-  .sort-btn:active { transform: translateY(1px); }
-
-  .sort-btn.is-active {
+  .pill-btn.is-active {
     background: #d35400;
     color: #fff;
     border-color: #d35400;
-    box-shadow: 0 6px 16px rgba(211, 84, 0, 0.25);
+    box-shadow: 0 6px 16px rgba(211, 84, 0, 0.18);
+  }
+
+  .category-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .category-btn {
+    text-align: left;
+    width: 100%;
+    border-radius: 12px;
+    padding: 10px 12px;
+  }
+
+  .sidebar-footer {
+    margin-top: auto;
+    padding: 12px 14px;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #777;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .sidebar-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .sidebar-logo img {
+    height: 26px;
+    width: auto;
+    display: block;
   }
 
   #song-list {
@@ -235,31 +412,60 @@
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="header-text">
-      <h1>🎵 Samhita Songbook</h1>
-      <p>Klikni na písničku a otevře se s akordy a přehrávačem</p>
+<div class="topbar">
+  <header>
+    <div class="header-inner">
+      <div class="header-text">
+        <h1>🎵 Samhita Songbook</h1>
+        <div class="last-update" id="last-update">Aktualizováno: —</div>
+      </div>
+      <div class="header-actions">
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="Otevřít menu" aria-haspopup="dialog" aria-controls="sidebar">⋯</button>
+      </div>
     </div>
-    <a class="header-logo" href="https://www.samhita.cz" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web Samhita">
-      <img src="assets/logo_top.png" alt="Samhita" />
-    </a>
-  </div>
-</header>
-
-<div id="search-wrap">
-  <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
-  <div class="sort-controls" role="group" aria-label="Řazení">
-    <button id="sort-az" class="sort-btn is-active" type="button" onclick="setSortMode('az')">Abecedně (A-Z)</button>
-    <button id="sort-cat" class="sort-btn" type="button" onclick="setSortMode('category')">Podle kategorií</button>
+  </header>
+  <div id="search-wrap">
+    <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
   </div>
 </div>
+
+<div id="active-filter"></div>
 
 <div id="loading">Načítám písničky...</div>
 <ul id="song-list"></ul>
 <div id="no-results">Žádná písničká nenalezena.</div>
 
 <footer>Zpěvník • GitHub Pages</footer>
+
+<div id="sidebar-backdrop" onclick="closeSidebar()"></div>
+<aside id="sidebar" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="sidebar-header">
+    <div class="sidebar-title">Menu</div>
+    <button class="sidebar-close" type="button" aria-label="Zavřít menu" onclick="closeSidebar()">✕</button>
+  </div>
+  <div class="sidebar-content">
+    <section class="sidebar-section" aria-label="Řazení">
+      <h3>Řazení</h3>
+      <div class="sidebar-buttons">
+        <button id="sort-az" class="pill-btn is-active" type="button" onclick="setSortMode('az')">Abeceda</button>
+        <button id="sort-new" class="pill-btn" type="button" onclick="setSortMode('newest')">Nejnovější</button>
+      </div>
+    </section>
+
+    <section class="sidebar-section" aria-label="Kategorie">
+      <h3>Kategorie</h3>
+      <div class="category-list" id="category-list"></div>
+    </section>
+  </div>
+
+  <div class="sidebar-footer">
+    <a class="sidebar-logo" href="https://www.samhita.cz" target="_blank" rel="noopener noreferrer" aria-label="Otevřít web Samhita">
+      <img src="assets/logo_top.png" alt="Samhita" />
+      <span>www.samhita.cz</span>
+    </a>
+    <span id="sidebar-last-update">Aktualizováno: —</span>
+  </div>
+</aside>
 
 <script>
 // ============================================================
@@ -268,6 +474,7 @@
 
 let songs = [];
 let sortMode = 'az';
+let categoryFilter = null;
 
 const CATEGORY_ORDER = [
   'Buddhistické',
@@ -280,22 +487,32 @@ const CATEGORY_ORDER = [
   'Písně',
 ];
 
-const CATEGORY_ORDER_MAP = new Map(
-  CATEGORY_ORDER.map((c, idx) => [normalizeText(c), idx])
-);
-
 // Načteme songs.json
 fetch('songs.json')
   .then(response => response.json())
   .then(data => {
     songs = data;
     document.getElementById('loading').style.display = 'none';
+    renderCategoryMenu();
     applyFiltersAndRender();
   })
   .catch(error => {
     console.error('Chyba při načítání písniček:', error);
     document.getElementById('loading').innerHTML = 'Chyba při načítání písniček 😢';
   });
+
+// Datum poslední úpravy stránky (z hlaviček souboru v prohlížeči)
+(function renderLastUpdate() {
+  const el = document.getElementById('last-update');
+  if (!el) return;
+  const d = new Date(document.lastModified);
+  if (Number.isNaN(d.getTime())) return;
+  const formatted = new Intl.DateTimeFormat('cs-CZ', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(d);
+  el.textContent = `Aktualizováno: ${formatted}`;
+
+  const el2 = document.getElementById('sidebar-last-update');
+  if (el2) el2.textContent = `Aktualizováno: ${formatted}`;
+})();
 
 // ============================================================
 // Funkce pro zobrazení a filtrování
@@ -332,15 +549,11 @@ function sortSongs(list) {
   const collator = new Intl.Collator('cs', { sensitivity: 'base' });
   const copy = [...list];
 
-  if (sortMode === 'category') {
+  if (sortMode === 'newest') {
     copy.sort((a, b) => {
-      const aKey = normalizeText(a.category);
-      const bKey = normalizeText(b.category);
-      const aIdx = CATEGORY_ORDER_MAP.has(aKey) ? CATEGORY_ORDER_MAP.get(aKey) : 999;
-      const bIdx = CATEGORY_ORDER_MAP.has(bKey) ? CATEGORY_ORDER_MAP.get(bKey) : 999;
-      if (aIdx !== bIdx) return aIdx - bIdx;
-      const catCmp = collator.compare(a.category ?? '', b.category ?? '');
-      if (catCmp !== 0) return catCmp;
+      const aTime = Date.parse(a.dateAdded ?? '') || 0;
+      const bTime = Date.parse(b.dateAdded ?? '') || 0;
+      if (aTime !== bTime) return bTime - aTime; // nejnovější nahoře
       return collator.compare(a.name ?? '', b.name ?? '');
     });
     return copy;
@@ -383,8 +596,11 @@ function renderSongs(list) {
 
 function applyFiltersAndRender() {
   const qNorm = normalizeText(document.getElementById('search').value);
-  const filtered = songs.filter(s => songMatchesQuery(s, qNorm));
+  const filtered = songs
+    .filter(s => !categoryFilter || (s.category ?? '') === categoryFilter)
+    .filter(s => songMatchesQuery(s, qNorm));
   const sorted = sortSongs(filtered);
+  renderActiveFilter();
   renderSongs(sorted);
 }
 
@@ -393,11 +609,69 @@ function filterSongs() {
 }
 
 function setSortMode(mode) {
-  sortMode = mode === 'category' ? 'category' : 'az';
+  sortMode = mode === 'newest' ? 'newest' : 'az';
   document.getElementById('sort-az').classList.toggle('is-active', sortMode === 'az');
-  document.getElementById('sort-cat').classList.toggle('is-active', sortMode === 'category');
+  document.getElementById('sort-new').classList.toggle('is-active', sortMode === 'newest');
+  closeSidebar();
   applyFiltersAndRender();
 }
+
+function renderCategoryMenu() {
+  const list = document.getElementById('category-list');
+  if (!list) return;
+  list.innerHTML = '';
+  CATEGORY_ORDER.forEach(cat => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'pill-btn category-btn';
+    btn.textContent = cat;
+    btn.onclick = () => setCategoryFilter(cat);
+    list.appendChild(btn);
+  });
+}
+
+function setCategoryFilter(cat) {
+  categoryFilter = cat;
+  closeSidebar();
+  applyFiltersAndRender();
+}
+
+function clearCategoryFilter() {
+  categoryFilter = null;
+  applyFiltersAndRender();
+}
+
+function renderActiveFilter() {
+  const wrap = document.getElementById('active-filter');
+  if (!wrap) return;
+  if (!categoryFilter) {
+    wrap.style.display = 'none';
+    wrap.innerHTML = '';
+    return;
+  }
+  wrap.style.display = 'block';
+  wrap.innerHTML = `
+    <span class="filter-pill">
+      Filtr: <strong>${categoryFilter}</strong>
+      <button class="filter-clear" type="button" aria-label="Zrušit filtr" onclick="clearCategoryFilter()">✕</button>
+    </span>
+  `;
+}
+
+function openSidebar() {
+  document.getElementById('sidebar')?.classList.add('is-open');
+  document.getElementById('sidebar-backdrop')?.classList.add('is-open');
+}
+
+function closeSidebar() {
+  document.getElementById('sidebar')?.classList.remove('is-open');
+  document.getElementById('sidebar-backdrop')?.classList.remove('is-open');
+}
+
+document.getElementById('menu-btn')?.addEventListener('click', openSidebar);
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSidebar();
+});
 </script>
 </body>
 </html>

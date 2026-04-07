@@ -4,21 +4,33 @@
     "category": "Indické - Bohyně",
     "file": "radhe_kishori",
     "audio": "audio/radhe_kishori.mp3",
-    "tags": ["Radha", "Maha mantra"]
+    "tags": [
+      "Radha",
+      "Maha mantra"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Šrí Gangáštakam",
     "category": "Indické - Bohyně",
     "file": "gangastakam",
     "audio": "audio/gangastakam.mp3",
-    "tags": ["Shankaracharya", "Ganga"]
+    "tags": [
+      "Shankaracharya",
+      "Ganga"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Niza niza prabho",
     "category": "Indické - Ostatní",
     "file": "niza_prabho",
     "audio": "audio/niza_prabho.mp3",
-    "tags": ["Guru", "Navnath Sampradaya"]
+    "tags": [
+      "Guru",
+      "Navnath Sampradaya"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Hanuman Bolo",
@@ -34,42 +46,70 @@
         "label": "Verze 2 - 2016_05_11"
       }
     ],
-    "tags": ["Hanuman", "Ráma"]
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Mano Javam Maruta Tulya Vegam",
     "category": "Indické - Ráma",
     "file": "mano_javam",
     "audio": "audio/mano_javam.mp3",
-    "tags": ["Hanuman", "Ráma"]
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Karagre vasate lakshmi",
     "category": "Indické - Bohyně",
     "file": "karagre_vasate",
     "audio": "audio/karagre_vasate.mp3",
-    "tags": ["Lakshmi", "Saraswati", "Govinda"]
+    "tags": [
+      "Lakshmi",
+      "Saraswati",
+      "Govinda"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Deva puja",
     "category": "Indické - Ostatní",
     "file": "deva_puja",
     "audio": "audio/deva_puja.mp3",
-    "tags": ["Deva", "Puja", "Guru"]
+    "tags": [
+      "Deva",
+      "Puja",
+      "Guru"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Om aim sarasvatyai namah",
     "category": "Indické - Bohyně",
     "file": "om_aim_sarasvatyai_namaha",
     "audio": "audio/om_aim_sarasvatyai_namaha.mp3",
-    "tags": ["Saraswati", "Bija mantra", "Krishna Das"]
+    "tags": [
+      "Saraswati",
+      "Bija mantra",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
   },
   {
     "name": "Prema Hare Ram",
     "category": "Indické - Bohyně",
     "file": "prema_hare_ram",
     "audio": "audio/prema_hare_ram.mp3",
-    "tags": ["Rama", "Sita", "Krishna Das"]
+    "tags": [
+      "Rama",
+      "Sita",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
   },
   {
     "name": "Bernie's Chalisa",
@@ -85,13 +125,36 @@
         "label": "Krishna Das - Flow of Grace"
       }
     ],
-    "tags": ["Hanuman", "Hanuman Chalisa", "Krishna Das"]
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
   },
   {
     "name": "Nina Hanuman Chalisa",
     "category": "Indické - Ráma",
     "file": "hanuman_chalisa_nina",
     "audio": "audio/hanuman_chalisa_nina.mp3",
-    "tags": ["Hanuman", "Hanuman Chalisa", "Nina Rao"]
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Nina Rao"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Ocean of Ram Hanuman Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_ocean",
+    "audio": "audio/hanuman_chalisa_ocean.mp3",
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Krishna Das",
+      "Nina Rao"
+    ],
+    "dateAdded": "2026-04-07"
   }
 ]
