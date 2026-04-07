@@ -202,6 +202,28 @@
 
 <script>
 (function() {
+  // --- Foot switch / klávesové posouvání (PageUp/Down, ArrowUp/Down) ---
+  const SCROLL_FRACTION = 0.75;
+  function isTypingInField(el) {
+    if (!el) return false;
+    const tag = (el.tagName || '').toLowerCase();
+    return tag === 'input' || tag === 'textarea' || el.isContentEditable;
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.defaultPrevented) return;
+    if (isTypingInField(e.target)) return;
+
+    const key = e.key;
+    const down = key === 'PageDown' || key === 'ArrowDown';
+    const up = key === 'PageUp' || key === 'ArrowUp';
+    if (!down && !up) return;
+
+    e.preventDefault();
+    const delta = Math.round(window.innerHeight * SCROLL_FRACTION) * (down ? 1 : -1);
+    window.scrollBy({ top: delta, left: 0, behavior: 'smooth' });
+  });
+
   // --- Čtení parametrů z URL ---
   const params = new URLSearchParams(window.location.search);
   const songName = params.get('s');
