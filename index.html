@@ -93,9 +93,14 @@
     border-bottom: 1px solid #f0d5c0;
   }
 
+  .search-shell {
+    position: relative;
+  }
+
   #search {
     width: 100%;
     padding: 10px 14px;
+    padding-right: 44px; /* prostor pro křížek */
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -104,6 +109,36 @@
   }
 
   #search:focus { border-color: #d35400; }
+
+  .search-clear-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #888;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    visibility: hidden;
+  }
+
+  .search-clear-btn:hover,
+  .search-clear-btn:focus-visible {
+    background: rgba(0,0,0,0.06);
+    color: #222;
+    outline: none;
+    visibility: visible;
+  }
 
   /* Aktivní filtr nad seznamem */
   #active-filter {
@@ -425,7 +460,10 @@
     </div>
   </header>
   <div id="search-wrap">
-    <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
+    <div class="search-shell">
+      <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
+      <button id="search-clear" class="search-clear-btn" type="button" aria-label="Vymazat hledání" onclick="clearSearch()">✕</button>
+    </div>
   </div>
 </div>
 
@@ -606,7 +644,26 @@ function applyFiltersAndRender() {
 
 function filterSongs() {
   applyFiltersAndRender();
+  syncSearchClearButton();
 }
+
+function syncSearchClearButton() {
+  const input = document.getElementById('search');
+  const btn = document.getElementById('search-clear');
+  if (!input || !btn) return;
+  btn.style.visibility = input.value ? 'visible' : 'hidden';
+}
+
+function clearSearch() {
+  const input = document.getElementById('search');
+  if (!input) return;
+  input.value = '';
+  syncSearchClearButton();
+  filterSongs();
+}
+
+// Inicializace (aby byl křížek skrytý při prázdném vyhledávání)
+syncSearchClearButton();
 
 function setSortMode(mode) {
   sortMode = mode === 'newest' ? 'newest' : 'az';
@@ -625,8 +682,19 @@ function renderCategoryMenu() {
     btn.type = 'button';
     btn.className = 'pill-btn category-btn';
     btn.textContent = cat;
+    btn.dataset.category = cat;
     btn.onclick = () => setCategoryFilter(cat);
     list.appendChild(btn);
+  });
+  syncCategoryButtonsActive();
+}
+
+function syncCategoryButtonsActive() {
+  const list = document.getElementById('category-list');
+  if (!list) return;
+  list.querySelectorAll('.category-btn').forEach((btn) => {
+    const cat = btn.dataset.category;
+    btn.classList.toggle('is-active', !!categoryFilter && cat === categoryFilter);
   });
 }
 
@@ -634,11 +702,13 @@ function setCategoryFilter(cat) {
   categoryFilter = cat;
   closeSidebar();
   applyFiltersAndRender();
+  syncCategoryButtonsActive();
 }
 
 function clearCategoryFilter() {
   categoryFilter = null;
   applyFiltersAndRender();
+  syncCategoryButtonsActive();
 }
 
 function renderActiveFilter() {
