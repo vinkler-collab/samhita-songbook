@@ -1,0 +1,28 @@
+{title: Moje První ChordPro Zkouška}
+{artist: Já a Cursor}
+
+{comment: Začátek písně}
+[C]Tady je nějaký [G]text, který [Am]zkouším.
+[F]Akordy by měly být [C]přímo v [G]textu.
+
+{soc}
+[F]Tohle je refrén, [C]který je v rámečku,
+[C]pokud to editor [Am]dobře pochopí.
+{eoc}
+
+{start_of_verse}
+[C]Tady je nějaký [G]text, který [Am]zkouším.
+[F]Akordy by měly být [C]přímo v [G]textu.
+{end_of_verse}
+
+{start_of_verse}
+|Kolimace [C]já na [G]tebe,
+{end_of_verse}
+
+{start_of_verse}
+Kolimace [C]já na [G]tebe,
+{end_of_verse}
+
+{subtitle: Pokusná houska}
+
+{footer: Strana 1}

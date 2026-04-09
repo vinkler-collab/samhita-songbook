@@ -1,5 +1,5 @@
 {title: Ocean of Ram Hanuman Chalisa}
-{artist: Nina Rao & KD}
+{subtitle: Nina Rao & KD}
 {musicpath: mp3/Ocean of Ram Hanuman Chalisa - Nina Rao.mp3}
 {key: G}
 {duration:10:46}
@@ -15,7 +15,6 @@ https://open.spotify.com/track/5JHi9v5e8daZVWtrzdvsYb?si=bba51299ac5948ed
 | D . . . | D . . . | D  . . . | G . . . |
 | G . . . | G . . . | G  . . . | D . . . |
 {end_of_grid}
-#
 {c: ↑}
 {start_of_grid}
 | D . . . | D . . . | C  . G . | D  . G . |

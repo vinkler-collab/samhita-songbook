@@ -1,6 +1,6 @@
-{title: Nija Nija Prabho}
+{title: Nija Nija Prabho2}
 {subtitle: Dattatray Dharmayya Poredi}
-capo 2
+{capo: 2}
 
 | . . nija | [G]nija prabho |
 

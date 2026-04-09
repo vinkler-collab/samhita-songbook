@@ -236,10 +236,23 @@
   }
 
   .song-subtitle {
+    font-size: 1.2rem;
+    color: #666; /* Jemnější šedá barva */
     font-style: italic;
-    color: #666;
+    margin-top: -10px; /* Přitáhne podtitul blíž k hlavnímu nadpisu */
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+  .song-tempo {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #888;
+    background: #f4f4f4;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
     margin-bottom: 1em;
-    display: block;
   }
 
   .chorus-block {
@@ -486,12 +499,22 @@
       if (trimmed === '') { html += '<div class="spacer"></div>'; return; }
       if (trimmed.startsWith('{')) {
         let m;
+        // Titulek
         m = line.match(/\{t(?:itle)?:\s*(.*?)\}/i);
         if (m) { html += `<div class="song-title" style="font-size:${currentFontSize * 1.4}px;">${m[1]}</div>`; return; }
-        m = line.match(/\{st(?:ubtitle)?:\s*(.*?)\}/i);
+        
+        // Podtitul (Opraveno, aby bral {subtitle: } i {st: })
+        m = line.match(/\{(?:subtitle|st):\s*(.*?)\}/i);
         if (m) { html += `<div class="song-subtitle" style="font-size:${currentFontSize * 0.9}px;">${m[1]}</div>`; return; }
+        
+        // Tempo (Nové)
+        m = line.match(/\{tempo:\s*(.*?)\}/i);
+        if (m) { html += `<div class="song-tempo" style="font-size:${currentFontSize * 0.7}px;">Tempo: ${m[1]} BPM</div>`; return; }
+        
+        // Komentář
         m = line.match(/\{c(?:omment)?:\s*(.*?)\}/i);
         if (m) { html += `<div class="comment" style="font-size:${currentFontSize * 0.85}px;">${m[1]}</div>`; return; }
+        
         return;
       }
 
@@ -531,7 +554,7 @@
     return;
   }
 
-  fetch('songs/' + songName + '.txt')
+  fetch('songs/' + songName + '.pro')
     .then(r => {
       if (!r.ok) throw new Error('Soubor nenalezen');
       return r.text();

@@ -2,7 +2,7 @@
 {subtitle: Shivadina Kesari}
 
 {c:Chorus 1}
-|[Am]. Déva pú[C]džáá déva |[G]pú[C]ú-[Em]džá[Am]á  |
+|[Am]. Dréva pú[C]džáá déva |[G]pú[C]ú-[Em]džá[Am]á  |
 |[Am]. Déva pú[C]džáá déva |[G]pú[C]ú-[Em]džá[Am]á  |
 |[Am]. Déva pú[Em]džá[G]á déva |púdžáa [Em]má-[Am]dzi |
 |[Am]. Déva pú[Em]džá[G]á déva |púdžáa [Em]má-[Am]dzi |
