@@ -1,6 +1,11 @@
 {title: Jaya Bajraṅga Balī}
 {subtitle: Indické - Ráma}
+{capo:4}
 
-|[Ami]Jaya Bajraṅga Ba|[G]lī Jaya Hanumānā kī
-Jaya Mahāvīrā Jaya Hanumān
-Jaya Gurudevā Karo Kalyāṇ
+{c: Opakovat 2x:}
+|[Am]Jaya Baj|raṅga Ba|[G]lī |. . . .|
+|[Em]Jaya Hanu|[F]mānā |[Am]kī  |. . . . |
+
+{c: Opakovat 2x:}
+|[Am]Jaya Mahā|vīrā |[G]Jaya Hanu|mān|
+|[Em]Jaya Guru|devā Ka|[F]ro Kal|[Am]yāṇ|. . . .|

@@ -1,6 +1,6 @@
 {title: Prema Hare Ram}
 {subtitle: Krishna Das}
-{c: Capo: 3}
+{capo: 3}
 
 {c: 1) Sita Rama ↓&↑ x-krát}
 

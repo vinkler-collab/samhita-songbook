@@ -1,7 +1,7 @@
 {title: Mano Javam Maruta Tulya Vegam}
 {subtitle: Harish Sagane}
 {artist:  Music - Kanchan Jadhao}
-{guitar_comment: Capo 3}
+{capo: 3}
 {musicpath: mp3/Mano Javam Maruta Tulya Vegam.mp3}
 
 https://open.spotify.com/track/51SDv8aBRNBnLEb540dXYt?si=de2db93494eb44d7

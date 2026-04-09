@@ -1,7 +1,7 @@
 {title: śrī gaṅgāṣṭakam}
 {subtitle: Ádi Šanakráčárja}
 {musicpath: mp3/Pandit Jasraj - Ganga Aarti.mp3}
-{c:capo: 2}
+{capo: 2}
 
 {c:Intro}
 |[G]bhaga[D]vati [G]tava tī|re |nīra mātrā |. śa[C]no'[G]haṃ |

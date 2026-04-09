@@ -228,6 +228,24 @@
     transform: translateY(1px);
   }
 
+  .song-capo {
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #d35400; /* Oranžová jako akordy */
+    border: 1px solid #d35400;
+    padding: 1px 6px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 1em;
+    margin-right: 10px;
+}
+
+.song-capo::before {
+    content: "🎸 "; /* Malá ikona kytary pro přehlednost */
+    font-size: 1.1em;
+}
+
   .song-title {
     font-weight: bold;
     color: #143464;
@@ -244,6 +262,24 @@
     text-align: left;
 }
 
+/* Sloka - čistý prostor a zelený nadpis */
+.verse-block {
+    margin: 25px 0;
+    padding-top: 5px;
+  }
+
+  .verse-label {
+    font-family: sans-serif;
+    font-weight: 800;
+    color: #245a2f;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #e6f7e8;
+    display: inline-block;
+  }
+
   .song-tempo {
     font-family: sans-serif;
     font-weight: bold;
@@ -255,14 +291,25 @@
     margin-bottom: 1em;
   }
 
+  /* Refrén - s levou čarou a oranžovým nadpisem */
   .chorus-block {
     border-left: 4px solid #d35400;
     padding-left: 15px;
-    margin: 15px 0;
-    background: rgba(211, 84, 0, 0.05);
+    margin: 20px 0;
+    background: rgba(211, 84, 0, 0.04);
     padding-top: 10px;
     padding-bottom: 5px;
     border-radius: 0 8px 8px 0;
+  }
+
+  .chorus-label {
+    font-family: sans-serif;
+    font-weight: 800;
+    color: #d35400;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
   }
 
   .chord-stack {
@@ -494,8 +541,24 @@
 
     lines.forEach((line) => {
       const trimmed = line.trim();
-      if (trimmed.toLowerCase() === '{soc}') { html += '<div class="chorus-block">'; return; }
+      // --- Zpracování bloků REFRÉN (Chorus) ---
+      if (trimmed.toLowerCase().startsWith('{soc')) {
+        let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+        // Pokud není štítek v kódu, můžeme nechat prázdno, nebo tam dát výchozí "R:"
+        let label = labelMatch ? `<div class="chorus-label">${labelMatch[1]}</div>` : '';
+        html += `<div class="chorus-block">${label}`;
+        return;
+      }
       if (trimmed.toLowerCase() === '{eoc}') { html += '</div>'; return; }
+
+      // --- Zpracování bloků SLOKA (Verse) ---
+      if (trimmed.toLowerCase().startsWith('{sov')) {
+        let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+        let label = labelMatch ? `<div class="verse-label">${labelMatch[1]}</div>` : '';
+        html += `<div class="verse-block">${label}`;
+        return;
+      }
+      if (trimmed.toLowerCase() === '{eov}') { html += '</div>'; return; }
       if (trimmed === '') { html += '<div class="spacer"></div>'; return; }
       if (trimmed.startsWith('{')) {
         let m;
@@ -511,6 +574,10 @@
         m = line.match(/\{tempo:\s*(.*?)\}/i);
         if (m) { html += `<div class="song-tempo" style="font-size:${currentFontSize * 0.7}px;">Tempo: ${m[1]} BPM</div>`; return; }
         
+        // Capo - TOHLE JSME PŘIDALI
+        m = line.match(/\{capo:\s*(.*?)\}/i);
+        if (m) { html += `<div class="song-capo" style="font-size:${currentFontSize * 0.8}px;">Capo: ${m[1]}</div>`; return; }
+
         // Komentář
         m = line.match(/\{c(?:omment)?:\s*(.*?)\}/i);
         if (m) { html += `<div class="comment" style="font-size:${currentFontSize * 0.85}px;">${m[1]}</div>`; return; }

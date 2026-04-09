@@ -1,6 +1,6 @@
 {title: Hanumān Bolo}
 {subtitle: Hanumān}
-{c:capo: 1}
+{capo: 1}
 
 |[G]Rāma Bolo |[D]Rāma Bolo |[Em]Bolo Bolo |[C]Rām,
 |[G]Sītā Bolo |[D]Sītā Bolo |[Em]Bolo Sītā |[C]Rām,
