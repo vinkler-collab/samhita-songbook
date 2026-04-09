@@ -1,4 +1,4 @@
-{title: Radhe Kishori1}
+{title: Radhe Kishori}
 {subtitle: Baal Gopal}
 {musicpath: mp3/Radhe Kishori Daya Karo.mp3}
 {metronome: 108}
@@ -44,8 +44,8 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 {eoc}
 
 {sov: Mezihra 2.}
-|[C]----|[C]--[G]--|[C]--[Am]--|[F]--[G]--|
-|[C]----|[C]--[G]--|[C]--[Am]--|[F]--[G]--|
+|[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
+|[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
 {eov}
 
 {sov: Sloka 2.}
@@ -62,7 +62,7 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 {eoc}
 
 {sov: Mezihra 1.}
-|[C]----|[Am]----|[G]----|[F]----|[C]----|[C]--[F]--|
+|[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
 
 {sov: Sloka 3.}
@@ -79,7 +79,7 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 {eoc}
 
 {sov: Mezihra 1.}
-|[C]----|[Am]----|[G]----|[F]----|[C]----|[C]--[F]--|
+|[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
 
 {sov: Sloka 4.}
