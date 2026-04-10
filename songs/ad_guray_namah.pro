@@ -15,6 +15,6 @@ Gurmukhi Script:
     • Jugād guray namaḥ 
     • Sat guray namaḥ 
     • Sirī gurū devay namaḥ 
-**_Ād_** = Primal, original, beginning; **_Guray_** = To the Guru (dative case); **_Namaḥ_** = I bow, salutations; **_Jugād_** = Throughout the ages, timeless; **_Guray_** = To the Guru; **_Namaḥ_** = I bow; **_Sat_** = True, truth; **_Guray_** = To the Guru; **_Namaḥ_** = I bow; **_Sirī_** = Great, honored (honorific); **_Gurū_** = Guru, teacher; **_Devay_** = Divine, to the divine light; **_Namaḥ_** = I bow
+**__Ād__** = Primal, original, beginning; **__Guray__** = To the Guru (dative case); **__Namaḥ__** = I bow, salutations; **__Jugād__** = Throughout the ages, timeless; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sat__** = True, truth; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sirī__** = Great, honored (honorific); **__Gurū__** = Guru, teacher; **__Devay__** = Divine, to the divine light; **__Namaḥ__** = I bow
 
 

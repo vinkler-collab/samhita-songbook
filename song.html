@@ -717,13 +717,14 @@ function linkifyComments() {
 
   let content = songContainer.innerHTML;
 
-  // --- NOVÉ: Formátování textu ---
+  // --- FORMÁTOVÁNÍ TEXTU ---
   // 1. Tučné písmo: **text**
-  content = content.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
-  // 2. Kurzíva: _text_
-  content = content.replace(/_([^_]+)_/g, '<i>$1</i>');
+  content = content.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+  
+  // 2. Kurzíva: __text__ (dvě podtržítka ignorují běžné URL adresy)
+  content = content.replace(/__(.+?)__/g, '<i>$1</i>');
 
-  // --- PŮVODNÍ: Odkazy ---
+  // --- ODKAZY ---
   // 3. Skryté odkazy: (Text|https://...)
   const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
   content = content.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
