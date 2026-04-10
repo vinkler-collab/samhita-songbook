@@ -1,117 +1,5 @@
 [
   {
-    "name": "Radhe Kishori",
-    "category": "Indické - Bohyně",
-    "file": "radhe_kishori",
-    "audio": "audio/radhe_kishori.mp3",
-    "tags": [
-      "Radha",
-      "Maha mantra"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Šrí Gangáštakam",
-    "category": "Indické - Bohyně",
-    "file": "gangastakam",
-    "audio": "audio/gangastakam.mp3",
-    "tags": [
-      "Shankaracharya",
-      "Ganga"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Niza niza prabho",
-    "category": "Indické - Ostatní",
-    "file": "niza_prabho",
-    "audio": "audio/niza_prabho.mp3",
-    "tags": [
-      "Guru",
-      "Navnath Sampradaya"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Hanuman Bolo",
-    "category": "Indické - Ráma",
-    "file": "hanuman_bolo",
-    "audio": [
-      {
-        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
-        "label": "Verze 1 - 2016_04_06"
-      },
-      {
-        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3",
-        "label": "Verze 2 - 2016_05_11"
-      }
-    ],
-    "tags": [
-      "Hanuman",
-      "Ráma"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Mano Javam Maruta Tulya Vegam",
-    "category": "Indické - Ráma",
-    "file": "mano_javam",
-    "audio": "audio/mano_javam.mp3",
-    "tags": [
-      "Hanuman",
-      "Ráma"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Karagre vasate lakshmi",
-    "category": "Indické - Bohyně",
-    "file": "karagre_vasate",
-    "audio": "audio/karagre_vasate.mp3",
-    "tags": [
-      "Lakshmi",
-      "Saraswati",
-      "Govinda"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Deva puja",
-    "category": "Indické - Ostatní",
-    "file": "deva_puja",
-    "audio": "audio/deva_puja.mp3",
-    "tags": [
-      "Deva",
-      "Puja",
-      "Guru"
-    ],
-    "dateAdded": "2026-04-05"
-  },
-  {
-    "name": "Om aim sarasvatyai namah",
-    "category": "Indické - Bohyně",
-    "file": "om_aim_sarasvatyai_namaha",
-    "audio": "audio/om_aim_sarasvatyai_namaha.mp3",
-    "tags": [
-      "Saraswati",
-      "Bija mantra",
-      "Krishna Das"
-    ],
-    "dateAdded": "2026-04-06"
-  },
-  {
-    "name": "Prema Hare Ram",
-    "category": "Indické - Bohyně",
-    "file": "prema_hare_ram",
-    "audio": "audio/prema_hare_ram.mp3",
-    "tags": [
-      "Rama",
-      "Sita",
-      "Krishna Das"
-    ],
-    "dateAdded": "2026-04-06"
-  },
-  {
     "name": "Bernie's Chalisa",
     "category": "Indické - Ráma",
     "file": "hanuman_chalisa_bernie",
@@ -131,6 +19,82 @@
       "Krishna Das"
     ],
     "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Déva púdžá",
+    "category": "Indické - Ostatní",
+    "file": "deva_puja",
+    "audio": "audio/deva_puja.mp3",
+    "tags": [
+      "Deva",
+      "Puja",
+      "Guru"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Hanumān Bolo",
+    "category": "Indické - Ráma",
+    "file": "hanuman_bolo",
+    "audio": [
+      {
+        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
+        "label": "Verze 1 - 2016_04_06"
+      },
+      {
+        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3",
+        "label": "Verze 2 - 2016_05_11"
+      }
+    ],
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Jaya Bajraṅga Balī",
+    "category": "Indické - Ráma",
+    "file": "jai_vajranga_bali",
+    "audio": "audio/jai_vajranga_bali.mp3",
+    "tags": [
+      "Hanuman"
+    ],
+    "dateAdded": "2026-04-10"
+  },
+  {
+    "name": "Karāgre vasate lakṣmīḥ",
+    "category": "Indické - Bohyně",
+    "file": "karagre_vasate",
+    "audio": "audio/karagre_vasate.mp3",
+    "tags": [
+      "Lakshmi",
+      "Saraswati",
+      "Govinda"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Mano Javam Maruta Tulya Vegam",
+    "category": "Indické - Ráma",
+    "file": "mano_javam",
+    "audio": "audio/mano_javam.mp3",
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Nija Nija Prabho",
+    "category": "Indické - Ostatní",
+    "file": "niza_prabho",
+    "audio": "audio/niza_prabho.mp3",
+    "tags": [
+      "Guru",
+      "Navnath Sampradaya"
+    ],
+    "dateAdded": "2026-04-05"
   },
   {
     "name": "Nina Hanuman Chalisa",
@@ -156,5 +120,51 @@
       "Nina Rao"
     ],
     "dateAdded": "2026-04-07"
+  },
+  {
+    "name": "Om aiṁ sarasvatyai namaḥ",
+    "category": "Indické - Bohyně",
+    "file": "om_aim_sarasvatyai_namaha",
+    "audio": "audio/om_aim_sarasvatyai_namaha.mp3",
+    "tags": [
+      "Saraswati",
+      "Bija mantra",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Prema Hare Ram",
+    "category": "Indické - Bohyně",
+    "file": "prema_hare_ram",
+    "audio": "audio/prema_hare_ram.mp3",
+    "tags": [
+      "Rama",
+      "Sita",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Radhe Kishori",
+    "category": "Indické - Bohyně",
+    "file": "radhe_kishori",
+    "audio": "audio/radhe_kishori.mp3",
+    "tags": [
+      "Radha",
+      "Maha mantra"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "śrī gaṅgāṣṭakam",
+    "category": "Indické - Bohyně",
+    "file": "gangastakam",
+    "audio": "audio/gangastakam.mp3",
+    "tags": [
+      "Shankaracharya",
+      "Ganga"
+    ],
+    "dateAdded": "2026-04-05"
   }
 ]

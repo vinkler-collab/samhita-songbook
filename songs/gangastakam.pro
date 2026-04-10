@@ -3,25 +3,30 @@
 {musicpath: mp3/Pandit Jasraj - Ganga Aarti.mp3}
 {capo: 2}
 
-{c:Intro}
+{sov:Intro}
 |[G]bhaga[D]vati [G]tava tī|re |nīra mātrā |. śa[C]no'[G]haṃ |
 |bhaga[D]vati [G]tava tī|re |
+{eov}
 
-{c:Verse 1}
+{sov:Verse 1}
 |[G]bhaga[D]vati [G]tava tī|re |nīra mātrā |. śa[C]no'[G]haṃ |
 |[G]bhaga[D]vati [G]tava tī|re |nīra mātrā |. śa[C]no'[G]haṃ |
+{eov}
 
-{c:Verse 2}
+{sov:Verse 2}
 |vigata viṣaya[D]tṛṣ|[C]ṇaḥ kṛṣṇam |[G]ārā[D]dha[C]yā|[G]mi |
 |vigata viṣaya[D]tṛṣ|[C]ṇaḥ kṛṣṇam |[G]ārā[D]dha[C]yā|[G]mi |
+{eov}
 
-{c:Verse 3}
+{sov:Verse 3}
 |[G]saka[D]la ka[G]luṣa bhaṁ|ge svarga |sopā[D]na [C]gaṁ|[G]ge |
 |[G]saka[D]la ka[G]luṣa bhaṁ|ge svarga |sopā[D]na [C]gaṁ|[G]ge |
+{eov}
 
-{c:Verse 4}
+{sov:Verse 4}
 |tarala tara ta[D]raṁ|[C]. ge devi |[G]gaṁge . pra[C]sī|[G]da |
 |tarala tara ta[D]raṁ|[C]. ge devi |[G]gaṁge . pra[C]sī|[G]da |
+{eov}
 
-********************
-Opakování (bez Intro): pomalu; M+Ž; rychle; pomalu
+{c: Opakování (bez Intro): pomalu; M+Ž; rychle; pomalu}
+  

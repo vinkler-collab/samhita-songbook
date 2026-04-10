@@ -4,22 +4,19 @@
 {capo: 3}
 {musicpath: mp3/Mano Javam Maruta Tulya Vegam.mp3}
 
-https://open.spotify.com/track/51SDv8aBRNBnLEb540dXYt?si=de2db93494eb44d7
-
-
 |[G]mano ja|vaṁ mā|ruta tulya |vegaṁ |
 |jitendri|yaṁ buddhi |[C]matāṁ va|riṣṭhaṁ |
 |[Em]vātātma|jaṁ vā|[F]nara yūtha |mukhyaṁ |
 |[G]śrīrāma |dū[G7]taṁ |śaraṇaṁ pra|pa[C]dye |
 | [C]. . . . | [C]. . . . | [C]. . . . | [C]. . . . |
 
-{c: Original}
+{sov: Original}
 manojavaṁ mārutatulyavegaṁ
 jitendriyaṁ buddhimatāṁ variṣṭha |
 vātātmajaṁ vānarayūthamukhyaṁ
 śrīrāmadūtaṁ śaraṇaṁ prapadye |
 
-{c: Překlad}
+{sov: Překlad}
 1) [|Mind]|mano [|Swift]|javaṁ [|Wind]|māruta [|Like]|tulya [|Speed]|vegaṁ
 2) [|Conquered Senses]|jitendriyaṁ [|Intelligence]|buddhi [|Honoured]|matāṁ [|Best]|variṣṭha |
 3) [|Wind God]|vāt [|Son]|ātmajaṁ [|Monkey]|vānara [|Herd]|yūtha [|Chief]|mukhyaṁ

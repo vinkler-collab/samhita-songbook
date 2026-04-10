@@ -272,11 +272,11 @@
     font-family: sans-serif;
     font-weight: 800;
     color: #245a2f;
-    font-size: 0.8em;
+    font-size: 1em;
     text-transform: uppercase;
     margin-bottom: 8px;
     letter-spacing: 1px;
-    border-bottom: 1px solid #e6f7e8;
+    border-bottom: 1.5px solid #245a2f;
     display: inline-block;
   }
 
@@ -305,8 +305,8 @@
   .chorus-label {
     font-family: sans-serif;
     font-weight: 800;
-    color: #d35400;
-    font-size: 0.8em;
+    color: #245a2f;
+    font-size: 1em;
     text-transform: uppercase;
     margin-bottom: 8px;
     letter-spacing: 1px;
@@ -541,24 +541,31 @@
 
     lines.forEach((line) => {
       const trimmed = line.trim();
-      // --- Zpracování bloků REFRÉN (Chorus) ---
-      if (trimmed.toLowerCase().startsWith('{soc')) {
-        let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
-        // Pokud není štítek v kódu, můžeme nechat prázdno, nebo tam dát výchozí "R:"
-        let label = labelMatch ? `<div class="chorus-label">${labelMatch[1]}</div>` : '';
-        html += `<div class="chorus-block">${label}`;
-        return;
-      }
-      if (trimmed.toLowerCase() === '{eoc}') { html += '</div>'; return; }
+      // --- REFRÉN (Chorus) ---
+if (trimmed.toLowerCase().startsWith('{soc')) {
+    let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+    let label = labelMatch ? `<div class="chorus-label">${labelMatch[1]}</div>` : '';
+    html += `<div class="chorus-block">${label}`; 
+    return; // Důležité: ukončí zpracování řádku
+}
+// Tady je ta změna: použijeme startsWith místo ===
+if (trimmed.toLowerCase().startsWith('{eoc')) { 
+    html += '</div>'; 
+    return; 
+}
 
-      // --- Zpracování bloků SLOKA (Verse) ---
-      if (trimmed.toLowerCase().startsWith('{sov')) {
-        let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
-        let label = labelMatch ? `<div class="verse-label">${labelMatch[1]}</div>` : '';
-        html += `<div class="verse-block">${label}`;
-        return;
-      }
-      if (trimmed.toLowerCase() === '{eov}') { html += '</div>'; return; }
+// --- SLOKA (Verse) ---
+if (trimmed.toLowerCase().startsWith('{sov')) {
+    let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+    let label = labelMatch ? `<div class="verse-label">${labelMatch[1]}</div>` : '';
+    html += `<div class="verse-block">${label}`;
+    return;
+}
+// Opět: tolerantní ukončení sloky
+if (trimmed.toLowerCase().startsWith('{eov')) { 
+    html += '</div>'; 
+    return; 
+}
       if (trimmed === '') { html += '<div class="spacer"></div>'; return; }
       if (trimmed.startsWith('{')) {
         let m;

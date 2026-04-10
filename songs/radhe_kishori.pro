@@ -12,23 +12,19 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[C]mā lāḍalī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {soc: Refrén 2.}
 |[C]dayā ka[F]ro rādhe |[C]dayā karo|
 |[C]dayā ka[Am]ro rādhe |[F]dayā ka[C]rooo|
 |[C]dayā ka[F]ro rādhe |[C]dayā karooo|
 |[C]dayā ka[Am]ro rādhe |[F]dayā ka[C]roo
 {eoc}
-
 {soc: Refrén 3.}
 śyā|[C]mā lāḍalī |[G]dayā ka[F]ro
 rā|[Am]dhe kiśorī |[F]dayā ka[C]ro
 {eoc}
-
 {sov: Mezihra 1.}
 |[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. .|
 {eov}
-
 {sov: Sloka 1.}
 |[G]  ham se dīna nā |[C]koīī  [G]jag [C]me|
 |[G]  ham se dīna nā |[Am]koīī  [G]jag [C]me|
@@ -36,13 +32,10 @@ rā|[Am]dhe kiśorī |[F]dayā ka[C]ro
 |[Dm]  bān dayā kī |[C]tanak dha[F]ro|
 |[Dm]  bān dayā kī |[C]tanak dharoo
 {eov}
-
-
 {soc: Refrén 4.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {sov: Mezihra 2.}
 |[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
 |[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
@@ -60,7 +53,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {sov: Mezihra 1.}
 |[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
@@ -77,7 +69,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {sov: Mezihra 1.}
 |[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
@@ -103,14 +94,12 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 |[C]dayā ka[F]ro rādhe |[C]dayā karooo|
 |[C]dayā ka[Am]ro rādhe |[F]dayā ka[C]roo
 {eoc}
-
 {soc: Refrén 1.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[C]mā lāḍalī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {sov: Mahā Mantra 1.}
 Hare |[C]Krishna Haree Krish|[G]na
 Krishna |[Ami]Krishna Ha[G]reee Ha|[F]re
