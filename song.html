@@ -717,20 +717,23 @@ function linkifyComments() {
 
   let content = songContainer.innerHTML;
 
-  // 1. Nejprve převedeme naše "skryté" odkazy se svislítkem: (Text|https://...)
+  // --- NOVÉ: Formátování textu ---
+  // 1. Tučné písmo: **text**
+  content = content.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
+  // 2. Kurzíva: _text_
+  content = content.replace(/_([^_]+)_/g, '<i>$1</i>');
+
+  // --- PŮVODNÍ: Odkazy ---
+  // 3. Skryté odkazy: (Text|https://...)
   const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
   content = content.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
 
-  // 2. Nyní najdeme všechny čisté adresy. 
-  // Tento vzor najde buď CELÝ už existující odkaz, NEBO čistou URL adresu.
+  // 4. Čisté URL adresy
   const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
-
   content = content.replace(plainUrlPattern, (match, url) => {
     if (url) {
-      // Pokud skript našel jen čistou URL (skupina 'url' existuje), obalí ji do odkazu
       return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
     }
-    // Pokud skript našel už existující odkaz (z kroku 1), vrátí ho přesně tak, jak je
     return match;
   });
 

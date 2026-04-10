@@ -10,24 +10,11 @@ https://www.sikhdharma.org/aad-guray-nameh/
 
 Gurmukhi Script:
 ਆਦਿ ਗੁਰੇ ਨਮਹ ॥ ਜੁਗਾਦਿ ਗੁਰੇ ਨਮਹ ॥ ਸਤਿ ਗੁਰੇ ਨਮਹ ॥ ਸ੍ਰੀ ਗੁਰੂ ਦੇਵੇ ਨਮਹ ॥
-Transliteration:
+**Transliteration:**
     • Ād guray namaḥ 
     • Jugād guray namaḥ 
     • Sat guray namaḥ 
     • Sirī gurū devay namaḥ 
-Word-by-Word Translation
-    1. Ād = Primal, original, beginning
-    2. Guray = To the Guru (dative case)
-    3. Namaḥ = I bow, salutations
-    4. Jugād = Throughout the ages, timeless
-    5. Guray = To the Guru
-    6. Namaḥ = I bow
-    7. Sat = True, truth
-    8. Guray = To the Guru
-    9. Namaḥ = I bow
-    10. Sirī = Great, honored (honorific)
-    11. Gurū = Guru, teacher
-    12. Devay = Divine, to the divine light
-    13. Namaḥ = I bow
+**_Ād_** = Primal, original, beginning; **_Guray_** = To the Guru (dative case); **_Namaḥ_** = I bow, salutations; **_Jugād_** = Throughout the ages, timeless; **_Guray_** = To the Guru; **_Namaḥ_** = I bow; **_Sat_** = True, truth; **_Guray_** = To the Guru; **_Namaḥ_** = I bow; **_Sirī_** = Great, honored (honorific); **_Gurū_** = Guru, teacher; **_Devay_** = Divine, to the divine light; **_Namaḥ_** = I bow
 
 
