@@ -368,6 +368,46 @@
     padding: 20px 0;
     display: none;
   }
+
+  /* Styl pro plovoucí navigaci */
+.scroll-nav {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999; /* Aby byla vždy nad textem */
+}
+
+.scroll-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 120, 0, 0.6); /* Oranžová, poloprůhledná */
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent; /* Odstraní modrý záblesk na mobilu */
+}
+
+.scroll-btn:active {
+  background: rgba(255, 120, 0, 0.9);
+  transform: scale(0.9); /* Efekt zmáčknutí */
+}
+
+/* Pokud je chceš na PC schovat, odmaž komentář u řádků níže: */
+/*
+@media (min-width: 1024px) {
+  .scroll-nav { display: none; }
+}
+*/
 </style>
 </head>
 <body>
@@ -395,6 +435,11 @@
   <div id="loading">Načítám písničku…</div>
   <div id="error">Písničku se nepodařilo načíst. Zkontroluj URL.</div>
   <div id="chord-app" style="display:none;"></div>
+</div>
+
+<div class="scroll-nav">
+  <button class="scroll-btn" onclick="window.scrollBy({top: -window.innerHeight*0.8, behavior: 'smooth'})" title="Nahoru">⏶</button>
+  <button class="scroll-btn" onclick="window.scrollBy({top: window.innerHeight*0.8, behavior: 'smooth'})" title="Dolů">⏷</button>
 </div>
 
 <script>
