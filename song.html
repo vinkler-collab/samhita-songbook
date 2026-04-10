@@ -228,6 +228,17 @@
     transform: translateY(1px);
   }
 
+  .inline-link {
+  color: #ff7800; /* Tvoje oranžová */
+  text-decoration: underline;
+  word-break: break-all; /* Aby dlouhé odkazy nerozbily šířku na mobilu */
+  font-weight: bold;
+}
+
+.inline-link:hover {
+  color: #e66c00;
+}
+
   .song-capo {
     font-family: sans-serif;
     font-weight: bold;
@@ -692,12 +703,39 @@ if (trimmed.toLowerCase().startsWith('{eov')) {
       }
 
       window.renderSong();
+      linkifyComments();
     })
     .catch(() => {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('error').style.display = 'block';
     });
 })();
+// --- FUNKCE PRO AUTOMATICKÉ ODKAZY KDEKOLIV V TEXTU ---
+function linkifyComments() {
+  const songContainer = document.getElementById('chord-app');
+  if (!songContainer) return;
+
+  let content = songContainer.innerHTML;
+
+  // 1. Nejprve převedeme naše "skryté" odkazy se svislítkem: (Text|https://...)
+  const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
+  content = content.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
+
+  // 2. Nyní najdeme všechny čisté adresy. 
+  // Tento vzor najde buď CELÝ už existující odkaz, NEBO čistou URL adresu.
+  const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
+
+  content = content.replace(plainUrlPattern, (match, url) => {
+    if (url) {
+      // Pokud skript našel jen čistou URL (skupina 'url' existuje), obalí ji do odkazu
+      return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
+    }
+    // Pokud skript našel už existující odkaz (z kroku 1), vrátí ho přesně tak, jak je
+    return match;
+  });
+
+  songContainer.innerHTML = content;
+}
 </script>
 </body>
 </html>

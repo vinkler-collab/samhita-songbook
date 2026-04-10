@@ -5,7 +5,9 @@
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
     |[Em]Sa --- |[C]t guray na|[G]maḥ |. . Sirī gurū|
     |[Em]de---|[D]vay na|[G]maḥ |. . . . |
-This is a Sikh mantra from the Guru Granth Sahib, written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.
+This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.
+https://www.sikhdharma.org/aad-guray-nameh/
+
 Gurmukhi Script:
 ਆਦਿ ਗੁਰੇ ਨਮਹ ॥ ਜੁਗਾਦਿ ਗੁਰੇ ਨਮਹ ॥ ਸਤਿ ਗੁਰੇ ਨਮਹ ॥ ਸ੍ਰੀ ਗੁਰੂ ਦੇਵੇ ਨਮਹ ॥
 Transliteration:
@@ -27,3 +29,5 @@ Word-by-Word Translation
     11. Gurū = Guru, teacher
     12. Devay = Divine, to the divine light
     13. Namaḥ = I bow
+
+
