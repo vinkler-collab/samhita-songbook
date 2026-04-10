@@ -1,4 +1,0 @@
-cd /home/martin/MEGA/samhita-songbook
-   git add .
-   git commit -m "Popis změn"
-   git push
