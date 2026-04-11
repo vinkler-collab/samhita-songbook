@@ -16,6 +16,48 @@
     color: #222;
   }
 
+ /* === KOMPLETNÍ DARK MODE PRO SEZNAM (INDEX) === */
+body.dark-mode {
+  background-color: #262422 !important; /* Pozadí celé stránky */
+  color: #e6e2dd !important;
+}
+
+/* Kartička písničky - zrušíme bílou a dáme tmavší šedou */
+body.dark-mode li {
+  background-color: #33302d !important;
+  border: 1px solid #4d4640 !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.4) !important;
+}
+
+/* Texty v kartičce */
+body.dark-mode .song-name {
+  color: #e6e2dd !important;
+}
+
+body.dark-mode .song-sub, 
+body.dark-mode .song-meta {
+  color: #b0aaa3 !important; /* Jemnější šedá pro doplňující info */
+}
+
+/* Oranžové detaily, aby to ladilo s tvým logem */
+body.dark-mode .song-icon,
+body.dark-mode .song-arrow {
+  color: #ff9f43 !important;
+}
+
+/* Efekt při najetí myší nebo ťuknutí prstem */
+body.dark-mode li:hover {
+  background-color: #3d3a37 !important;
+  border-color: #ff9f43 !important;
+}
+
+/* Tagy v seznamu (v tmavém režimu) */
+body.dark-mode .song-tag {
+  /* Zachováme barevnost, ale trochu ji utlumíme pro tmavé pozadí */
+  filter: brightness(0.9) saturate(0.8);
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
   /* Fixní horní lišta */
   .topbar {
     position: sticky;
@@ -469,6 +511,17 @@
     color: #bbb;
     font-family: sans-serif;
   }
+
+  /* Co se stane s textem, když na kartičku najedeš myší */
+  body.dark-mode li:hover .song-name {
+    color: #ff9f43 !important; /* Rozsvítí se oranžově */
+  }
+
+  /* Pojistka pro doplňující texty, aby neblikly do bílé */
+  body.dark-mode li:hover .song-sub,
+  body.dark-mode li:hover .song-meta {
+    color: #b0aaa3 !important; 
+  }
 </style>
 </head>
 <body>
@@ -532,6 +585,10 @@
 </aside>
 
 <script>
+  // Okamžitá kontrola tmavého režimu v seznamu
+if (localStorage.getItem('samhita_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
 // ============================================================
 // Načtení písniček ze souboru songs.json
 // ============================================================
@@ -658,7 +715,7 @@ function renderSongs(list) {
   list.forEach(song => {
     const tags = Array.isArray(song.tags) ? song.tags.filter(Boolean) : [];
     const tagsHtml = tags.length
-      ? `<span class="song-tags">${tags.map(t => `<span class="song-tag">${t}</span>`).join('')}</span>`
+      ? `<span class="song-tags">${tags.map(t => `<span class="song-tag" onclick="filterByTag(event, '${t}')" style="cursor:pointer;">${t}</span>`).join('')}</span>`
       : '';
 
     const li = document.createElement('li');
@@ -706,6 +763,21 @@ function clearSearch() {
   syncSearchClearButton();
   filterSongs();
 }
+
+window.filterByTag = (e, tagName) => {
+  // Zastaví prokliknutí na samotnou písničku
+  e.preventDefault();
+  e.stopPropagation();
+
+  const input = document.getElementById('search');
+  if (input) {
+    input.value = tagName;
+    // Voláme tvou stávající funkci, která vše zařídí
+    filterSongs();
+    // Vyrolujeme nahoru, aby byly vidět výsledky
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+};
 
 // Inicializace (aby byl křížek skrytý při prázdném vyhledávání)
 syncSearchClearButton();

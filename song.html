@@ -463,18 +463,288 @@
   .scroll-nav { display: none; }
 }
 */
+
+/* === ZÁKLADNÍ VZHLED PŘEHRÁVAČE (Světlý i tmavý režim) === */
+audio {
+    border-radius: 8px !important;
+    overflow: hidden !important; /* Tohle je ten hlavní trik, který ořízne ostré rohy! */
+    outline: none !important;
+  }
+
+  /* Kladivo na Chrome, Edge a Safari - zacílení přímo na panel přehrávače */
+  audio::-webkit-media-controls-enclosure {
+    border-radius: 8px !important;
+  }
+
+/* === OPRAVENÝ TMAVÝ REŽIM (TÁBORÁK) === */
+body.dark-mode {
+    background-color: #33302d !important; /* Ta světlejší varianta, co se ti líbila */
+    color: #e6e2dd !important; 
+  }
+
+  /* Toto vynutí světlou barvu u textu písně a všech popisků */
+  body.dark-mode .lyric,
+  body.dark-mode .song-title,
+  body.dark-mode .song-subtitle,
+  body.dark-mode .verse-label,
+  body.dark-mode .chorus-label,
+  body.dark-mode .song-tempo,
+  body.dark-mode .song-capo,
+  body.dark-mode .song-time {
+    color: #e6e2dd !important;
+  }
+
+  /* Vynucení světlé barvy pro nadpis v liště a šipku zpět */
+  body.dark-mode .topbar-title,
+  body.dark-mode #topbar-title,
+  body.dark-mode .back-link {
+    color: #e6e2dd !important;
+  }
+
+  /* Oprava pozadí pro tlačítko zpět v tmavém režimu */
+  body.dark-mode .back-link {
+    background-color: #403c38 !important; /* Tmavá barva bubliny */
+    color: #e6e2dd !important;           /* Světlá šipka */
+    border: 1px solid #5d5650 !important; /* Jemný okraj, aby to splynulo s ostatními tlačítky */
+  }
+
+  /* Efekt při najetí myší na tlačítko zpět */
+  body.dark-mode .back-link:hover {
+    background-color: #504b46 !important; 
+    color: #ff9f43 !important; /* Oranžová šipka při najetí, ať ladíme! */
+  }
+
+  /* Akordy - na tmavém pozadí vypadá tato sytější oranžová skvěle */
+  body.dark-mode .chord {
+    color: #ff9f43 !important; 
+  }
+
+  /* Zelené komentáře - v tmavém režimu je musíme trochu zesvětlit, aby byly čitelné */
+  body.dark-mode .comment-label {
+    color: #55efc4 !important; 
+  }
+
+  /* Horní lišta a její prvky */
+  body.dark-mode .song-topbar {
+    background-color: #1c1a19 !important;
+    border-bottom: 1px solid #4d4640 !important;
+  }
+  
+  body.dark-mode .song-topbar-title {
+    color: #e6e2dd !important;
+  }
+
+  body.dark-mode .song-topbar-btn {
+    background: #403c38 !important;
+    border-color: #5d5650 !important;
+    color: #e6e2dd !important;
+  }
+
+  /* Refrén v tmavém režimu (jemný nádech) */
+  body.dark-mode .chorus-block {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-left: 3px solid #ff9f43 !important;
+  }
+
+  /* Dělící čára mezi sloupci */
+  body.dark-mode #output-area {
+    column-rule: 1px dashed #5d5650 !important;
+  }
+
+  /* Oprava nečitelných štítků (Capo, Takt, BPM) v Dark Mode */
+  body.dark-mode .song-capo,
+  body.dark-mode .song-time,
+  body.dark-mode .song-tempo {
+    background-color: #403c38 !important; /* Stejná barva jako tlačítka v liště */
+    color: #e6e2dd !important;           /* Světle krémové písmo */
+    border: 1px solid #5d5650 !important; /* Jemný okraj */
+    box-shadow: none !important;          /* Odstranění případného stínu, aby to netlouklo */
+  }
+
+  /* Pokud tam máš ty ikonky (jako kytaru u Capa), tohle zajistí, aby nebyly moc průhledné */
+  body.dark-mode .song-capo::before,
+  body.dark-mode .song-time::before,
+  body.dark-mode .song-tempo::before {
+    filter: brightness(1.2);
+  }
+
+  /* === ODLIŠENÍ PŘEHRÁVACÍ LIŠTY V DARK MODE === */
+  body.dark-mode audio,
+  body.dark-mode #audio-container,
+  body.dark-mode .audio-wrapper,
+  body.dark-mode .audio-player {
+    background-color: #262422 !important; /* O něco tmavší pozadí, než má horní lišta */
+    border: 1px solid #5d5650 !important; /* Jemný ohraničující rámeček */
+    border-radius: 8px !important;        /* Elegantní zaoblení rohů */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important; /* Lehký stín pro 3D efekt */
+    margin-top: 8px !important;           /* Malá mezera od horní lišty */
+    padding: 2px !important;              /* Aby přehrávač nebyl nalepený na okraj rámečku */
+  }
+
+  /* Pokud používáš nativní prohlížečový přehrávač a chtěl bys ho do tmavé barvy 
+     přebarvit úplně celý (někdy bývá uvnitř bílý), pomůže tento trik: */
+  body.dark-mode audio {
+    color-scheme: dark; 
+  }
+
+  /* === UNIFIKACE TLAČÍTEK V HORNÍ LIŠTĚ (Světlý režim) === */
+  
+  /* Zacílíme na VŠECHNA tlačítka v ovládací liště, aby byla stejná */
+  .topbar-actions button {
+    appearance: none;            /* Odstraní ten ošklivý výchozí vzhled prohlížeče (např. u měsíčku) */
+    background-color: #ffffff;   /* Čistě bílé pozadí */
+    border: 1px solid #dcd6d0;   /* Jemný sjednocený okraj */
+    border-radius: 8px;          /* Stejné zaoblení jako u přehrávače */
+    color: #333333;              /* Tmavý text/ikony */
+    font-size: 16px;
+    font-weight: bold;
+    padding: 6px 12px;           /* Sjednocená vnitřní velikost */
+    margin: 0 2px;               /* Mezera mezi tlačítky */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;             /* Aby byla tlačítka aspoň takhle široká a nebyla scvrklá */
+    height: 36px;                /* Jednotná výška pro všechna tlačítka! */
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Velmi jemný stínek */
+  }
+
+  /* Efekt najetí myší ve světlém režimu */
+  .topbar-actions button:hover {
+    background-color: #f5f0eb;
+    border-color: #b0aaa3;
+  }
+
+  /* Číslo (nula) uprostřed transpozice - aby výškově sedělo s tlačítky */
+  .shift-display {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0 4px;
+  }
+
+  /* === JEMNÉ OPTICKÉ DOLADĚNÍ ZLOBIVÝCH ZNAKŮ === */
+  
+  /* Srovnání základní linky (baseline) pro všechna tlačítka */
+  .topbar-actions button {
+    line-height: 1 !important;
+  }
+
+  /* Tlačítko přehrávání (šipka ▶) */
+  #audio-toggle {
+    font-size: 18px !important;
+    /* Horizontální posun (doleva) */
+    padding-left: 12px !important;   
+    padding-right: 12px !important; 
+    /* Vertikální posun (nahoru) */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transform: translateY(-0px) !important; /* Pokud to bude málo, dej -2px */
+  }
+
+  /* Tlačítko sloupců (číslo + symbol ⫿) */
+  #col-toggle-btn {
+    letter-spacing: 2px !important;  /* Vytvoří hezčí a vzdušnější mezeru mezi číslem a symbolem */
+    font-size: 17px !important;      /* Sjednocení velikosti fontu s ostatními */
+  }
+
+  /* === ZVĚTŠENÍ SYMBOLŮ TRANSPOZICE === */
+  
+  /* Cílíme na tlačítka uvnitř transpoziční skupiny */
+  .transpose-group button {
+    font-size: 22px !important;    /* Pořádné zvětšení, aby symboly vynikly */
+    font-weight: 900 !important;    /* Maximální tučnost */
+    line-height: 1 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Specifické poladění pro béčko (bývá víc u horního okraje) */
+  .transpose-group button[onclick*="changeShift(-1)"] {
+    padding-bottom: 4px !important; /* Trochu ho posuneme dolů pro optický střed */
+    font-size: 24px !important;      /* Béčko může být i o chlup větší než křížek */
+  }
+
+  /* Specifické poladění pro křížek */
+  .transpose-group button[onclick*="changeShift(1)"] {
+    transform: translateY(-1px) !important; /* Křížek jemně nahoru */
+  }
+
+  /* === FINÁLNÍ OPTICKÉ DOLADĚNÍ ŠIPKY ZPĚT === */
+  
+  .song-topbar .back-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-decoration: none !important;
+    
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    border: 1px solid #dcd6d0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    color: #333333;
+    /* Mírně zmenšíme, aby kolem šipky bylo víc "vzduchu" a nepůsobila tak narvaně */
+    font-size: 25px !important; 
+    line-height: 1 !important;
+    
+    /* KLÍČOVÉ VYCENTROVÁNÍ: */
+    /* Pokud je šipka moc vpravo, zvětši padding-right. Pokud moc nahoře, zvětši padding-top. */
+    padding-right: 9px !important; 
+    padding-top: 1px !important;
+    
+    /* Transformaci použijeme jen pro mikro-posuv, pokud padding nestačí */
+    transform: none !important; 
+  }
+
+  /* Dark mode zůstává stejný, jen mu dopřejeme stejnou velikost */
+  body.dark-mode .song-topbar .back-link {
+    background-color: #403c38 !important;
+    border: 1px solid #5d5650 !important;
+    color: #e6e2dd !important;
+    font-size: 22px !important;
+  }
+  /* === UNIFIKACE TLAČÍTEK (Tmavý režim) === */
+  
+  body.dark-mode .topbar-actions button {
+    background-color: #403c38 !important; /* Tmavě šedá bublina */
+    border: 1px solid #5d5650 !important; /* Tmavší okraj */
+    color: #e6e2dd !important;            /* Světlé ikonky */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  }
+
+  /* Efekt najetí myší v tmavém režimu */
+  body.dark-mode .topbar-actions button:hover {
+    background-color: #504b46 !important;
+    color: #ff9f43 !important;            /* Oranžová barva pro šmrnc! */
+    border-color: #ff9f43 !important;
+  }
+
+  /* Číslo transpozice v tmavém režimu */
+  body.dark-mode .shift-display {
+    color: #e6e2dd !important;
+  }
 </style>
 </head>
 <body>
 <div class="song-topbar" id="song-topbar">
   <div class="song-topbar-inner">
-    <a class="back-link" href="index.html" aria-label="Zpět na seznam">←</a>
-    <div class="topbar-title" id="topbar-title">Načítám…</div>
+    <a class="back-link" href="index.html" aria-label="Zpět na seznam">🡐</a>    <div class="topbar-title" id="topbar-title">Načítám…</div>
     <div class="topbar-actions">
       <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát (zobrazit nahrávky)">▶</button>
       <button class="icon-btn" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout počet sloupců">1 ⫿</button>
       <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
       <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
+      <button class="song-topbar-btn" type="button" onclick="toggleDarkMode()" title="Přepnout tmavý režim">🌙</button>
       <span class="transpose-group" role="group" aria-label="Transpozice akordů (půltóny)">
         <button class="icon-btn" type="button" onclick="changeShift(-1)" title="O půl tónu dolů" aria-label="Akordy o půl tónu dolů">♭</button>
         <span class="shift-display" id="shift-display" title="Posun v půltónech">0</span>
@@ -500,6 +770,10 @@
 
 <script>
 (function() {
+  // 1. OKAMŽITÁ KONTROLA TMAVÉHO REŽIMU (aby to neblikalo)
+  if (localStorage.getItem('samhita_dark') === 'true') {
+    document.body.classList.add('dark-mode');
+  }
   // --- Foot switch / klávesové posouvání (PageUp/Down, ArrowUp/Down) ---
   const SCROLL_FRACTION = 0.75;
   const topbarTitleEl = document.getElementById('topbar-title');
@@ -644,6 +918,12 @@
     currentCols = currentCols >= 6 ? 1 : currentCols + 1;
     localStorage.setItem('samhita_columns', currentCols); // ULOŽENÍ DO PAMĚTI
     window.applyColumnLayout();
+  };
+  window.toggleDarkMode = () => {
+    // Přepne třídu a vrátí true/false podle toho, jestli tam teď je
+    const isDark = document.body.classList.toggle('dark-mode'); 
+    // Uloží stav do paměti
+    localStorage.setItem('samhita_dark', isDark);
   };
   let songData = '';
 
