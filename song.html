@@ -5,6 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zpěvník</title>
 <style>
+/* --- VÍCESLOUPCOVÝ LAYOUT --- */
+#chord-app {
+    --col-count: 1; /* Výchozí hodnota */
+  }
+
+  #output-area {
+    column-count: var(--col-count);
+    column-gap: 15px;
+    column-rule: 1px dashed #e0c5b0; /* Jemná svislá čára mezi sloupci */
+  }
+
+  /* Nadpis a podtitul roztáhneme přes všechny sloupce, ať jsou hezky nahoře uprostřed */
+  .song-title, .song-subtitle {
+    column-span: all;
+  }
+
+  /* Povolíme lámání slok a refrénů pro dokonalé zarovnání sloupců */
+  .verse-block, .chorus-block, .line {
+    break-inside: auto; /* Změněno z avoid na auto */
+    page-break-inside: auto;
+  }
+
+  /* Volitelné: Přidáme vyrovnání sloupců (balance) */
+  #output-area {
+    column-count: var(--col-count);
+    column-gap: 30px;
+    column-rule: 2px dashed #e0c5b0;
+    column-fill: balance; /* Prohlížeč se pokusí udělat všechny sloupce stejně dlouhé */
+  }
+
+  /* Aby se stránka roztáhla plynule a neškubla */
+  #page, .song-topbar-inner {
+    transition: max-width 0.3s ease;
+  }
+
+  /* Na mobilech vždy 1 sloupec a schovat tlačítko */
+  @media (max-width: 800px) {
+    #output-area { column-count: 1 !important; }
+    #col-toggle-btn { display: none !important; }
+  }
+
   @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
   * { box-sizing: border-box; }
@@ -16,7 +57,11 @@
     font-family: 'Gentium Book Plus', serif;
   }
 
-  :root { --topbar-h: 52px; }
+  :root { 
+    --topbar-h: 52px; 
+  /* TADY je tvůj jediný ovladač pro celou stránku */
+  --mezera-mezi-slokami: 1em;
+  }
 
   #page {
     max-width: 800px;
@@ -239,25 +284,7 @@
   color: #e66c00;
 }
 
-  .song-capo {
-    font-family: sans-serif;
-    font-weight: bold;
-    color: #d35400; /* Oranžová jako akordy */
-    border: 1px solid #d35400;
-    padding: 1px 6px;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 1em;
-    margin-right: 10px;
-}
-
-.song-capo::before {
-    content: "🎸 "; /* Malá ikona kytary pro přehlednost */
-    font-size: 1.1em;
-}
-
-  .song-title {
+    .song-title {
     font-weight: bold;
     color: #143464;
     display: block;
@@ -273,11 +300,12 @@
     text-align: left;
 }
 
-/* Sloka - čistý prostor a zelený nadpis */
+/* Sloka */
 .verse-block {
-    margin: 25px 0;
-    padding-top: 5px;
-  }
+  display: block;
+  margin-bottom: var(--mezera-mezi-slokami); /* Použije hodnotu z root */
+  break-inside: auto;
+}
 
   .verse-label {
     font-family: sans-serif;
@@ -291,27 +319,42 @@
     display: inline-block;
   }
 
-  .song-tempo {
+  /* Dokonale sjednocený styl pro všechny metadata štítky - NEUTRÁLNÍ a JEDNOTNÉ */
+  .song-capo, .song-tempo, .song-time {
     font-family: sans-serif;
     font-weight: bold;
-    color: #888;
-    background: #f4f4f4;
-    padding: 2px 8px;
-    border-radius: 4px;
-    display: inline-block;
+    color: #555;                 /* Neutrální šedá */
+    background: #f4f4f4;         /* Světle šedé pozadí */
+    border: 1px solid #dcdcdc;   /* Jemný rámeček */
+    padding: 0 10px;             /* Pouze boční padding, výška je pevná */
+    height: 30px;                /* PEVNÁ výška sjednocuje vzhled */
+    border-radius: 6px;          /* Stejné zakulacení */
+    display: inline-flex;        /* Pro horizontální řazení obsahu */
+    align-items: center;         /* Vertikální vycentrování */
     margin-bottom: 1em;
+    margin-right: 10px;          /* Mezera mezi štítky */
+    line-height: 1.2;
+    vertical-align: middle;       /* Důležité pro zarovnání s ostatními elementy */
   }
 
-  /* Refrén - s levou čarou a oranžovým nadpisem */
-  .chorus-block {
-    border-left: 4px solid #d35400;
-    padding-left: 15px;
-    margin: 20px 0;
-    background: rgba(211, 84, 0, 0.04);
-    padding-top: 10px;
-    padding-bottom: 5px;
-    border-radius: 0 8px 8px 0;
+  /* Ikonka kytary pro Capo se stejnou velikostí písma */
+  .song-capo::before {
+    content: "🎸 ";
+    font-size: 1.0em;             /* Zmenšeno z 1.1em na velikost textu */
+    margin-right: 4px;
   }
+
+/* Refrén */
+.chorus-block {
+  display: block;
+  margin-bottom: var(--mezera-mezi-slokami); /* Použije hodnotu z root */  border-left: 4px solid #d35400;
+  padding-left: 15px;
+  background: rgba(211, 84, 0, 0.04);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0 8px 8px 0;
+  break-inside: auto;
+}
 
   .chorus-label {
     font-family: sans-serif;
@@ -352,10 +395,11 @@
     color: #000;
   }
 
-  .line {
-    margin-bottom: 0.8em;
-    display: block;
-  }
+  /* Toto je klíčové: každý řádek (akord + text) musí mít stejný rytmus */
+.line {
+  margin-bottom: 8px;    /* Jednotná mezera mezi řádky textu */
+  display: block;
+}
 
   .comment {
     margin-top: 1.2em;
@@ -428,6 +472,7 @@
     <div class="topbar-title" id="topbar-title">Načítám…</div>
     <div class="topbar-actions">
       <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát (zobrazit nahrávky)">▶</button>
+      <button class="icon-btn" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout počet sloupců">1 ⫿</button>
       <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
       <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
       <span class="transpose-group" role="group" aria-label="Transpozice akordů (půltóny)">
@@ -571,6 +616,30 @@
   const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
   let currentShift = 0;
   let currentFontSize = 21;
+  let currentCols = 1;
+
+  window.toggleColumns = () => {
+    // Cyklické přepínání 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 1
+    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+    
+    const appEl = document.getElementById('chord-app');
+    const pageEl = document.getElementById('page');
+    const topbarInner = document.querySelector('.song-topbar-inner');
+    const btn = document.getElementById('col-toggle-btn');
+    
+    if (appEl) appEl.style.setProperty('--col-count', currentCols);
+    
+    // Dynamické rozšiřování podle počtu sloupců
+    let newMaxWidth = '800px';
+    if (currentCols === 2) newMaxWidth = '1200px';
+    if (currentCols === 3) newMaxWidth = '1600px';
+    if (currentCols >= 4)  newMaxWidth = '95%'; // Pro 4, 5 a 6 sloupců roztáhneme naplno
+    
+    if (pageEl) pageEl.style.maxWidth = newMaxWidth;
+    if (topbarInner) topbarInner.style.maxWidth = newMaxWidth;
+    
+    if (btn) btn.innerHTML = `${currentCols} ⫿`;
+  };
   let songData = '';
 
   function transposeChord(chord, amount) {
@@ -588,90 +657,147 @@
   }
 
   // --- Render ---
-  window.renderSong = function() {
-    const app = document.getElementById('chord-app');
-    if (!app || !songData) return;
+ // Pomocná funkce pro formátování textu (tučné, kurzíva, odkazy)
+function formatLyrics(text) {
+  if (!text) return '';
+  
+  // 1. Tučné písmo: **slovo** -> <strong>slovo</strong>
+  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  
+  // 2. Kurzíva: __slovo__ -> <em>slovo</em>
+  text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+  
+  // 3. Skryté odkazy: (Text|https://...)
+  const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
+  text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
 
-    const lines = songData.trim().split('\n');
-    let html = `<div id="output-area">`;
-
-    lines.forEach((line) => {
-      const trimmed = line.trim();
-      // --- REFRÉN (Chorus) ---
-if (trimmed.toLowerCase().startsWith('{soc')) {
-    let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
-    let label = labelMatch ? `<div class="chorus-label">${labelMatch[1]}</div>` : '';
-    html += `<div class="chorus-block">${label}`; 
-    return; // Důležité: ukončí zpracování řádku
+  // 4. Čisté URL adresy (ignoruje už hotové <a> tagy)
+  const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
+  text = text.replace(plainUrlPattern, (match, url) => {
+    if (url) {
+      return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
+    }
+    return match;
+  });
+  
+  return text;
 }
-// Tady je ta změna: použijeme startsWith místo ===
-if (trimmed.toLowerCase().startsWith('{eoc')) { 
-    html += '</div>'; 
-    return; 
-}
+window.renderSong = function() {
+  const app = document.getElementById('chord-app');
+  if (!app || !songData) return;
 
-// --- SLOKA (Verse) ---
-if (trimmed.toLowerCase().startsWith('{sov')) {
-    let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
-    let label = labelMatch ? `<div class="verse-label">${labelMatch[1]}</div>` : '';
-    html += `<div class="verse-block">${label}`;
-    return;
-}
-// Opět: tolerantní ukončení sloky
-if (trimmed.toLowerCase().startsWith('{eov')) { 
-    html += '</div>'; 
-    return; 
-}
-      if (trimmed === '') { html += '<div class="spacer"></div>'; return; }
-      if (trimmed.startsWith('{')) {
-        let m;
-        // Titulek
-        m = line.match(/\{t(?:itle)?:\s*(.*?)\}/i);
-        if (m) { html += `<div class="song-title" style="font-size:${currentFontSize * 1.4}px;">${m[1]}</div>`; return; }
-        
-        // Podtitul (Opraveno, aby bral {subtitle: } i {st: })
-        m = line.match(/\{(?:subtitle|st):\s*(.*?)\}/i);
-        if (m) { html += `<div class="song-subtitle" style="font-size:${currentFontSize * 0.9}px;">${m[1]}</div>`; return; }
-        
-        // Tempo (Nové)
-        m = line.match(/\{tempo:\s*(.*?)\}/i);
-        if (m) { html += `<div class="song-tempo" style="font-size:${currentFontSize * 0.7}px;">Tempo: ${m[1]} BPM</div>`; return; }
-        
-        // Capo - TOHLE JSME PŘIDALI
-        m = line.match(/\{capo:\s*(.*?)\}/i);
-        if (m) { html += `<div class="song-capo" style="font-size:${currentFontSize * 0.8}px;">Capo: ${m[1]}</div>`; return; }
+  const lines = songData.trim().split('\n');
+  let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`; // Začátek prostoru pro sloupce
 
-        // Komentář
-        m = line.match(/\{c(?:omment)?:\s*(.*?)\}/i);
-        if (m) { html += `<div class="comment" style="font-size:${currentFontSize * 0.85}px;">${m[1]}</div>`; return; }
-        
-        return;
-      }
+  lines.forEach((line) => {
+    const trimmed = line.trim();
 
-      let lineHtml = '<div class="line">';
-      const regex = /\[(.*?)\]/g;
-      let match;
-      const firstMatch = line.match(/\[/);
-      const startPos = firstMatch ? firstMatch.index : line.length;
+    // 1. Ignorovat komentáře začínající křížkem
+    if (trimmed.startsWith('#')) return; 
 
-      if (startPos > 0) {
-        lineHtml += `<span class="chord-stack"><span class="chord"></span><span class="lyric" style="font-size:${currentFontSize}px;">${line.substring(0, startPos)}</span></span>`;
-      }
+    // 2. REFRÉN (Chorus) - Start
+    if (trimmed.toLowerCase().startsWith('{soc')) {
+      let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+      let labelText = labelMatch ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="chorus-block">${labelHtml}`; 
+      return; 
+    }
 
-      while ((match = regex.exec(line)) !== null) {
-        const chord = transposeChord(match[1], currentShift);
-        const nextPos = line.indexOf('[', regex.lastIndex);
-        const lyric = line.substring(regex.lastIndex, nextPos !== -1 ? nextPos : line.length);
-        const isMarker = chord === '.' ? 'marker' : '';
-        lineHtml += `<span class="chord-stack"><span class="chord ${isMarker}">${chord}</span><span class="lyric" style="font-size:${currentFontSize}px;">${lyric}</span></span>`;
-      }
-      html += lineHtml + '</div>';
-    });
+    // 3. REFRÉN - Konec
+    if (trimmed.toLowerCase().startsWith('{eoc')) { 
+      html += '</div>'; 
+      return; 
+    }
 
-    html += '<div style="height:80px;"></div></div>';
-    app.innerHTML = html;
-    if (shiftDisplayEl) shiftDisplayEl.textContent = String(currentShift);
-  };
+    // 4. SLOKA (Verse) - Start
+    if (trimmed.toLowerCase().startsWith('{sov')) {
+      let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+      let labelText = labelMatch ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="verse-block">${labelHtml}`;
+      return;
+    }
+
+    // 5. SLOKA - Konec
+    if (trimmed.toLowerCase().startsWith('{eov')) { 
+      html += '</div>'; 
+      return; 
+    }
+
+    // 6. Prázdné řádky (mezery mezi slokami)
+    if (trimmed === '') { 
+      html += '<div class="spacer" style="height:0.2em;"></div>'; 
+      return; 
+    }
+
+    // 7. ChordPro značky (Title, Capo, atd.)
+    if (trimmed.startsWith('{')) {
+      let m;
+      // Titulek
+      m = line.match(/\{t(?:itle)?:\s*(.*?)\}/i);
+      if (m) { html += `<div class="song-title" style="font-size:${currentFontSize * 1.4}px;">${m[1]}</div>`; return; }
+      
+      // Podtitul
+      m = line.match(/\{(?:subtitle|st):\s*(.*?)\}/i);
+      if (m) { html += `<div class="song-subtitle" style="font-size:${currentFontSize * 0.9}px;">${m[1]}</div>`; return; }
+      
+      // Tempo 
+      m = line.match(/\{tempo:\s*(.*?)\}/i);
+      if (m) { html += `<div class="song-tempo" style="font-size:${currentFontSize * 0.75}px;">Tempo: ${m[1]} BPM</div>`; return; }
+      
+      // Capo 
+      m = line.match(/\{capo:\s*(.*?)\}/i);
+      if (m) { html += `<div class="song-capo" style="font-size:${currentFontSize * 0.75}px;">Capo: ${m[1]}</div>`; return; }
+
+      // Takt
+      m = line.match(/\{time:\s*(.*?)\}/i);
+      if (m) { html += `<div class="song-time" style="font-size:${currentFontSize * 0.75}px;">Takt: ${m[1]}</div>`; return; }
+      
+      // Komentář (zelený text)
+      m = line.match(/\{c(?:omment)?:\s*(.*?)\}/i);
+      if (m) { html += `<div class="comment-label" style="font-size:${currentFontSize * 0.85}px; color: #27ae60; margin-bottom: 5px; font-weight: bold;">${m[1]}</div>`; return; }
+      
+      return;
+    }
+
+    // 8. Zpracování běžného řádku s akordy
+    let lineHtml = '';
+    const regex = /\[(.*?)\]/g;
+    let match;
+    const firstMatch = line.match(/\[/);
+    const startPos = firstMatch ? firstMatch.index : line.length;
+
+    // Text před prvním akordem
+    if (startPos > 0) {
+      let textPart = formatLyrics(line.substring(0, startPos)); 
+      lineHtml += `<span class="chord-stack"><span class="chord" style="font-size:${currentFontSize * 0.85}px;"></span><span class="lyric" style="font-size:${currentFontSize}px;">${textPart}</span></span>`;
+    }
+
+    // Akordy a text za nimi
+    while ((match = regex.exec(line)) !== null) {
+      const chord = transposeChord(match[1], currentShift);
+      const nextPos = line.indexOf('[', regex.lastIndex);
+      let lyric = line.substring(regex.lastIndex, nextPos !== -1 ? nextPos : line.length);
+      
+      lyric = formatLyrics(lyric); // Aplikujeme sjednocené formátování
+      
+      const isMarker = chord === '.' ? 'marker' : '';
+      
+      lineHtml += `<span class="chord-stack"><span class="chord ${isMarker}" style="font-size:${currentFontSize * 0.85}px;">${chord}</span><span class="lyric" style="font-size:${currentFontSize}px;">${lyric}</span></span>`;
+    }
+    
+    // Zabalíme hotový řádek do .line a přidáme do HTML
+    html += `<div class="line">${lineHtml}</div>`;
+  });
+
+  html += '<div style="height:80px;"></div></div>'; // Zavření #output-area
+  app.innerHTML = html;
+  
+  if (typeof shiftDisplayEl !== 'undefined' && shiftDisplayEl) {
+    shiftDisplayEl.textContent = String(currentShift);
+  }
+};
 
   window.changeShift = (n) => { currentShift += n; window.renderSong(); };
   window.changeSize = (n) => { currentFontSize = Math.max(10, currentFontSize + n); window.renderSong(); };
@@ -724,19 +850,7 @@ function linkifyComments() {
   // 2. Kurzíva: __text__ (dvě podtržítka ignorují běžné URL adresy)
   content = content.replace(/__(.+?)__/g, '<i>$1</i>');
 
-  // --- ODKAZY ---
-  // 3. Skryté odkazy: (Text|https://...)
-  const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
-  content = content.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
 
-  // 4. Čisté URL adresy
-  const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
-  content = content.replace(plainUrlPattern, (match, url) => {
-    if (url) {
-      return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
-    }
-    return match;
-  });
 
   songContainer.innerHTML = content;
 }
