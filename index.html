@@ -334,23 +334,48 @@
     display: block;
   }
 
-  #song-list {
+ /* Hlavní obal celého seznamu písniček */
+ #song-list {
     list-style: none;
     margin: 0;
-    padding: 0;
+    /* Přidáme odsazení ze stran, ať to není nalepené na okraji displeje */
+    padding: 20px; 
+    
+    /* Magie sloupců: Prohlížeč jich udělá tolik, kolik se vejde. 
+       Na mobilu 1, na tabletu 2, na PC třeba 4. */
+    column-width: 320px; 
+    column-gap: 30px;
+    
+    /* Můžeš přidat dělící čáru mezi sloupce, pokud ji chceš. 
+       Pokud ne, stačí tento řádek smazat. */
+    column-rule: 1px dashed #f0d5c0; 
   }
 
+  /* Jednotlivá položka (kartička písničky) */
   #song-list li {
-    border-bottom: 1px solid #f0f0f0;
+    /* DŮLEŽITÉ: Zabrání roztržení položky mezi sloupce */
+    break-inside: avoid;
+    display: block;
+    width: 100%;
+    
+    /* Vzhled kartičky */
+    margin-bottom: 12px;
+    background: #fff;
+    border: 1px solid #f0f0f0; 
+    border-radius: 12px;
+    
+    /* Stín pro jemné odlišení od pozadí */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
   }
 
   #song-list li a {
     display: flex;
     align-items: center;
-    padding: 14px 20px;
+    padding: 14px 16px;
     text-decoration: none;
     color: #222;
-    transition: background 0.15s;
+    transition: background 0.15s, transform 0.1s;
+    border-radius: 12px; /* Aby roh po najetí myší kopíroval kartičku */
   }
 
   #song-list li a:hover,

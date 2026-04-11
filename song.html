@@ -614,14 +614,13 @@
 
   // --- Transpozice ---
   const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-  let currentShift = 0;
-  let currentFontSize = 21;
-  let currentCols = 1;
+  // Načtení z paměti. Pokud tam nic není (první návštěva), použijí se čísla za ||
+  let currentShift = parseInt(localStorage.getItem(`samhita_shift_${songName}`)) || 0;
+  let currentFontSize = parseInt(localStorage.getItem('samhita_fontSize')) || 21;
+  let currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
 
-  window.toggleColumns = () => {
-    // Cyklické přepínání 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 1
-    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
-    
+  // Nová pomocná funkce, která jen "aplikuje" aktuální počet sloupců
+  window.applyColumnLayout = () => {
     const appEl = document.getElementById('chord-app');
     const pageEl = document.getElementById('page');
     const topbarInner = document.querySelector('.song-topbar-inner');
@@ -629,16 +628,22 @@
     
     if (appEl) appEl.style.setProperty('--col-count', currentCols);
     
-    // Dynamické rozšiřování podle počtu sloupců
     let newMaxWidth = '800px';
     if (currentCols === 2) newMaxWidth = '1200px';
     if (currentCols === 3) newMaxWidth = '1600px';
-    if (currentCols >= 4)  newMaxWidth = '95%'; // Pro 4, 5 a 6 sloupců roztáhneme naplno
+    if (currentCols >= 4)  newMaxWidth = '95%';
     
     if (pageEl) pageEl.style.maxWidth = newMaxWidth;
     if (topbarInner) topbarInner.style.maxWidth = newMaxWidth;
     
     if (btn) btn.innerHTML = `${currentCols} ⫿`;
+  };
+
+  // Tlačítko teď jen změní číslo, ULOŽÍ HO a zavolá aplikování vzhledu
+  window.toggleColumns = () => {
+    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+    localStorage.setItem('samhita_columns', currentCols); // ULOŽENÍ DO PAMĚTI
+    window.applyColumnLayout();
   };
   let songData = '';
 
@@ -799,8 +804,17 @@ window.renderSong = function() {
   }
 };
 
-  window.changeShift = (n) => { currentShift += n; window.renderSong(); };
-  window.changeSize = (n) => { currentFontSize = Math.max(10, currentFontSize + n); window.renderSong(); };
+window.changeShift = (n) => { 
+    currentShift += n; 
+    localStorage.setItem(`samhita_shift_${songName}`, currentShift); // ULOŽENÍ DO PAMĚTI
+    window.renderSong(); 
+  };
+  
+  window.changeSize = (n) => { 
+    currentFontSize = Math.max(10, currentFontSize + n); 
+    localStorage.setItem('samhita_fontSize', currentFontSize); // ULOŽENÍ DO PAMĚTI
+    window.renderSong(); 
+  };
 
   // --- Načtení písničky ---
   if (!songName) {
@@ -829,31 +843,13 @@ window.renderSong = function() {
       }
 
       window.renderSong();
-      linkifyComments();
+      window.applyColumnLayout(); // Hned po načtení textu aplikujeme uložené sloupce
     })
     .catch(() => {
       document.getElementById('loading').style.display = 'none';
       document.getElementById('error').style.display = 'block';
     });
 })();
-// --- FUNKCE PRO AUTOMATICKÉ ODKAZY KDEKOLIV V TEXTU ---
-function linkifyComments() {
-  const songContainer = document.getElementById('chord-app');
-  if (!songContainer) return;
-
-  let content = songContainer.innerHTML;
-
-  // --- FORMÁTOVÁNÍ TEXTU ---
-  // 1. Tučné písmo: **text**
-  content = content.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
-  
-  // 2. Kurzíva: __text__ (dvě podtržítka ignorují běžné URL adresy)
-  content = content.replace(/__(.+?)__/g, '<i>$1</i>');
-
-
-
-  songContainer.innerHTML = content;
-}
 </script>
 </body>
 </html>
