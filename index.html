@@ -522,29 +522,148 @@ body.dark-mode .song-tag {
   body.dark-mode li:hover .song-meta {
     color: #b0aaa3 !important; 
   }
+
+  /* === BOČNÍ MENU V TMAVÉM REŽIMU (KOMPLETNÍ) === */
+  
+  /* 1. Samotný panel menu (pozadí celé lišty) */
+  body.dark-mode #sidebar {
+    background-color: #2c2825 !important;
+    border-color: #403c38 !important;
+    box-shadow: -2px 0 15px rgba(0,0,0,0.7) !important;
+  }
+
+  /* 2. Horní pruh s nadpisem "Menu" */
+  body.dark-mode .sidebar-header {
+    background-color: #2c2825 !important;
+    border-bottom: 1px solid #403c38 !important;
+  }
+
+  body.dark-mode .sidebar-title {
+    color: #e6e2dd !important;
+  }
+
+  /* 3. Nadpisy sekcí ("ŘAZENÍ", "KATEGORIE") */
+  body.dark-mode #sidebar h3 {
+    color: #ff9f43 !important;
+  }
+
+  /* 4. Všechna běžná tlačítka (pilulky) ztmavíme */
+  body.dark-mode .pill-btn {
+    background-color: #33302d !important;
+    color: #e6e2dd !important;
+    border: 1px solid #5d5650 !important;
+  }
+
+  /* 5. ZÁCHRANA ORANŽOVÉ: Aktivní (vybraná) tlačítka */
+  body.dark-mode .pill-btn.is-active {
+    background-color: #d35400 !important; 
+    color: #ffffff !important;
+    border-color: #d35400 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  /* 6. Křížek pro zavření */
+  body.dark-mode .sidebar-close {
+    background-color: #33302d !important;
+    border: 1px solid #5d5650 !important;
+    color: #e6e2dd !important;
+  }
+  
+  body.dark-mode .sidebar-close:hover {
+    color: #ff9f43 !important;
+    border-color: #ff9f43 !important;
+  }
+  
+  /* 7. Spodní patička s logem a datem */
+  body.dark-mode .sidebar-footer {
+    border-top: 1px solid #403c38 !important;
+    color: #b0aaa3 !important;
+  }
+
+  /* === VYHLEDÁVÁNÍ A AKTIVNÍ FILTR V TMAVÉM REŽIMU === */
+
+  /* Obal vyhledávání */
+  body.dark-mode #search-wrap {
+    background-color: #2c2825 !important;
+    border-bottom: 1px solid #403c38 !important;
+  }
+
+  /* Samotné textové pole pro vyhledávání */
+  body.dark-mode #search {
+    background-color: #33302d !important;
+    color: #e6e2dd !important;
+    border: 1px solid #5d5650 !important;
+  }
+  
+  /* Rámeček při psaní do vyhledávače */
+  body.dark-mode #search:focus {
+    border-color: #ff9f43 !important; 
+  }
+
+  /* Křížek pro vymazání textu ve vyhledávači */
+  body.dark-mode .search-clear-btn {
+    color: #b0aaa3 !important;
+  }
+  
+  body.dark-mode .search-clear-btn:hover,
+  body.dark-mode .search-clear-btn:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ff9f43 !important;
+  }
+
+  /* Obal pro zobrazený aktivní filtr pod vyhledáváním */
+  body.dark-mode #active-filter {
+    background-color: #262422 !important; /* Splývá s pozadím stránky */
+    border-bottom: 1px solid #403c38 !important;
+  }
+
+  /* Pilulka s názvem aktivního filtru */
+  body.dark-mode .filter-pill {
+    background-color: #33302d !important;
+    color: #e6e2dd !important;
+    border: 1px solid #5d5650 !important;
+  }
+
+  /* Zvýraznění samotného názvu kategorie ve filtru */
+  body.dark-mode .filter-pill strong {
+    color: #ff9f43 !important; 
+  }
+
+  /* Křížek pro zrušení filtru */
+  body.dark-mode .filter-clear {
+    color: #b0aaa3 !important;
+  }
+  
+  body.dark-mode .filter-clear:hover,
+  body.dark-mode .filter-clear:focus-visible {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #ff9f43 !important;
+  }
 </style>
 </head>
 <body>
 
-<div class="topbar">
-  <header>
-    <div class="header-inner">
-      <div class="header-text">
-        <h1>🎵 Samhita Songbook</h1>
-        <div class="last-update" id="last-update">Aktualizováno: —</div>
+  <div class="topbar">
+    <header>
+      <div class="header-inner">
+        <div class="header-text">
+          <h1>🎵 Samhita Songbook</h1>
+          <div class="last-update" id="last-update">Aktualizováno: —</div>
+        </div>
+        <div class="header-actions">
+          <button class="icon-btn" type="button" onclick="toggleDarkMode()" title="Přepnout tmavý režim" style="margin-right: 8px; font-size: 20px; background: none; border: none; cursor: pointer;">🌙</button>
+          
+          <button class="menu-btn" id="menu-btn" type="button" aria-label="Otevřít menu" aria-haspopup="dialog" aria-controls="sidebar">⋯</button>
+        </div>
       </div>
-      <div class="header-actions">
-        <button class="menu-btn" id="menu-btn" type="button" aria-label="Otevřít menu" aria-haspopup="dialog" aria-controls="sidebar">⋯</button>
+    </header>
+    <div id="search-wrap">
+      <div class="search-shell">
+        <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
+        <button id="search-clear" class="search-clear-btn" type="button" aria-label="Vymazat hledání" onclick="clearSearch()">✕</button>
       </div>
-    </div>
-  </header>
-  <div id="search-wrap">
-    <div class="search-shell">
-      <input id="search" type="search" placeholder="Hledat písničku…" oninput="filterSongs()" />
-      <button id="search-clear" class="search-clear-btn" type="button" aria-label="Vymazat hledání" onclick="clearSearch()">✕</button>
     </div>
   </div>
-</div>
 
 <div id="active-filter"></div>
 
@@ -585,9 +704,22 @@ body.dark-mode .song-tag {
 </aside>
 
 <script>
-  // Okamžitá kontrola tmavého režimu v seznamu
+ // 1. Okamžitá kontrola tmavého režimu při načtení stránky
 if (localStorage.getItem('samhita_dark') === 'true') {
   document.body.classList.add('dark-mode');
+}
+
+// 2. Funkce pro přepínání (kterou teď bude volat tlačítko s měsíčkem)
+function toggleDarkMode() {
+  // Přepne třídu na body
+  document.body.classList.toggle('dark-mode');
+  
+  // Uloží aktuální stav do paměti, aby si to prohlížeč pamatoval
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('samhita_dark', 'true');
+  } else {
+    localStorage.setItem('samhita_dark', 'false');
+  }
 }
 // ============================================================
 // Načtení písniček ze souboru songs.json

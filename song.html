@@ -676,15 +676,26 @@ body.dark-mode {
     font-weight: 900 !important;
   }
 
-  /* Znak béčka (posun jemně dolů a zvětšení) */
-  .transpose-group button[onclick*="changeShift(-1)"] {
-    font-size: 24px !important;
-    transform: translateY(1px) !important; 
+  /* 1. Pojistka: Všechna tlačítka v liště ukotvíme do stejné výšky */
+  .topbar-actions button {
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
   }
 
-  /* Znak křížku (posun jemně nahoru) */
-  .transpose-group button[onclick*="changeShift(1)"] {
-    transform: translateY(-1px) !important;
+  /* Tlačítko Béčko (posun symbolu dolů) */
+  .transpose-group button[onclick*="changeShift(-1)"] {
+    transform: none !important;      /* Vynulujeme staré pravidlo */
+    padding-top: 6px !important;     /* Tlačí symbol uvnitř bubliny dolů */
+    padding-bottom: 0 !important;    
+    font-size: 24px !important;      /* Necháme ho o chlup větší */
+  }
+
+ /* Tlačítko Křížek (posun symbolu nahoru) */
+ .transpose-group button[onclick*="changeShift(1)"] {
+    transform: none !important;      /* TOTO dříve posouvalo celé tlačítko! Vynulovat. */
+    padding-bottom: 4px !important;  /* Tlačí symbol uvnitř bubliny nahoru */
+    padding-top: 0 !important;
+    font-size: 22px !important;
   }
 
   /* Číslo transpozice (Nula) */
@@ -766,10 +777,23 @@ body.dark-mode {
 
 <script>
 (function() {
-  // 1. OKAMŽITÁ KONTROLA TMAVÉHO REŽIMU (aby to neblikalo)
-  if (localStorage.getItem('samhita_dark') === 'true') {
-    document.body.classList.add('dark-mode');
+  // 1. Okamžitá kontrola tmavého režimu při načtení stránky
+if (localStorage.getItem('samhita_dark') === 'true') {
+  document.body.classList.add('dark-mode');
+}
+
+// 2. Funkce pro přepínání (kterou teď bude volat tlačítko s měsíčkem)
+function toggleDarkMode() {
+  // Přepne třídu na body
+  document.body.classList.toggle('dark-mode');
+  
+  // Uloží aktuální stav do paměti, aby si to prohlížeč pamatoval
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('samhita_dark', 'true');
+  } else {
+    localStorage.setItem('samhita_dark', 'false');
   }
+}
   // --- Foot switch / klávesové posouvání (PageUp/Down, ArrowUp/Down) ---
   const SCROLL_FRACTION = 0.75;
   const topbarTitleEl = document.getElementById('topbar-title');
