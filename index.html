@@ -694,6 +694,39 @@ body.dark-mode .song-tag {
     color: #ff9f43 !important;
     text-shadow: 0 0 1px rgba(255, 255, 255, 0.3) !important; /* Jemný lesk, kdyby mobil ignoroval barvu */
   }
+
+  /* === SJEDNOCENÍ TLAČÍTEK V HLAVIČCE (Měsíček a Menu) === */
+  
+  .header-actions {
+    display: flex;
+    gap: 8px; /* Krásná mezera mezi měsíčkem a menu */
+    align-items: center;
+  }
+
+  /* Zacílíme na jakýkoliv odkaz nebo tlačítko v pravém rohu hlavičky */
+  .header-actions button,
+  .header-actions a {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 42px !important;      /* Šířka čtverečku */
+    height: 42px !important;     /* Výška čtverečku (musí být stejná jako šířka) */
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important; /* Jemný bílý rámeček */
+    border-radius: 8px !important; /* Zakulacené rohy jako u ostatních prvků */
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 20px !important;  /* Velikost ikony */
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+
+  /* Efekt při najetí myší na PC */
+  .header-actions button:hover,
+  .header-actions a:hover {
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-color: #ffffff !important; /* Rámeček se víc rozsvítí */
+  }
 </style>
 </head>
 <body>
@@ -702,7 +735,7 @@ body.dark-mode .song-tag {
     <header>
       <div class="header-inner">
         <div class="header-text">
-          <h1>🎵 Samhita Songbook</h1>
+          <h1>♫ Samhita Songbook</h1>
           <div class="last-update" id="last-update">Aktualizováno: —</div>
         </div>
         <div class="header-actions">
@@ -908,7 +941,7 @@ function renderSongs(list) {
     const li = document.createElement('li');
     li.innerHTML = `
       <a href="${buildUrl(song)}">
-        <span class="song-icon">🎵</span>
+        <span class="song-icon">♫</span>
         <span class="song-info">
           <span class="song-name">${song.name}</span>
           ${song.subtitle ? `<span class="song-sub">${song.subtitle}</span>` : ''}
