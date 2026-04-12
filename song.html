@@ -587,36 +587,107 @@ body.dark-mode {
     color-scheme: dark; 
   }
 
-  /* === UNIFIKACE TLAČÍTEK V HORNÍ LIŠTĚ (Světlý režim) === */
+/* ==========================================================================
+     KOMPLETNÍ UNIFIKACE TLAČÍTEK V HORNÍ LIŠTĚ (Světlý i tmavý režim)
+     ========================================================================== */
   
-  /* Zacílíme na VŠECHNA tlačítka v ovládací liště, aby byla stejná */
-  .topbar-actions button {
-    appearance: none;            /* Odstraní ten ošklivý výchozí vzhled prohlížeče (např. u měsíčku) */
-    background-color: #ffffff;   /* Čistě bílé pozadí */
-    border: 1px solid #dcd6d0;   /* Jemný sjednocený okraj */
-    border-radius: 8px;          /* Stejné zaoblení jako u přehrávače */
-    color: #333333;              /* Tmavý text/ikony */
-    font-size: 16px;
-    font-weight: bold;
-    padding: 6px 12px;           /* Sjednocená vnitřní velikost */
-    margin: 0 2px;               /* Mezera mezi tlačítky */
+  /* --- 1. ZÁKLADNÍ TVAR A BARVA (Všechna tlačítka včetně šipky zpět) --- */
+  .topbar-actions button,
+  .song-topbar .back-link {
+    appearance: none;
+    background-color: #ffffff !important; /* Čistě bílé pozadí */
+    border: 1px solid #dcd6d0 !important; /* Jemný sjednocený okraj */
+    color: #333333 !important;            /* Tmavý text/ikony */
+    border-radius: 8px !important;
+    
+    /* Dokonale sjednocené rozměry na čtverečky */
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    flex-shrink: 0 !important;            /* Zakáže scvrkávání na mobilu */
+    padding: 0 !important;                /* Žádné vnitřní okraje, ty dělaly neplechu s šířkou */
+    margin: 0 2px !important;
+    
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
     cursor: pointer;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 36px;             /* Aby byla tlačítka aspoň takhle široká a nebyla scvrklá */
-    height: 36px;                /* Jednotná výška pro všechna tlačítka! */
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05); /* Velmi jemný stínek */
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    
+    /* Perfektní vycentrování obsahu */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
   }
 
-  /* Efekt najetí myší ve světlém režimu */
-  .topbar-actions button:hover {
-    background-color: #f5f0eb;
-    border-color: #b0aaa3;
+  /* --- 2. HOVER EFEKT (Světlý režim) --- */
+  .topbar-actions button:hover,
+  .song-topbar .back-link:hover {
+    background-color: #f5f0eb !important;
+    border-color: #ff9f43 !important; /* Všechno zoranžoví! */
+    color: #ff9f43 !important;
   }
 
-  /* Číslo (nula) uprostřed transpozice - aby výškově sedělo s tlačítky */
+  /* --- 3. TMAVÝ REŽIM (Dark Mode) --- */
+  body.dark-mode .topbar-actions button,
+  body.dark-mode .song-topbar .back-link {
+    background-color: #403c38 !important;
+    border: 1px solid #5d5650 !important;
+    color: #e6e2dd !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  }
+
+  /* --- 4. HOVER EFEKT (Tmavý režim) --- */
+  body.dark-mode .topbar-actions button:hover,
+  body.dark-mode .song-topbar .back-link:hover {
+    background-color: #504b46 !important;
+    border-color: #ff9f43 !important;
+    color: #ff9f43 !important;
+  }
+
+  /* ==========================================================================
+     INDIVIDUÁLNÍ DOLADĚNÍ ZLOBIVÝCH ZNAKŮ (Optické centrování)
+     ========================================================================== */
+
+  /* SVG Šipka zpět */
+  .song-topbar .back-link svg {
+    width: 20px !important;
+    height: 20px !important;
+    transform: translateX(-1px) !important; /* Nudge doleva */
+  }
+
+  /* Tlačítko přehrávání (textová šipka ▶) */
+  #audio-toggle {
+    font-size: 18px !important;
+    transform: translateX(1px) !important; /* Nudge doprava, protože šipka má hluché místo */
+  }
+
+  /* Tlačítko sloupců (číslo + symbol ⫿) */
+  #col-toggle-btn {
+    letter-spacing: 2px !important;
+    font-size: 17px !important;
+  }
+
+  /* Tlačítka transpozice - obecně */
+  .transpose-group button {
+    font-size: 22px !important;
+    font-weight: 900 !important;
+  }
+
+  /* Znak béčka (posun jemně dolů a zvětšení) */
+  .transpose-group button[onclick*="changeShift(-1)"] {
+    font-size: 24px !important;
+    transform: translateY(1px) !important; 
+  }
+
+  /* Znak křížku (posun jemně nahoru) */
+  .transpose-group button[onclick*="changeShift(1)"] {
+    transform: translateY(-1px) !important;
+  }
+
+  /* Číslo transpozice (Nula) */
   .shift-display {
     display: inline-flex;
     align-items: center;
@@ -626,128 +697,28 @@ body.dark-mode {
     color: #333333;
     margin: 0 4px;
   }
-
-  /* === JEMNÉ OPTICKÉ DOLADĚNÍ ZLOBIVÝCH ZNAKŮ === */
   
-  /* Srovnání základní linky (baseline) pro všechna tlačítka */
-  .topbar-actions button {
-    line-height: 1 !important;
-  }
-
-  /* Tlačítko přehrávání (šipka ▶) */
-  #audio-toggle {
-    font-size: 18px !important;
-    /* Horizontální posun (doleva) */
-    padding-left: 12px !important;   
-    padding-right: 12px !important; 
-    /* Vertikální posun (nahoru) */
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    transform: translateY(-0px) !important; /* Pokud to bude málo, dej -2px */
-  }
-
-  /* Tlačítko sloupců (číslo + symbol ⫿) */
-  #col-toggle-btn {
-    letter-spacing: 2px !important;  /* Vytvoří hezčí a vzdušnější mezeru mezi číslem a symbolem */
-    font-size: 17px !important;      /* Sjednocení velikosti fontu s ostatními */
-  }
-
-  /* === ZVĚTŠENÍ SYMBOLŮ TRANSPOZICE === */
-  
-  /* Cílíme na tlačítka uvnitř transpoziční skupiny */
-  .transpose-group button {
-    font-size: 22px !important;    /* Pořádné zvětšení, aby symboly vynikly */
-    font-weight: 900 !important;    /* Maximální tučnost */
-    line-height: 1 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-  }
-
-  /* Specifické poladění pro béčko (bývá víc u horního okraje) */
-  .transpose-group button[onclick*="changeShift(-1)"] {
-    padding-bottom: 4px !important; /* Trochu ho posuneme dolů pro optický střed */
-    font-size: 24px !important;      /* Béčko může být i o chlup větší než křížek */
-  }
-
-  /* Specifické poladění pro křížek */
-  .transpose-group button[onclick*="changeShift(1)"] {
-    transform: translateY(-1px) !important; /* Křížek jemně nahoru */
-  }
-
- /* === DEFINITIVNÍ A NEROZBITNÁ ŠIPKA ZPĚT (SVG) === */
-  
- .song-topbar .back-link {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    text-decoration: none !important;
-    
-    /* Pevné rozměry - zabrání deformaci na mobilu */
-    width: 36px !important;
-    height: 36px !important;
-    min-width: 36px !important; 
-    flex-shrink: 0 !important; /* Zakáže zmenšení/slisování tlačítka */
-    
-    border-radius: 8px;
-    background-color: #ffffff;
-    border: 1px solid #dcd6d0;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 0 !important; /* Resetujeme padding, už není potřeba vycentrovávat text */
-
-    color: #333333; /* TOTO určuje barvu SVG ikony (díky stroke="currentColor" v HTML) */
-  }
-
-  /* Styl pro samotnou SVG ikonu uvnitř tlačítka */
-  .song-topbar .back-link svg {
-    width: 20px !important;  /* Pevná velikost šipky */
-    height: 20px !important;
-    transform: translateX(-1px) !important; /* Jemné optické popostrčení do středu */
-  }
-
-  /* === HOVER EFEKTY PRO SVĚTLÝ REŽIM === */
-  .song-topbar .back-link:hover {
-    background-color: #f5f0eb !important;
-    border-color: #b0aaa3 !important;
-    color: #ff9f43 !important; /* SVG šipka se automaticky přebarví na oranžovo */
-  }
-
-  /* === DARK MODE === */
-  body.dark-mode .song-topbar .back-link {
-    background-color: #403c38 !important;
-    border: 1px solid #5d5650 !important;
-    color: #e6e2dd !important; /* SVG šipka bude automaticky světlá */
-  }
-  
-  /* Hover v Dark Mode */
-  body.dark-mode .song-topbar .back-link:hover {
-    background-color: #504b46 !important;
-    border-color: #ff9f43 !important;
-    color: #ff9f43 !important; /* SVG šipka zoranžoví */
-  }
-
-  /* Číslo transpozice v tmavém režimu */
   body.dark-mode .shift-display {
     color: #e6e2dd !important;
   }
 
-  /* === ÚPRAVY PRO MOBILNÍ TELEFONY === */
+  /* ==========================================================================
+     ÚPRAVY PRO MOBILNÍ TELEFONY
+     ========================================================================== */
   @media (max-width: 768px) {
     
-    /* 1. Skrytí nadpisu písničky v horní liště, aby bylo místo na tlačítka */
+    /* Skrytí nadpisu písničky v horní liště */
     .song-topbar #topbar-title,
     .song-topbar .topbar-title {
       display: none !important;
     }
 
-    /* 2. Zarovnání lišty doprava, aby tlačítka nevyplňovala prázdné místo po nadpisu */
+    /* Zarovnání lišty doprava */
     .song-topbar-inner {
       justify-content: flex-end !important;
     }
     
-    /* Zajištění, aby šipka zpět (nyní krásné SVG) byla na mobilu vždy úplně vlevo */
+    /* Šipka zpět odskočí úplně vlevo */
     .song-topbar .back-link {
       margin-right: auto !important; 
     }
