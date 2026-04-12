@@ -678,6 +678,22 @@ body.dark-mode .song-tag {
     background-color: #fdf3ec; /* Tvoje původní příjemná krémová */
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08); /* Zvětšený stín */
   }
+
+  /* === OPRAVA TMAVÝCH NOT NA MOBILU V TMAVÉM REŽIMU === */
+  
+  /* Zacílíme na běžné tagy pro ikony (i, svg, span) uvnitř seznamu */
+  body.dark-mode #song-list li i,
+  body.dark-mode #song-list li svg,
+  body.dark-mode #song-list li span.icon {
+    color: #ff9f43 !important; /* Zkusíme je rovnou hodit do tvé oranžové! */
+    fill: #ff9f43 !important;  /* Pro případ, že je to SVG */
+  }
+
+  /* Pokud máš notu vloženou přímo jako textový znak (např. ♫) v nějaké třídě */
+  body.dark-mode #song-list li .note-symbol {
+    color: #ff9f43 !important;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.3) !important; /* Jemný lesk, kdyby mobil ignoroval barvu */
+  }
 </style>
 </head>
 <body>
