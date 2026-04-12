@@ -732,6 +732,26 @@ body.dark-mode {
   body.dark-mode .shift-display {
     color: #e6e2dd !important;
   }
+
+  /* === ÚPRAVY PRO MOBILNÍ TELEFONY === */
+  @media (max-width: 768px) {
+    
+    /* 1. Skrytí nadpisu písničky v horní liště, aby bylo místo na tlačítka */
+    .song-topbar #topbar-title,
+    .song-topbar .topbar-title {
+      display: none !important;
+    }
+
+    /* 2. Zarovnání lišty doprava, aby tlačítka nevyplňovala prázdné místo po nadpisu */
+    .song-topbar-inner {
+      justify-content: flex-end !important;
+    }
+    
+    /* Zajištění, aby šipka zpět (nyní krásné SVG) byla na mobilu vždy úplně vlevo */
+    .song-topbar .back-link {
+      margin-right: auto !important; 
+    }
+  }
 </style>
 </head>
 <body>
