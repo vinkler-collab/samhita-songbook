@@ -676,57 +676,56 @@ body.dark-mode {
     transform: translateY(-1px) !important; /* Křížek jemně nahoru */
   }
 
-  /* === FINÁLNÍ OPTICKÉ DOLADĚNÍ ŠIPKY ZPĚT === */
+ /* === DEFINITIVNÍ A NEROZBITNÁ ŠIPKA ZPĚT (SVG) === */
   
-  .song-topbar .back-link {
+ .song-topbar .back-link {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
     text-decoration: none !important;
     
-    width: 36px;
-    height: 36px;
+    /* Pevné rozměry - zabrání deformaci na mobilu */
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important; 
+    flex-shrink: 0 !important; /* Zakáže zmenšení/slisování tlačítka */
+    
     border-radius: 8px;
     background-color: #ffffff;
     border: 1px solid #dcd6d0;
     cursor: pointer;
     transition: all 0.2s ease;
+    padding: 0 !important; /* Resetujeme padding, už není potřeba vycentrovávat text */
 
-    color: #333333;
-    /* Mírně zmenšíme, aby kolem šipky bylo víc "vzduchu" a nepůsobila tak narvaně */
-    font-size: 25px !important; 
-    line-height: 1 !important;
-    
-    /* KLÍČOVÉ VYCENTROVÁNÍ: */
-    /* Pokud je šipka moc vpravo, zvětši padding-right. Pokud moc nahoře, zvětši padding-top. */
-    padding-right: 9px !important; 
-    padding-top: 1px !important;
-    
-    /* Transformaci použijeme jen pro mikro-posuv, pokud padding nestačí */
-    transform: none !important; 
+    color: #333333; /* TOTO určuje barvu SVG ikony (díky stroke="currentColor" v HTML) */
   }
 
-  /* Dark mode zůstává stejný, jen mu dopřejeme stejnou velikost */
+  /* Styl pro samotnou SVG ikonu uvnitř tlačítka */
+  .song-topbar .back-link svg {
+    width: 20px !important;  /* Pevná velikost šipky */
+    height: 20px !important;
+    transform: translateX(-1px) !important; /* Jemné optické popostrčení do středu */
+  }
+
+  /* === HOVER EFEKTY PRO SVĚTLÝ REŽIM === */
+  .song-topbar .back-link:hover {
+    background-color: #f5f0eb !important;
+    border-color: #b0aaa3 !important;
+    color: #ff9f43 !important; /* SVG šipka se automaticky přebarví na oranžovo */
+  }
+
+  /* === DARK MODE === */
   body.dark-mode .song-topbar .back-link {
     background-color: #403c38 !important;
     border: 1px solid #5d5650 !important;
-    color: #e6e2dd !important;
-    font-size: 22px !important;
+    color: #e6e2dd !important; /* SVG šipka bude automaticky světlá */
   }
-  /* === UNIFIKACE TLAČÍTEK (Tmavý režim) === */
   
-  body.dark-mode .topbar-actions button {
-    background-color: #403c38 !important; /* Tmavě šedá bublina */
-    border: 1px solid #5d5650 !important; /* Tmavší okraj */
-    color: #e6e2dd !important;            /* Světlé ikonky */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
-  }
-
-  /* Efekt najetí myší v tmavém režimu */
-  body.dark-mode .topbar-actions button:hover {
+  /* Hover v Dark Mode */
+  body.dark-mode .song-topbar .back-link:hover {
     background-color: #504b46 !important;
-    color: #ff9f43 !important;            /* Oranžová barva pro šmrnc! */
     border-color: #ff9f43 !important;
+    color: #ff9f43 !important; /* SVG šipka zoranžoví */
   }
 
   /* Číslo transpozice v tmavém režimu */
@@ -738,7 +737,13 @@ body.dark-mode {
 <body>
 <div class="song-topbar" id="song-topbar">
   <div class="song-topbar-inner">
-    <a class="back-link" href="index.html" aria-label="Zpět na seznam">🡐</a>    <div class="topbar-title" id="topbar-title">Načítám…</div>
+    <a class="back-link" href="index.html" aria-label="Zpět na seznam">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="20" y1="12" x2="4" y2="12"></line>
+        <polyline points="10 18 4 12 10 6"></polyline>
+      </svg>
+    </a>    
+    <div class="topbar-title" id="topbar-title">Načítám…</div>
     <div class="topbar-actions">
       <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát (zobrazit nahrávky)">▶</button>
       <button class="icon-btn" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout počet sloupců">1 ⫿</button>
