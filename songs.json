@@ -54,6 +54,17 @@
     "dateAdded": "2026-04-05"
   },
   {
+    "name": "Govinda Gopal",
+    "category": "Indické - Kršna",
+    "file": "govinda_gopal",
+    "audio": "audio/govinda_gopal.mp3",
+    "tags": [
+      "Govinda",
+      "Kršna"
+    ],
+    "dateAdded": "2026-04-13"
+  },
+  {
     "name": "Hanumān Bolo",
     "category": "Indické - Ráma",
     "file": "hanuman_bolo",
@@ -96,7 +107,7 @@
     "dateAdded": "2026-04-05"
   },
   {
-    "name": "Mano Javam Maruta Tulya Vegam",
+    "name": "Mano Javaṁ Māruta Tulya Vegaṁ",
     "category": "Indické - Ráma",
     "file": "mano_javam",
     "audio": "audio/mano_javam.mp3",

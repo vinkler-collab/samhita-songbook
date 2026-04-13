@@ -1,9 +1,9 @@
 {title: Šablona}
 {subtitle: Podtitul}
 {tags: tag1, tag2}
-{capo: 1}
-{time: 3/4}
-{tempo: 80}
+# {capo: 0}
+# {time: 3/4}
+# {tempo: 80}
 #
 # ODZNAČIT JEDNU Z KATEGORIÍ
 # {category: Buddhistické}
@@ -20,6 +20,6 @@
 {eov}
 #
 {soc: REF}
-refrén plplp fg
+refrén 
 {eoc}
 

@@ -1,8 +1,8 @@
-{title: Mano Javam Maruta Tulya Vegam}
+{title: Mano Javaṁ Māruta Tulya Vegaṁ}
 {subtitle: Harish Sagane}
+{tags: Hanuman, Ráma}
 {artist:  Music - Kanchan Jadhao}
 {capo: 3}
-{musicpath: mp3/Mano Javam Maruta Tulya Vegam.mp3}
 
 |[G]mano ja|vaṁ mā|ruta tulya |vegaṁ |
 |jitendri|yaṁ buddhi |[C]matāṁ va|riṣṭhaṁ |
@@ -29,4 +29,3 @@ vātātmajaṁ vānarayūthamukhyaṁ
 4: To that Messenger of Sri Rama, I take Refuge (by prostrating before him).
 
 
-{tag: Hanuman}
