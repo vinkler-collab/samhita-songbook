@@ -1,4 +1,4 @@
-{title: Homunkulus}
+{title: Šablona}
 {subtitle: Podtitul}
 {tags: tag1, tag2}
 {capo: 1}
@@ -20,6 +20,6 @@
 {eov}
 #
 {soc: REF}
-refrén plplp
+refrén plplp fg
 {eoc}
 
