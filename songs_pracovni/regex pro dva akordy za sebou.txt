@@ -1,0 +1,5 @@
+Tento výraz bezpečně zajistí, že mezi dvěma stejnými akordy nebudou žádné jiné akordy.
+
+    Najít: (\[[^\]]+\])([^\[]*)\1
+
+    Nahradit: $1$2[.]

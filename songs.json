@@ -1,5 +1,26 @@
 [
   {
+    "name": "Ād guray namaḥ",
+    "category": "Indické - Ostatní",
+    "file": "ad_guray_namah",
+    "audio": "audio/ad_guray_namah.mp3",
+    "tags": [
+      "Guru",
+      "Mangala Charan mantra"
+    ],
+    "dateAdded": "2026-04-10"
+  },
+  {
+    "name": "Āpaṇa ātmārāma",
+    "category": "Indické - Ostatní",
+    "file": "apana_atmarama",
+    "audio": "audio/apana_atmarama.mp3",
+    "tags": [
+      "Navnath Sampradaya"
+    ],
+    "dateAdded": "2026-04-13"
+  },
+  {
     "name": "Bernie's Chalisa",
     "category": "Indické - Ráma",
     "file": "hanuman_chalisa_bernie",
@@ -157,33 +178,22 @@
     "dateAdded": "2026-04-05"
   },
   {
+    "name": "Śrī gaṅgāṣṭakam",
+    "category": "Indické - Ostatní",
+    "file": "sri_gangastakam",
+    "audio": "audio/sri_gangastakam.mp3",
+    "tags": [],
+    "dateAdded": "2026-04-13"
+  },
+  {
     "name": "Tvameva mātā",
-    "category": "Ostatní",
+    "category": "Indické - základní",
     "file": "tvameva_mata",
     "audio": "audio/tvameva_mata.mp3",
-    "tags": [],
+    "tags": [
+      "Ganesha",
+      "Uma Reed"
+    ],
     "dateAdded": "2026-04-11"
-  },
-  {
-    "name": "Ād guray namaḥ",
-    "category": "Indické - Ostatní",
-    "file": "ad_guray_namah",
-    "audio": "audio/ad_guray_namah.mp3",
-    "tags": [
-      "Guru",
-      "Mangala Charan mantra"
-    ],
-    "dateAdded": "2026-04-10"
-  },
-  {
-    "name": "śrī gaṅgāṣṭakam",
-    "category": "Indické - Bohyně",
-    "file": "gangastakam",
-    "audio": "audio/gangastakam.mp3",
-    "tags": [
-      "Shankaracharya",
-      "Ganga"
-    ],
-    "dateAdded": "2026-04-05"
   }
 ]

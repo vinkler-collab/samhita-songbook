@@ -1,4 +1,4 @@
-{title: śrī gaṅgāṣṭakam}
+{title: Śrī gaṅgāṣṭakam}
 {subtitle: Ádi Šanakráčárja}
 {musicpath: mp3/Pandit Jasraj - Ganga Aarti.mp3}
 {capo: 2}
