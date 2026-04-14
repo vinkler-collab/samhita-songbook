@@ -31,6 +31,7 @@
 |: [C]karūni a[F]kartā |[C]. tūṁ para[G]mātmā |. mīpaṇa jari gaḻa|[C]leṁ :| (+ Ref.)
 {eov}
 
+
 {start_of_analysis}
 This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.
 https://www.sikhdharma.org/aad-guray-nameh/

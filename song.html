@@ -5,64 +5,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zpěvník</title>
 <style>
- /* Tlačítko pro PDF (Sjednoceno se šuplíkem) */
-.pdf-link {
+ /* --- Sjednocený vzhled prvků pod písní --- */
+.analysis-container, .pdf-link {
     display: block;
-    margin: 0 0 20px 0;
-    padding: 15px;
-    background-color: #f1f3f4; /* Stejná barva jako hlavička šuplíku */
-    color: #333 !important;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-radius: 8px; /* Stejně kulaté jako šuplík */
-    font-weight: normal;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: background-color 0.2s;
-    text-align: left;
-}
-
-.pdf-link:hover {
-    background-color: #e8eaed;
-}
-
-body.dark-mode .pdf-link {
-    background-color: #2a2a2a;
-    color: #eee !important;
-    border-color: #444;
-}
-
-/* Rozbalovací šuplík (Analýza) - Světlý režim */
-.analysis-container {
-    margin: 20px 0;
+    margin: 15px 0;
     border: 1px solid #ddd;
     border-radius: 8px;
-    background: #fff;
+    background: #f1f3f4;
+    text-decoration: none;
+    color: #333 !important;
+    font-weight: bold;
+    transition: background 0.2s;
     overflow: hidden;
-    break-inside: avoid; /* Aby se nerozdělil do dvou sloupců */
+    column-span: all;
 }
 
-.analysis-header {
-    background-color: #f1f3f4;
+.analysis-header, .pdf-link-inner {
     padding: 15px;
-    cursor: pointer;
-    font-weight: normal;
     display: flex;
     justify-content: space-between;
-    user-select: none;
-    color: #333;
+    align-items: center;
+    cursor: pointer;
 }
 
-.analysis-header:hover {
-    background-color: #e8eaed;
-}
-
+/* VNITŘEK ŠUPLÍKU - OPRAVENO */
 .analysis-content {
-    padding: 15px;
+    padding: 20px;
     display: none;
+    background: #ffffff;
+    color: #333;
     border-top: 1px solid #ddd;
     line-height: 1.6;
-    white-space: pre-wrap;
-    color: #333;
+    font-weight: normal;
+    /* KLÍČOVÉ: Zachová odřádkování z Pythonu/JSONu */
+    white-space: pre-wrap; 
+}
+
+/* --- Tmavý režim (Dark Mode) --- */
+body.dark-mode .analysis-container, 
+body.dark-mode .pdf-link {
+    background-color: #403c38;
+    border-color: #5d5650;
+    color: #e6e2dd !important;
+}
+
+body.dark-mode .analysis-content {
+    background-color: #33302d; /* Sladěno s pozadím stránky */
+    color: #e6e2dd;
+    border-top-color: #5d5650;
+}
+
+body.dark-mode .pdf-link:hover, 
+body.dark-mode .analysis-header:hover {
+    background-color: #504b46;
 }
 
  .pdf-viewer {
@@ -1086,36 +1081,36 @@ body.dark-mode {
   html += `</div>`; 
 
   // =========================================================
-  // VYKRESLENÍ ŠUPLÍKU A TLAČÍTKA PDF (Sjednocený vzhled)
+  // VYKRESLENÍ ŠUPLÍKU A PDF
   // =========================================================
   if (window.currentSongObj) {
       
-      // 1. NEJDŘÍVE ŠUPLÍK (Rychlá orientace)
+      // 1. ŠUPLÍK (s formátováním textu)
       if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
+          // Tady proženeme text analýzy formátovačem, aby fungovaly hvězdičky a odkazy
           let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
           html += `
-              <div class="analysis-container" style="column-span: all; margin-bottom: 15px;">
+              <div class="analysis-container">
                   <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
-                      <span>💡 Poznámky, překlad (zde)</span>
+                      <span>💡 Překlad a poznámky (zde)</span>
                       <span id="analysis-arrow">▼</span>
                   </div>
-                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize}px;">
+                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">
 ${formattedAnalysis}
                   </div>
               </div>
           `;
       }
 
-      // 2. POTÉ PDF (Podrobný materiál)
+      // 2. PDF
       if (window.currentSongObj.hasPDF) {
           html += `
-              <div style="text-align: center; column-span: all;">
-                  <a href="pdfs/${window.currentSongObj.file}.pdf" 
-                     class="pdf-link"
-                     style="font-size: ${currentFontSize * 0.8}px;">
-                      📄 Poznámky, překlad (PDF)
-                  </a>
-              </div>
+              <a href="pdfs/${window.currentSongObj.file}.pdf" class="pdf-link">
+                  <div class="pdf-link-inner" style="font-size: ${currentFontSize * 0.8}px;">
+                      <span>📄 Překlad a poznámky (PDF)</span>
+                      <span style="opacity: 0.5;">▶</span>
+                  </div>
+              </a>
           `;
       }
   }

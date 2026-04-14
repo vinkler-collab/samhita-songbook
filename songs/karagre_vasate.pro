@@ -1,4 +1,4 @@
-{title: Karāgre vasate lakṣmīḥ}
+{title: Karāgre vasate lakṣmīḥ1}
 {subtitle: Mantra}
 
 |[D]. . . |. . . |. . |[G]. . . |. . . |. . |
@@ -22,3 +22,6 @@
 |[Gm7]karamad|hye . . |. sa|[D]rasvatī|. . . |. . |
 |[Gm7]karamū|le . . |. tu|[Dm7]govin|daḥ . . |. .|
 |[Dm7]prabhā[D]te |. . . |kara |[G]darśa|nam . . |. . |
+
+
+
