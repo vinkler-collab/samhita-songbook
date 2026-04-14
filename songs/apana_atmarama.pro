@@ -31,5 +31,6 @@
 |: [C]karūni a[F]kartā |[C]. tūṁ para[G]mātmā |. mīpaṇa jari gaḻa|[C]leṁ :| (+ Ref.)
 {eov}
 
-<iframe src="pdfs/apana_atmarama.pdf" class="pdf-viewer"></iframe>
-<embed src="pdfs/apana_atmarama.pdf" type="application/pdf" width="100%" height="600px" />
+<a href="pdfs/apana_atmarama.pdf" target="_blank" class="pdf-link">
+        Otevřít PDF na celé obrazovce
+    </a>
