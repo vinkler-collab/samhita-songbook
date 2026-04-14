@@ -994,120 +994,131 @@ body.dark-mode {
   }
   
   window.renderSong = function() {
-    const app = document.getElementById('chord-app');
-    if (!app || !songData) return;
-  
-    const lines = songData.trim().split('\n');
-    let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
-  
-    for (let i = 0; i < lines.length; i++) {
-      let line = lines[i];
-      const trimmed = line.trim();
-  
-      if (trimmed.toLowerCase() === '{start_of_analysis}') break; 
-      if (trimmed.startsWith('#')) continue; 
-  
-      if (trimmed.toLowerCase().startsWith('{t:') || trimmed.toLowerCase().startsWith('{title:')) {
-        let tMatch = line.match(/\{(?:t|title):\s*(.*?)\}/i);
-        if (tMatch) {
-          document.getElementById('topbar-title').textContent = tMatch[1]; 
-          html += `<div class="song-title">${tMatch[1]}</div>`;
-        }
-        continue;
+  const app = document.getElementById('chord-app');
+  if (!app || !songData) return;
+
+  const lines = songData.trim().split('\n');
+  let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+    const trimmed = line.trim();
+
+    if (trimmed.toLowerCase() === '{start_of_analysis}') break; 
+    if (trimmed.startsWith('#')) continue; 
+
+    if (trimmed.toLowerCase().startsWith('{t:') || trimmed.toLowerCase().startsWith('{title:')) {
+      let tMatch = line.match(/\{(?:t|title):\s*(.*?)\}/i);
+      if (tMatch) {
+        document.getElementById('topbar-title').textContent = tMatch[1]; 
+        html += `<div class="song-title">${tMatch[1]}</div>`;
       }
-  
-      if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
-        let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
-        if (stMatch) html += `<div class="song-subtitle">${stMatch[1]}</div>`;
-        continue;
-      }
-  
-      if (trimmed.toLowerCase().startsWith('{soc')) {
-        let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
-        let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-        let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-        html += `<div class="chorus-block">${labelHtml}`; 
-        continue; 
-      }
-      if (trimmed.toLowerCase().startsWith('{eoc')) { 
-        html += '</div>'; 
-        continue; 
-      }
-      if (trimmed.toLowerCase().startsWith('{sov')) {
-        let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
-        let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-        let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-        html += `<div class="verse-block">${labelHtml}`; 
-        continue; 
-      }
-      if (trimmed.toLowerCase().startsWith('{eov')) { 
-        html += '</div>'; 
-        continue; 
-      }
-  
-      if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
-        let cMatch = line.match(/\{(?:c|comment):\s*(.*?)\}/i);
-        if (cMatch) html += `<div class="comment">${cMatch[1]}</div>`;
-        continue;
-      }
-  
-      let lineHtml = '';
-      if (line.includes('[')) {
-        let parts = line.split(/\[([^\]]+)\]/);
-        if (parts[0]) {
-          lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
-        }
-        for (let j = 1; j < parts.length; j += 2) {
-          let chord = parts[j];
-          let lyric = parts[j+1] || '';
-          let transposed = transposeChord(chord, currentShift);
-          lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
-        }
-      } else {
-        lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
-      }
-  
-      if (trimmed === '') {
-          html += `<div class="spacer"></div>`;
-      } else {
-          html += `<div class="line">${lineHtml}</div>`;
-      }
+      continue;
     }
-    
-    html += `</div>`; 
-  
-    if (window.currentSongObj) {
-        if (window.currentSongObj.hasPDF) {
-            html += `
-                <div style="text-align: center; margin-top: 20px; column-span: all;">
-                    <a href="pdfs/${window.currentSongObj.file}.pdf" target="_blank" class="pdf-link">
-                        📄 Otevřít studijní materiály (PDF)
-                    </a>
-                </div>
-            `;
-        }
-  
-        if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
-            let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
-            html += `
-                <div class="analysis-container" style="column-span: all;">
-                    <div class="analysis-header" onclick="toggleAnalysis()">
-                        <span>🔍 Výklad a rozbor</span>
-                        <span id="analysis-arrow">▼</span>
-                    </div>
-                    <div id="analysis-content" class="analysis-content">
-  ${formattedAnalysis}
-                    </div>
-                </div>
-            `;
-        }
+
+    if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
+      let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
+      if (stMatch) html += `<div class="song-subtitle">${stMatch[1]}</div>`;
+      continue;
     }
+
+    if (trimmed.toLowerCase().startsWith('{soc')) {
+      let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="chorus-block">${labelHtml}`; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{eoc')) { 
+      html += '</div>'; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{sov')) {
+      let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="verse-block">${labelHtml}`; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{eov')) { 
+      html += '</div>'; 
+      continue; 
+    }
+
+    if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
+      let cMatch = line.match(/\{(?:c|comment):\s*(.*?)\}/i);
+      if (cMatch) html += `<div class="comment">${cMatch[1]}</div>`;
+      continue;
+    }
+
+    let lineHtml = '';
+    if (line.includes('[')) {
+      let parts = line.split(/\[([^\]]+)\]/);
+      if (parts[0]) {
+        lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
+      }
+      for (let j = 1; j < parts.length; j += 2) {
+        let chord = parts[j];
+        let lyric = parts[j+1] || '';
+        let transposed = transposeChord(chord, currentShift);
+        lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
+      }
+    } else {
+      lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
+    }
+
+    if (trimmed === '') {
+        html += `<div class="spacer"></div>`;
+    } else {
+        html += `<div class="line">${lineHtml}</div>`;
+    }
+  }
   
-    app.innerHTML = html;
-    app.style.display = 'block';
-    document.getElementById('loading').style.display = 'none';
-    window.applyColumnLayout();
-  };
+  html += `</div>`; 
+
+  // =========================================================
+  // VYKRESLENÍ TLAČÍTKA PDF A ŠUPLÍKU
+  // =========================================================
+  if (window.currentSongObj) {
+      if (window.currentSongObj.hasPDF) {
+          // OPRAVA PRO iPHONE (PWA): Přidán javascriptový trik pro vynucení otevření do plného Safari
+          // Přidána návaznost na velikost písma (tlačítko se zvětšuje, ale o něco pomaleji než text)
+          html += `
+              <div style="text-align: center; margin-top: 20px; column-span: all;">
+                  <a href="pdfs/${window.currentSongObj.file}.pdf" 
+                     target="_blank" 
+                     rel="noopener noreferrer" 
+                     onclick="window.open(this.href, '_blank'); return false;"
+                     class="pdf-link"
+                     style="font-size: ${Math.max(14, currentFontSize * 0.7)}px;">
+                      📄 Otevřít studijní materiály (PDF)
+                  </a>
+              </div>
+          `;
+      }
+
+      if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
+          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
+          // OPRAVA VELIKOSTI PÍSMA: Hlavička i obsah šuplíku nyní reagují na aktuální font
+          html += `
+              <div class="analysis-container" style="column-span: all;">
+                  <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
+                      <span>🔍 Výklad a rozbor</span>
+                      <span id="analysis-arrow">▼</span>
+                  </div>
+                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize}px;">
+${formattedAnalysis}
+                  </div>
+              </div>
+          `;
+      }
+  }
+
+  app.innerHTML = html;
+  app.style.display = 'block';
+  document.getElementById('loading').style.display = 'none';
+  window.applyColumnLayout();
+};
   
   window.toggleAnalysis = function() {
       const content = document.getElementById('analysis-content');
