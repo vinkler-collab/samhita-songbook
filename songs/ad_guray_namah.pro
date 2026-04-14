@@ -1,5 +1,5 @@
 {title: Ād guray namaḥ}
-{subtitle: Mangala Charan}
+{subtitle: Mangala Charan_amopur}
 {capo: 2}   
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
