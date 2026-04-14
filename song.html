@@ -5,21 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Zpěvník</title>
 <style>
-  /* Tlačítko pro PDF */
+ /* Tlačítko pro PDF (Sjednoceno se šuplíkem) */
 .pdf-link {
-    display: inline-block;
-    margin: 20px 0;
-    padding: 12px 20px;
-    background-color: #d32f2f;
-    color: white !important;
+    display: block;
+    margin: 0 0 20px 0;
+    padding: 15px;
+    background-color: #f1f3f4; /* Stejná barva jako hlavička šuplíku */
+    color: #333 !important;
     text-decoration: none;
-    border-radius: 4px;
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Stejně kulaté jako šuplík */
     font-weight: bold;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: background-color 0.2s;
 }
 
 .pdf-link:hover {
-    background-color: #b71c1c;
+    background-color: #e8eaed;
+}
+
+body.dark-mode .pdf-link {
+    background-color: #2a2a2a;
+    color: #eee !important;
+    border-color: #444;
 }
 
 /* Rozbalovací šuplík (Analýza) - Světlý režim */
@@ -1077,38 +1085,35 @@ body.dark-mode {
   html += `</div>`; 
 
   // =========================================================
-  // VYKRESLENÍ TLAČÍTKA PDF A ŠUPLÍKU
+  // VYKRESLENÍ ŠUPLÍKU A TLAČÍTKA PDF (Sjednocený vzhled)
   // =========================================================
   if (window.currentSongObj) {
-      if (window.currentSongObj.hasPDF) {
-          // OPRAVA PRO iPHONE (PWA): Přidán javascriptový trik pro vynucení otevření do plného Safari
-          // Přidána návaznost na velikost písma (tlačítko se zvětšuje, ale o něco pomaleji než text)
-          html += `
-              <div style="text-align: center; margin-top: 20px; column-span: all;">
-                  <a href="pdfs/${window.currentSongObj.file}.pdf" 
-                     target="_blank" 
-                     rel="noopener noreferrer" 
-                     onclick="window.open(this.href, '_blank'); return false;"
-                     class="pdf-link"
-                     style="font-size: ${Math.max(14, currentFontSize * 0.7)}px;">
-                      📄 Otevřít studijní materiály (PDF)
-                  </a>
-              </div>
-          `;
-      }
-
+      
+      // 1. NEJDŘÍVE ŠUPLÍK (Rychlá orientace)
       if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
           let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
-          // OPRAVA VELIKOSTI PÍSMA: Hlavička i obsah šuplíku nyní reagují na aktuální font
           html += `
-              <div class="analysis-container" style="column-span: all;">
+              <div class="analysis-container" style="column-span: all; margin-bottom: 15px;">
                   <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
-                      <span>🔍 Výklad a rozbor</span>
+                      <span>💡 Poznámky, překlad (zde)</span>
                       <span id="analysis-arrow">▼</span>
                   </div>
                   <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize}px;">
 ${formattedAnalysis}
                   </div>
+              </div>
+          `;
+      }
+
+      // 2. POTÉ PDF (Podrobný materiál)
+      if (window.currentSongObj.hasPDF) {
+          html += `
+              <div style="text-align: center; column-span: all;">
+                  <a href="pdfs/${window.currentSongObj.file}.pdf" 
+                     class="pdf-link"
+                     style="font-size: ${currentFontSize * 0.8}px;">
+                      📄 Poznámky, překlad (PDF)
+                  </a>
               </div>
           `;
       }
