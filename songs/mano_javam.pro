@@ -1,4 +1,4 @@
-{title: Mano Javaṁ Māruta Tulya Vegaṁ}
+{title: Mano Javaṁ Māruta Tulya Vegaṁ1}
 {subtitle: Harish Sagane}
 {tags: Hanuman, Ráma}
 {artist:  Music - Kanchan Jadhao}
