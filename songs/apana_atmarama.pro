@@ -31,4 +31,4 @@
 |: [C]karūni a[F]kartā |[C]. tūṁ para[G]mātmā |. mīpaṇa jari gaḻa|[C]leṁ :| (+ Ref.)
 {eov}
 
-
+<iframe src="pdfs/apana_atmarama.pdf" class="pdf-viewer"></iframe>
