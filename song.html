@@ -784,361 +784,364 @@ body.dark-mode {
 </div>
 
 <script>
-(function() {
-  window.currentSongObj = null;
-
-if (localStorage.getItem('samhita_dark') === 'true') {
-  document.body.classList.add('dark-mode');
-}
-
-function toggleDarkMode() {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) {
-    localStorage.setItem('samhita_dark', 'true');
-  } else {
-    localStorage.setItem('samhita_dark', 'false');
-  }
-}
-
-  const SCROLL_FRACTION = 0.75;
-  const topbarTitleEl = document.getElementById('topbar-title');
-  const shiftDisplayEl = document.getElementById('shift-display');
-
-  function isTypingInField(el) {
-    if (!el) return false;
-    const tag = (el.tagName || '').toLowerCase();
-    return tag === 'input' || tag === 'textarea' || el.isContentEditable;
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.defaultPrevented) return;
-    if (isTypingInField(e.target)) return;
-
-    const key = e.key;
-    const down = key === 'PageDown' || key === 'ArrowDown';
-    const up = key === 'PageUp' || key === 'ArrowUp';
-    if (!down && !up) return;
-
-    e.preventDefault();
-    const delta = Math.round(window.innerHeight * SCROLL_FRACTION) * (down ? 1 : -1);
-    window.scrollBy({ top: delta, left: 0, behavior: 'smooth' });
-  });
-
-  const params = new URLSearchParams(window.location.search);
-  const songName = params.get('s');
-  const audioParam = params.get('audio');
-
-  let audioData = null;
-  let audioList = [];
+  (function() {
+    window.currentSongObj = null;
   
-  fetch('songs.json')
-    .then(r => r.json())
-    .then(songs => {
-      const song = songs.find(s => s.file === songName);
-      if (song) {
-        window.currentSongObj = song; 
-        if (song.audio) {
-            audioData = song.audio;
-            renderAudio();
-        }
-      }
-    })
-    .catch(err => {
-      console.log('Nepodařilo se načíst songs.json:', err);
-      if (audioParam) {
-        audioData = audioParam;
-        renderAudio();
-      }
-    });
-
-  function renderAudio() {
-    const toggleBtn = document.getElementById('audio-toggle');
-    const drawer = document.getElementById('audio-drawer');
-    const listEl = document.getElementById('audio-list');
-    const player = document.getElementById('audio-player');
-    if (!audioData || !toggleBtn || !drawer || !listEl || !player) return;
-
-    if (typeof audioData === 'string') {
-      audioList = [{ url: audioData, label: null }];
-    } else if (Array.isArray(audioData)) {
-      audioList = audioData.map(item => {
-        if (typeof item === 'string') {
-          return { url: item, label: null };
-        }
-        return item;
-      });
-    }
-
-    toggleBtn.style.display = audioList.length ? 'inline-flex' : 'none';
-    drawer.classList.toggle('audio-drawer--single', audioList.length === 1);
-
-    function setPlayingTrackItem(activeBtn) {
-      listEl.querySelectorAll('.audio-item').forEach((btn) => btn.classList.remove('is-playing'));
-      if (activeBtn) activeBtn.classList.add('is-playing');
-    }
-
-    listEl.innerHTML = '';
-    if (audioList.length > 1) {
-      audioList.forEach((a, idx) => {
-        const item = document.createElement('button');
-        item.type = 'button';
-        item.className = 'audio-item';
-        const title = a.label ? a.label : `Nahrávka ${idx + 1}`;
-        item.innerHTML = `<span class="audio-item-title">${title}</span><span class="audio-item-meta">▶</span>`;
-        item.onclick = () => {
-          player.src = a.url;
-          player.style.display = 'block';
-          drawer.classList.add('is-open');
-          toggleBtn.classList.add('is-active');
-          setPlayingTrackItem(item);
-          player.play().catch(() => {});
-        };
-        listEl.appendChild(item);
-      });
-    }
-
-    toggleBtn.addEventListener('click', () => {
-      const open = drawer.classList.toggle('is-open');
-      toggleBtn.classList.toggle('is-active', open);
-      if (open && audioList.length === 1 && !player.src) {
-        player.src = audioList[0].url;
-        player.style.display = 'block';
-        player.play().catch(() => {});
-      }
-    });
+  // Tmavý režim
+  if (localStorage.getItem('samhita_dark') === 'true') {
+    document.body.classList.add('dark-mode');
   }
-
-  const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
-  let currentShift = parseInt(localStorage.getItem(`samhita_shift_${songName}`)) || 0;
-  let currentFontSize = parseInt(localStorage.getItem('samhita_fontSize')) || 21;
-  let currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
-
-  window.applyColumnLayout = () => {
-    const appEl = document.getElementById('chord-app');
-    const pageEl = document.getElementById('page');
-    const topbarInner = document.querySelector('.song-topbar-inner');
-    const btn = document.getElementById('col-toggle-btn');
-    
-    if (appEl) appEl.style.setProperty('--col-count', currentCols);
-    
-    let newMaxWidth = '800px';
-    if (currentCols === 2) newMaxWidth = '1200px';
-    if (currentCols === 3) newMaxWidth = '1600px';
-    if (currentCols >= 4)  newMaxWidth = '95%';
-    
-    if (pageEl) pageEl.style.maxWidth = newMaxWidth;
-    if (topbarInner) topbarInner.style.maxWidth = newMaxWidth;
-    
-    if (btn) btn.innerHTML = `${currentCols} ⫿`;
-  };
-
-  window.toggleColumns = () => {
-    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
-    localStorage.setItem('samhita_columns', currentCols); 
-    window.applyColumnLayout();
-  };
-  window.toggleDarkMode = () => {
+  
+  window.toggleDarkMode = function() {
     const isDark = document.body.classList.toggle('dark-mode'); 
     localStorage.setItem('samhita_dark', isDark);
   };
   
-  let songData = '';
-
-  function transposeChord(chord, amount) {
-    if (chord === '.') return '.';
-    return chord.replace(/[A-G][b#]?/g, (match) => {
-      let note = match;
-      const flats = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
-      if (note.endsWith('b')) note = flats[note] || note;
-      let index = notes.indexOf(note);
-      if (index === -1) return match;
-      let newIndex = (index + amount) % 12;
-      while (newIndex < 0) newIndex += 12;
-      return notes[newIndex];
+    const SCROLL_FRACTION = 0.75;
+    const topbarTitleEl = document.getElementById('topbar-title');
+    const shiftDisplayEl = document.getElementById('shift-display');
+  
+    function isTypingInField(el) {
+      if (!el) return false;
+      const tag = (el.tagName || '').toLowerCase();
+      return tag === 'input' || tag === 'textarea' || el.isContentEditable;
+    }
+  
+    window.addEventListener('keydown', (e) => {
+      if (e.defaultPrevented) return;
+      if (isTypingInField(e.target)) return;
+  
+      const key = e.key;
+      const down = key === 'PageDown' || key === 'ArrowDown';
+      const up = key === 'PageUp' || key === 'ArrowUp';
+      if (!down && !up) return;
+  
+      e.preventDefault();
+      const delta = Math.round(window.innerHeight * SCROLL_FRACTION) * (down ? 1 : -1);
+      window.scrollBy({ top: delta, left: 0, behavior: 'smooth' });
     });
-  }
-
-function formatLyrics(text) {
-  if (!text) return '';
-  text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  text = text.replace(/__(.*?)__/g, '<em>$1</em>');
-  const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
-  text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
-  const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
-  text = text.replace(plainUrlPattern, (match, url) => {
-    if (url) {
-      return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
-    }
-    return match;
-  });
-  return text;
-}
-
-window.renderSong = function() {
-  const app = document.getElementById('chord-app');
-  if (!app || !songData) return;
-
-  const lines = songData.trim().split('\n');
-  let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
-
-  for (let i = 0; i < lines.length; i++) {
-    let line = lines[i];
-    const trimmed = line.trim();
-
-    // 1. Zastavit čtení, pokud narazíme na značku pro šuplík
-    if (trimmed.toLowerCase() === '{start_of_analysis}') {
-      break; 
-    }
-
-    // 2. Ignorovat obyčejné komentáře v kódu
-    if (trimmed.startsWith('#')) continue; 
-
-    // 3. Nadpis - OPRAVA (Předtím se zahazoval)
-    if (trimmed.toLowerCase().startsWith('{t:') || trimmed.toLowerCase().startsWith('{title:')) {
-      let tMatch = line.match(/\{(?:t|title):\s*(.*?)\}/i);
-      if (tMatch) {
-        document.getElementById('topbar-title').textContent = tMatch[1]; // Přepíše "Načítám..."
-        html += `<div class="song-title">${tMatch[1]}</div>`;
+  
+    const params = new URLSearchParams(window.location.search);
+    const songName = params.get('s');
+    const audioParam = params.get('audio');
+  
+    let audioData = null;
+    let audioList = [];
+    let songData = '';
+    
+    // --- OBNOVENÉ GLOBÁLNÍ PROMĚNNÉ A FUNKCE PRO TLAČÍTKA ---
+    const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    let currentShift = parseInt(localStorage.getItem(`samhita_shift_${songName}`)) || 0;
+    let currentFontSize = parseInt(localStorage.getItem('samhita_fontSize')) || 21;
+    let currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
+  
+    if (shiftDisplayEl) shiftDisplayEl.textContent = currentShift;
+  
+    window.changeSize = function(amount) {
+        currentFontSize += amount;
+        if (currentFontSize < 10) currentFontSize = 10;
+        if (currentFontSize > 60) currentFontSize = 60;
+        localStorage.setItem('samhita_fontSize', currentFontSize);
+        if (songData) window.renderSong(); // Okamžitě překreslí písničku
+    };
+  
+    window.changeShift = function(amount) {
+        currentShift += amount;
+        if (currentShift > 11) currentShift -= 12;
+        if (currentShift < -11) currentShift += 12;
+        localStorage.setItem(`samhita_shift_${songName}`, currentShift);
+        if (shiftDisplayEl) shiftDisplayEl.textContent = currentShift;
+        if (songData) window.renderSong(); // Okamžitě překreslí akordy
+    };
+  
+    window.applyColumnLayout = () => {
+      const appEl = document.getElementById('chord-app');
+      const pageEl = document.getElementById('page');
+      const topbarInner = document.querySelector('.song-topbar-inner');
+      const btn = document.getElementById('col-toggle-btn');
+      
+      if (appEl) appEl.style.setProperty('--col-count', currentCols);
+      
+      let newMaxWidth = '800px';
+      if (currentCols === 2) newMaxWidth = '1200px';
+      if (currentCols === 3) newMaxWidth = '1600px';
+      if (currentCols >= 4)  newMaxWidth = '95%';
+      
+      if (pageEl) pageEl.style.maxWidth = newMaxWidth;
+      if (topbarInner) topbarInner.style.maxWidth = newMaxWidth;
+      
+      if (btn) btn.innerHTML = `${currentCols} ⫿`;
+    };
+  
+    window.toggleColumns = () => {
+      currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+      localStorage.setItem('samhita_columns', currentCols); 
+      window.applyColumnLayout();
+    };
+    // --------------------------------------------------------
+  
+    // --- OPRAVA RACE CONDITION A CACHOVÁNÍ ---
+    // Přidáno ?t=... zabrání mobilu načíst starý JSON bez PDF šuplíku
+    fetch('songs.json?t=' + new Date().getTime())
+      .then(r => r.json())
+      .then(songs => {
+        const song = songs.find(s => s.file === songName);
+        if (song) {
+          window.currentSongObj = song; 
+          
+          // POJISTKA: Pokud se .pro soubor načetl rychleji než JSON, vykresli ho znovu!
+          if (songData !== '') {
+              window.renderSong(); 
+          }
+  
+          if (song.audio) {
+              audioData = song.audio;
+              renderAudio();
+          }
+        }
+      })
+      .catch(err => {
+        console.log('Nepodařilo se načíst songs.json:', err);
+        if (audioParam) {
+          audioData = audioParam;
+          renderAudio();
+        }
+      });
+  
+    function renderAudio() {
+      const toggleBtn = document.getElementById('audio-toggle');
+      const drawer = document.getElementById('audio-drawer');
+      const listEl = document.getElementById('audio-list');
+      const player = document.getElementById('audio-player');
+      if (!audioData || !toggleBtn || !drawer || !listEl || !player) return;
+  
+      if (typeof audioData === 'string') {
+        audioList = [{ url: audioData, label: null }];
+      } else if (Array.isArray(audioData)) {
+        audioList = audioData.map(item => {
+          if (typeof item === 'string') return { url: item, label: null };
+          return item;
+        });
       }
-      continue;
-    }
-
-    // Podtitul
-    if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
-      let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
-      if (stMatch) {
-        html += `<div class="song-subtitle">${stMatch[1]}</div>`;
+  
+      toggleBtn.style.display = audioList.length ? 'inline-flex' : 'none';
+      drawer.classList.toggle('audio-drawer--single', audioList.length === 1);
+  
+      function setPlayingTrackItem(activeBtn) {
+        listEl.querySelectorAll('.audio-item').forEach((btn) => btn.classList.remove('is-playing'));
+        if (activeBtn) activeBtn.classList.add('is-playing');
       }
-      continue;
-    }
-
-    // Refrén a sloky
-    if (trimmed.toLowerCase().startsWith('{soc')) {
-      let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
-      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-      let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-      html += `<div class="chorus-block">${labelHtml}`; 
-      continue; 
-    }
-    if (trimmed.toLowerCase().startsWith('{eoc')) { 
-      html += '</div>'; 
-      continue; 
-    }
-    if (trimmed.toLowerCase().startsWith('{sov')) {
-      let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
-      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-      let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-      html += `<div class="verse-block">${labelHtml}`; 
-      continue; 
-    }
-    if (trimmed.toLowerCase().startsWith('{eov')) { 
-      html += '</div>'; 
-      continue; 
-    }
-
-    // Ostatní viditelné metadata
-    if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
-      let cMatch = line.match(/\{(?:c|comment):\s*(.*?)\}/i);
-      if (cMatch) html += `<div class="comment">${cMatch[1]}</div>`;
-      continue;
-    }
-
-    // 4. Parsování akordů a textu (Obnova vrstvení)
-    let lineHtml = '';
-    if (line.includes('[')) {
-      let parts = line.split(/\[([^\]]+)\]/);
-      if (parts[0]) {
-        lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
+  
+      listEl.innerHTML = '';
+      if (audioList.length > 1) {
+        audioList.forEach((a, idx) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'audio-item';
+          const title = a.label ? a.label : `Nahrávka ${idx + 1}`;
+          item.innerHTML = `<span class="audio-item-title">${title}</span><span class="audio-item-meta">▶</span>`;
+          item.onclick = () => {
+            player.src = a.url;
+            player.style.display = 'block';
+            drawer.classList.add('is-open');
+            toggleBtn.classList.add('is-active');
+            setPlayingTrackItem(item);
+            player.play().catch(() => {});
+          };
+          listEl.appendChild(item);
+        });
       }
-      for (let j = 1; j < parts.length; j += 2) {
-        let chord = parts[j];
-        let lyric = parts[j+1] || '';
-        let transposed = transposeChord(chord, currentShift);
-        // Akord a slabika patří pod sebe do flex-sloupce (chord-stack)
-        lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
+  
+      toggleBtn.addEventListener('click', () => {
+        const open = drawer.classList.toggle('is-open');
+        toggleBtn.classList.toggle('is-active', open);
+        if (open && audioList.length === 1 && !player.src) {
+          player.src = audioList[0].url;
+          player.style.display = 'block';
+          player.play().catch(() => {});
+        }
+      });
+    }
+  
+    function transposeChord(chord, amount) {
+      if (chord === '.') return '.';
+      return chord.replace(/[A-G][b#]?/g, (match) => {
+        let note = match;
+        const flats = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
+        if (note.endsWith('b')) note = flats[note] || note;
+        let index = notes.indexOf(note);
+        if (index === -1) return match;
+        let newIndex = (index + amount) % 12;
+        while (newIndex < 0) newIndex += 12;
+        return notes[newIndex];
+      });
+    }
+  
+  function formatLyrics(text) {
+    if (!text) return '';
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+    const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
+    text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
+    const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
+    text = text.replace(plainUrlPattern, (match, url) => {
+      if (url) {
+        return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
       }
-    } else {
-      lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
-    }
-
-    if (trimmed === '') {
-        html += `<div class="spacer"></div>`;
-    } else {
-        html += `<div class="line">${lineHtml}</div>`;
-    }
+      return match;
+    });
+    return text;
   }
   
-  html += `</div>`; // Konec output-area pro sloupce
-
-  // =========================================================
-  // VYKRESLENÍ TLAČÍTKA PDF A ŠUPLÍKU
-  // =========================================================
-  if (window.currentSongObj) {
-      if (window.currentSongObj.hasPDF) {
-          html += `
-              <div style="text-align: center; margin-top: 20px; column-span: all;">
-                  <a href="pdfs/${window.currentSongObj.file}.pdf" target="_blank" class="pdf-link">
-                      📄 Otevřít studijní materiály (PDF)
-                  </a>
-              </div>
-          `;
+  window.renderSong = function() {
+    const app = document.getElementById('chord-app');
+    if (!app || !songData) return;
+  
+    const lines = songData.trim().split('\n');
+    let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
+  
+    for (let i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      const trimmed = line.trim();
+  
+      if (trimmed.toLowerCase() === '{start_of_analysis}') break; 
+      if (trimmed.startsWith('#')) continue; 
+  
+      if (trimmed.toLowerCase().startsWith('{t:') || trimmed.toLowerCase().startsWith('{title:')) {
+        let tMatch = line.match(/\{(?:t|title):\s*(.*?)\}/i);
+        if (tMatch) {
+          document.getElementById('topbar-title').textContent = tMatch[1]; 
+          html += `<div class="song-title">${tMatch[1]}</div>`;
+        }
+        continue;
       }
-
-      if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
-          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis); // Umožní tučné písmo a odkazy i v šuplíku
-          html += `
-              <div class="analysis-container" style="column-span: all;">
-                  <div class="analysis-header" onclick="toggleAnalysis()">
-                      <span>🔍 Výklad a rozbor</span>
-                      <span id="analysis-arrow">▼</span>
-                  </div>
-                  <div id="analysis-content" class="analysis-content">
-${formattedAnalysis}
-                  </div>
-              </div>
-          `;
+  
+      if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
+        let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
+        if (stMatch) html += `<div class="song-subtitle">${stMatch[1]}</div>`;
+        continue;
       }
-  }
-
-  app.innerHTML = html;
-  app.style.display = 'block';
-  document.getElementById('loading').style.display = 'none';
-  window.applyColumnLayout();
-};
-
-window.toggleAnalysis = function() {
-    const content = document.getElementById('analysis-content');
-    const arrow = document.getElementById('analysis-arrow');
-    if (content.style.display === "block") {
-        content.style.display = "none";
-        arrow.textContent = "▼";
-    } else {
-        content.style.display = "block";
-        arrow.textContent = "▲";
+  
+      if (trimmed.toLowerCase().startsWith('{soc')) {
+        let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+        let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+        let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+        html += `<div class="chorus-block">${labelHtml}`; 
+        continue; 
+      }
+      if (trimmed.toLowerCase().startsWith('{eoc')) { 
+        html += '</div>'; 
+        continue; 
+      }
+      if (trimmed.toLowerCase().startsWith('{sov')) {
+        let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+        let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+        let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+        html += `<div class="verse-block">${labelHtml}`; 
+        continue; 
+      }
+      if (trimmed.toLowerCase().startsWith('{eov')) { 
+        html += '</div>'; 
+        continue; 
+      }
+  
+      if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
+        let cMatch = line.match(/\{(?:c|comment):\s*(.*?)\}/i);
+        if (cMatch) html += `<div class="comment">${cMatch[1]}</div>`;
+        continue;
+      }
+  
+      let lineHtml = '';
+      if (line.includes('[')) {
+        let parts = line.split(/\[([^\]]+)\]/);
+        if (parts[0]) {
+          lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
+        }
+        for (let j = 1; j < parts.length; j += 2) {
+          let chord = parts[j];
+          let lyric = parts[j+1] || '';
+          let transposed = transposeChord(chord, currentShift);
+          lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
+        }
+      } else {
+        lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
+      }
+  
+      if (trimmed === '') {
+          html += `<div class="spacer"></div>`;
+      } else {
+          html += `<div class="line">${lineHtml}</div>`;
+      }
     }
-};
-
-if (songName) {
-  document.title = songName + " - Zpěvník";
-  fetch(`songs/${songName}.pro`)
-    .then(r => {
-      if (!r.ok) throw new Error('Network response was not ok');
-      return r.text();
-    })
-    .then(text => {
-      songData = text;
-      renderSong(); 
-    })
-    .catch(err => {
-      document.getElementById('loading').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      console.error(err);
-    });
-} else {
-  document.getElementById('loading').innerHTML = "Chybí název písničky v URL.";
-}
-
-})();
-</script>
+    
+    html += `</div>`; 
+  
+    if (window.currentSongObj) {
+        if (window.currentSongObj.hasPDF) {
+            html += `
+                <div style="text-align: center; margin-top: 20px; column-span: all;">
+                    <a href="pdfs/${window.currentSongObj.file}.pdf" target="_blank" class="pdf-link">
+                        📄 Otevřít studijní materiály (PDF)
+                    </a>
+                </div>
+            `;
+        }
+  
+        if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
+            let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
+            html += `
+                <div class="analysis-container" style="column-span: all;">
+                    <div class="analysis-header" onclick="toggleAnalysis()">
+                        <span>🔍 Výklad a rozbor</span>
+                        <span id="analysis-arrow">▼</span>
+                    </div>
+                    <div id="analysis-content" class="analysis-content">
+  ${formattedAnalysis}
+                    </div>
+                </div>
+            `;
+        }
+    }
+  
+    app.innerHTML = html;
+    app.style.display = 'block';
+    document.getElementById('loading').style.display = 'none';
+    window.applyColumnLayout();
+  };
+  
+  window.toggleAnalysis = function() {
+      const content = document.getElementById('analysis-content');
+      const arrow = document.getElementById('analysis-arrow');
+      if (content.style.display === "block") {
+          content.style.display = "none";
+          arrow.textContent = "▼";
+      } else {
+          content.style.display = "block";
+          arrow.textContent = "▲";
+      }
+  };
+  
+  if (songName) {
+    document.title = songName + " - Zpěvník";
+    fetch(`songs/${songName}.pro`)
+      .then(r => {
+        if (!r.ok) throw new Error('Network response was not ok');
+        return r.text();
+      })
+      .then(text => {
+        songData = text;
+        window.renderSong(); 
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        console.error(err);
+      });
+  } else {
+    document.getElementById('loading').innerHTML = "Chybí název písničky v URL.";
+  }
+  
+  })();
+  </script>
 </body>
 </html>
