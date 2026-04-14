@@ -1,16 +1,5 @@
 [
   {
-    "name": "Ād guray namaḥ1",
-    "category": "Indické - Ostatní",
-    "file": "ad_guray_namah",
-    "audio": "audio/ad_guray_namah.mp3",
-    "tags": [
-      "Guru",
-      "Mangala Charan mantra"
-    ],
-    "dateAdded": "2026-04-10"
-  },
-  {
     "name": "Āpaṇa ātmārāma",
     "category": "Indické - Ostatní",
     "file": "apana_atmarama",
@@ -187,6 +176,17 @@
       "Maha mantra"
     ],
     "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "rumolino_Ād guray namaḥ1",
+    "category": "Indické - Ostatní",
+    "file": "ad_guray_namah",
+    "audio": "audio/ad_guray_namah.mp3",
+    "tags": [
+      "Guru",
+      "Mangala Charan mantra"
+    ],
+    "dateAdded": "2026-04-10"
   },
   {
     "name": "Śrī gaṅgāṣṭakam",
