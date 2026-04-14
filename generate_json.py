@@ -7,39 +7,63 @@ from datetime import date
 # Konfigurace
 SONGS_DIR = 'songs'
 JSON_FILE = 'songs.json'
+PDF_DIR = 'pdfs'  # Složka, kde máš uložená PDF
 
 def normalize_for_sort(text):
     """Převede text na malá písmena a odstraní diakritiku pro potřeby řazení."""
     nfkd_form = unicodedata.normalize('NFKD', text)
     return "".join([c for c in nfkd_form if not unicodedata.combining(c)]).lower()
 
-def extract_metadata(file_path):
-    """Vytáhne název, kategorii a tagy z ChordPro souboru, ignoruje komentáře."""
+def extract_metadata_and_analysis(file_path):
+    """Vytáhne název, kategorii, tagy a text analýzy z ChordPro souboru."""
     metadata = {
         "title": os.path.basename(file_path).replace('.pro', ''),
         "category": None,
-        "tags": None
+        "tags": None,
+        "analysis": ""
     }
+    
+    analysis_lines = []
+    is_analysis_section = False
+
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
             for line in f:
-                line = line.strip()
-                if not line or line.startswith('#'):
+                raw_line = line.strip()
+                
+                # Detekce začátku sekce analýzy
+                if '{start_of_analysis}' in raw_line.lower():
+                    is_analysis_section = True
                     continue
-                t_match = re.search(r'\{(?:t|title):\s*(.*?)\}', line, re.IGNORECASE)
+                
+                # Pokud jsme v sekci analýzy, sbíráme řádky
+                if is_analysis_section:
+                    analysis_lines.append(line.rstrip())
+                    continue
+
+                # Standardní metadata
+                if not raw_line or raw_line.startswith('#'):
+                    continue
+                
+                t_match = re.search(r'\{(?:t|title):\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if t_match:
                     metadata["title"] = t_match.group(1).strip()
                     continue
-                c_match = re.search(r'\{category:\s*(.*?)\}', line, re.IGNORECASE)
+                
+                c_match = re.search(r'\{category:\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if c_match:
                     metadata["category"] = c_match.group(1).strip()
                     continue
-                tags_match = re.search(r'\{tags:\s*(.*?)\}', line, re.IGNORECASE)
+                
+                tags_match = re.search(r'\{tags:\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if tags_match:
                     metadata["tags"] = [t.strip() for t in tags_match.group(1).split(',') if t.strip()]
                     continue
+                    
     except Exception as e:
         print(f"Chyba při čtení souboru {file_path}: {e}")
+    
+    metadata["analysis"] = "\n".join(analysis_lines).strip()
     return metadata
 
 def update_songs_json():
@@ -61,21 +85,27 @@ def update_songs_json():
 
     # HLAVNÍ CYKLUS
     for filename in os.listdir(SONGS_DIR):
-        # Podmínka: musí končit na .pro A NESMÍ začínat podtržítkem
         if filename.endswith('.pro') and not filename.startswith('_'):
             file_slug = filename[:-4]
             file_path = os.path.join(SONGS_DIR, filename)
             
-            # Kontrolní výpis do terminálu
             print(f"-> Zpracovávám: {filename}")
             
-            meta = extract_metadata(file_path)
+            # Získáme metadata i analýzu
+            meta = extract_metadata_and_analysis(file_path)
+            
+            # Kontrola existence PDF
+            pdf_path = os.path.join(PDF_DIR, f"{file_slug}.pdf")
+            has_pdf = os.path.exists(pdf_path)
             
             if file_slug in existing_data:
                 song = existing_data[file_slug]
                 song['name'] = meta['title']
                 if meta['category']: song['category'] = meta['category']
                 if meta['tags'] is not None: song['tags'] = meta['tags']
+                # Aktualizujeme nové položky
+                song['hasPDF'] = has_pdf
+                song['analysis'] = meta['analysis']
             else:
                 song = {
                     "name": meta['title'],
@@ -83,7 +113,9 @@ def update_songs_json():
                     "file": file_slug,
                     "audio": f"audio/{file_slug}.mp3",
                     "tags": meta['tags'] if meta['tags'] is not None else [],
-                    "dateAdded": str(date.today())
+                    "dateAdded": str(date.today()),
+                    "hasPDF": has_pdf,
+                    "analysis": meta['analysis']
                 }
             new_songs_list.append(song)
 

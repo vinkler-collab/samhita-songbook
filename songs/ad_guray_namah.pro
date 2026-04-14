@@ -5,6 +5,8 @@
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
     |[Em]Sa --- |[C]t guray na|[G]maḥ |. . Sirī gurū|
     |[Em]de---|[D]vay na|[G]maḥ |. . . . |
+
+{start_of_analysis}
 This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.
 https://www.sikhdharma.org/aad-guray-nameh/
 

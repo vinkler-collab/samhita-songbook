@@ -8,7 +8,9 @@
       "Guru",
       "Mangala Charan mantra"
     ],
-    "dateAdded": "2026-04-10"
+    "dateAdded": "2026-04-10",
+    "hasPDF": false,
+    "analysis": "This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.\nhttps://www.sikhdharma.org/aad-guray-nameh/\n\nGurmukhi Script:\nਆਦਿ ਗੁਰੇ ਨਮਹ ॥ ਜੁਗਾਦਿ ਗੁਰੇ ਨਮਹ ॥ ਸਤਿ ਗੁਰੇ ਨਮਹ ॥ ਸ੍ਰੀ ਗੁਰੂ ਦੇਵੇ ਨਮਹ ॥\n**Transliteration:**\n    • Ād guray namaḥ\n    • Jugād guray namaḥ\n    • Sat guray namaḥ\n    • Sirī gurū devay namaḥ\n**__Ād__** = Primal, original, beginning; **__Guray__** = To the Guru (dative case); **__Namaḥ__** = I bow, salutations; **__Jugād__** = Throughout the ages, timeless; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sat__** = True, truth; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sirī__** = Great, honored (honorific); **__Gurū__** = Guru, teacher; **__Devay__** = Divine, to the divine light; **__Namaḥ__** = I bow"
   },
   {
     "name": "Āpaṇa ātmārāma",
@@ -18,7 +20,9 @@
     "tags": [
       "Navnath Sampradaya"
     ],
-    "dateAdded": "2026-04-13"
+    "dateAdded": "2026-04-13",
+    "hasPDF": true,
+    "analysis": "This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.\nhttps://www.sikhdharma.org/aad-guray-nameh/\n\nGurmukhi Script:\nਆਦਿ ਗੁਰੇ ਨਮਹ ॥ ਜੁਗਾਦਿ ਗੁਰੇ ਨਮਹ ॥ ਸਤਿ ਗੁਰੇ ਨਮਹ ॥ ਸ੍ਰੀ ਗੁਰੂ ਦੇਵੇ ਨਮਹ ॥\n**Transliteration:**\n    • Ād guray namaḥ\n    • Jugād guray namaḥ\n    • Sat guray namaḥ\n    • Sirī gurū devay namaḥ\n**__Ād__** = Primal, original, beginning; **__Guray__** = To the Guru (dative case); **__Namaḥ__** = I bow, salutations; **__Jugād__** = Throughout the ages, timeless; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sat__** = True, truth; **__Guray__** = To the Guru; **__Namaḥ__** = I bow; **__Sirī__** = Great, honored (honorific); **__Gurū__** = Guru, teacher; **__Devay__** = Divine, to the divine light; **__Namaḥ__** = I bow"
   },
   {
     "name": "Bernie's Chalisa",
@@ -39,7 +43,9 @@
       "Hanuman Chalisa",
       "Krishna Das"
     ],
-    "dateAdded": "2026-04-06"
+    "dateAdded": "2026-04-06",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Déva púdžá",
@@ -51,7 +57,9 @@
       "Puja",
       "Guru"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Govinda Gopal",
@@ -62,7 +70,9 @@
       "Govinda",
       "Kršna"
     ],
-    "dateAdded": "2026-04-13"
+    "dateAdded": "2026-04-13",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Hanumān Bolo",
@@ -82,7 +92,9 @@
       "Hanuman",
       "Ráma"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Jaya Bajraṅga Balī",
@@ -92,7 +104,9 @@
     "tags": [
       "Hanuman"
     ],
-    "dateAdded": "2026-04-10"
+    "dateAdded": "2026-04-10",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Karāgre vasate lakṣmīḥ",
@@ -104,7 +118,9 @@
       "Saraswati",
       "Govinda"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Mano Javaṁ Māruta Tulya Vegaṁ",
@@ -115,7 +131,9 @@
       "Hanuman",
       "Ráma"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Nija Nija Prabho",
@@ -126,7 +144,9 @@
       "Guru",
       "Navnath Sampradaya"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Nina Hanuman Chalisa",
@@ -138,7 +158,9 @@
       "Hanuman Chalisa",
       "Nina Rao"
     ],
-    "dateAdded": "2026-04-06"
+    "dateAdded": "2026-04-06",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Ocean of Ram Hanuman Chalisa",
@@ -151,7 +173,9 @@
       "Krishna Das",
       "Nina Rao"
     ],
-    "dateAdded": "2026-04-07"
+    "dateAdded": "2026-04-07",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Om aiṁ sarasvatyai namaḥ",
@@ -163,7 +187,9 @@
       "Bija mantra",
       "Krishna Das"
     ],
-    "dateAdded": "2026-04-06"
+    "dateAdded": "2026-04-06",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Prema Hare Ram",
@@ -175,7 +201,9 @@
       "Sita",
       "Krishna Das"
     ],
-    "dateAdded": "2026-04-06"
+    "dateAdded": "2026-04-06",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Radhe Kishori",
@@ -186,7 +214,9 @@
       "Radha",
       "Maha mantra"
     ],
-    "dateAdded": "2026-04-05"
+    "dateAdded": "2026-04-05",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Śrī gaṅgāṣṭakam",
@@ -194,7 +224,9 @@
     "file": "sri_gangastakam",
     "audio": "audio/sri_gangastakam.mp3",
     "tags": [],
-    "dateAdded": "2026-04-13"
+    "dateAdded": "2026-04-13",
+    "hasPDF": false,
+    "analysis": ""
   },
   {
     "name": "Tvameva mātā",
@@ -205,6 +237,8 @@
       "Ganesha",
       "Uma Reed"
     ],
-    "dateAdded": "2026-04-11"
+    "dateAdded": "2026-04-11",
+    "hasPDF": false,
+    "analysis": ""
   }
 ]
