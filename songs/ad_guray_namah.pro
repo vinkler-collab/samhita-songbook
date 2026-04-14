@@ -1,5 +1,5 @@
 {title: Ād guray namaḥ}
-{subtitle: Mangala Charan Mantra_opuka}
+{subtitle: Mangala Charan}
 {capo: 2}   
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
