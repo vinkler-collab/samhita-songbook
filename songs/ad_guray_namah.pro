@@ -1,4 +1,4 @@
-{title: Ād guray namaḥ}
+{title: Ād guray namaḥ99}
 {subtitle: Mangala Charan}
 {capo: 2}   
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 

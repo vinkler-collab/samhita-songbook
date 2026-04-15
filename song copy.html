@@ -85,39 +85,8 @@ body.dark-mode .analysis-header:hover {
     column-rule: 1px dashed #e0c5b0;
   }
 
-  /* --- SJEDNOCENÁ HLAVIČKA PÍSNĚ --- */
-  /* Toto opravuje bug v iOS Safari s useknutým textem */
-  .song-title, 
-  .song-subtitle, 
-  .song-author, 
-  .song-category,
-  .song-category-link {
+  .song-title, .song-subtitle {
     column-span: all;
-    display: block;
-    line-height: 1.3;
-  }
-
-  .song-title {
-    font-weight: bold;
-    color: #143464;
-    margin-bottom: 0.1em;
-  }
-
-  .song-subtitle {
-    font-size: 1.2rem;
-    color: #666;
-    font-style: italic;
-    margin-top: 0; /* Zrušeno záporné -10px */
-    margin-bottom: 0.3em;
-    text-align: left;
-  }
-
-  .song-author {
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: #444;
-    margin-top: 0;
-    margin-bottom: 0.3em;
   }
 
   .song-category {
@@ -125,22 +94,9 @@ body.dark-mode .analysis-header:hover {
     color: #888;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    margin-top: 0;
-    margin-bottom: 1.2em; /* Vytvoří hezkou mezeru před akordy */
+    margin-bottom: 1.2em; /* Udělá mezeru před samotným textem písně */
     font-family: sans-serif;
-  }
-
-  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
-  body.dark-mode .song-category {
-    color: #a8a39d !important;
-  }
-  
-  /* Nastavení klikatelného odkazu kategorie */
-  .song-category-link {
-    text-decoration: none;
-  }
-  .song-category-link:hover .song-category {
-    color: #d35400;
+    column-span: all;
   }
 
   /* Aby byla kategorie pěkně vidět i v tmavém režimu */
@@ -405,7 +361,31 @@ body.dark-mode .analysis-header:hover {
   color: #e66c00;
 }
 
-  
+  .song-title {
+    font-weight: bold;
+    color: #143464;
+    display: block;
+    margin-bottom: 0.1em;
+  }
+
+  .song-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    margin-top: 0px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.song-author {
+    font-size: 1.1rem;
+    color: #4b5563; /* Středně šedá, o něco tmavší než podtitulek */
+    font-weight: 600; /* Polotučné písmo, ať interpret hezky vynikne */
+    margin-top: -15px; /* Přitáhne autora blíž k nadpisům nad ním */
+    margin-bottom: 20px;
+    text-align: left;
+  }
+
   body.dark-mode .song-author {
     color: #d1d5db !important; /* Světle šedá pro noční režim */
   }
