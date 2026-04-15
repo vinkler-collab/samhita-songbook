@@ -1,8 +1,21 @@
 {title: Om aiṁ sarasvatyai namaḥ}
-{subtitle: Krishna Das & BG}
-{artist: Krishna Das}
-{key: C}
-
+{subtitle: Bija Mantra - Krishna Das & BG}
+# {author: }
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+{category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+# {category: Indické - ostatní}
+# {category: Písně}
+##########################################
+{capo: 0}
+{time: 4/4}
+{tempo: 80}
+{tags: Bija Mantra, Sarasvati}
+##########################################
 |[C]om |.  .  aa|iṁ |.  .  sara-|
 |[G]svatyai |.  .  namaḥ |[F]om |.  .  .  .  |
 |[C]om |.  .  aa|iṁ |.  .  sara-|
@@ -11,6 +24,9 @@
 |[C]svatyai  |.  .  sara|[F]svatyai |.  .  sara-|
 |[Dm]svatyai |.  .  na|[G]maha |.  .  áá |
 |[C]om |.  .  .  .  |.  .  .  .  |.  .  .  .  |
+##########################################
+{start_of_analysis}
+Comming soon...
 
 om aiṁ sarasvatyai namaḥ ||
 

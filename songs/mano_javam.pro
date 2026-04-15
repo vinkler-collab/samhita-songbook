@@ -1,22 +1,33 @@
 {title: Mano Javaṁ Māruta Tulya Vegaṁ}
 {subtitle: Harish Sagane}
 {author:  Music - Kanchan Jadhao}
-{tags: Hanuman, Ráma, TEST}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+{category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+# {category: Indické - ostatní}
+# {category: Písně}
+##########################################
 {capo: 3}
-
+{time: 4/4}
+{tempo: 80}
+{tags: Hanuman, Ráma}
+##########################################
 |[G]mano ja|vaṁ mā|ruta tulya |vegaṁ |
 |jitendri|yaṁ buddhi |[C]matāṁ va|riṣṭhaṁ |
 |[Em]vātātma|jaṁ vā|[F]nara yūtha |mukhyaṁ |
 |[G]śrīrāma |dū[G7]taṁ |śaraṇaṁ pra|pa[C]dye |
 | [C]. . . . | [C]. . . . | [C]. . . . | [C]. . . . |
-
-{sov: Original}
+##########################################
+{start_of_analysis}
 manojavaṁ mārutatulyavegaṁ
 jitendriyaṁ buddhimatāṁ variṣṭha |
 vātātmajaṁ vānarayūthamukhyaṁ
 śrīrāmadūtaṁ śaraṇaṁ prapadye |
 
-{sov: Překlad}
 1) [|Mind]|mano [|Swift]|javaṁ [|Wind]|māruta [|Like]|tulya [|Speed]|vegaṁ
 2) [|Conquered Senses]|jitendriyaṁ [|Intelligence]|buddhi [|Honoured]|matāṁ [|Best]|variṣṭha |
 3) [|Wind God]|vāt [|Son]|ātmajaṁ [|Monkey]|vānara [|Herd]|yūtha [|Chief]|mukhyaṁ

@@ -1,11 +1,21 @@
 {title: Nina Hanuman Chalisa}
-{subtitle: Nina Rao}
-{album: Antaryami}
-{metronome: 120}
-{musicpath: mp3/Nina Hanuman Chalisa.mp3}
-{key: D}
-{duration:8:13}
-{tempo: 118 }
+{subtitle: Hanuman Chalisa - Nina Rao}
+{author: AntTulsi Das}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+# {category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+{category: Indické - Ráma}
+# {category: Indické - Bohyně}
+# {category: Indické - ostatní}
+# {category: Písně}
+##########################################
+{capo: 0}
+{time: 4/4}
+{tempo: 118}
+{tags: Hanuman Chalisa, Tulsi Das, Nina Rao, Rama}
+##########################################
 #
 #
 # {start_of_grid}
@@ -120,8 +130,6 @@
 [A]durgama [.]kāja ja[Bm]gata ke [.]jete|
 [G]sugama [.]anugraha [.]tumhare [D]tete ||20||
 #
-{new_page}
-#
 {sov: ↓ 21-22}
 [D]rāma du[.]āre [G]tuma rakha[.]vāre|
 [G]hota na [.]ājñā [.]binu pai[D]sāre ||21||
@@ -228,11 +236,6 @@
 #
 [D]śrī rām [.]jai  rām  [G]jai  jai  [.]rām
 [G]śrī rām [.]jai  rām  [.]jai  jai  [D]rām
-#
-#
-#
-#
-#
-{tag: Nina Rao}
-{tag: Hanuman Chalisa}
-{tag: Hanuman}
+##########################################
+{start_of_analysis}
+Comming soon...

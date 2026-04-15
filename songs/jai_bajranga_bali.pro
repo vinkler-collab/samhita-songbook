@@ -3,10 +3,10 @@
 {author: Autor}
 # ODZNAČIT JEDNU Z KATEGORIÍ:
 # {category: Buddhistické}
-{category: Indické - základní}
+# {category: Indické - základní}
 # {category: Indické - Kršna} 
 # {category: Indické - Šiva}
-# {category: Indické - Ráma}
+{category: Indické - Ráma}
 # {category: Indické - Bohyně}
 # {category: Indické - ostatní}
 # {category: Písně}
@@ -14,7 +14,7 @@
 {capo: 4}
 {time: 4/4}
 {tempo: 80}
-{tags: tag1, tag2}
+{tags: Hanuman, Rama}
 ##########################################
 {c: Opakovat 2x:}
 |[Am]Jaya Baj|raṅga Ba|[G]lī |. . . .|
