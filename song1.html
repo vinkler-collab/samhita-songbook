@@ -89,21 +89,6 @@ body.dark-mode .analysis-header:hover {
     column-span: all;
   }
 
-  .song-category {
-    font-size: 0.95rem;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1.2em; /* Udělá mezeru před samotným textem písně */
-    font-family: sans-serif;
-    column-span: all;
-  }
-
-  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
-  body.dark-mode .song-category {
-    color: #a8a39d !important;
-  }
-
   .verse-block, .chorus-block, .line {
     break-inside: auto;
     page-break-inside: auto;
@@ -1078,25 +1063,6 @@ body.dark-mode {
     if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
       let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
       if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
-      continue;
-    }
-
-    /* --- NOVÉ: Zpracování autora (z předchozího kroku) --- */
-    if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
-      let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
-      if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
-      continue;
-    }
-
-    /* --- NOVÉ: Skrytí tagů (zpracovává je jen generátor JSONu) --- */
-    if (trimmed.toLowerCase().startsWith('{tag:') || trimmed.toLowerCase().startsWith('{tags:')) {
-      continue;
-    }
-
-    /* --- NOVÉ: Zpracování kategorie --- */
-    if (trimmed.toLowerCase().startsWith('{category:') || trimmed.toLowerCase().startsWith('{cat:')) {
-      let catMatch = line.match(/\{(?:category|cat):\s*(.*?)\}/i);
-      if (catMatch) html += `<div class="song-category">${catMatch[1]}</div>`;
       continue;
     }
 

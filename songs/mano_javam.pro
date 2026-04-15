@@ -1,7 +1,7 @@
 {title: Mano Javaṁ Māruta Tulya Vegaṁ}
 {subtitle: Harish Sagane}
-{tags: Hanuman, Ráma}
-{artist:  Music - Kanchan Jadhao}
+{author:  Music - Kanchan Jadhao}
+{tags: Hanuman, Ráma, TEST}
 {capo: 3}
 
 |[G]mano ja|vaṁ mā|ruta tulya |vegaṁ |
