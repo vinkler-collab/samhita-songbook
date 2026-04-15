@@ -1,6 +1,22 @@
-{title: Ād guray namaḥ99}
-{subtitle: Mangala Charan}
-{capo: 2}   
+{title: Ād guray namaḥ}
+{subtitle: Mangala Charan mantra}
+{author: Autor}
+# #########################################
+# ODZNAČIT JEDNU Z KATEGORIÍ
+# {category: Buddhistické}
+# {category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+{category: Indické - ostatní}
+# {category: Písně}
+# #########################################
+{capo: 2}
+{time: 4/4}
+{tempo: 80}
+{tags: Guru, Mangala charan mantra}
+#   
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
     |[Em]Sa --- |[C]t guray na|[G]maḥ |. . Sirī gurū|
