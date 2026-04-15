@@ -1,4 +1,4 @@
-{title: Govinda Gopal}
+{title: Govinda Gopal1}
 {subtitle: Podtitul}
 {author: Autor}
 # ODZNAČIT JEDNU Z KATEGORIÍ
