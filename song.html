@@ -93,15 +93,15 @@ body.dark-mode .analysis-header:hover {
     margin-bottom: 1.2em; /* Mezera mezi hlavičkou a textem písně */
   }
 
-  /* Z těchto prvků odstraníme column-span, protože už jsou v obalu */
+  /* Skupinové nastavení pro celou hlavičku */
   .song-title, 
   .song-subtitle, 
   .song-author, 
   .song-category {
-    column-span: none !important; /* Safari už nebude zmatené */
+    column-span: none !important; 
     display: block;
     line-height: 1.2;
-    margin: 0; /* Vynulujeme defaultní mezery */
+    margin: 0; 
   }
 
   .song-title {
@@ -125,12 +125,16 @@ body.dark-mode .analysis-header:hover {
     padding-bottom: 4px;
   }
 
+  /* 1. KATEGORIE - upraveno */
   .song-category {
-    font-size: 0.95rem;
+    font-size: 15px !important; /* Změněno na PX, aby se to nehlo ani o milimetr */
     color: #888;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     font-family: sans-serif;
+    margin: 0 !important; /* Vynulujeme všechno... */
+    margin-bottom: 15px !important; /* ...a necháme jen tuhle pevnou mezeru dole */
+    line-height: 1.2 !important; /* Pevná výška řádku zabrání "nafukování" */
   }
 
   /* Aby byla kategorie pěkně vidět i v tmavém režimu */
@@ -431,21 +435,25 @@ body.dark-mode .analysis-header:hover {
     display: inline-block;
   }
 
-  .song-capo, .song-tempo, .song-time {
+  /* 2. TROJICE (Capo, Time, Tempo) - upraveno */
+  .song-capo, .song-time, .song-tempo {
     font-family: sans-serif;
-    font-weight: 500; /* OPRAVA: zjemněno z bold */
+    font-size: 14px !important;
+    font-weight: 500;
     color: #555;
     background: #f4f4f4;
     border: 1px solid #dcdcdc;
-    padding: 0 10px;
-    height: 30px;
+    padding: 3px 10px;
     border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-right: 10px;
-    line-height: 1.2;
-    vertical-align: middle;
+    display: inline-block;
+    
+    /* KLÍČOVÁ ZMĚNA TADY: */
+    margin-top: 0px !important;    /* Žádná mezera nad nimi (tu už drží kategorie) */
+    margin-bottom: 22px !important; /* Mezera pod nimi směrem k textu */
+    margin-right: 6px;
+    
+    line-height: 1.4 !important; /* Vlastní výška řádku, ignoruje kontejner */
+    vertical-align: top;         /* Zarovnání, aby se nepohupovaly */
   }
 
   .song-capo::before {
@@ -650,7 +658,8 @@ body.dark-mode {
     column-rule: 1px dashed #5d5650 !important;
   }
 
-  body.dark-mode .song-capo,
+/* Tvůj Dark Mode - ponechán tak, jak ho máš, je skvělý */
+body.dark-mode .song-capo,
   body.dark-mode .song-time,
   body.dark-mode .song-tempo {
     background-color: #403c38 !important;
@@ -659,6 +668,7 @@ body.dark-mode {
     box-shadow: none !important;
   }
 
+  /* Toto je důležité pro ty ikonky/symboly před textem */
   body.dark-mode .song-capo::before,
   body.dark-mode .song-time::before,
   body.dark-mode .song-tempo::before {
