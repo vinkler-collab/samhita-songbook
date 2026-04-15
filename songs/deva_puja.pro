@@ -1,6 +1,21 @@
 {title: Déva púdžá}
 {subtitle: Shivadina Kesari}
-
+{author: Autor}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+# {category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+{category: Indické - ostatní}
+# {category: Písně}
+##########################################
+{capo: 0}
+{time: 4/4}
+{tempo: 80}
+{tags: Deva, Puja, Guru, Navnath Sampradaya}
+##########################################
 {soc:Chorus 1}
 |[Am]. Déva pú[C]džáá déva |[G]pú-[C]ú-[Em]džá-[Am]á   |
 |[Am]. Déva pú[C]džáá déva |[G]pú-[C]ú-[Em]džá-[Am]á   |
@@ -130,3 +145,6 @@
 |[Am]. Déva pú[Em]džá[G]á déva |púdžáa [Em]má-[Am]dzi |
 |[Am]. Déva pú[Em]džá[G]á déva |púdžá . . |
 {eoc}
+##########################################
+{start_of_analysis}
+Comming soon...

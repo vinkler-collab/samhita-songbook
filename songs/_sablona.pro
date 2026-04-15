@@ -1,11 +1,7 @@
 {title: Šablona}
 {subtitle: Podtitul}
-{tags: tag1, tag2}
-# {capo: 0}
-# {time: 3/4}
-# {tempo: 80}
-#
-# ODZNAČIT JEDNU Z KATEGORIÍ
+{author: Autor}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
 # {category: Buddhistické}
 {category: Indické - základní}
 # {category: Indické - Kršna} 
@@ -14,7 +10,12 @@
 # {category: Indické - Bohyně}
 # {category: Indické - ostatní}
 # {category: Písně}
-##########################################š
+##########################################
+{capo: 0}
+{time: 4/4}
+{tempo: 80}
+{tags: tag1, tag2}
+##########################################
 {sov: Verse 1}
 [G]Rāma  
 {eov}
@@ -22,4 +23,6 @@
 {soc: REF}
 refrén 
 {eoc}
-
+##########################################
+{start_of_analysis}
+Comming soon...

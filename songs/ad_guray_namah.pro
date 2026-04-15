@@ -1,7 +1,6 @@
 {title: Ād guray namaḥ}
 {subtitle: Mangala Charan mantra}
 {author: Autor}
-# #########################################
 # ODZNAČIT JEDNU Z KATEGORIÍ
 # {category: Buddhistické}
 # {category: Indické - základní}
@@ -16,12 +15,12 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Guru, Mangala charan mantra}
-#   
+##########################################
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |
     |[Em]Sa --- |[C]t guray na|[G]maḥ |. . Sirī gurū|
     |[Em]de---|[D]vay na|[G]maḥ |. . . . |
-
+##########################################
 {start_of_analysis}
 This is a Sikh mantra from the (Guru Granth Sahib|https://en.wikipedia.org/wiki/Guru_Granth_Sahib), written in Gurmukhi script, in the language of Sant Bhasha/old Punjabi.
 https://www.sikhdharma.org/aad-guray-nameh/

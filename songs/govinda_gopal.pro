@@ -1,4 +1,4 @@
-{title: Govinda Gopal_new}
+{title: Govinda Gopal}
 {subtitle: Podtitul}
 {author: Autor}
 # ODZNAČIT JEDNU Z KATEGORIÍ
@@ -15,8 +15,12 @@
 {time: 3/4}
 {tempo: 80}
 {tags: Govinda, Kršna}
+##########################################
 Govinda Gopāla bhaja mana Kṛṣṇa Hari
 He Prabhu Dīna Dayāla bhaja mana Kṛṣṇa Hari
 
 <img src="images/govinda_gopal.png" class="song-img">
+##########################################
+{start_of_analysis}
+Comming soon...
 

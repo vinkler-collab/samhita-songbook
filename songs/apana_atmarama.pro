@@ -1,6 +1,21 @@
 {title: Āpaṇa ātmārāma}
 {subtitle: Navnath Sampradaya}
-
+{author: Autor}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+# {category: Indické - základní}
+# {category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+{category: Indické - ostatní}
+# {category: Písně}
+##########################################
+{capo: 0}
+{time: 4/4}
+{tempo: 80}
+{tags: Navnath Sampradaya}
+##########################################
 {soc: Ref.: 2x}
 |[C]āpaṇa ātmā|[F]. rāma akarta |: (.) he jari dṛuḍha kaḻa|[C]leṁ :|
 |: [C]kāya [F]kāja saṁ|[C]kalpa vi[G]kalpahi |. manīṁ uṭha[C]le nima|le :|
@@ -30,8 +45,7 @@
 |[C]kaḻaleṁ mī jari |[F]. asaṁga citghana |: (.) bhāgya tujheṁ phaḻa|[C]le :|
 |: [C]karūni a[F]kartā |[C]. tūṁ para[G]mātmā |. mīpaṇa jari gaḻa|[C]leṁ :| (+ Ref.)
 {eov}
-
-
+##########################################
 {start_of_analysis}
 
 **Sloka 1.**
