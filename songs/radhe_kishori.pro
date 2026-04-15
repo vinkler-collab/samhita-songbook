@@ -1,11 +1,21 @@
 {title: Radhe Kishori}
 {subtitle: Baal Gopal}
-{musicpath: mp3/Radhe Kishori Daya Karo.mp3}
-{metronome: 108}
-{key: C}
-{duration: 395}
+{author: Autor}
+# ODZNAČIT JEDNU Z KATEGORIÍ:
+# {category: Buddhistické}
+# {category: Indické - základní}
+{category: Indické - Kršna} 
+# {category: Indické - Šiva}
+# {category: Indické - Ráma}
+# {category: Indické - Bohyně}
+# {category: Indické - ostatní}
+# {category: Písně}
+##########################################
+{capo: 0}
+{time: 4/4}
 {tempo: 90}
-
+{tags: Radha}
+##########################################
 {soc: Refrén 1.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
@@ -40,7 +50,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 |[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
 |[C]. . . . |[C]. . [G]. . |[C]. . [Am]. . |[F]. . [G]. . |
 {eov}
-
 {sov: Sloka 2.}
 |[G]  sadā dharī dī|[C]nan pee [G]śyā[C]mā|
 |[G]  sadā dharī dī|[Am]nan pee [G]śyā[C]mā|
@@ -48,7 +57,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 |[Dm]  yaha viśvās jo |[C]mana hī kha[F]ro |
 |[Dm]  yaha viśvās jo |[C]mana hī kharoo
 {eov}
-
 {soc: Refrén 4.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
@@ -56,7 +64,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 {sov: Mezihra 1.}
 |[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
-
 {sov: Sloka 3.}
 |[G]  viṣam viṣaya viṣ |[C]jvāl ma[G]āl [C]me|
 |[G]  viṣam viṣaya viṣ |[Am]jvāl ma[G]āl [C]me|
@@ -64,7 +71,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 |[Dm]  vividh tāp tā|[C]pani jū ja[F]ro |
 |[Dm]  vividh tāp tā|[C]pani jū jaro
 {eov}
-
 {soc: Refrén 4.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
@@ -72,7 +78,6 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 {sov: Mezihra 1.}
 |[C]. . . . |[Am]. . . . |[G]. . . . |[F]. . . . |[C]. . . . |[C]. . [F]. . |
 {eov}
-
 {sov: Sloka 4.}
 |[G]  kabahu to karuṇā |[C]karoogī [G]śyā[C]mā|
 |[G]  kabahu to karuṇā |[Am]karoogī [G]śyā[C]mā|
@@ -80,14 +85,12 @@ rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 |[Dm]  yahi āsa te |[C]dvār pa[F]ryo|
 |[Dm]  yahi āsa te |[C]dvār paryoo
 {eov}
-
 {soc: Refrén 1.}
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 rā|[C]dhe kiśorī |[G]dayā ka[F]ro
 śyā|[C]mā lāḍalī |[G]dayā ka[F]ro
 śyā|[Am]mā lāḍalī |[F]dayā ka[C]ro |
 {eoc}
-
 {soc: Refrén 2.}
 |[C]dayā ka[F]ro rādhe |[C]dayā karo|
 |[C]dayā ka[Am]ro rādhe |[F]dayā ka[C]rooo|
@@ -106,17 +109,18 @@ Krishna |[Ami]Krishna Ha[G]reee Ha|[F]re
 Hare |[C]Rama Haree Ra|[G]ma
 Rama |[Ami]Rama Ha[G]reee Ha|[F]re|
 {eov}
-
 {sov: Mahā Mantra 2.}
 |[C]  Hare Kri[Dm]shna |[G]Hare Krish[C]naaa|
 |[C]  Krishna Kri[Dm]shna |[G]Hare Ha[C]reee|
 |[C]  Hare Ra[Dm]ma |[G]Hare Ra[C]maaa|
 |[C]  Rama Ra[Dm]ma |[G]Hare Ha[C]re
 {eov}
-
 {sov: Mahā Mantra 3.}
 Hare |[C]Krishna Haree Krish|[G]na
 Krishna |[Ami]Krishna Ha[G]reee Ha|[F]re
 Hare |[C]Rama Haree Ra|[G]ma
 Rama |[Ami]Rama Ha[G]reee Ha|[F]re|
 {eov}
+##########################################
+{start_of_analysis}
+Comming soon...

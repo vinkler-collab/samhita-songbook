@@ -178,42 +178,52 @@
   },
   {
     "name": "Prema Hare Ram",
-    "category": "Ostatní",
+    "category": "Indické - Ráma",
     "file": "prema_hare_ram",
     "audio": "audio/prema_hare_ram.mp3",
-    "tags": [],
+    "tags": [
+      "Rama",
+      "Sita"
+    ],
     "dateAdded": "2026-04-15",
     "hasPDF": false,
-    "analysis": ""
+    "analysis": "Comming soon..."
   },
   {
     "name": "Radhe Kishori",
-    "category": "Ostatní",
+    "category": "Indické - Kršna",
     "file": "radhe_kishori",
     "audio": "audio/radhe_kishori.mp3",
-    "tags": [],
+    "tags": [
+      "Radha"
+    ],
     "dateAdded": "2026-04-15",
     "hasPDF": false,
-    "analysis": ""
+    "analysis": "Comming soon..."
   },
   {
     "name": "Śrī gaṅgāṣṭakam",
-    "category": "Ostatní",
+    "category": "Indické - Bohyně",
     "file": "sri_gangastakam",
     "audio": "audio/sri_gangastakam.mp3",
-    "tags": [],
+    "tags": [
+      "Ganga",
+      "Adi Shankaracharya"
+    ],
     "dateAdded": "2026-04-15",
     "hasPDF": false,
-    "analysis": ""
+    "analysis": "Comming soon..."
   },
   {
     "name": "Tvameva mātā",
-    "category": "Ostatní",
+    "category": "Indické - ostatní",
     "file": "tvameva_mata",
     "audio": "audio/tvameva_mata.mp3",
-    "tags": [],
+    "tags": [
+      "Uma Reed"
+    ],
     "dateAdded": "2026-04-15",
     "hasPDF": false,
-    "analysis": ""
+    "analysis": "https://open.spotify.com/track/1rzzbwCczMOK5wrjYg2GpS?si=2937a13226bf44e3"
   }
 ]
