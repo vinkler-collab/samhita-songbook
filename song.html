@@ -875,6 +875,30 @@ body.dark-mode .song-capo,
     const isDark = document.body.classList.toggle('dark-mode'); 
     localStorage.setItem('samhita_dark', isDark);
   };
+
+  // --- ZABRÁNĚNÍ STMÍVÁNÍ DISPLEJE (Wake Lock) ---
+  let wakeLock = null;
+
+async function requestWakeLock() {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('Displej uzamčen - nezhasne.');
+    }
+  } catch (err) {
+    console.log('Wake Lock se nepodařilo aktivovat (pravděpodobně chybí HTTPS).');
+  }
+}
+
+// Aktivace při načtení
+requestWakeLock();
+
+// Re-aktivace při návratu na kartu (např. po zhasnutí a rozsvícení mobilu)
+document.addEventListener('visibilitychange', async () => {
+  if (document.visibilityState === 'visible') {
+    await requestWakeLock();
+  }
+});
   
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
