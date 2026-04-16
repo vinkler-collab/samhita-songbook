@@ -835,81 +835,108 @@ body.hide-chords .lyric-line {
   line-height: 1.8;
 }
 
-/* Oprava hlavního kontejneru šuplíku */
+/* --- DEFINICE BAREV (Proměnné) --- */
+:root {
+  /* Výchozí barvy (Tmavý režim) */
+  --menu-bg: #2c2c2c;
+  --menu-border: #444;
+  --menu-item-bg: #3d3d3d;
+  --menu-text: #ffffff;
+  --menu-subtext: #888888;
+  --menu-transpose-bg: #1a1a1a;
+  --menu-accent: #ffd700; /* Zlatá pro nulu */
+}
+
+/* Pokud má body třídu pro světlý režim (uprav název třídy podle tvého kódu) */
+body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně používáš */
+  --menu-bg: #ffffff;
+  --menu-border: #cccccc;
+  --menu-item-bg: #f0f0f0;
+  --menu-text: #222222;
+  --menu-subtext: #666666;
+  --menu-transpose-bg: #e8e8e8;
+  --menu-accent: #d4af37; /* Trochu tmavší zlatá pro bílý podklad */
+}
+
+/* --- STYL MENU --- */
 .more-menu-dropdown {
   display: none;
   position: absolute;
   top: 55px;
-  right: 0px; /* Zarovnáme k pravému okraji lišty */
-  background: #2c2c2c;
-  border: 1px solid #444;
+  right: 0px;
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
   border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
   z-index: 1000;
-  width: 180px; /* Pevná šířka, aby to drželo tvar */
+  width: 180px;
   padding: 12px;
+  color: var(--menu-text);
 }
 
 .more-menu-dropdown.is-open {
   display: block;
 }
 
-/* Mřížka pro tlačítka pod čarou */
-.menu-icons-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tři sloupce vedle sebe */
-  gap: 10px;
-  padding: 10px 5px 5px 5px;
-}
-
-/* Tlačítka v mřížce */
-.grid-btn {
-  background: #3d3d3d;
-  border: none;
-  color: white;
-  aspect-ratio: 1 / 1; /* Udělá z nich čtverce */
-  border-radius: 8px;
-  font-size: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.grid-btn:hover {
-  background: #555;
-}
-
-/* Aktivní stav pro akordy (když jsou vypnuté, tlačítko může ztmavnout) */
-body.hide-chords #toggle-chords {
-  background: #1a1a1a;
-  color: #666;
-}
-
-/* Styl pro transpozici - aby byla v šuplíku výrazná */
-.transpose-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: #1a1a1a;
-  padding: 8px;
-  border-radius: 10px;
-}
-
 .menu-label {
   display: block;
   font-size: 10px;
-  color: #888;
+  color: var(--menu-subtext);
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 8px;
 }
 
+.transpose-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--menu-transpose-bg);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.menu-btn, .grid-btn {
+  background: var(--menu-item-bg);
+  border: none;
+  color: var(--menu-text);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-btn {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+.grid-btn {
+  aspect-ratio: 1 / 1;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 12px;
+}
+
 .menu-divider {
   border: 0;
-  border-top: 1px solid #444;
+  border-top: 1px solid var(--menu-border);
   margin: 12px 0;
+}
+
+.shift-display-inline {
+  color: var(--menu-accent);
+  font-weight: bold;
+  font-size: 16px;
 }
 </style>
 </head>
