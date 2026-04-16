@@ -876,32 +876,45 @@ body.dark-mode .song-capo,
     localStorage.setItem('samhita_dark', isDark);
   };
 
-// Do tvého <script> bloku:
-  let noSleep = null;
+// --- UNIVERZÁLNÍ STOP-STMÍVÁNÍ ---
+(function() {
+  let stayAwakeVideo = null;
 
-// Funkce, která aktivuje "nezhasínání" při prvním kliknutí na stránku
-// (Prohlížeče vyžadují interakci uživatele)
-document.addEventListener('click', function enableNoSleep() {
-  if (!noSleep) {
-    // Vytvoříme neviditelný video element
-    const video = document.createElement('video');
-    video.setAttribute('loop', '');
-    video.setAttribute('playsinline', '');
-    video.style.display = 'none';
+  function createStayAwakeVideo() {
+    if (stayAwakeVideo) return; // Už běží
+
+    // Base64 kód pro 1x1 pixel tichého MP4 videa (trvá 1 sekundu)
+    const silentVideoBase64 = "data:video/mp4;base64,AAAAHGZ0eXBpc29tAAAAAGlzb21pc28yYXZjMQAAAAhmcmVlAAAAG21kYXQAAAGUAbYF//7eOCAxu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxAAAACHm1vb3YAAABsbXZoZAAAAADNoS4SzaEuEgAAAbQAAAL0AAEAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABidHJhaz0AAABcdGtoZAAAAADNoS4SzaEuEgAAAAEAAAAAAAAA9AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAAAAAAHBtZGlhAAAAIG1kaGQAAAAAzaEuEs2hLhIAAB9AAAB1EAVUWEUAAAAAAGxoZGxyAAAAAAAAAAB2aWRlAAAAAAAAAAAAAAAAVmlkZW9IYW5kbGVyAAAAAVxtaW5mAAAAFHZtbmQAAAAEAAAAAAAAbmxyAAAAFGRpbmYAAAAkZHJlZgAAAAAAAAABAAAANGR1cmwAAAAAAAAAAQAAAFRzdGJsAAAAL3N0c2QAAAAAAAAAAQAAAB9hdmMxAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgACAAAACHWF2Y0MBQsANf/4AFpYAsANf0FAeAtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxAAAABhzdHRzAAAAAAAAAAEAAAABAAAfQAAAAHN0c2MAAAAAAAAAAQAAAAEAAAABAAAAAQAAABRzdHN6AAAAAAAAAAAAAAABAAAfQAAAAHN0Y28AAAAAAAAAAQAAADQ=";
+
+    const v = document.createElement('video');
+    v.setAttribute('playsinline', '');
+    v.setAttribute('loop', '');
+    v.setAttribute('muted', '');
+    v.style.position = 'absolute';
+    v.style.width = '1px';
+    v.style.height = '1px';
+    v.style.top = '-10px'; // Schováme ho mimo obrazovku
+    v.style.left = '-10px';
+    v.style.opacity = '0.1'; // Některé mobily ignorují display:none, tak mu dáme skoro-průhlednost
     
-    // Miniaturní video data (1x1 pixel ticha a tmy)
-    video.src = 'https://raw.githubusercontent.com/anonyco/SPURT/master/resources/pixel.mp4';
+    v.src = silentVideoBase64;
     
-    video.play().then(() => {
-      console.log("Aktivováno udržování displeje přes video.");
-      noSleep = video;
-      // Odstraníme listener, ať to neběží při každém kliku
-      document.removeEventListener('click', enableNoSleep);
+    document.body.appendChild(v);
+    
+    v.play().then(() => {
+      console.log("WakeLock (Video) aktivní.");
+      stayAwakeVideo = v;
     }).catch(err => {
-      console.log("Video se nepodařilo spustit:", err);
+      console.log("WakeLock selhal, zkusíme při dalším kliku.", err);
     });
   }
-}, false);
+
+  // KLÍČOVÁ ČÁST: Aktivace po jakékoliv interakci
+  // Uživatel klikne kamkoliv a my spustíme video
+  ['click', 'touchstart', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, createStayAwakeVideo, { once: true });
+  });
+})();
   
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
