@@ -938,21 +938,6 @@ body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně p
   font-weight: bold;
   font-size: 16px;
 }
-/* Bod 2: Skrytí tlačítka sloupců na mobilech (šířka pod 600px) */
-@media (max-width: 600px) {
-  .btn-columns {
-    display: none !important;
-  }
-  /* Upravíme mřížku na 2 sloupce, když jeden zmizí */
-  .menu-icons-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Bod 3: Skrytí transpozice, když jsou akordy vypnuté */
-body.hide-chords .transpose-section {
-  display: none;
-}
 </style>
 </head>
 <body>
@@ -975,23 +960,20 @@ body.hide-chords .transpose-section {
         <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
   
         <div id="more-menu-dropdown" class="more-menu-dropdown">
-          <div id="transpose-section" class="transpose-section">
-            <div class="menu-group">
-              <span class="menu-label">Transpozice</span>
-              <div class="transpose-row">
-                <button class="menu-btn" onclick="changeShift(-1)">♭</button>
-                <span class="shift-display-inline" id="shift-display">0</span>
-                <button class="menu-btn" onclick="changeShift(1)">♯</button>
-              </div>
+          <div class="menu-group">
+            <span class="menu-label">Transpozice</span>
+            <div class="transpose-row">
+              <button class="menu-btn" type="button" onclick="changeShift(-1)">♭</button>
+              <span class="shift-display-inline" id="shift-display">0</span>
+              <button class="menu-btn" type="button" onclick="changeShift(1)">♯</button>
             </div>
-            <hr class="menu-divider" id="transpose-divider">
           </div>
-        
+          
+          <hr class="menu-divider">
+          
           <div class="menu-icons-grid">
-            <button class="grid-btn" id="toggle-chords" title="Akordy">C</button>
-            <button class="grid-btn btn-columns" id="col-toggle-btn" onclick="toggleColumns()" title="Sloupce">
-              1 ⫿
-            </button>
+            <button class="grid-btn" id="toggle-chords" title="Vypnout/Zapnout akordy">C</button>
+            <button class="grid-btn" onclick="toggleColumns()" title="Sloupce">⫿</button>
             <button class="grid-btn" onclick="toggleDarkMode()" title="Tmavý režim">🌙</button>
           </div>
         </div>
