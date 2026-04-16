@@ -876,29 +876,32 @@ body.dark-mode .song-capo,
     localStorage.setItem('samhita_dark', isDark);
   };
 
-  // --- ZABRÁNĚNÍ STMÍVÁNÍ DISPLEJE (Wake Lock) ---
-  let wakeLock = null;
+// Do tvého <script> bloku:
+  let noSleep = null;
 
-async function requestWakeLock() {
-  try {
-    if ('wakeLock' in navigator) {
-      wakeLock = await navigator.wakeLock.request('screen');
-      console.log('Displej uzamčen - nezhasne.');
-    }
-  } catch (err) {
-    console.log('Wake Lock se nepodařilo aktivovat (pravděpodobně chybí HTTPS).');
+// Funkce, která aktivuje "nezhasínání" při prvním kliknutí na stránku
+// (Prohlížeče vyžadují interakci uživatele)
+document.addEventListener('click', function enableNoSleep() {
+  if (!noSleep) {
+    // Vytvoříme neviditelný video element
+    const video = document.createElement('video');
+    video.setAttribute('loop', '');
+    video.setAttribute('playsinline', '');
+    video.style.display = 'none';
+    
+    // Miniaturní video data (1x1 pixel ticha a tmy)
+    video.src = 'https://raw.githubusercontent.com/anonyco/SPURT/master/resources/pixel.mp4';
+    
+    video.play().then(() => {
+      console.log("Aktivováno udržování displeje přes video.");
+      noSleep = video;
+      // Odstraníme listener, ať to neběží při každém kliku
+      document.removeEventListener('click', enableNoSleep);
+    }).catch(err => {
+      console.log("Video se nepodařilo spustit:", err);
+    });
   }
-}
-
-// Aktivace při načtení
-requestWakeLock();
-
-// Re-aktivace při návratu na kartu (např. po zhasnutí a rozsvícení mobilu)
-document.addEventListener('visibilitychange', async () => {
-  if (document.visibilityState === 'visible') {
-    await requestWakeLock();
-  }
-});
+}, false);
   
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
