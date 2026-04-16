@@ -822,6 +822,18 @@ body.dark-mode .song-capo,
       margin-right: auto !important; 
     }
   }
+
+  /* Styl pro skrytí akordů */
+body.hide-chords .chord, 
+body.hide-chords .ch {
+  display: none !important;
+}
+
+/* Volitelně: Pokud se po skrytí akordů řádky moc nalepí na sebe, 
+   můžeme textu trochu přidat na výšce */
+body.hide-chords .lyric-line {
+  line-height: 1.8;
+}
 </style>
 </head>
 <body>
@@ -844,6 +856,8 @@ body.dark-mode .song-capo,
         <span class="shift-display" id="shift-display" title="Posun v půltónech">0</span>
         <button class="icon-btn" type="button" onclick="changeShift(1)" title="O půl tónu nahoru" aria-label="Akordy o půl tónu nahoru">♯</button>
       </span>
+      <button id="toggle-chords" class="control-btn" title="Vypnout/Zapnout akordy">
+        <span class="icon">C</span> </button>
     </div>
   </div>
   <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
@@ -1327,6 +1341,27 @@ ${formattedAnalysis}
   }
   
   })();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  const toggleBtn = document.getElementById('toggle-chords');
+  
+  // 1. Zkontrolujeme, jestli už uživatel dříve akordy nevypnul
+  if (localStorage.getItem('chords-hidden') === 'true') {
+    document.body.classList.add('hide-chords');
+    toggleBtn.classList.add('is-active'); // Pokud chceš tlačítko vizuálně odlišit
+  }
+
+  // 2. Samotné kliknutí
+  toggleBtn.addEventListener('click', () => {
+    const isHidden = document.body.classList.toggle('hide-chords');
+    
+    // Uložíme preferenci
+    localStorage.setItem('chords-hidden', isHidden);
+    
+    // Vizuální zpětná vazba pro tlačítko (volitelné)
+    toggleBtn.classList.toggle('is-active', isHidden);
+  });
+});
   </script>
 </body>
 </html>
