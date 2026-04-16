@@ -1145,10 +1145,16 @@ body.hide-chords .transpose-section {
     };
   
     window.toggleColumns = () => {
-      currentCols = currentCols >= 6 ? 1 : currentCols + 1;
-      localStorage.setItem('samhita_columns', currentCols); 
-      window.applyColumnLayout();
-    };
+    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+    localStorage.setItem('samhita_columns', currentCols); 
+    window.applyColumnLayout();
+
+    // --- DOPLNĚNÍ ZDE ---
+    const colBtn = document.getElementById('col-toggle-btn');
+    if (colBtn) {
+        colBtn.innerText = `${currentCols} ⫿`;
+    }
+};
     // --------------------------------------------------------
   
     // --- OPRAVA RACE CONDITION A CACHOVÁNÍ ---
@@ -1489,16 +1495,15 @@ ${formattedAnalysis}
     toggleBtn.classList.add('is-active'); // Pokud chceš tlačítko vizuálně odlišit
   }
 
-  // 2. Samotné kliknutí
-  toggleBtn.addEventListener('click', () => {
-    const isHidden = document.body.classList.toggle('hide-chords');
-    
-    // Uložíme preferenci
-    localStorage.setItem('chords-hidden', isHidden);
-    
-    // Vizuální zpětná vazba pro tlačítko (volitelné)
-    toggleBtn.classList.toggle('is-active', isHidden);
-  });
+  // Upravený kód pro tlačítko akordů
+toggleBtn.addEventListener('click', () => {
+  const isHidden = document.body.classList.toggle('hide-chords');
+  localStorage.setItem('chords-hidden', isHidden);
+  
+  // Vizuální zpětná vazba
+  toggleBtn.style.opacity = isHidden ? "0.5" : "1";
+  toggleBtn.style.background = isHidden ? "var(--menu-transpose-bg)" : "var(--menu-item-bg)";
+});
 });
 document.addEventListener('DOMContentLoaded', () => {
   const menuBtn = document.getElementById('more-menu-btn');
