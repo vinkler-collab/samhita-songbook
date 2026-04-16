@@ -938,14 +938,25 @@ body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně p
   font-weight: bold;
   font-size: 16px;
 }
-/* Bod 2: Skrytí tlačítka sloupců na mobilech (šířka pod 600px) */
+/* --- OPRAVA PRO MOBILY (Pod 600px) --- */
 @media (max-width: 600px) {
   .btn-columns {
     display: none !important;
   }
-  /* Upravíme mřížku na 2 sloupce, když jeden zmizí */
+
   .menu-icons-grid {
-    grid-template-columns: repeat(2, 1fr);
+    display: flex !important;
+    /* Rozmístí tlačítka na okraje */
+    justify-content: space-between; 
+    /* Toto odsazení zajistí, že tlačítka budou přesně pod těmi horními */
+    padding: 10px 15px 5px 15px; 
+  }
+
+  .menu-icons-grid .grid-btn {
+    /* Nastavíme šířku stejnou, jako mají tlačítka transpozice (asi 45-50px) */
+    width: 45px; 
+    height: 45px;
+    flex-grow: 0;
   }
 }
 
