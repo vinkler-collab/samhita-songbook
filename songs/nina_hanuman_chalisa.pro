@@ -15,6 +15,7 @@
 {time: 4/4}
 {tempo: 118}
 {tags: Hanuman Chalisa, Tulsi Das, Nina Rao, Rama}
+{audio: audio/nina_hanuman_chalisa.mp3}
 ##########################################
 #
 #

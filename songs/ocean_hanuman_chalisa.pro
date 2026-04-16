@@ -15,6 +15,7 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Hanuman Chalisa, Tulsi Das, Nina Rao, Krishna Das, Rama}
+{audio: audio/ocean_hanuman_chalisa.mp3}
 ##########################################
 # {sov: ↓}
 # {start_of_grid}

@@ -1,0 +1,14 @@
+Jak to teď budeš používat v .pro souborech?
+
+    Chci externí nahrávku:
+    {audio: https://web.cz/pisen.mp3}
+
+    Chci lokální mp3 s jiným jménem:
+    {audio: audio/koncert_v_lese.mp3}
+
+    Chci dvě verze s popiskem:
+    {audio: audio/studio.mp3 | Studiovka}
+    {audio: https://youtube.cz/v_live | Živák z Brna}
+
+    Nechci nic psát:
+    Napiš do .pro jen text písně. Skript automaticky do JSONu napíše audio/název_písně.mp3 (tak jako doteď).

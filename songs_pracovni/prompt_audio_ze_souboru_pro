@@ -1,0 +1,121 @@
+Ahoj, potřebuji vyřešit audio soubory a jejich přehrávání ve zpěvníku.
+Původní způsob, který jsme používali v počáteční fázi vývoje zpěvníku byl takovýto:
+a) mp3 uloženy v složce audio
+b) soubor songs.json jsem vyplňoval ručně v podobě
+    b1)pro mp3 stahované z webu:
+    {
+        "name": "xxx",
+        "subtitle": "xxx",
+        "file": "xxx",
+        "audio": "https://odkaz.na/audio.mp3"
+    }
+    b2) pro mp3 uložené ve složce audio:
+    {
+        "name": "xxx",
+        "subtitle": "xxx",
+        "file": "xxx",
+        "audio": "audio/xxx.mp3",
+    },
+c) Pro více nahrávek s popisky:
+    {
+    "name": "xxx",
+    "subtitle": "xxx",
+    "file": "xxx",
+    "audio": [
+        {
+        "url": "https://odkaz.na/audio.mp3",
+        "label": "Verze 1"
+        },
+        {
+        "url": "https://odkaz.na/audio.mp3",
+        "label": "Verze 2"
+        },
+        {
+        "url": "https://odkaz.na/audio.mp3",
+        "label": "Verze 3"
+        }
+    ]
+    }
+Toto znamenalo to, že název mp3 ve složce audio mohl být libovolný, protože jsem ho ručně vyplňoval do .jsonu a bylo možné odkázat i na jakoukoli mp3 vně našeho zpěvníku. Navíc v případě více verzí nahrávky to fungovalo tak, že po kliknutí na tlačítko s trojúhelníčkem nahoře na liště s písničkou se otevřelo podokno s možností výběru dané verze.
+
+Potom jsme však dospěli k názoru, že bude lepší, když se soubor .json bude vyplňovat automaticky pomocí skriptu generate_json.py na základě údajů, které se budou vyplňovat v souboru .pro a přidali jsme ještě vyplnění kategorie, tagů a data přidání písničky.
+
+Tento skript jsme ale udělali blbě, takže přestala fungovat možnost více nahrávek, libovolného názvu mp3 ve složce audio a odkazu na vnější nahrávku na webu.
+Všiml jsem si toho až teď. 
+Nový skript generate_json.py totiž z hlediska audia funguje tak, že do souboru .json frkne jen jednu nahrávku mp3, a to takovou ze složky audio, která má stejný název (až na příponu) jako soubor .pro s písničkou. Záznam v jsonu potom vypadá takto (máme tam ještě to přidání tlačítka pro pdf a šuplík "analysis"):
+******
+{
+    "name": "Bernie's Chalisa",
+    "category": "Indické - Ráma",
+    "file": "bernies_chalisa",
+    "audio": "audio/bernies_chalisa.mp3",
+    "tags": [
+      "Hanuman Chalisa",
+      "Tulsi Das",
+      "Krishna Das",
+      "Rama"
+    ],
+    "dateAdded": "2026-04-15",
+    "hasPDF": false,
+    "analysis": "Comming soon..."
+  },
+******
+  Skript generate_json.py to dělá takto (následuje část jeho kódu):
+  ******
+  # HLAVNÍ CYKLUS
+    for filename in os.listdir(SONGS_DIR):
+        if filename.endswith('.pro') and not filename.startswith('_'):
+            file_slug = filename[:-4]
+            file_path = os.path.join(SONGS_DIR, filename)
+            
+            print(f"-> Zpracovávám: {filename}")
+            
+            # Získáme metadata i analýzu
+            meta = extract_metadata_and_analysis(file_path)
+            
+            # Kontrola existence PDF
+            pdf_path = os.path.join(PDF_DIR, f"{file_slug}.pdf")
+            has_pdf = os.path.exists(pdf_path)
+            
+            if file_slug in existing_data:
+                song = existing_data[file_slug]
+                song['name'] = meta['title']
+                if meta['category']: song['category'] = meta['category']
+                if meta['tags'] is not None: song['tags'] = meta['tags']
+                # Aktualizujeme nové položky
+                song['hasPDF'] = has_pdf
+                song['analysis'] = meta['analysis']
+            else:
+                song = {
+                    "name": meta['title'],
+                    "category": meta['category'] if meta['category'] else "Ostatní",
+                    "file": file_slug,
+                    "audio": f"audio/{file_slug}.mp3",
+                    "tags": meta['tags'] if meta['tags'] is not None else [],
+                    "dateAdded": str(date.today()),
+                    "hasPDF": has_pdf,
+                    "analysis": meta['analysis']
+                }
+            new_songs_list.append(song)
+  ******
+  Tím pádem je možné spustit jen jednu nahrávku, stejného jména jako .pro ze složky audio.
+  Není možné:
+  - libovolný název mp3 ze složky audio
+  - mp3 z vnější adresy
+  - více verzí s možností výběru v liště písničky
+
+  CO S TÍM?
+To jistě nějak vymyslíš. Moje představa je tato:
+1) Zajistit tyto možnosti:
+    - libovolný název mp3 ze složky audio
+    - mp3 z vnější adresy
+    - více verzí s možností výběru v liště písničky, včetně kombinace verze 1 -- z audio, verze 2 -- externí adresa; s možností popisku dané verze v liště ("label")
+2)  Důležité: Tak jako vyplňujeme tagy a kategorie v souboru .pro, tak musí být možné vyplnit cestu k nahrávce mp3 a v případě více nahrávek jejich popis pomocí parametru "label" v souboru .pro.
+
+Tím bude možné kdykoliv pomocí souboru .pro jakoukoli mp3 vyměnit nebo přidat další verzi, ať už lokálně do složky audio, nebo externím odkazem.
+
+Pokud budeš potřebovat jakoukoli část kódu souborů 
+- song.html
+- songs.json
+- generate_json
+tak napiš a já ti to pošlu.

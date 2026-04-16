@@ -15,6 +15,7 @@
 {time: 3/4}
 {tempo: 80}
 {tags: Guru}
+{audio: audio/nija_prabho.mp3}
 ##########################################
 {soc}
 | . . nija | [G]nija prabho |

@@ -1056,12 +1056,19 @@ body.dark-mode .song-capo,
       });
     }
   
-  function formatLyrics(text) {
+    function formatLyrics(text) {
     if (!text) return '';
+
+    // --- TENTO ŘÁDEK PŘIDEJ: Odstraní tagy {audio: ...} z viditelného textu ---
+    text = text.replace(/\{audio:.*?\}/gi, '');
+
+    // Zbytek tvého kódu zůstává stejný
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+    
     const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
     text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
+    
     const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
     text = text.replace(plainUrlPattern, (match, url) => {
       if (url) {
@@ -1069,8 +1076,9 @@ body.dark-mode .song-capo,
       }
       return match;
     });
+    
     return text;
-  }
+}
   
   window.renderSong = function() {
   const app = document.getElementById('chord-app');

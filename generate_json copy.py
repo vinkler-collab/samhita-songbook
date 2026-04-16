@@ -14,16 +14,12 @@ def normalize_for_sort(text):
     nfkd_form = unicodedata.normalize('NFKD', text)
     return "".join([c for c in nfkd_form if not unicodedata.combining(c)]).lower()
 
-import re
-import os
-
 def extract_metadata_and_analysis(file_path):
-    """Vytáhne název, kategorii, tagy, audio a text analýzy z ChordPro souboru."""
+    """Vytáhne název, kategorii, tagy a text analýzy z ChordPro souboru."""
     metadata = {
         "title": os.path.basename(file_path).replace('.pro', ''),
         "category": None,
         "tags": None,
-        "audio": [],  # Sem budeme ukládat nalezené nahrávky
         "analysis": ""
     }
     
@@ -40,52 +36,28 @@ def extract_metadata_and_analysis(file_path):
                     is_analysis_section = True
                     continue
                 
+                # Pokud jsme v sekci analýzy, sbíráme řádky
                 if is_analysis_section:
-                    # Pokud narazíme na end_of_analysis, můžeme sekci ukončit (volitelné)
-                    if '{end_of_analysis}' in raw_line.lower():
-                        is_analysis_section = False
-                        continue
                     analysis_lines.append(line.rstrip())
                     continue
 
+                # Standardní metadata
                 if not raw_line or raw_line.startswith('#'):
                     continue
                 
-                # --- PARSOVÁNÍ METADAT ---
-                
-                # Titul
                 t_match = re.search(r'\{(?:t|title):\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if t_match:
                     metadata["title"] = t_match.group(1).strip()
                     continue
                 
-                # Kategorie
                 c_match = re.search(r'\{category:\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if c_match:
                     metadata["category"] = c_match.group(1).strip()
                     continue
                 
-                # Tagy
                 tags_match = re.search(r'\{tags:\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if tags_match:
                     metadata["tags"] = [t.strip() for t in tags_match.group(1).split(',') if t.strip()]
-                    continue
-
-                # AUDIO (Novinka!) - hledáme {audio: cesta | popisek} nebo jen {audio: cesta}
-                audio_match = re.search(r'\{audio:\s*(.*?)\}', raw_line, re.IGNORECASE)
-                if audio_match:
-                    content = audio_match.group(1).strip()
-                    if '|' in content:
-                        url, label = content.split('|', 1)
-                        metadata["audio"].append({
-                            "url": url.strip(),
-                            "label": label.strip()
-                        })
-                    else:
-                        metadata["audio"].append({
-                            "url": content,
-                            "label": None
-                        })
                     continue
                     
     except Exception as e:
@@ -125,31 +97,13 @@ def update_songs_json():
             # Kontrola existence PDF
             pdf_path = os.path.join(PDF_DIR, f"{file_slug}.pdf")
             has_pdf = os.path.exists(pdf_path)
-
-            # --- NOVÁ LOGIKA PRO AUDIO ---
-            audio_final = None
-            if meta['audio']:
-                # Pokud jsme v .pro souboru našli aspoň jeden {audio: ...}
-                if len(meta['audio']) == 1 and meta['audio'][0]['label'] is None:
-                    # Jen jedna nahrávka bez popisku -> čistý string
-                    audio_final = meta['audio'][0]['url']
-                else:
-                    # Více nahrávek nebo nahrávka s popiskem -> pole objektů
-                    audio_final = meta['audio']
-            else:
-                # Pokud v .pro souboru NENÍ žádný {audio: } tag, 
-                # zkusíme automatiku jako doteď
-                audio_final = f"audio/{file_slug}.mp3"
-            # -----------------------------
             
             if file_slug in existing_data:
                 song = existing_data[file_slug]
                 song['name'] = meta['title']
                 if meta['category']: song['category'] = meta['category']
                 if meta['tags'] is not None: song['tags'] = meta['tags']
-                
-                # Aktualizujeme nové položky včetně audia
-                song['audio'] = audio_final
+                # Aktualizujeme nové položky
                 song['hasPDF'] = has_pdf
                 song['analysis'] = meta['analysis']
             else:
@@ -157,7 +111,7 @@ def update_songs_json():
                     "name": meta['title'],
                     "category": meta['category'] if meta['category'] else "Ostatní",
                     "file": file_slug,
-                    "audio": audio_final, # Naše nové flexibilní audio
+                    "audio": f"audio/{file_slug}.mp3",
                     "tags": meta['tags'] if meta['tags'] is not None else [],
                     "dateAdded": str(date.today()),
                     "hasPDF": has_pdf,

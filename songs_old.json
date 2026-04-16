@@ -1,0 +1,199 @@
+[
+  {
+    "name": "Ād guray namaḥ",
+    "category": "Indické - Ostatní",
+    "file": "ad_guray_namah",
+    "audio": "audio/ad_guray_namah.mp3",
+    "tags": [
+      "Guru",
+      "Mangala Charan mantra"
+    ],
+    "dateAdded": "2026-04-10"
+  },
+  {
+    "name": "Āpaṇa ātmārāma",
+    "category": "Indické - Ostatní",
+    "file": "apana_atmarama",
+    "audio": "audio/apana_atmarama.mp3",
+    "tags": [
+      "Navnath Sampradaya"
+    ],
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "name": "Bernie's Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_bernie",
+    "audio": [
+      {
+        "url": "audio/hanuman_chalisa_bernie_door.mp3",
+        "label": "Krishna Das - Door of Faith"
+      },
+      {
+        "url": "audio/hanuman_chalisa_bernie_flow.mp3",
+        "label": "Krishna Das - Flow of Grace"
+      }
+    ],
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Déva púdžá",
+    "category": "Indické - Ostatní",
+    "file": "deva_puja",
+    "audio": "audio/deva_puja.mp3",
+    "tags": [
+      "Deva",
+      "Puja",
+      "Guru"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Hanumān Bolo",
+    "category": "Indické - Ráma",
+    "file": "hanuman_bolo",
+    "audio": [
+      {
+        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
+        "label": "Verze 1 - 2016_04_06"
+      },
+      {
+        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3",
+        "label": "Verze 2 - 2016_05_11"
+      }
+    ],
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Jaya Bajraṅga Balī",
+    "category": "Indické - Ráma",
+    "file": "jai_vajranga_bali",
+    "audio": "audio/jai_vajranga_bali.mp3",
+    "tags": [
+      "Hanuman"
+    ],
+    "dateAdded": "2026-04-10"
+  },
+  {
+    "name": "Karāgre vasate lakṣmīḥ",
+    "category": "Indické - Bohyně",
+    "file": "karagre_vasate",
+    "audio": "audio/karagre_vasate.mp3",
+    "tags": [
+      "Lakshmi",
+      "Saraswati",
+      "Govinda"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Mano Javam Maruta Tulya Vegam",
+    "category": "Indické - Ráma",
+    "file": "mano_javam",
+    "audio": "audio/mano_javam.mp3",
+    "tags": [
+      "Hanuman",
+      "Ráma"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Nija Nija Prabho",
+    "category": "Indické - Ostatní",
+    "file": "niza_prabho",
+    "audio": "audio/niza_prabho.mp3",
+    "tags": [
+      "Guru",
+      "Navnath Sampradaya"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Nina Hanuman Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_nina",
+    "audio": "audio/hanuman_chalisa_nina.mp3",
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Nina Rao"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Ocean of Ram Hanuman Chalisa",
+    "category": "Indické - Ráma",
+    "file": "hanuman_chalisa_ocean",
+    "audio": "audio/hanuman_chalisa_ocean.mp3",
+    "tags": [
+      "Hanuman",
+      "Hanuman Chalisa",
+      "Krishna Das",
+      "Nina Rao"
+    ],
+    "dateAdded": "2026-04-07"
+  },
+  {
+    "name": "Om aiṁ sarasvatyai namaḥ",
+    "category": "Indické - Bohyně",
+    "file": "om_aim_sarasvatyai_namaha",
+    "audio": "audio/om_aim_sarasvatyai_namaha.mp3",
+    "tags": [
+      "Saraswati",
+      "Bija mantra",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Prema Hare Ram",
+    "category": "Indické - Bohyně",
+    "file": "prema_hare_ram",
+    "audio": "audio/prema_hare_ram.mp3",
+    "tags": [
+      "Rama",
+      "Sita",
+      "Krishna Das"
+    ],
+    "dateAdded": "2026-04-06"
+  },
+  {
+    "name": "Radhe Kishori",
+    "category": "Indické - Bohyně",
+    "file": "radhe_kishori",
+    "audio": "audio/radhe_kishori.mp3",
+    "tags": [
+      "Radha",
+      "Maha mantra"
+    ],
+    "dateAdded": "2026-04-05"
+  },
+  {
+    "name": "Śrī gaṅgāṣṭakam",
+    "category": "Indické - Ostatní",
+    "file": "sri_gangastakam",
+    "audio": "audio/sri_gangastakam.mp3",
+    "tags": [],
+    "dateAdded": "2026-04-13"
+  },
+  {
+    "name": "Tvameva mātā",
+    "category": "Indické - základní",
+    "file": "tvameva_mata",
+    "audio": "audio/tvameva_mata.mp3",
+    "tags": [
+      "Ganesha",
+      "Uma Reed"
+    ],
+    "dateAdded": "2026-04-11"
+  }
+]

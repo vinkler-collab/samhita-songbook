@@ -16,20 +16,9 @@
 {tempo: 85}
 {tags: Hanuman Chalisa, Tulsi Das, Krishna Das, Rama}
 ##########################################
-# {start_of_grid}
-# |  Am . . . | F . . . | G  . . . | Am  . . . |
-# |  Am . . . | F . . . | G  . . . | Am  . . . |
-# |  Am . . . | F . . . | G  . . . | Am  . . . |
-# |  G . . . | G . . . | G  . . . | Am  . . . |
-# {end_of_grid}
-
-# {start_of_grid}
-# |  C . . . | C . . . | G  . . . | G . . . |
-# |  C . . . | F . . . | C  . . . | G . . . |
-# |  Am . . . | F . . . | G  . . . | Am  . . . |
-# |  C . . . | G . . . | G   . . . | Am  . . . |
-# {end_of_grid}
-#
+{audio: audio/bernies_chalisa_flow.mp3 | Flow of Grace}
+{audio: audio/bernies_chalisa_door.mp3 | Door of Ocean}
+##########################################
 {sov: ↓ Doha 1}
 [Am]śrīguru [F]carana sa[G]roja [Am]raja
 [Am]nija manu [F]mukuru su[G]dhā[Am]ri|
