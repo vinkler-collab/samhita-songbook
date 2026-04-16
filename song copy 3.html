@@ -1498,62 +1498,40 @@ ${formattedAnalysis}
   })();
   
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. NASTAVENÍ SLOUPCŮ (Ošetření poskočení textu na mobilu)
-    const isMobile = window.innerWidth < 600;
-    if (isMobile) {
-        // Na mobilu vždy vynutíme 1 sloupec
-        currentCols = 1;
-    } else {
-        // Na PC/Tabletu načteme z paměti, nebo dáme 1 jako výchozí
-        currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
+  const toggleBtn = document.getElementById('toggle-chords');
+  
+  // 1. Zkontrolujeme, jestli už uživatel dříve akordy nevypnul
+  if (localStorage.getItem('chords-hidden') === 'true') {
+    document.body.classList.add('hide-chords');
+    toggleBtn.classList.add('is-active'); // Pokud chceš tlačítko vizuálně odlišit
+  }
+
+  // Upravený kód pro tlačítko akordů
+toggleBtn.addEventListener('click', () => {
+  const isHidden = document.body.classList.toggle('hide-chords');
+  localStorage.setItem('chords-hidden', isHidden);
+  
+  // Vizuální zpětná vazba
+  toggleBtn.style.opacity = isHidden ? "0.5" : "1";
+  toggleBtn.style.background = isHidden ? "var(--menu-transpose-bg)" : "var(--menu-item-bg)";
+});
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('more-menu-btn');
+  const menuDropdown = document.getElementById('more-menu-dropdown');
+
+  // Přepínání menu
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Zabrání okamžitému zavření
+    menuDropdown.classList.toggle('is-open');
+  });
+
+  // Zavření při kliknutí mimo menu
+  document.addEventListener('click', (e) => {
+    if (!menuDropdown.contains(e.target)) {
+      menuDropdown.classList.remove('is-open');
     }
-
-    // Aplikujeme rozvržení a zaktualizujeme text v tlačítku menu
-    if (typeof window.applyColumnLayout === 'function') {
-        window.applyColumnLayout();
-    }
-    const colBtn = document.getElementById('col-toggle-btn');
-    if (colBtn) {
-        colBtn.innerText = `${currentCols} ⫿`;
-    }
-
-    // 2. AKORDY (Vypínání/Zapínání)
-    const toggleBtn = document.getElementById('toggle-chords');
-    if (toggleBtn) {
-        // Zkontrolujeme stav z paměti
-        const chordsHidden = localStorage.getItem('chords-hidden') === 'true';
-        if (chordsHidden) {
-            document.body.classList.add('hide-chords');
-            toggleBtn.style.opacity = "0.5";
-            toggleBtn.style.background = "var(--menu-transpose-bg)";
-        }
-
-        toggleBtn.addEventListener('click', () => {
-            const isHidden = document.body.classList.toggle('hide-chords');
-            localStorage.setItem('chords-hidden', isHidden);
-            
-            // Vizuální zpětná vazba pro tlačítko v menu
-            toggleBtn.style.opacity = isHidden ? "0.5" : "1";
-            toggleBtn.style.background = isHidden ? "var(--menu-transpose-bg)" : "var(--menu-item-bg)";
-        });
-    }
-
-    // 3. OVLÁDÁNÍ MENU (Šuplík)
-    const menuBtn = document.getElementById('more-menu-btn');
-    const menuDropdown = document.getElementById('more-menu-dropdown');
-
-    if (menuBtn && menuDropdown) {
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            menuDropdown.classList.toggle('is-open');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!menuDropdown.contains(e.target)) {
-                menuDropdown.classList.remove('is-open');
-            }
-        });
-    }
+  });
 });
   </script>
 </body>
