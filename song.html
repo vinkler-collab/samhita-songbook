@@ -834,37 +834,130 @@ body.hide-chords .ch {
 body.hide-chords .lyric-line {
   line-height: 1.8;
 }
+
+/* Oprava hlavního kontejneru šuplíku */
+.more-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0px; /* Zarovnáme k pravému okraji lišty */
+  background: #2c2c2c;
+  border: 1px solid #444;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  z-index: 1000;
+  width: 180px; /* Pevná šířka, aby to drželo tvar */
+  padding: 12px;
+}
+
+.more-menu-dropdown.is-open {
+  display: block;
+}
+
+/* Mřížka pro tlačítka pod čarou */
+.menu-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Tři sloupce vedle sebe */
+  gap: 10px;
+  padding: 10px 5px 5px 5px;
+}
+
+/* Tlačítka v mřížce */
+.grid-btn {
+  background: #3d3d3d;
+  border: none;
+  color: white;
+  aspect-ratio: 1 / 1; /* Udělá z nich čtverce */
+  border-radius: 8px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.grid-btn:hover {
+  background: #555;
+}
+
+/* Aktivní stav pro akordy (když jsou vypnuté, tlačítko může ztmavnout) */
+body.hide-chords #toggle-chords {
+  background: #1a1a1a;
+  color: #666;
+}
+
+/* Styl pro transpozici - aby byla v šuplíku výrazná */
+.transpose-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #1a1a1a;
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.menu-label {
+  display: block;
+  font-size: 10px;
+  color: #888;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.menu-divider {
+  border: 0;
+  border-top: 1px solid #444;
+  margin: 12px 0;
+}
 </style>
 </head>
 <body>
-<div class="song-topbar" id="song-topbar">
-  <div class="song-topbar-inner">
-    <a class="back-link" href="index.html" aria-label="Zpět na seznam">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="20" y1="12" x2="4" y2="12"></line>
-        <polyline points="10 18 4 12 10 6"></polyline>
-      </svg>
-    </a>    
-    <div class="topbar-title" id="topbar-title">Načítám…</div>
-    <div class="topbar-actions">
-      <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát (zobrazit nahrávky)">►</button>      <button class="icon-btn" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout počet sloupců">1 ⫿</button>
-      <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
-      <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
-      <button class="song-topbar-btn" type="button" onclick="toggleDarkMode()" title="Přepnout tmavý režim">🌙</button>
-      <span class="transpose-group" role="group" aria-label="Transpozice akordů (půltóny)">
-        <button class="icon-btn" type="button" onclick="changeShift(-1)" title="O půl tónu dolů" aria-label="Akordy o půl tónu dolů">♭</button>
-        <span class="shift-display" id="shift-display" title="Posun v půltónech">0</span>
-        <button class="icon-btn" type="button" onclick="changeShift(1)" title="O půl tónu nahoru" aria-label="Akordy o půl tónu nahoru">♯</button>
-      </span>
-      <button id="toggle-chords" class="control-btn" title="Vypnout/Zapnout akordy">
-        <span class="icon">C</span> </button>
+  <div class="song-topbar" id="song-topbar">
+    <div class="song-topbar-inner">
+      <a class="back-link" href="index.html" aria-label="Zpět na seznam">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="20" y1="12" x2="4" y2="12"></line>
+          <polyline points="10 18 4 12 10 6"></polyline>
+        </svg>
+      </a>    
+      
+      <div class="topbar-title" id="topbar-title">Načítám…</div>
+      
+      <div class="topbar-actions">
+        <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát">►</button>
+        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
+        <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
+        
+        <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
+  
+        <div id="more-menu-dropdown" class="more-menu-dropdown">
+          <div class="menu-group">
+            <span class="menu-label">Transpozice</span>
+            <div class="transpose-row">
+              <button class="menu-btn" type="button" onclick="changeShift(-1)">♭</button>
+              <span class="shift-display-inline" id="shift-display">0</span>
+              <button class="menu-btn" type="button" onclick="changeShift(1)">♯</button>
+            </div>
+          </div>
+          
+          <hr class="menu-divider">
+          
+          <div class="menu-icons-grid">
+            <button class="grid-btn" id="toggle-chords" title="Vypnout/Zapnout akordy">C</button>
+            <button class="grid-btn" onclick="toggleColumns()" title="Sloupce">⫿</button>
+            <button class="grid-btn" onclick="toggleDarkMode()" title="Tmavý režim">🌙</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
+      <div class="audio-list" id="audio-list"></div>
+      <audio id="audio-player" controls></audio>
     </div>
   </div>
-  <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
-    <div class="audio-list" id="audio-list"></div>
-    <audio id="audio-player" controls></audio>
-  </div>
-</div>
 <div id="page">
   <div id="loading">Načítám písničku…</div>
   <div id="error">Písničku se nepodařilo načíst. Zkontroluj URL.</div>
@@ -1360,6 +1453,23 @@ ${formattedAnalysis}
     
     // Vizuální zpětná vazba pro tlačítko (volitelné)
     toggleBtn.classList.toggle('is-active', isHidden);
+  });
+});
+document.addEventListener('DOMContentLoaded', () => {
+  const menuBtn = document.getElementById('more-menu-btn');
+  const menuDropdown = document.getElementById('more-menu-dropdown');
+
+  // Přepínání menu
+  menuBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Zabrání okamžitému zavření
+    menuDropdown.classList.toggle('is-open');
+  });
+
+  // Zavření při kliknutí mimo menu
+  document.addEventListener('click', (e) => {
+    if (!menuDropdown.contains(e.target)) {
+      menuDropdown.classList.remove('is-open');
+    }
   });
 });
   </script>
