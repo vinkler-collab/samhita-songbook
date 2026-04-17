@@ -1039,46 +1039,68 @@ body.hide-chords .transpose-section {
     localStorage.setItem('samhita_dark', isDark);
   };
 
-// --- UNIVERZÁLNÍ STOP-STMÍVÁNÍ ---
+// --- MODERNÍ STOP-STMÍVÁNÍ (Wake Lock + Video Fallback) ---
 (function() {
-  let stayAwakeVideo = null;
+  let wakeLock = null;
+  let fallbackVideo = null;
 
-  function createStayAwakeVideo() {
-    if (stayAwakeVideo) return; // Už běží
-
-    // Base64 kód pro 1x1 pixel tichého MP4 videa (trvá 1 sekundu)
-    const silentVideoBase64 = "data:video/mp4;base64,AAAAHGZ0eXBpc29tAAAAAGlzb21pc28yYXZjMQAAAAhmcmVlAAAAG21kYXQAAAGUAbYF//7eOCAxu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxO7ve4noC18gS9u1/v/xh8Tu73uJ6AtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxAAAACHm1vb3YAAABsbXZoZAAAAADNoS4SzaEuEgAAAbQAAAL0AAEAAAEAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAABidHJhaz0AAABcdGtoZAAAAADNoS4SzaEuEgAAAAEAAAAAAAAA9AAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAQAAAAAAAHBtZGlhAAAAIG1kaGQAAAAAzaEuEs2hLhIAAB9AAAB1EAVUWEUAAAAAAGxoZGxyAAAAAAAAAAB2aWRlAAAAAAAAAAAAAAAAVmlkZW9IYW5kbGVyAAAAAVxtaW5mAAAAFHZtbmQAAAAEAAAAAAAAbmxyAAAAFGRpbmYAAAAkZHJlZgAAAAAAAAABAAAANGR1cmwAAAAAAAAAAQAAAFRzdGJsAAAAL3N0c2QAAAAAAAAAAQAAAB9hdmMxAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAgACAAAACHWF2Y0MBQsANf/4AFpYAsANf0FAeAtfIEvbtf7/8YfE7u97iegLXyBL27X+//GHxAAAABhzdHRzAAAAAAAAAAEAAAABAAAfQAAAAHN0c2MAAAAAAAAAAQAAAAEAAAABAAAAAQAAABRzdHN6AAAAAAAAAAAAAAABAAAfQAAAAHN0Y28AAAAAAAAAAQAAADQ=";
-
-    const v = document.createElement('video');
-    v.setAttribute('playsinline', '');
-    v.setAttribute('loop', '');
-    v.setAttribute('muted', '');
-    v.style.position = 'absolute';
-    v.style.width = '1px';
-    v.style.height = '1px';
-    v.style.top = '-10px'; // Schováme ho mimo obrazovku
-    v.style.left = '-10px';
-    v.style.opacity = '0.1'; // Některé mobily ignorují display:none, tak mu dáme skoro-průhlednost
-    
-    v.src = silentVideoBase64;
-    
-    document.body.appendChild(v);
-    
-    v.play().then(() => {
-      console.log("WakeLock (Video) aktivní.");
-      stayAwakeVideo = v;
-    }).catch(err => {
-      console.log("WakeLock selhal, zkusíme při dalším kliku.", err);
-    });
+  // 1. Primární metoda: Oficiální Screen Wake Lock API
+  async function requestWakeLock() {
+    try {
+      if ('wakeLock' in navigator) {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log("Wake Lock API: Displej uzamčen 🚀");
+        
+        wakeLock.addEventListener('release', () => {
+          wakeLock = null;
+          console.log("Wake Lock API: Zámek uvolněn.");
+        });
+      } else {
+        runVideoFallback(); // Pokud API neexistuje, zkus video
+      }
+    } catch (err) {
+      console.warn("Wake Lock API selhalo, zkouším video fallback...", err);
+      runVideoFallback();
+    }
   }
 
-  // KLÍČOVÁ ČÁST: Aktivace po jakékoliv interakci
-  // Uživatel klikne kamkoliv a my spustíme video
-  ['click', 'touchstart', 'scroll'].forEach(evt => {
-    window.addEventListener(evt, createStayAwakeVideo, { once: true });
+  // 2. Záložní metoda: Neviditelné video (pro starší Safari/iOS)
+  function runVideoFallback() {
+    if (fallbackVideo) return;
+    
+    fallbackVideo = document.createElement('video');
+    fallbackVideo.setAttribute('playsinline', '');
+    fallbackVideo.setAttribute('loop', '');
+    fallbackVideo.setAttribute('muted', '');
+    fallbackVideo.style.position = 'fixed'; // Lepší než absolute
+    fallbackVideo.style.top = '0';
+    fallbackVideo.style.width = '1px';
+    fallbackVideo.style.height = '1px';
+    fallbackVideo.style.opacity = '0.01';
+    fallbackVideo.style.pointerEvents = 'none';
+
+    // Krátký, tichý klip (0.1s ticha)
+    fallbackVideo.src = "https://raw.githubusercontent.com/anars/blank-audio/master/250-milliseconds-of-silence.mp4";
+    
+    document.body.appendChild(fallbackVideo);
+    fallbackVideo.play().catch(e => console.log("Video fallback nepovolen."));
+    console.log("Video Fallback: Aktivní 🎥");
+  }
+
+  // --- SPOUŠTĚČE ---
+
+  // Re-aktivace při návratu na kartu (nutné pro mobily!)
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible') requestWakeLock();
   });
-})();
-  
+
+  // Aktivace při první interakci (Safari vyžaduje gesto uživatele)
+  ['click', 'touchstart', 'scroll'].forEach(evt => {
+    window.addEventListener(evt, () => {
+      if (!wakeLock) requestWakeLock();
+    }, { once: true });
+  });
+})();  
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
     const shiftDisplayEl = document.getElementById('shift-display');
