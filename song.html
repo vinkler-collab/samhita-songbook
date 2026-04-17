@@ -1039,68 +1039,37 @@ body.hide-chords .transpose-section {
     localStorage.setItem('samhita_dark', isDark);
   };
 
-// --- MODERNÍ STOP-STMÍVÁNÍ (Wake Lock + Video Fallback) ---
-(function() {
   let wakeLock = null;
-  let fallbackVideo = null;
 
-  // 1. Primární metoda: Oficiální Screen Wake Lock API
-  async function requestWakeLock() {
-    try {
-      if ('wakeLock' in navigator) {
-        wakeLock = await navigator.wakeLock.request('screen');
-        console.log("Wake Lock API: Displej uzamčen 🚀");
-        
-        wakeLock.addEventListener('release', () => {
-          wakeLock = null;
-          console.log("Wake Lock API: Zámek uvolněn.");
-        });
-      } else {
-        runVideoFallback(); // Pokud API neexistuje, zkus video
-      }
-    } catch (err) {
-      console.warn("Wake Lock API selhalo, zkouším video fallback...", err);
-      runVideoFallback();
+// Funkce pro aktivaci zámku
+const requestWakeLock = async () => {
+  try {
+    if ('wakeLock' in navigator) {
+      wakeLock = await navigator.wakeLock.request('screen');
+      console.log('Wake Lock aktivní 🚀');
+      
+      wakeLock.addEventListener('release', () => {
+        console.log('Wake Lock byl uvolněn.');
+      });
     }
+  } catch (err) {
+    console.error(`Chyba Wake Lock: ${err.name}, ${err.message}`);
   }
+};
 
-  // 2. Záložní metoda: Neviditelné video (pro starší Safari/iOS)
-  function runVideoFallback() {
-    if (fallbackVideo) return;
-    
-    fallbackVideo = document.createElement('video');
-    fallbackVideo.setAttribute('playsinline', '');
-    fallbackVideo.setAttribute('loop', '');
-    fallbackVideo.setAttribute('muted', '');
-    fallbackVideo.style.position = 'fixed'; // Lepší než absolute
-    fallbackVideo.style.top = '0';
-    fallbackVideo.style.width = '1px';
-    fallbackVideo.style.height = '1px';
-    fallbackVideo.style.opacity = '0.01';
-    fallbackVideo.style.pointerEvents = 'none';
+// Zkusíme aktivovat hned
+requestWakeLock();
 
-    // Krátký, tichý klip (0.1s ticha)
-    fallbackVideo.src = "https://raw.githubusercontent.com/anars/blank-audio/master/250-milliseconds-of-silence.mp4";
-    
-    document.body.appendChild(fallbackVideo);
-    fallbackVideo.play().catch(e => console.log("Video fallback nepovolen."));
-    console.log("Video Fallback: Aktivní 🎥");
-  }
+// KRITICKÉ PRO SAFARI: Aktivovat znovu, když se vrátíš na kartu nebo na mobil sáhneš
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') requestWakeLock();
+});
 
-  // --- SPOUŠTĚČE ---
+// Pojistka: Aktivovat při jakémkoliv dotyku (Safari to miluje)
+document.addEventListener('touchstart', () => {
+  if (!wakeLock) requestWakeLock();
+}, { once: false }); // Může to zkoušet klidně víckrát
 
-  // Re-aktivace při návratu na kartu (nutné pro mobily!)
-  document.addEventListener('visibilitychange', () => {
-    if (document.visibilityState === 'visible') requestWakeLock();
-  });
-
-  // Aktivace při první interakci (Safari vyžaduje gesto uživatele)
-  ['click', 'touchstart', 'scroll'].forEach(evt => {
-    window.addEventListener(evt, () => {
-      if (!wakeLock) requestWakeLock();
-    }, { once: true });
-  });
-})();  
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
     const shiftDisplayEl = document.getElementById('shift-display');
