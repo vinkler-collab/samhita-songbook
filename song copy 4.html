@@ -1025,6 +1025,8 @@ body.hide-chords .transpose-section {
   <button class="scroll-btn" onclick="window.scrollBy({top: window.innerHeight*0.8, behavior: 'smooth'})" title="Dolů">⏷</button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
+
 <script>
   (function() {
     window.currentSongObj = null;
@@ -1039,80 +1041,21 @@ body.hide-chords .transpose-section {
     localStorage.setItem('samhita_dark', isDark);
   };
 
-// === PREVENCE VYPNUTÍ OBRAZOVKY - HYBRIDNÍ ŘEŠENÍ ===
-let wakeLock = null;
-let noSleep = null;
-let wakeLockInitialized = false;
+ // Inicializace NoSleep
+const noSleep = new NoSleep();
 
-// 1. Moderní Wake Lock API (nejlepší řešení)
-async function enableWakeLock() {
-    if ('wakeLock' in navigator) {
-        try {
-            wakeLock = await navigator.wakeLock.request('screen');
-            console.log('✅ Wake Lock API aktivováno');
-            
-            wakeLock.addEventListener('release', () => {
-                console.log('⚠️ Wake Lock uvolněno');
-            });
-            
-            return true;
-        } catch (err) {
-            console.log('❌ Wake Lock API selhalo:', err.message);
-            return false;
-        }
-    }
-    console.log('ℹ️ Wake Lock API není podporováno');
-    return false;
+// Funkce, která zapne "bdělost" při prvním kliknutí/dotyku
+function enableNoSleep() {
+  noSleep.enable();
+  console.log('Režim NoSleep aktivován (video trik)');
+  // Jakmile je aktivováno, odstraníme posluchače, už není potřeba
+  document.removeEventListener('click', enableNoSleep);
+  document.removeEventListener('touchstart', enableNoSleep);
 }
 
-// 2. Fallback na NoSleep.js
-function enableNoSleepFallback() {
-    try {
-        if (!noSleep) {
-            noSleep = new NoSleep();
-        }
-        noSleep.enable();
-        console.log('✅ NoSleep.js aktivováno (fallback)');
-    } catch (err) {
-        console.log('❌ NoSleep.js selhalo:', err.message);
-    }
-}
-
-// 3. Aktivace při prvním dotyku/kliknutí
-async function preventScreenSleep() {
-    if (wakeLockInitialized) return;
-    wakeLockInitialized = true;
-    
-    const wakeLockSuccess = await enableWakeLock();
-    
-    if (!wakeLockSuccess) {
-        enableNoSleepFallback();
-    }
-    
-    console.log('🔒 Prevence vypnutí obrazovky inicializována');
-    
-    // Odstranit posluchače
-    document.removeEventListener('click', preventScreenSleep);
-    document.removeEventListener('touchstart', preventScreenSleep);
-}
-
-// 4. Znovu aktivovat Wake Lock po návratu na stránku
-document.addEventListener('visibilitychange', async () => {
-    if (document.visibilityState === 'visible' && wakeLockInitialized) {
-        if ('wakeLock' in navigator && wakeLock !== null) {
-            try {
-                wakeLock = await navigator.wakeLock.request('screen');
-                console.log('🔄 Wake Lock reaktivováno po návratu');
-            } catch (err) {
-                console.log('⚠️ Reaktivace selhala:', err.message);
-            }
-        }
-    }
-});
-
-// 5. Naslouchat na první interakci
-document.addEventListener('click', preventScreenSleep, { once: true });
-document.addEventListener('touchstart', preventScreenSleep, { once: true, passive: true });
+// Nasloucháme na kliknutí nebo dotyk (pro mobily)
+document.addEventListener('click', enableNoSleep);
+document.addEventListener('touchstart', enableNoSleep);
 
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
