@@ -1,0 +1,56 @@
+To je skvělý nápad. Mít tyto instrukce připravené v souboru (např. jako `.cursorrules` nebo v poznámkovém bloku) vám ušetří spoustu času.
+
+Zde jsou oba texty instrukcí, které můžete AI předhodit společně se „syrovým“ textem mantry:
+
+### Varianta A: Slovíčka pod sebou (přehledný seznam)
+Tato varianta je ideální pro kratší mantry nebo tam, kde je hodně prostoru.
+
+```text
+Instrukce pro formátování analýzy mantry (seznam):
+1. Text mantry v IAST (bez formátování).
+2. Český překlad obalený v __dvojitých podtržítkách__ (kurzíva).
+3. Slovníček formátuj jako seznam, kde každé slovo je na novém řádku:
+   - Začni odrážkou •
+   - Slovo v IAST dej do **dvojitých hvězdiček** (tučně).
+   - Následuje mezera, rovnítko, mezera ( = ) a český význam.
+   - Každý řádek zakonči středníkem (;).
+
+Příklad:
+__Toto je český překlad.__
+• **Slovo** = význam;
+• **Další** = význam;
+```
+
+---
+
+### Varianta B: Slovíčka za sebou (úsporný blok)
+Tato varianta se hodí pro dlouhé texty, aby analýza nezabírala příliš mnoho vertikálního místa.
+
+```text
+Instrukce pro formátování analýzy mantry (blok):
+1. Text mantry v IAST (bez formátování).
+2. Český překlad obalený v __dvojitých podtržítkách__ (kurzíva).
+3. Slovníček formátuj jako jeden souvislý odstavec (blok textu):
+   - Každé slovo začni odrážkou •
+   - Slovo v IAST dej do **dvojitých hvězdiček** (tučně).
+   - Následuje mezera, rovnítko, mezera ( = ) a český význam zakončený středníkem (;).
+   - Mezi jednotlivými položkami nechej mezeru, ale nezalamuj řádek.
+
+Příklad:
+__Toto je český překlad.__
+• **Slovo** = význam; • **Další** = význam; • **Třetí** = význam;
+```
+
+### Tip pro použití v Cursoru:
+Pokud si vytvoříte ten soubor `.cursorrules` v kořenovém adresáři projektu, vložte do něj verzi, kterou používáte nejčastěji. Kdykoliv se pak v chatu (Ctrl+L) zeptáte: *"Zpracuj tuto mantru do analýzy"*, Cursor si tato pravidla načte a provede to přesně podle nich.
+
+Pokud se rozhodnete pro tu variantu "blok", bude to v tom vašem vysouvacím šuplíku vypadat jako pěkně srovnaný text, což je u delších manter na mobilu často čitelnější, protože člověk nemusí tolik scrollovat.
+
+Máte to takto v pořádku, nebo do těch instrukcí ještě něco přidáme?
+
+******************************
+*********************************
+Dohoda s Gemini:
+Stačí mi napsat název mantry a přidat k tomu jen: 
+1) „Udělej mi analýzu – seznam“ nebo 
+2) „Udělej mi analýzu – blok“.

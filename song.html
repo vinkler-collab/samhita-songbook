@@ -1465,16 +1465,14 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
       // 1. ŠUPLÍK (s formátováním textu)
       if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
           // Tady proženeme text analýzy formátovačem, aby fungovaly hvězdičky a odkazy
-          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
+          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis.trim());
           html += `
               <div class="analysis-container">
                   <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
                       <span>💡 Překlad a poznámky (zde)</span>
                       <span id="analysis-arrow">▼</span>
                   </div>
-                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">
-${formattedAnalysis}
-                  </div>
+                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
               </div>
           `;
       }

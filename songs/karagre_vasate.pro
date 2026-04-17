@@ -39,7 +39,25 @@
 |[Dm7]prabhā[D]te |. . . |kara |[G]darśa|nam . . |. . |
 ##########################################
 {start_of_analysis}
-Comming soon...
+{start_of_analysis}
+karāgre vasate lakṣmīḥ
+karamadhye sarasvatī
+karamūle tu govindaḥ
+prabhāte karadarśanam
+
+__Na konečcích prstů sídlí bohyně Lakšmí, ve středu dlaně Sarasvatí a u kořene dlaně (na zápěstí) spočívá Góvinda. Proto by se měl člověk hned po ránu s úctou podívat na své dlaně.__
+
+• **karāgre** = na špičce ruky, na konečcích prstů (kara = ruka, agre = na špičce);
+• **vasate** = sídlí, přebývá;
+• **lakṣmīḥ** = bohyně Lakšmí (bohyně bohatství, hojnosti a štěstí);
+• **karamadhye** = ve středu dlaně (kara = ruka, madhye = uprostřed);
+• **sarasvatī** = bohyně Sarasvatí (bohyně moudrosti, poznání a umění);
+• **karamūle** = u kořene dlaně, na zápěstí (kara = ruka, mūle = u kořene);
+• **tu** = a, vskutku (zdůrazňující částice);
+• **govindaḥ** = Góvinda (ochránce, jméno Višnua nebo Krišny);
+• **prabhāte** = za úsvitu, brzy ráno;
+• **karadarśanam** = pohled na ruce (kara = ruka, darśanam = zření, pohled s úctou);
+{end_of_analysis}
 
 
 

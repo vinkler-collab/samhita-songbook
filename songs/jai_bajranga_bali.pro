@@ -26,4 +26,19 @@
 |[Em]Jaya Guru|devā Ka|[F]ro Kal|[Am]yāṇ|. . . .|
 ##########################################
 {start_of_analysis}
-Comming soon...
+Jaya Bajraṅga Balī Jaya Hanumānā kī
+Jaya Mahāvīrā Jaya Hanumān
+Jaya Gurudevā Karo Kalyāṇ
+
+__Sláva vítěznému Hanumánovi, který má tělo pevné jako blesk. Sláva velkému hrdinovi Hanumánovi. Sláva božskému učiteli, kéž nám přineseš blaho a prosperitu.__
+
+• **jaya** = sláva, vítězství;
+• **bajraṅga** = mající tělo pevné jako blesk (vajra = blesk, aṅga = tělo);
+• **balī** = silný, mocný;
+• **hanumānā** = opičí bůh Hanumán;
+• **kī** = hindská částice (v tomto kontextu vyjadřuje slávu patřící jemu);
+• **mahāvīrā** = velký hrdina (mahā = velký, vīra = hrdina);
+• **gurudevā** = božský učitel;
+• **karo** = udělej, učiň;
+• **kalyāṇ** = blaho, štěstí, příznivý osud;
+{end_of_analysis}

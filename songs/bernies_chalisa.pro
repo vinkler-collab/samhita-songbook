@@ -202,4 +202,121 @@ sitá [C]rām sitá [F]rām sitá [C]rām sitá [G]rām
 {eov}
 ##########################################
 {start_of_analysis}
-Comming soon...
+{start_of_analysis}
+śrīguru carana saroja raja nija manu mukuru sudhāri
+baranauṁ raghuvara vimala jasu jo dāyaku phala cāri
+buddhihīna tanu jānike sumirauṁ pavana-kumāra
+bala budhi vidyā dehu mohiṁ harahu kaleśa vikāra
+
+jaya hanumāna jñāna guna sāgara
+jaya kapīśa tihuṁ loka ujāgara
+rāma dūta atulita bala dhāmā
+aṁjani-putra pavanasuta nāmā
+
+mahāvīra vikrama vajaraṁgī
+kumati nivāra sumati ke saṁgī
+kaṁcana varana virāja subesā
+kānana kuṁḍala kuṁcita kesā
+
+hātha vajra aura dhvajā virājai
+kāṁdhe mūṁja janeū sājai
+śaṁkara suvana kesarī naṁdana
+teja pratāpa mahā jaga vaṁdana
+
+vidyāvāna gunī ati cātura
+rāma kāja karibe ko ātura
+prabhu caritra sunibe ko rasiyā
+rāma lakhana sītā mana vasiyā
+
+sūkṣma rūpa dhari siyahiṁ dikhāvā
+vikaṭa rūpa dhari laṁka jarāvā
+bhīma rūpa dhari asura saṁhāre
+rāmacaṁdra ke kāja saṁvāre
+
+lāya sajīvana lakhana jiyāye
+śrīraghuvīra haraṣi ura lāye
+raghupati kīnhī bahuta varāī
+tuma mama priya bharatahi sama bhāī
+
+sahasa vadana tumharo jasa gāvaiṁ
+asa kahi śrīpati kaṁṭha lagāvaiṁ
+sanakādika brahmādi munīsā
+nārada śārada sahita ahīsā
+
+yama kubera digapāla jahāṁ te
+kavi kovida kahi sake kahāṁ te
+tuma upakāra sugrīvahiṁ kīnhā
+rāma milāya rāja pada dīnhā
+
+tumharo maṁtra vibhīṣana mānā
+laṁkeśvara bhae saba jaga jānā
+yuga sahastra yojana para bhānū
+līlyo tāhi madhura phala jānū
+
+prabhu mudrikā meli mukha māhīṁ
+jaladhi lāṁghi gaye acaraja nāhīṁ
+durgama kāja jagata ke jete
+sugama anugraha tumhare tete
+
+rāma duāre tuma rakhavāre
+hota na ājñā binu paisāre
+saba sukha lahai tumhārī śaranā
+tuma racchaka kāhū ko ḍara nā
+
+āpana teja samhāro āpai
+tīnoṁ loka hāṁka teṁ kāṁpai
+bhūta pisāca nikaṭa nahiṁ āvai
+mahāvīra jaba nāma sunāvai
+
+nāsai roga harai saba pīrā
+japata niraṁtara hanumata vīrā
+saṁkaṭa teṁ hanumāna chuṛāvai
+mana krama bacana dhyāna jo lāvai
+
+saba para rāma tapasvī rājā
+tina ke kāja sakala tuma sājā
+aura manoratha jo koi lāvai
+soi amita jīvana phala pāvai
+
+cāroṁ yuga paratāpa tumhārā
+hai parasiddha jagata ujiyārā
+sādhu saṁta ke tuma rakhavāre
+asura nikaṁdana rāma dulāre
+
+aṣṭa siddhi nau nidhi ke dātā
+asa vara dīna jānakī mātā
+rāma rasāyana tumhare pāsā
+sadā raho raghupati ke dāsā
+
+tumhare bhajana rāma ko pāvai
+janama janama ke dukha visarāvai
+aṁta kāla raghuvara pura jāī
+jahāṁ janma hari-bhakta kahāī
+
+aura devatā citta na dharaī
+hanumata seī sarba sukha karaī
+saṁkaṭa kaṭai miṭai saba pīrā
+jo sumirai hanumata balavīrā
+
+jai jai jai hanumāna gosāīṁ
+kṛpā karahu guru deva kī nāīṁ
+jo sata vāra pāṭha kara koī
+chūṭahi vaṁdi mahā sukha hoī
+
+jo yaha paṛhai hanumāna calīsā
+hoya siddhi sākhī gaurīsā
+tulasīdāsa sadā hari cerā
+kī jai nātha hṛdaya mahaṁ ḍerā
+
+pavanatanaya saṁkaṭa harana maṁgala mūrati rūpa
+rāma lakhana sītā sahita hṛdaya vasahu sura bhūpa
+
+maṁgala mūratī māruta naṁdana
+sakala amaṁgala mūla nikaṁdana
+śrī rām jai rām jai jai rām
+sītā rām sītā rām sītā rām sītā rām
+
+__Očistiv zrcadlo své mysli prachem z lotosových nohou vznešeného Gurua, opěvuji čistou slávu Šrí Rámy. S vědomím své nevědomosti vzývám syna větru, Hanumána. Prosím, dej mi sílu, moudrost a poznání a zbav mě utrpení a nečistot. Sláva tobě, Hanumáne, oceáne moudrosti a ctností, opičí králi, jenž osvěcuješ tři světy. Jsi nezměrně silný posel Rámův, syn Anjani a větru. Jsi velký hrdina s tělem pevným jako blesk, odstraňuješ zlé myšlenky a jsi přítelem dobrých. Zničil jsi démony a splnil úkoly Rámovy. Přinesl jsi oživující bylinu a zachránil Lakšmanu. Celý svět zná tvou slávu a moc, která svítí ve všech čtyřech věcích. Jsi ochráncem svatých, dárcem osmi dokonalostí a devíti pokladů. Ten, kdo tě s oddaností vzývá, je zbaven všech nemocí, bolestí a překážek a nakonec dosáhne Rámova božského sídla. Ó synu větru, ničiteli strastí, ztělesnění příznivosti, sídli navždy v mém srdci společně s Rámou, Lakšmanou a Sítou.__
+
+• **śrīguru** = vznešený učitel; • **carana** = nohy; • **saroja** = lotos; • **raja** = prach; • **mukuru** = zrcadlo; • **buddhihīna** = bez moudrosti, nevědomý; • **pavana-kumāra** = syn větru (Hanumán); • **bala** = síla; • **vidyā** = poznání; • **jñāna** = moudrost; • **guna** = ctnosti; • **sāgara** = oceán; • **kapīśa** = opičí král; • **rāma dūta** = posel Rámův; • **vajaraṁgī** = tělo pevné jako blesk; • **asura** = démon; • **saṁhāre** = zničil; • **sajīvana** = oživující bylina; • **yama** = bůh smrti; • **jaladhi** = oceán; • **saṁkaṭa** = nebezpečí, překážka; • **roga** = nemoc; • **pīrā** = bolest; • **siddhi** = mystické dokonalosti; • **nidhi** = poklady; • **maṁgala** = příznivost, štěstí; • **hṛdaya** = srdce;
+{end_of_analysis}
