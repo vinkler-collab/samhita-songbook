@@ -1025,6 +1025,8 @@ body.hide-chords .transpose-section {
   <button class="scroll-btn" onclick="window.scrollBy({top: window.innerHeight*0.8, behavior: 'smooth'})" title="Dolů">⏷</button>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nosleep/0.12.0/NoSleep.min.js"></script>
+
 <script>
   (function() {
     window.currentSongObj = null;
@@ -1039,36 +1041,21 @@ body.hide-chords .transpose-section {
     localStorage.setItem('samhita_dark', isDark);
   };
 
-  let wakeLock = null;
+ // Inicializace NoSleep
+const noSleep = new NoSleep();
 
-// Funkce pro aktivaci zámku
-const requestWakeLock = async () => {
-  try {
-    if ('wakeLock' in navigator) {
-      wakeLock = await navigator.wakeLock.request('screen');
-      console.log('Wake Lock aktivní 🚀');
-      
-      wakeLock.addEventListener('release', () => {
-        console.log('Wake Lock byl uvolněn.');
-      });
-    }
-  } catch (err) {
-    console.error(`Chyba Wake Lock: ${err.name}, ${err.message}`);
-  }
-};
+// Funkce, která zapne "bdělost" při prvním kliknutí/dotyku
+function enableNoSleep() {
+  noSleep.enable();
+  console.log('Režim NoSleep aktivován (video trik)');
+  // Jakmile je aktivováno, odstraníme posluchače, už není potřeba
+  document.removeEventListener('click', enableNoSleep);
+  document.removeEventListener('touchstart', enableNoSleep);
+}
 
-// Zkusíme aktivovat hned
-requestWakeLock();
-
-// KRITICKÉ PRO SAFARI: Aktivovat znovu, když se vrátíš na kartu nebo na mobil sáhneš
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') requestWakeLock();
-});
-
-// Pojistka: Aktivovat při jakémkoliv dotyku (Safari to miluje)
-document.addEventListener('touchstart', () => {
-  if (!wakeLock) requestWakeLock();
-}, { once: false }); // Může to zkoušet klidně víckrát
+// Nasloucháme na kliknutí nebo dotyk (pro mobily)
+document.addEventListener('click', enableNoSleep);
+document.addEventListener('touchstart', enableNoSleep);
 
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
