@@ -202,9 +202,32 @@ sitá [C]rām sitá [F]rām sitá [C]rām sitá [G]rām
 {eov}
 ##########################################
 {start_of_analysis}
-{start_of_analysis}
-śrīguru carana saroja raja nija manu mukuru sudhāri
-baranauṁ raghuvara vimala jasu jo dāyaku phala cāri
+**Doha 1a**
+śrīguru carana saroja raja
+nija manu mukuru sudhāri
+
+• **śrīguru** = ctěný-guru; • **carana** = nohy; • **saroja** = lotos; • **raja** = prach
+• **nija** = moje; • **manu** = mysl; • **mukuru** = zrcadlo; • **sudhāri** = čistit
+
+__Prachem z lotosových nohou gurua__
+__čistím zrcadlo své mysli.__
+----------------------
+**Doha 2a**
+buddhihīna tanu jānike
+sumirauṁ pavana kumāra
+
+• **buddhihīna** = bez-inteligence; • **tanu** = forma,-jedinec; • **jānike** = vědět
+• **sumirauṁ** = vzpomínat; • **pavana** = vítr; • **kumāra** = chlapec,-syn
+
+__Vědom si své nerozumné přirozenosti,__
+__připomínám si syna Větru, Hanumána.__
+{end_of_analysis}
+śrīguru carana saroja raja
+nija manu mukuru sudhāri
+
+baranauṁ raghuvara vimala jasu 
+jo dāyaku phala cāri
+
 buddhihīna tanu jānike sumirauṁ pavana-kumāra
 bala budhi vidyā dehu mohiṁ harahu kaleśa vikāra
 
@@ -319,4 +342,4 @@ sītā rām sītā rām sītā rām sītā rām
 __Očistiv zrcadlo své mysli prachem z lotosových nohou vznešeného Gurua, opěvuji čistou slávu Šrí Rámy. S vědomím své nevědomosti vzývám syna větru, Hanumána. Prosím, dej mi sílu, moudrost a poznání a zbav mě utrpení a nečistot. Sláva tobě, Hanumáne, oceáne moudrosti a ctností, opičí králi, jenž osvěcuješ tři světy. Jsi nezměrně silný posel Rámův, syn Anjani a větru. Jsi velký hrdina s tělem pevným jako blesk, odstraňuješ zlé myšlenky a jsi přítelem dobrých. Zničil jsi démony a splnil úkoly Rámovy. Přinesl jsi oživující bylinu a zachránil Lakšmanu. Celý svět zná tvou slávu a moc, která svítí ve všech čtyřech věcích. Jsi ochráncem svatých, dárcem osmi dokonalostí a devíti pokladů. Ten, kdo tě s oddaností vzývá, je zbaven všech nemocí, bolestí a překážek a nakonec dosáhne Rámova božského sídla. Ó synu větru, ničiteli strastí, ztělesnění příznivosti, sídli navždy v mém srdci společně s Rámou, Lakšmanou a Sítou.__
 
 • **śrīguru** = vznešený učitel; • **carana** = nohy; • **saroja** = lotos; • **raja** = prach; • **mukuru** = zrcadlo; • **buddhihīna** = bez moudrosti, nevědomý; • **pavana-kumāra** = syn větru (Hanumán); • **bala** = síla; • **vidyā** = poznání; • **jñāna** = moudrost; • **guna** = ctnosti; • **sāgara** = oceán; • **kapīśa** = opičí král; • **rāma dūta** = posel Rámův; • **vajaraṁgī** = tělo pevné jako blesk; • **asura** = démon; • **saṁhāre** = zničil; • **sajīvana** = oživující bylina; • **yama** = bůh smrti; • **jaladhi** = oceán; • **saṁkaṭa** = nebezpečí, překážka; • **roga** = nemoc; • **pīrā** = bolest; • **siddhi** = mystické dokonalosti; • **nidhi** = poklady; • **maṁgala** = příznivost, štěstí; • **hṛdaya** = srdce;
-{end_of_analysis}
+
