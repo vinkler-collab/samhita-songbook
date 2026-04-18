@@ -657,145 +657,6 @@ body.dark-mode .song-tag {
     background-color: transparent !important; 
   }
 
-  /* === PÍSKOVÝ (SAND) REŽIM PRO HLAVNÍ STRÁNKU === */
-
-/* Pozadí celé stránky */
-body.sand-mode {
-  background-color: #f4ecd8 !important; 
-  color: #4a3b32 !important;
-}
-
-/* Kartička písničky */
-body.sand-mode #song-list li {
-  background-color: #eaddc5 !important;
-  border: 1px solid #d4c2a5 !important;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05) !important;
-}
-
-/* Texty v kartičce */
-body.sand-mode .song-name {
-  color: #4a3b32 !important;
-}
-
-body.sand-mode .song-sub, 
-body.sand-mode .song-meta {
-  color: #7a6352 !important; /* Hnědá pro doplňující info */
-}
-
-/* Oranžové detaily */
-body.sand-mode .song-icon,
-body.sand-mode .song-arrow {
-  color: #b85d00 !important; /* Tmavší oranžová pro lepší čitelnost */
-}
-
-/* Efekt při najetí myší na kartičku */
-body.sand-mode #song-list li:hover {
-  background-color: #dfd0b8 !important;
-  border-color: #b85d00 !important;
-}
-
-body.sand-mode #song-list li a:hover,
-body.sand-mode #song-list li a:active {
-  background-color: transparent !important; /* Zabrání bliknutí do bílé */
-}
-
-body.sand-mode #song-list li:hover .song-name {
-  color: #b85d00 !important;
-}
-
-body.sand-mode #song-list li:hover .song-sub,
-body.sand-mode #song-list li:hover .song-meta {
-  color: #7a6352 !important; 
-}
-
-/* Boční Menu (Sidebar) */
-body.sand-mode #sidebar {
-  background-color: #eaddc5 !important;
-  border-color: #d4c2a5 !important;
-}
-
-body.sand-mode .sidebar-header {
-  background-color: #eaddc5 !important;
-  border-bottom: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode .sidebar-title,
-body.sand-mode #sidebar h3 {
-  color: #4a3b32 !important;
-}
-
-/* Tlačítka v menu */
-body.sand-mode .pill-btn {
-  background-color: #f4ecd8 !important;
-  color: #4a3b32 !important;
-  border: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode .pill-btn.is-active {
-  background-color: #b85d00 !important; 
-  color: #ffffff !important;
-  border-color: #b85d00 !important;
-}
-
-/* Křížek a patička menu */
-body.sand-mode .sidebar-close {
-  background-color: #f4ecd8 !important;
-  border: 1px solid #d4c2a5 !important;
-  color: #4a3b32 !important;
-}
-
-body.sand-mode .sidebar-close:hover {
-  color: #b85d00 !important;
-  border-color: #b85d00 !important;
-}
-
-body.sand-mode .sidebar-footer {
-  border-top: 1px solid #d4c2a5 !important;
-  color: #7a6352 !important;
-}
-
-/* Vyhledávání a Filtry */
-body.sand-mode #search-wrap {
-  background-color: #eaddc5 !important;
-  border-bottom: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode #search {
-  background-color: #f4ecd8 !important;
-  color: #4a3b32 !important;
-  border: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode #search:focus {
-  border-color: #b85d00 !important; 
-}
-
-body.sand-mode .search-clear-btn,
-body.sand-mode .filter-clear {
-  color: #7a6352 !important;
-}
-
-body.sand-mode .search-clear-btn:hover,
-body.sand-mode .filter-clear:hover {
-  color: #b85d00 !important;
-}
-
-body.sand-mode #active-filter {
-  background-color: #f4ecd8 !important; 
-  border-bottom: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode .filter-pill {
-  background-color: #eaddc5 !important;
-  color: #4a3b32 !important;
-  border: 1px solid #d4c2a5 !important;
-}
-
-body.sand-mode .filter-pill strong {
-  color: #b85d00 !important; 
-}
-/* === KONEC PÍSKOVÉHO REŽIMU === */
-
   /* === VYLADĚNÍ SVĚTLÉHO REŽIMU (Méně agresivní bílá) === */
 
   /* 1. Ztlumení hlavního pozadí pod kartičkami do jemné teplé šedobéžové */
@@ -931,52 +792,23 @@ body.sand-mode .filter-pill strong {
 </aside>
 
 <script>
- // === NOVÝ SYSTÉM 3 REŽIMŮ ===
-window.setTheme = function(theme) {
-  document.body.classList.remove('dark-mode', 'sand-mode');
-  
-  // Najdeme tlačítko s ikonkou a změníme ji podle toho, co bude následovat
-  const themeBtn = document.querySelector('.icon-btn');
-  
-  if (theme === 'dark') {
-    document.body.classList.add('dark-mode');
-    if (themeBtn) themeBtn.textContent = '☕'; // Z tmavého povede krok do pískového (ikonka hrnečku)
-  } else if (theme === 'sand') {
-    document.body.classList.add('sand-mode');
-    if (themeBtn) themeBtn.textContent = '☀️'; // Z pískového povede krok do světlého (sluníčko)
-  } else {
-    // Světlý režim
-    if (themeBtn) themeBtn.textContent = '🌙'; // Ze světlého povede krok do tmy (měsíček)
-  }
-  
-  localStorage.setItem('samhita_theme', theme);
-};
-
-// Zpětná kompatibilita pro uživatele se starou pamětí
-if (localStorage.getItem('samhita_dark') !== null) {
-  if (localStorage.getItem('samhita_dark') === 'true') {
-    setTheme('dark');
-  } else {
-    setTheme('light');
-  }
-  localStorage.removeItem('samhita_dark');
-} else {
-  const savedTheme = localStorage.getItem('samhita_theme') || 'light';
-  setTheme(savedTheme);
+ // 1. Okamžitá kontrola tmavého režimu při načtení stránky
+if (localStorage.getItem('samhita_dark') === 'true') {
+  document.body.classList.add('dark-mode');
 }
 
-// Funkce na tlačítko v hlavičce
-window.toggleDarkMode = function() {
-  const currentTheme = localStorage.getItem('samhita_theme') || 'light';
-  if (currentTheme === 'light') {
-    setTheme('dark');
-  } else if (currentTheme === 'dark') {
-    setTheme('sand');
+// 2. Funkce pro přepínání (kterou teď bude volat tlačítko s měsíčkem)
+function toggleDarkMode() {
+  // Přepne třídu na body
+  document.body.classList.toggle('dark-mode');
+  
+  // Uloží aktuální stav do paměti, aby si to prohlížeč pamatoval
+  if (document.body.classList.contains('dark-mode')) {
+    localStorage.setItem('samhita_dark', 'true');
   } else {
-    setTheme('light');
+    localStorage.setItem('samhita_dark', 'false');
   }
-};
-// === KONEC NOVÉHO SYSTÉMU ===
+}
 // ============================================================
 // Načtení písniček ze souboru songs.json
 // ============================================================

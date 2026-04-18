@@ -59,6 +59,23 @@ body.dark-mode .analysis-header:hover {
     background-color: #504b46;
 }
 
+/* Tmavý režim (ten už tam někde máš) */
+body.dark-mode {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+}
+
+/* NOVÝ Pískový / Čtecí režim */
+body.sand-mode {
+    background-color: #f4ecd8; /* Pískové pozadí */
+    color: #4a3b32; /* Tmavě hnědý text */
+}
+
+/* Nezapomeň na odkazy a další prvky uvnitř sand-mode */
+body.sand-mode a {
+    color: #d97706; /* Příklad barvy pro odkazy / akordy v pískovém režimu */
+}
+
  .pdf-viewer {
     width: 100%;
     height: 1000px;
@@ -586,120 +603,6 @@ audio {
     border-radius: 8px !important;
   }
 
-/* NOVÝ Pískový / Čtecí režim */
-body.sand-mode {
-    background-color: #f4ecd8; /* Pískové pozadí */
-    color: #4a3b32; /* Tmavě hnědý text */
-}
-
-/* =========================================
-   PÍSKOVÝ (SAND) REŽIM - HLAVNÍ BARVY
-========================================= */
-body.sand-mode {
-  background-color: #f4ecd8 !important; /* Pískové pozadí */
-  color: #4a3b32 !important; /* Tmavě hnědý text */
-}
-
-/* --- Texty a nadpisy --- */
-body.sand-mode .lyric,
-body.sand-mode .song-title,
-body.sand-mode .verse-label,
-body.sand-mode .chorus-label,
-body.sand-mode .song-tempo,
-body.sand-mode .song-capo,
-body.sand-mode .song-time,
-body.sand-mode .topbar-title,
-body.sand-mode #topbar-title,
-body.sand-mode .shift-display {
-  color: #4a3b32 !important;
-}
-
-body.sand-mode .song-subtitle {
-  color: #7a6352 !important; /* Utlumená hnědá pro podtitul */
-}
-
-/* --- Akordy --- */
-body.sand-mode .chord {
-  color: #b85d00 !important; /* Tmavší cihlově oranžová pro dobrou čitelnost na písku */
-}
-
-/* --- Horní lišta (Topbar) --- */
-body.sand-mode .song-topbar {
-  background-color: #eaddc5 !important; /* O něco tmavší písková pro oddělení lišty */
-  border-bottom: 1px solid #d4c2a5 !important;
-}
-
-/* --- Tlačítka v liště --- */
-body.sand-mode .topbar-actions button,
-body.sand-mode .song-topbar .back-link,
-body.sand-mode .song-topbar-btn {
-  background-color: #f4ecd8 !important;
-  border: 1px solid #d4c2a5 !important;
-  color: #4a3b32 !important;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
-}
-
-body.sand-mode .topbar-actions button:hover,
-body.sand-mode .song-topbar .back-link:hover {
-  background-color: #eaddc5 !important;
-  border-color: #b85d00 !important;
-  color: #b85d00 !important;
-}
-
-/* --- Informační štítky (Capo, Tempo, Čas) --- */
-body.sand-mode .song-capo,
-body.sand-mode .song-time,
-body.sand-mode .song-tempo {
-  background-color: #eaddc5 !important;
-  color: #4a3b32 !important;
-  border: 1px solid #d4c2a5 !important;
-}
-
-/* --- Refrén a Komentáře --- */
-body.sand-mode .chorus-block {
-  background: rgba(184, 93, 0, 0.05) !important; /* Velmi jemný teplý nádech pod refrénem */
-  border-left: 3px solid #b85d00 !important;
-}
-
-body.sand-mode .comment {
-  background-color: #eaddc5 !important;
-  color: #4a3b32 !important;
-  border-left-color: #b85d00 !important;
-}
-
-/* --- Rozdělení sloupců --- */
-body.sand-mode #output-area {
-  column-rule: 1px dashed #d4c2a5 !important;
-}
-
-/* --- Audio přehrávač --- */
-body.sand-mode audio,
-body.sand-mode #audio-container,
-body.sand-mode .audio-wrapper,
-body.sand-mode .audio-player {
-  background-color: #eaddc5 !important;
-  border: 1px solid #d4c2a5 !important;
-}
-/* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
-
-/* --- Šuplík analýzy --- */
-body.sand-mode .analysis-container {
-  border-color: #d4c2a5 !important;
-  background: #eaddc5 !important;
-}
-body.sand-mode .analysis-header {
-  background-color: #d4c2a5 !important;
-  color: #4a3b32 !important;
-}
-body.sand-mode .analysis-header:hover {
-  background-color: #cbb492 !important;
-}
-body.sand-mode .analysis-content {
-  border-top-color: #d4c2a5 !important;
-  background-color: #f4ecd8 !important;
-  color: #4a3b32 !important;
-}
-
 /* === TMAVÝ REŽIM === */
 body.dark-mode {
     background-color: #33302d !important;
@@ -1096,7 +999,7 @@ body.hide-chords .transpose-section {
         <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát">►</button>
         <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
         <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
-        <button type="button" onclick="toggleDarkMode()" title="Přepnout vzhled">🌙</button>
+        
         <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
   
         <div id="more-menu-dropdown" class="more-menu-dropdown">
@@ -1117,7 +1020,7 @@ body.hide-chords .transpose-section {
             <button class="grid-btn btn-columns" id="col-toggle-btn" onclick="toggleColumns()" title="Sloupce">
               1 ⫿
             </button>
-            
+            <button class="grid-btn" onclick="toggleDarkMode()" title="Změnit vzhled">🌗</button>
           </div>
         </div>
       </div>
@@ -1142,54 +1045,50 @@ body.hide-chords .transpose-section {
 <script>
   (function() {
     window.currentSongObj = null;
-  
-  // --- Nový systém 3 režimů ---
-  // --- Nový systém 3 režimů ---
-  window.setTheme = function(theme) {
-    document.body.classList.remove('dark-mode', 'sand-mode');
-    
-    // Univerzální hledání tlačítka podle jeho akce (funguje, i když nemá speciální ID)
-    const themeBtn = document.querySelector('button[onclick*="toggleDarkMode"]');
-    
-    if (theme === 'dark') {
-      document.body.classList.add('dark-mode');
-      if (themeBtn) themeBtn.textContent = '☕'; // Z tmavého do pískového
-    } else if (theme === 'sand') {
-      document.body.classList.add('sand-mode');
-      if (themeBtn) themeBtn.textContent = '☀️'; // Z pískového do světlého
-    } else {
-      // Světlý režim
-      if (themeBtn) themeBtn.textContent = '🌙'; // Ze světlého do tmy
-    }
-    
-    localStorage.setItem('samhita_theme', theme);
-  };
 
-  // Zpětná kompatibilita pro staré uložení
-  if (localStorage.getItem('samhita_dark') !== null) {
-    if (localStorage.getItem('samhita_dark') === 'true') {
-      setTheme('dark');
-    } else {
-      setTheme('light');
-    }
-    localStorage.removeItem('samhita_dark');
-  } else {
-    const savedTheme = localStorage.getItem('samhita_theme') || 'light';
-    setTheme(savedTheme);
-  }
+    // Funkce pro nastavení konkrétního režimu
+    window.setTheme = function(theme) {
+        // 1. Nejdřív odstraníme všechny existující třídy režimů
+        document.body.classList.remove('dark-mode', 'sand-mode');
+        
+        // 2. Přidáme správnou třídu (pokud to není základní 'light')
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else if (theme === 'sand') {
+            document.body.classList.add('sand-mode');
+        }
+        
+        // 3. Uložíme nový stav do paměti
+        localStorage.setItem('samhita_theme', theme);
+    };
 
-  // Přepínání na tlačítko
-  window.toggleDarkMode = function() {
-    const currentTheme = localStorage.getItem('samhita_theme') || 'light';
-    if (currentTheme === 'light') {
-      setTheme('dark');
-    } else if (currentTheme === 'dark') {
-      setTheme('sand');
+    // Zpětná kompatibilita: převedení staré proměnné 'samhita_dark' na nový systém
+    if (localStorage.getItem('samhita_dark') !== null) {
+        if (localStorage.getItem('samhita_dark') === 'true') {
+            setTheme('dark');
+        } else {
+            setTheme('light');
+        }
+        localStorage.removeItem('samhita_dark'); // Úklid staré proměnné
     } else {
-      setTheme('light');
+        // Načtení nového systému (výchozí je 'light')
+        const savedTheme = localStorage.getItem('samhita_theme') || 'light';
+        setTheme(savedTheme);
     }
-  };
-  // --- Konec nového systému ---
+
+    // Funkce pro cyklické přepínání jediným tlačítkem (Světlý -> Tmavý -> Pískový -> Světlý...)
+    window.toggleDarkMode = function() { // Nechal jsem původní název funkce, ať nemusíš měnit HTML
+        const currentTheme = localStorage.getItem('samhita_theme') || 'light';
+        
+        if (currentTheme === 'light') {
+            setTheme('dark');
+        } else if (currentTheme === 'dark') {
+            setTheme('sand');
+        } else {
+            setTheme('light');
+        }
+    };
+})();
 
 // === PREVENCE VYPNUTÍ OBRAZOVKY - HYBRIDNÍ ŘEŠENÍ ===
 let wakeLock = null;
