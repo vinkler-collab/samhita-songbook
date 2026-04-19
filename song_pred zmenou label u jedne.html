@@ -312,7 +312,7 @@ body.dark-mode .analysis-header:hover {
   }
 
   .audio-drawer--single #audio-player {
-    margin-top: 8px;
+    margin-top: 0;
   }
 
   .audio-list {
@@ -1570,41 +1570,35 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
       }
   
       listEl.innerHTML = '';
-    // ZMĚNA ZDE: Bylo > 1, teď je > 0, takže se seznam vykreslí i pro 1 nahrávku
-    if (audioList.length > 0) { 
-      audioList.forEach((a, idx) => {
-        const item = document.createElement('button');
-        item.type = 'button';
-        item.className = 'audio-item';
-        
-        // Zkusí použít label, nebo title. Pokud nic není, napíše "Nahrávka 1"
-        const title = a.label || a.title || (audioList.length === 1 ? 'Přehrát nahrávku' : `Nahrávka ${idx + 1}`);
-        
-        item.innerHTML = `<span class="audio-item-title">${title}</span><span class="audio-item-meta">▶</span>`;
-        item.onclick = () => {
-          player.src = a.url;
+      if (audioList.length > 1) {
+        audioList.forEach((a, idx) => {
+          const item = document.createElement('button');
+          item.type = 'button';
+          item.className = 'audio-item';
+          const title = a.label ? a.label : `Nahrávka ${idx + 1}`;
+          item.innerHTML = `<span class="audio-item-title">${title}</span><span class="audio-item-meta">▶</span>`;
+          item.onclick = () => {
+            player.src = a.url;
+            player.style.display = 'block';
+            drawer.classList.add('is-open');
+            toggleBtn.classList.add('is-active');
+            setPlayingTrackItem(item);
+            player.play().catch(() => {});
+          };
+          listEl.appendChild(item);
+        });
+      }
+  
+      toggleBtn.addEventListener('click', () => {
+        const open = drawer.classList.toggle('is-open');
+        toggleBtn.classList.toggle('is-active', open);
+        if (open && audioList.length === 1 && !player.src) {
+          player.src = audioList[0].url;
           player.style.display = 'block';
-          drawer.classList.add('is-open');
-          toggleBtn.classList.add('is-active');
-          setPlayingTrackItem(item);
           player.play().catch(() => {});
-        };
-        listEl.appendChild(item);
+        }
       });
     }
-
-    // Navíc upravíme otevírací tlačítko, aby rovnou "rozsvítilo" i tu první nahrávku, když ji samo spustí
-    toggleBtn.addEventListener('click', () => {
-      const open = drawer.classList.toggle('is-open');
-      toggleBtn.classList.toggle('is-active', open);
-      if (open && audioList.length === 1 && !player.src) {
-        player.src = audioList[0].url;
-        player.style.display = 'block';
-        player.play().catch(() => {});
-        // Vybere jediné tlačítko v seznamu a označí ho jako hrající
-        setPlayingTrackItem(listEl.querySelector('.audio-item')); 
-      }
-    });    }
   
     function transposeChord(chord, amount) {
       if (chord === '.') return '.';

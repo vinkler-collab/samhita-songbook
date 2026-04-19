@@ -3,7 +3,13 @@
     "name": "Ād guray namaḥ",
     "category": "Indické - ostatní",
     "file": "ad_guray_namah",
-    "audio": "audio/ad_guray_namah.mp3",
+    "audio": [
+      {
+        "url": "audio/ad_guray_namah.mp3",
+        "label": "Samhita",
+        "title": "Samhita"
+      }
+    ],
     "tags": [
       "Guru",
       "Mangala charan mantra"
@@ -31,11 +37,13 @@
     "audio": [
       {
         "url": "audio/bernies_chalisa_flow.mp3",
-        "label": "Flow of Grace"
+        "label": "Flow of Grace",
+        "title": "Flow of Grace"
       },
       {
         "url": "audio/bernies_chalisa_door.mp3",
-        "label": "Door of Ocean"
+        "label": "Door of Ocean",
+        "title": "Door of Ocean"
       }
     ],
     "tags": [
@@ -83,11 +91,13 @@
     "audio": [
       {
         "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
-        "label": "Verze 1 - 2016_04_06"
+        "label": "Samhita: Verze 1 - 2016_04_06",
+        "title": "Samhita: Verze 1 - 2016_04_06"
       },
       {
         "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3",
-        "label": "Verze 2 - 2016_05_11"
+        "label": "Samhita: Verze 2 - 2016_05_11",
+        "title": "Samhita: Verze 2 - 2016_05_11"
       }
     ],
     "tags": [
@@ -102,7 +112,13 @@
     "name": "Jaya Bajraṅga Balī",
     "category": "Indické - Ráma",
     "file": "jai_bajranga_bali",
-    "audio": "https://samhita.cz/zpivani/audio/dzej_vadzrang_bali_ih1_2015_09_02_k.mp3",
+    "audio": [
+      {
+        "url": "https://samhita.cz/zpivani/audio/dzej_vadzrang_bali_ih1_2015_09_02_k.mp3",
+        "label": "Samhita",
+        "title": "Samhita"
+      }
+    ],
     "tags": [
       "Hanuman",
       "Rama"
@@ -142,7 +158,13 @@
     "name": "Nija Nija Prabho",
     "category": "Indické - ostatní",
     "file": "nija_prabho",
-    "audio": "audio/nija_prabho.mp3",
+    "audio": [
+      {
+        "url": "audio/nija_prabho.mp3",
+        "label": "Trilok",
+        "title": "Trilok"
+      }
+    ],
     "tags": [
       "Guru"
     ],
@@ -154,7 +176,13 @@
     "name": "Nina Hanuman Chalisa",
     "category": "Indické - Ráma",
     "file": "nina_hanuman_chalisa",
-    "audio": "audio/nina_hanuman_chalisa.mp3",
+    "audio": [
+      {
+        "url": "audio/nina_hanuman_chalisa.mp3",
+        "label": "Nina Rao",
+        "title": "Nina Rao"
+      }
+    ],
     "tags": [
       "Hanuman Chalisa",
       "Tulsi Das",

@@ -15,8 +15,8 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Hanumān, Rāma}
-{audio: https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3 | Verze 1 - 2016_04_06}
-{audio: https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3 | Verze 2 - 2016_05_11}
+{audio: https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3 | Samhita: Verze 1 - 2016_04_06}
+{audio: https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_05_11_k.mp3 | Samhita: Verze 2 - 2016_05_11}
 ##########################################
 [G]Rāma [.]Bolo |[D]Rāma [.]Bolo |[Em]Bolo [.]Bolo |[C]Rām 
 |[G]Sītā [.]Bolo |[D]Sītā [.]Bolo |[Em]Bolo [.]Sītā |[C]Rām 

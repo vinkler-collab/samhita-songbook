@@ -71,7 +71,7 @@ def extract_metadata_and_analysis(file_path):
                     metadata["tags"] = [t.strip() for t in tags_match.group(1).split(',') if t.strip()]
                     continue
 
-# AUDIO (Novinka!) - hledáme {audio: cesta | popisek} nebo jen {audio: cesta}
+                # AUDIO (Novinka!) - hledáme {audio: cesta | popisek} nebo jen {audio: cesta}
                 audio_match = re.search(r'\{audio:\s*(.*?)\}', raw_line, re.IGNORECASE)
                 if audio_match:
                     content = audio_match.group(1).strip()
@@ -79,16 +79,15 @@ def extract_metadata_and_analysis(file_path):
                         url, label = content.split('|', 1)
                         metadata["audio"].append({
                             "url": url.strip(),
-                            "label": label.strip(),
-                            "title": label.strip()  # <--- PŘIDANÁ POJISTKA PRO JAVASCRIPT
+                            "label": label.strip()
                         })
                     else:
                         metadata["audio"].append({
                             "url": content,
-                            "label": None,
-                            "title": None
+                            "label": None
                         })
-                    continue                    
+                    continue
+                    
     except Exception as e:
         print(f"Chyba při čtení souboru {file_path}: {e}")
     
