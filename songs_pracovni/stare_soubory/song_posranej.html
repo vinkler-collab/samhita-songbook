@@ -1052,172 +1052,53 @@ body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně p
   font-weight: bold;
   font-size: 16px;
 }
-/* --- OPRAVA PRO MOBILY (Pod 600px) --- */
-@media (max-width: 600px) {
-  .btn-columns {
+/* Schování sloupcového tlačítka na mobilech */
+@media (max-width: 768px) {
+  .desktop-only {
     display: none !important;
   }
+}
 
-  .menu-icons-grid {
-    display: flex !important;
-    /* Rozmístí tlačítka na okraje */
-    justify-content: space-between; 
-    /* Toto odsazení zajistí, že tlačítka budou přesně pod těmi horními */
-    padding: 10px 15px 5px 15px; 
-  }
+/* Kytarové nástroje v menu vedle sebe */
+.guitar-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-  .menu-icons-grid .grid-btn {
-    /* Nastavíme šířku stejnou, jako mají tlačítka transpozice (asi 45-50px) */
-    width: 45px; 
-    height: 45px;
-    flex-grow: 0;
-  }
+.transpose-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0,0,0,0.04); /* Jemný podklad pro celou skupinu */
+  padding: 4px;
+  border-radius: 12px;
+  gap: 8px;
+}
+
+/* Pokud jsi v tmavém/pískovém režimu, upravíme podklad transpozice */
+body.dark-mode .transpose-group { background: rgba(255,255,255,0.05); }
+body.sand-mode .transpose-group { background: rgba(0,0,0,0.06); }
+
+.transpose-label {
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* Tlačítka transpozice jako čtverečky */
+.transpose-group .pill-btn {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
 }
 
 /* Bod 3: Skrytí transpozice, když jsou akordy vypnuté */
 body.hide-chords .transpose-section {
   display: none;
-}
-@media (max-width: 768px) {
-    .desktop-only { display: none !important; }
-}
-
-/* Neústupný styl pro široké tlačítko nahrávek */
-.icon-btn.audio-btn {
-    width: auto !important;
-    min-width: max-content !important; 
-    padding: 0 12px !important; /* Prostor po stranách textu */
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 6px !important;
-    white-space: nowrap !important; /* Zakáže textu, aby se zalamoval nebo přetékal přes okraj */
-    flex: 0 0 auto !important; /* Absolutní zákaz smrskávání tlačítka! */
-}
-
-/* Na mobilech text schováme a tlačítko vrátíme do tvaru čtverečku */
-@media (max-width: 500px) {
-    .icon-btn.audio-btn .audio-text {
-        display: none !important;
-    }
-    .icon-btn.audio-btn {
-        min-width: 44px !important; /* Zpět na zhruba šířku ostatních tlačítek */
-        padding: 0 !important;
-    }
-}
-
-/* Roztáhneme vnitřní část lišty na celou šířku monitoru */
-.song-topbar-inner {
-    max-width: none !important; /* Zrušíme omezení šířky (to je ten hlavní viník) */
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important; /* Základní zarovnání doleva */
-    padding: 0 30px !important; /* Mezera od levého a pravého okraje monitoru */
-    box-sizing: border-box !important;
-}
-
-/* Trik pro rozdělení: Název písničky odtlačí všechno napravo od sebe až na konec */
-.topbar-title {
-    margin-right: auto !important; /* Tímto název písničky „vyplní“ veškeré volné místo uprostřed */
-    margin-left: 15px !important;  /* Mezera mezi šipkou zpět a názvem */
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; /* Kdyby byl název moc dlouhý, udělá tečky */
-}
-
-/* Na mobilech lištu trochu víc „přimáčkneme“ k okrajům, ať máme místo */
-@media (max-width: 768px) {
-    .song-topbar-inner {
-        padding: 0 10px !important;
-    }
-    .topbar-title {
-        margin-left: 8px !important;
-    }
-}
-
-/* --- Sladění nabídky nahrávek s tmavým a kávovým režimem (OPRAVENO) --- */
-
-/* --- Tmavý režim (Srpek) --- */
-/* 1. Hlavní obal (neviditelný, splývá s lištou) */
-body.dark-mode .audio-drawer {
-    background-color: #1c1a19 !important; /* Barva hlavní lišty v tmavém režimu */
-    border: none !important;              /* Zrušíme ten ošklivý špičatý rámeček */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important; /* Přidáme stín, aby nabídka nesplynula s textem dole */
-    border-radius: 0 0 12px 12px !important; /* Lehce zakulatíme spodní rohy obalu */
-}
-/* 2. Samotná zakulacená tlačítka */
-body.dark-mode #audio-list > * {
-    background-color: #333333 !important; /* Tlačítka trochu světlejší, ať vyniknou */
-    color: #e0e0e0 !important;            
-    border: 1px solid #444444 !important; 
-}
-/* Ikonky uvnitř tlačítek */
-body.dark-mode #audio-list > * > * {
-    color: #e0e0e0 !important;
-}
-
-
-/* --- Režim Kafe (Pískový) --- */
-/* 1. Hlavní obal (neviditelný, splývá s lištou) */
-body.sand-mode .audio-drawer {
-    background-color: #eaddc5 !important; /* Odhad barvy hlavní lišty v režimu kafe */
-    border: none !important;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
-    border-radius: 0 0 12px 12px !important;
-}
-/* 2. Samotná zakulacená tlačítka */
-body.sand-mode #audio-list > * {
-    background-color: #e8dfce !important; 
-    color: #333333 !important;            
-    border: 1px solid #d4c8b3 !important; 
-}
-/* Ikonky uvnitř tlačítek */
-body.sand-mode #audio-list > * > * {
-    color: #333333 !important;
-}
-
-/* --- 1. Sjednocení stínu a rohů pro denní režim (výchozí stav) --- */
-.audio-drawer {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
-    border-radius: 0 0 12px 12px !important;
-    border: none !important; /* Pokud tam byl nějaký ostrý rámeček, zrušíme ho */
-}
-
-/* --- 2. Zvýraznění HRAJÍCÍ (aktivní) nahrávky pro všechny režimy --- */
-
-/* Denní režim (nahrazuje původní zelenou barvu) */
-#audio-list > .is-playing {
-    background-color: #ebdcc9 !important; /* Jemná zemitá/béžová */
-    border-color: #d0bba0 !important;     /* Tmavší béžový rámeček */
-}
-/* Změna barvy textu a ikonky uvnitř hrající nahrávky v denním režimu */
-#audio-list > .is-playing,
-#audio-list > .is-playing > * {
-    color: #4a3c31 !important; /* Tmavě hnědá, ladí s pozadím */
-    font-weight: bold !important;
-}
-
-/* Tmavý režim (Srpek) */
-body.dark-mode #audio-list > .is-playing {
-    background-color: #4d4d4d !important; /* Světlejší šedá, aby vystoupila z menu */
-    border-color: #777777 !important;
-}
-body.dark-mode #audio-list > .is-playing,
-body.dark-mode #audio-list > .is-playing > * {
-    color: #ffffff !important;
-    font-weight: bold !important;
-}
-
-/* Režim Kafe (Pískový) */
-body.sand-mode #audio-list > .is-playing {
-    background-color: #d4c2a5 !important; /* Tmavší "oříšková" káva */
-    border-color: #b8a280 !important;
-}
-body.sand-mode #audio-list > .is-playing,
-body.sand-mode #audio-list > .is-playing > * {
-    color: #333333 !important;
-    font-weight: bold !important;
 }
 </style>
 </head>
@@ -1234,37 +1115,37 @@ body.sand-mode #audio-list > .is-playing > * {
       <div class="topbar-title" id="topbar-title">Načítám…</div>
       
       <div class="topbar-actions">
-        <button class="icon-btn audio-btn" type="button" id="audio-toggle" aria-label="Nahrávky">
-          🐦<span class="audio-text">Nahrávky</span>
-        </button>        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
+        <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát">►</button>
+        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
         <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
         
-        <button class="icon-btn desktop-only" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout sloupce">◫</button>
-        
         <button class="icon-btn" type="button" onclick="toggleDarkMode()" title="Přepnout vzhled">🌙</button>
+        
+        <button class="icon-btn desktop-only" type="button" id="col-toggle-btn" title="Přepnout sloupce">◫</button>
+        
         <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
-    
-        <div id="more-menu-dropdown" class="more-menu-dropdown">
-          
-          <div style="text-align: center; padding-bottom: 10px;">
-            <span class="menu-label" style="display: block; margin-bottom: 5px;">Akordy</span>
-            <button class="grid-btn" id="toggle-chords" title="Zobrazit/skrýt akordy" style="margin: 0 auto;">C</button>
-          </div>
-    
-          <div id="transpose-section" class="transpose-section">
-            <hr class="menu-divider" style="margin: 5px 0 10px 0;">
-            <div class="menu-group" style="text-align: center;">
-              <span class="menu-label">Transpozice</span>
-              <div class="transpose-row" style="justify-content: center; margin-top: 5px;">
-                <button class="menu-btn" onclick="changeShift(-1)">♭</button>
-                <span class="shift-display-inline" id="shift-display" style="min-width: 24px; text-align: center; display: inline-block;">0</span>
-                <button class="menu-btn" onclick="changeShift(1)">♯</button>
-              </div>
-            </div>
-          </div>
-          
-        </div>
     </div>
+  
+    <div id="more-menu-dropdown" class="more-menu-dropdown">
+      <div id="transpose-section" class="transpose-section">
+        <div class="menu-group">
+          <span class="menu-label">Kytara</span>
+          
+          <div style="display: flex; align-items: center; gap: 15px; margin-top: 8px;">
+            
+            <button class="grid-btn" id="toggle-chords" title="Zobrazit/skrýt akordy" style="margin: 0;">C</button>
+            
+            <div class="transpose-row" style="display: flex; align-items: center; gap: 8px; margin: 0;">
+              <button class="menu-btn" onclick="changeShift(-1)">♭</button>
+              <span class="shift-display-inline" id="shift-display" style="font-weight: bold; min-width: 20px; text-align: center;">0</span>
+              <button class="menu-btn" onclick="changeShift(1)">♯</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
     </div>
   
     <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
