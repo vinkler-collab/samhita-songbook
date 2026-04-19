@@ -683,34 +683,23 @@ body.sand-mode .audio-player {
 /* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
 
 /* --- Šuplík analýzy --- */
-
-/* 1. Režim Kafe (Pískový) */
 body.sand-mode .analysis-container {
-  background-color: #e3d5be !important; 
   border-color: #d4c2a5 !important;
+  background: #eaddc5 !important;
+}
+body.sand-mode .analysis-header {
+  background-color: #d4c2a5 !important;
   color: #4a3b32 !important;
 }
-body.sand-mode .analysis-header,
-body.sand-mode .analysis-content {
-  background-color: transparent !important; /* Vnitřek zprůhledníme, ať vynikne obal */
-  color: inherit !important;
-}
 body.sand-mode .analysis-header:hover {
-  background-color: rgba(0, 0, 0, 0.04) !important; /* Jemné ztmavení po najetí myší */
+  background-color: #cbb492 !important;
+}
+body.sand-mode .analysis-content {
+  border-top-color: #d4c2a5 !important;
+  background-color: #f4ecd8 !important;
+  color: #4a3b32 !important;
 }
 
-/* 2. Denní režim (Výchozí - pro odlišení od čistě bílé stránky) */
-body:not(.dark-mode):not(.sand-mode) .analysis-container {
-  background-color: #f0f2f5 !important; /* Lehce světle šedá */
-  border-color: #e5e7eb !important;
-}
-body:not(.dark-mode):not(.sand-mode) .analysis-header,
-body:not(.dark-mode):not(.sand-mode) .analysis-content {
-  background-color: transparent !important;
-}
-body:not(.dark-mode):not(.sand-mode) .analysis-header:hover {
-  background-color: rgba(0, 0, 0, 0.03) !important;
-}
 /* === TMAVÝ REŽIM === */
 body.dark-mode {
     background-color: #33302d !important;
