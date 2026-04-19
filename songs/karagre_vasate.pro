@@ -45,7 +45,10 @@ karamadhye sarasvatī
 karamūle tu govindaḥ
 prabhāte karadarśanam
 
-__Na konečcích prstů sídlí bohyně Lakšmí, ve středu dlaně Sarasvatí a u kořene dlaně (na zápěstí) spočívá Góvinda. Proto by se měl člověk hned po ránu s úctou podívat na své dlaně.__
+__Na konečcích prstů sídlí bohyně Lakšmí,__ 
+__ve středu dlaně Sarasvatí__ 
+__a u kořene dlaně (na zápěstí) spočívá Góvinda.__ 
+__Proto by se měl člověk hned po ránu s úctou podívat na své dlaně.__
 
 • **karāgre** = na špičce ruky, na konečcích prstů (kara = ruka, agre = na špičce);
 • **vasate** = sídlí, přebývá;
