@@ -5,9 +5,9 @@
     "file": "ad_guray_namah",
     "audio": [
       {
-        "url": "audio/ad_guray_namah.mp3",
-        "label": "Samhita",
-        "title": "Samhita"
+        "url": "https://samhita.cz/zpivani/audio/ad_gure_name_io6_2014_12_03_k.mp3",
+        "label": "Samhita - 2014_12_03",
+        "title": "Samhita - 2014_12_03"
       }
     ],
     "tags": [
@@ -22,7 +22,13 @@
     "name": "Āpaṇa ātmārāma",
     "category": "Indické - ostatní",
     "file": "apana_atmarama",
-    "audio": "audio/apana_atmarama.mp3",
+    "audio": [
+      {
+        "url": "audio/apana_atmarama.mp3",
+        "label": "Navnath Sampradaya Bhajans",
+        "title": "Navnath Sampradaya Bhajans"
+      }
+    ],
     "tags": [
       "Navnath Sampradaya"
     ],
@@ -37,13 +43,13 @@
     "audio": [
       {
         "url": "audio/bernies_chalisa_flow.mp3",
-        "label": "Flow of Grace",
-        "title": "Flow of Grace"
+        "label": "Krishna Das: Flow of Grace",
+        "title": "Krishna Das: Flow of Grace"
       },
       {
         "url": "audio/bernies_chalisa_door.mp3",
-        "label": "Door of Ocean",
-        "title": "Door of Ocean"
+        "label": "Krishna Das: Door of Ocean",
+        "title": "Krishna Das: Door of Ocean"
       }
     ],
     "tags": [
@@ -60,7 +66,13 @@
     "name": "Déva púdžá",
     "category": "Indické - ostatní",
     "file": "deva_puja",
-    "audio": "audio/deva_puja.mp3",
+    "audio": [
+      {
+        "url": "audio/deva_puja.mp3",
+        "label": "Navnath Sampradaya Bhajans",
+        "title": "Navnath Sampradaya Bhajans"
+      }
+    ],
     "tags": [
       "Deva",
       "Puja",
@@ -75,7 +87,13 @@
     "name": "Govinda Gopal",
     "category": "Indické - Kršna",
     "file": "govinda_gopal",
-    "audio": "audio/govinda_gopal.mp3",
+    "audio": [
+      {
+        "url": "https://samhita.cz/zpivani/audio/govinda_gopal_ik17_2015_04_08_k.mp3",
+        "label": "Samhita: 2015_04_08",
+        "title": "Samhita: 2015_04_08"
+      }
+    ],
     "tags": [
       "Govinda",
       "Kršna"
@@ -115,8 +133,8 @@
     "audio": [
       {
         "url": "https://samhita.cz/zpivani/audio/dzej_vadzrang_bali_ih1_2015_09_02_k.mp3",
-        "label": "Samhita",
-        "title": "Samhita"
+        "label": "Samhita: 2015_09_02",
+        "title": "Samhita: 2015_09_02"
       }
     ],
     "tags": [
@@ -131,7 +149,13 @@
     "name": "Karāgre vasate lakṣmīḥ",
     "category": "Indické - Kršna",
     "file": "karagre_vasate",
-    "audio": "audio/karagre_vasate.mp3",
+    "audio": [
+      {
+        "url": "audio/karagre_vasate.mp3",
+        "label": "Ancient Chants from India - Volume 2",
+        "title": "Ancient Chants from India - Volume 2"
+      }
+    ],
     "tags": [
       "Lakshmi",
       "Kršna",
@@ -139,7 +163,7 @@
     ],
     "dateAdded": "2026-04-15",
     "hasPDF": false,
-    "analysis": "karāgre vasate lakṣmīḥ\nkaramadhye sarasvatī\nkaramūle tu govindaḥ\nprabhāte karadarśanam\n\n__Na konečcích prstů sídlí bohyně Lakšmí, ve středu dlaně Sarasvatí a u kořene dlaně (na zápěstí) spočívá Góvinda. Proto by se měl člověk hned po ránu s úctou podívat na své dlaně.__\n\n• **karāgre** = na špičce ruky, na konečcích prstů (kara = ruka, agre = na špičce);\n• **vasate** = sídlí, přebývá;\n• **lakṣmīḥ** = bohyně Lakšmí (bohyně bohatství, hojnosti a štěstí);\n• **karamadhye** = ve středu dlaně (kara = ruka, madhye = uprostřed);\n• **sarasvatī** = bohyně Sarasvatí (bohyně moudrosti, poznání a umění);\n• **karamūle** = u kořene dlaně, na zápěstí (kara = ruka, mūle = u kořene);\n• **tu** = a, vskutku (zdůrazňující částice);\n• **govindaḥ** = Góvinda (ochránce, jméno Višnua nebo Krišny);\n• **prabhāte** = za úsvitu, brzy ráno;\n• **karadarśanam** = pohled na ruce (kara = ruka, darśanam = zření, pohled s úctou);"
+    "analysis": "karāgre vasate lakṣmīḥ\nkaramadhye sarasvatī\nkaramūle tu govindaḥ\nprabhāte karadarśanam\n\n__Na konečcích prstů sídlí bohyně Lakšmí, ve středu dlaně Sarasvatí a u kořene dlaně (na zápěstí) spočívá Góvinda. Proto by se měl člověk hned po ránu s úctou podívat na své dlaně.__\n\n• **karāgre** = na špičce ruky, na konečcích prstů (kara = ruka, agre = na špičce);\n• **vasate** = sídlí, přebývá;\n• **lakṣmīḥ** = bohyně Lakšmí (bohyně bohatství, hojnosti a štěstí);\n• **karamadhye** = ve středu dlaně (kara = ruka, madhye = uprostřed);\n• **sarasvatī** = bohyně Sarasvatí (bohyně moudrosti, poznání a umění);\n• **karamūle** = u kořene dlaně, na zápěstí (kara = ruka, mūle = u kořene);\n• **tu** = a, vskutku (zdůrazňující částice);\n• **govindaḥ** = Góvinda (ochránce, jméno Višnua nebo Krišny);\n• **prabhāte** = za úsvitu, brzy ráno;\n• **karadarśanam** = pohled na ruce (kara = ruka, darśanam = zření, pohled s úctou);\n\n(YouTube - hodinová nahrávka | https://youtu.be/i7nWIy4E4-E?si=ZkkE4UfANZ1F8A_E)\n(Spotify - Mahakatha: Ancient Chants from India - Volume 2 | https://open.spotify.com/track/1U89xhVwOiWVo4AJa5ONXv?si=5c044489044e415d)"
   },
   {
     "name": "Mano Javaṁ Māruta Tulya Vegaṁ",

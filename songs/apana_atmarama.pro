@@ -15,6 +15,7 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Navnath Sampradaya}
+{audio: audio/apana_atmarama.mp3 | Navnath Sampradaya Bhajans}
 ##########################################
 {soc: Ref.: 2x}
 |[C]āpaṇa ātmā|[F]. rāma akarta |: (.) he jari dṛuḍha kaḻa|[C]leṁ :|

@@ -15,6 +15,7 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Lakshmi, Kršna, Govinda}
+{audio: audio/karagre_vasate.mp3 | Ancient Chants from India - Volume 2}
 ##########################################
 |[D]. . . |. . . |. . |[G]. . . |. . . |. . |
 |[D]. . . |. . . |. . |[G]. . . |. . . |. . |
@@ -39,7 +40,6 @@
 |[Dm7]prabhā[D]te |. . . |kara |[G]darśa|nam . . |. . |
 ##########################################
 {start_of_analysis}
-{start_of_analysis}
 karāgre vasate lakṣmīḥ
 karamadhye sarasvatī
 karamūle tu govindaḥ
@@ -57,6 +57,10 @@ __Na konečcích prstů sídlí bohyně Lakšmí, ve středu dlaně Sarasvatí a
 • **govindaḥ** = Góvinda (ochránce, jméno Višnua nebo Krišny);
 • **prabhāte** = za úsvitu, brzy ráno;
 • **karadarśanam** = pohled na ruce (kara = ruka, darśanam = zření, pohled s úctou);
+
+(YouTube - hodinová nahrávka | https://youtu.be/i7nWIy4E4-E?si=ZkkE4UfANZ1F8A_E)
+(Spotify - Mahakatha: Ancient Chants from India - Volume 2 | https://open.spotify.com/track/1U89xhVwOiWVo4AJa5ONXv?si=5c044489044e415d)
+
 {end_of_analysis}
 
 

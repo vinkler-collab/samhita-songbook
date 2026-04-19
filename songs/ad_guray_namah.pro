@@ -15,7 +15,7 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Guru, Mangala charan mantra}
-{audio: audio/ad_guray_namah.mp3 | Samhita}
+{audio: https://samhita.cz/zpivani/audio/ad_gure_name_io6_2014_12_03_k.mp3 | Samhita - 2014_12_03}
 ##########################################
     |[G]Ā --- |[C]d guray na|[G]maḥ |. . . Ju| 
     |[Em]gā --- |[C]d guray na|[G]maḥ |. . . . |

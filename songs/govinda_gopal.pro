@@ -15,6 +15,7 @@
 {time: 3/4}
 {tempo: 80}
 {tags: Govinda, Kršna}
+{audio: https://samhita.cz/zpivani/audio/govinda_gopal_ik17_2015_04_08_k.mp3 | Samhita: 2015_04_08}
 ##########################################
 Govinda Gopāla bhaja mana Kṛṣṇa Hari
 He Prabhu Dīna Dayāla bhaja mana Kṛṣṇa Hari

@@ -15,6 +15,7 @@
 {time: 4/4}
 {tempo: 80}
 {tags: Deva, Puja, Guru, Navnath Sampradaya}
+{audio: audio/deva_puja.mp3|Navnath Sampradaya Bhajans}
 ##########################################
 {soc:Chorus 1}
 |[Am]. Déva pú[C]džáá déva |[G]pú-[C]ú-[Em]džá-[Am]á   |

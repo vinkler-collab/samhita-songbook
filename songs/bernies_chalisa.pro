@@ -16,8 +16,8 @@
 {tempo: 85}
 {tags: Hanuman Chalisa, Tulsi Das, Krishna Das, Rama}
 ##########################################
-{audio: audio/bernies_chalisa_flow.mp3 | Flow of Grace}
-{audio: audio/bernies_chalisa_door.mp3 | Door of Ocean}
+{audio: audio/bernies_chalisa_flow.mp3 | Krishna Das: Flow of Grace}
+{audio: audio/bernies_chalisa_door.mp3 | Krishna Das: Door of Ocean}
 ##########################################
 {sov: ↓ Doha 1}
 [Am]śrīguru [F]carana sa[G]roja [Am]raja
