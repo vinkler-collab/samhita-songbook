@@ -682,24 +682,39 @@ body.sand-mode .audio-player {
 }
 /* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
 
-/* --- Šuplík analýzy --- */
+/* --- Šuplík analýzy (Vylepšené barvy hlavičky) --- */
+
+/* 1. Režim Kafe (Pískový) */
 body.sand-mode .analysis-container {
+  background-color: #e3d5be !important; /* Pozadí celého šuplíku */
   border-color: #d4c2a5 !important;
-  background: #eaddc5 !important;
+  color: #4a3b32 !important;
 }
 body.sand-mode .analysis-header {
-  background-color: #d4c2a5 !important;
+  background-color: #d4c2a5 !important; /* TMAVŠÍ hlavička pro Kafe */
   color: #4a3b32 !important;
-}
-body.sand-mode .analysis-header:hover {
-  background-color: #cbb492 !important;
 }
 body.sand-mode .analysis-content {
-  border-top-color: #d4c2a5 !important;
-  background-color: #f4ecd8 !important;
-  color: #4a3b32 !important;
+  background-color: transparent !important;
+}
+body.sand-mode .analysis-header:hover {
+  background-color: #cbb492 !important; /* Ještě o kousek tmavší při najetí */
 }
 
+/* 2. Denní režim (Výchozí) */
+body:not(.dark-mode):not(.sand-mode) .analysis-container {
+  background-color: #f0f2f5 !important; /* Pozadí celého šuplíku */
+  border-color: #e5e7eb !important;
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-header {
+  background-color: #e5e7eb !important; /* TMAVŠÍ hlavička pro Denní režim */
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-content {
+  background-color: transparent !important;
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-header:hover {
+  background-color: #dadddf !important; /* Ještě o kousek tmavší při najetí */
+}
 /* === TMAVÝ REŽIM === */
 body.dark-mode {
     background-color: #33302d !important;

@@ -682,34 +682,38 @@ body.sand-mode .audio-player {
 }
 /* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
 
-/* --- Šuplík analýzy --- */
+/* --- Šuplík analýzy (Vylepšené barvy hlavičky) --- */
 
 /* 1. Režim Kafe (Pískový) */
 body.sand-mode .analysis-container {
-  background-color: #e3d5be !important; 
+  background-color: #e3d5be !important; /* Pozadí celého šuplíku */
   border-color: #d4c2a5 !important;
   color: #4a3b32 !important;
 }
-body.sand-mode .analysis-header,
+body.sand-mode .analysis-header {
+  background-color: #d4c2a5 !important; /* TMAVŠÍ hlavička pro Kafe */
+  color: #4a3b32 !important;
+}
 body.sand-mode .analysis-content {
-  background-color: transparent !important; /* Vnitřek zprůhledníme, ať vynikne obal */
-  color: inherit !important;
+  background-color: transparent !important;
 }
 body.sand-mode .analysis-header:hover {
-  background-color: rgba(0, 0, 0, 0.04) !important; /* Jemné ztmavení po najetí myší */
+  background-color: #cbb492 !important; /* Ještě o kousek tmavší při najetí */
 }
 
-/* 2. Denní režim (Výchozí - pro odlišení od čistě bílé stránky) */
+/* 2. Denní režim (Výchozí) */
 body:not(.dark-mode):not(.sand-mode) .analysis-container {
-  background-color: #f0f2f5 !important; /* Lehce světle šedá */
+  background-color: #f0f2f5 !important; /* Pozadí celého šuplíku */
   border-color: #e5e7eb !important;
 }
-body:not(.dark-mode):not(.sand-mode) .analysis-header,
+body:not(.dark-mode):not(.sand-mode) .analysis-header {
+  background-color: #e5e7eb !important; /* TMAVŠÍ hlavička pro Denní režim */
+}
 body:not(.dark-mode):not(.sand-mode) .analysis-content {
   background-color: transparent !important;
 }
 body:not(.dark-mode):not(.sand-mode) .analysis-header:hover {
-  background-color: rgba(0, 0, 0, 0.03) !important;
+  background-color: #dadddf !important; /* Ještě o kousek tmavší při najetí */
 }
 /* === TMAVÝ REŽIM === */
 body.dark-mode {
@@ -1248,7 +1252,7 @@ body.sand-mode #audio-list > .is-playing > * {
       
       <div class="topbar-actions">
         <button class="icon-btn audio-btn" type="button" id="audio-toggle" aria-label="Nahrávky">
-          🐦<span class="audio-text">Nahrávky</span>
+          🎧<span class="audio-text">Nahrávky</span>
         </button>        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
         <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
         
@@ -1460,7 +1464,8 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
     let currentShift = parseInt(localStorage.getItem(`samhita_shift_${songName}`)) || 0;
     let currentFontSize = parseInt(localStorage.getItem('samhita_fontSize')) || 21;
     let currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
-  
+    let analysisOpen = false; // Tady si budeme pamatovat stav šuplíku
+
     if (shiftDisplayEl) shiftDisplayEl.textContent = currentShift;
   
     window.changeSize = function(amount) {
@@ -1766,26 +1771,25 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
   
   html += `</div>`; 
 
-  // =========================================================
-  // VYKRESLENÍ ŠUPLÍKU A PDF
-  // =========================================================
-  if (window.currentSongObj) {
-      
-      // 1. ŠUPLÍK (s formátováním textu)
-      if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
-          // Tady proženeme text analýzy formátovačem, aby fungovaly hvězdičky a odkazy
-          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis.trim());
-          html += `
-              <div class="analysis-container">
-                  <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
-                      <span>💡 Překlad a poznámky (zde)</span>
-                      <span id="analysis-arrow">▼</span>
-                  </div>
-                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
-              </div>
-          `;
-      }
-
+// =========================================================
+// VYKRESLENÍ ŠUPLÍKU A PDF
+// =========================================================
+if (window.currentSongObj) {
+    
+    // 1. ŠUPLÍK (s formátováním textu a pamětí stavu)
+    if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
+        let formattedAnalysis = formatLyrics(window.currentSongObj.analysis.trim());
+        
+        html += `
+            <div class="analysis-container">
+                <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
+                    <span>💡 Překlad a poznámky (zde)</span>
+                    <span id="analysis-arrow">${analysisOpen ? "▲" : "▼"}</span>
+                </div>
+                <div id="analysis-content" class="analysis-content" style="display: ${analysisOpen ? 'block' : 'none'}; font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
+            </div>
+        `;
+    }
       // 2. PDF
       if (window.currentSongObj.hasPDF) {
           html += `
@@ -1805,17 +1809,19 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
   window.applyColumnLayout();
 };
   
-  window.toggleAnalysis = function() {
-      const content = document.getElementById('analysis-content');
-      const arrow = document.getElementById('analysis-arrow');
-      if (content.style.display === "block") {
-          content.style.display = "none";
-          arrow.textContent = "▼";
-      } else {
-          content.style.display = "block";
-          arrow.textContent = "▲";
-      }
-  };
+window.toggleAnalysis = function() {
+    // 1. Přepneme stav v naší paměti (true -> false / false -> true)
+    analysisOpen = !analysisOpen; 
+
+    const content = document.getElementById('analysis-content');
+    const arrow = document.getElementById('analysis-arrow');
+
+    if (content && arrow) {
+        // 2. Nastavíme zobrazení podle naší paměti
+        content.style.display = analysisOpen ? "block" : "none";
+        arrow.textContent = analysisOpen ? "▲" : "▼";
+    }
+};
   
   if (songName) {
     document.title = songName + " - Zpěvník";

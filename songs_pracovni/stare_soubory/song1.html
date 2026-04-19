@@ -85,8 +85,74 @@ body.dark-mode .analysis-header:hover {
     column-rule: 1px dashed #e0c5b0;
   }
 
-  .song-title, .song-subtitle {
+  /* --- SJEDNOCENÁ HLAVIČKA PÍSNĚ --- */
+  /* Toto je nový obal, který Safari zkrotí */
+  .song-header {
     column-span: all;
+    display: block;
+    margin-bottom: 1.2em; /* Mezera mezi hlavičkou a textem písně */
+  }
+
+  /* Skupinové nastavení pro celou hlavičku */
+  .song-title, 
+  .song-subtitle, 
+  .song-author, 
+  .song-category {
+    column-span: none !important; 
+    display: block;
+    line-height: 1.2;
+    margin: 0; 
+  }
+
+  .song-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #143464;
+    padding-bottom: 2px;
+  }
+
+  .song-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    padding-bottom: 4px;
+  }
+
+  .song-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444;
+    padding-bottom: 4px;
+  }
+
+  /* 1. KATEGORIE - upraveno */
+  .song-category {
+    font-size: 15px !important; /* Změněno na PX, aby se to nehlo ani o milimetr */
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: sans-serif;
+    margin: 0 !important; /* Vynulujeme všechno... */
+    margin-bottom: 15px !important; /* ...a necháme jen tuhle pevnou mezeru dole */
+    line-height: 1.2 !important; /* Pevná výška řádku zabrání "nafukování" */
+  }
+
+  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
+  body.dark-mode .song-category {
+    color: #a8a39d !important;
+  }
+  
+  /* Nastavení klikatelného odkazu kategorie */
+  .song-category-link {
+    text-decoration: none;
+  }
+  .song-category-link:hover .song-category {
+    color: #d35400;
+  }
+
+  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
+  body.dark-mode .song-category {
+    color: #a8a39d !important;
   }
 
   .verse-block, .chorus-block, .line {
@@ -346,31 +412,7 @@ body.dark-mode .analysis-header:hover {
   color: #e66c00;
 }
 
-  .song-title {
-    font-weight: bold;
-    color: #143464;
-    display: block;
-    margin-bottom: 0.1em;
-  }
-
-  .song-subtitle {
-    font-size: 1.2rem;
-    color: #666;
-    font-style: italic;
-    margin-top: 0px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-
-.song-author {
-    font-size: 1.1rem;
-    color: #4b5563; /* Středně šedá, o něco tmavší než podtitulek */
-    font-weight: 600; /* Polotučné písmo, ať interpret hezky vynikne */
-    margin-top: -15px; /* Přitáhne autora blíž k nadpisům nad ním */
-    margin-bottom: 20px;
-    text-align: left;
-  }
-
+  
   body.dark-mode .song-author {
     color: #d1d5db !important; /* Světle šedá pro noční režim */
   }
@@ -393,21 +435,25 @@ body.dark-mode .analysis-header:hover {
     display: inline-block;
   }
 
-  .song-capo, .song-tempo, .song-time {
+  /* 2. TROJICE (Capo, Time, Tempo) - upraveno */
+  .song-capo, .song-time, .song-tempo {
     font-family: sans-serif;
-    font-weight: 500; /* OPRAVA: zjemněno z bold */
+    font-size: 14px !important;
+    font-weight: 500;
     color: #555;
     background: #f4f4f4;
     border: 1px solid #dcdcdc;
-    padding: 0 10px;
-    height: 30px;
+    padding: 3px 10px;
     border-radius: 6px;
-    display: inline-flex;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-right: 10px;
-    line-height: 1.2;
-    vertical-align: middle;
+    display: inline-block;
+    
+    /* KLÍČOVÁ ZMĚNA TADY: */
+    margin-top: 0px !important;    /* Žádná mezera nad nimi (tu už drží kategorie) */
+    margin-bottom: 22px !important; /* Mezera pod nimi směrem k textu */
+    margin-right: 6px;
+    
+    line-height: 1.4 !important; /* Vlastní výška řádku, ignoruje kontejner */
+    vertical-align: top;         /* Zarovnání, aby se nepohupovaly */
   }
 
   .song-capo::before {
@@ -540,6 +586,120 @@ audio {
     border-radius: 8px !important;
   }
 
+/* NOVÝ Pískový / Čtecí režim */
+body.sand-mode {
+    background-color: #f4ecd8; /* Pískové pozadí */
+    color: #4a3b32; /* Tmavě hnědý text */
+}
+
+/* =========================================
+   PÍSKOVÝ (SAND) REŽIM - HLAVNÍ BARVY
+========================================= */
+body.sand-mode {
+  background-color: #f4ecd8 !important; /* Pískové pozadí */
+  color: #4a3b32 !important; /* Tmavě hnědý text */
+}
+
+/* --- Texty a nadpisy --- */
+body.sand-mode .lyric,
+body.sand-mode .song-title,
+body.sand-mode .verse-label,
+body.sand-mode .chorus-label,
+body.sand-mode .song-tempo,
+body.sand-mode .song-capo,
+body.sand-mode .song-time,
+body.sand-mode .topbar-title,
+body.sand-mode #topbar-title,
+body.sand-mode .shift-display {
+  color: #4a3b32 !important;
+}
+
+body.sand-mode .song-subtitle {
+  color: #7a6352 !important; /* Utlumená hnědá pro podtitul */
+}
+
+/* --- Akordy --- */
+body.sand-mode .chord {
+  color: #b85d00 !important; /* Tmavší cihlově oranžová pro dobrou čitelnost na písku */
+}
+
+/* --- Horní lišta (Topbar) --- */
+body.sand-mode .song-topbar {
+  background-color: #eaddc5 !important; /* O něco tmavší písková pro oddělení lišty */
+  border-bottom: 1px solid #d4c2a5 !important;
+}
+
+/* --- Tlačítka v liště --- */
+body.sand-mode .topbar-actions button,
+body.sand-mode .song-topbar .back-link,
+body.sand-mode .song-topbar-btn {
+  background-color: #f4ecd8 !important;
+  border: 1px solid #d4c2a5 !important;
+  color: #4a3b32 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+body.sand-mode .topbar-actions button:hover,
+body.sand-mode .song-topbar .back-link:hover {
+  background-color: #eaddc5 !important;
+  border-color: #b85d00 !important;
+  color: #b85d00 !important;
+}
+
+/* --- Informační štítky (Capo, Tempo, Čas) --- */
+body.sand-mode .song-capo,
+body.sand-mode .song-time,
+body.sand-mode .song-tempo {
+  background-color: #eaddc5 !important;
+  color: #4a3b32 !important;
+  border: 1px solid #d4c2a5 !important;
+}
+
+/* --- Refrén a Komentáře --- */
+body.sand-mode .chorus-block {
+  background: rgba(184, 93, 0, 0.05) !important; /* Velmi jemný teplý nádech pod refrénem */
+  border-left: 3px solid #b85d00 !important;
+}
+
+body.sand-mode .comment {
+  background-color: #eaddc5 !important;
+  color: #4a3b32 !important;
+  border-left-color: #b85d00 !important;
+}
+
+/* --- Rozdělení sloupců --- */
+body.sand-mode #output-area {
+  column-rule: 1px dashed #d4c2a5 !important;
+}
+
+/* --- Audio přehrávač --- */
+body.sand-mode audio,
+body.sand-mode #audio-container,
+body.sand-mode .audio-wrapper,
+body.sand-mode .audio-player {
+  background-color: #eaddc5 !important;
+  border: 1px solid #d4c2a5 !important;
+}
+/* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
+
+/* --- Šuplík analýzy --- */
+body.sand-mode .analysis-container {
+  border-color: #d4c2a5 !important;
+  background: #eaddc5 !important;
+}
+body.sand-mode .analysis-header {
+  background-color: #d4c2a5 !important;
+  color: #4a3b32 !important;
+}
+body.sand-mode .analysis-header:hover {
+  background-color: #cbb492 !important;
+}
+body.sand-mode .analysis-content {
+  border-top-color: #d4c2a5 !important;
+  background-color: #f4ecd8 !important;
+  color: #4a3b32 !important;
+}
+
 /* === TMAVÝ REŽIM === */
 body.dark-mode {
     background-color: #33302d !important;
@@ -612,7 +772,8 @@ body.dark-mode {
     column-rule: 1px dashed #5d5650 !important;
   }
 
-  body.dark-mode .song-capo,
+/* Tvůj Dark Mode - ponechán tak, jak ho máš, je skvělý */
+body.dark-mode .song-capo,
   body.dark-mode .song-time,
   body.dark-mode .song-tempo {
     background-color: #403c38 !important;
@@ -621,6 +782,7 @@ body.dark-mode {
     box-shadow: none !important;
   }
 
+  /* Toto je důležité pro ty ikonky/symboly před textem */
   body.dark-mode .song-capo::before,
   body.dark-mode .song-time::before,
   body.dark-mode .song-tempo::before {
@@ -774,35 +936,344 @@ body.dark-mode {
       margin-right: auto !important; 
     }
   }
+
+  /* Styl pro skrytí akordů */
+body.hide-chords .chord, 
+body.hide-chords .ch {
+  display: none !important;
+}
+
+/* Volitelně: Pokud se po skrytí akordů řádky moc nalepí na sebe, 
+   můžeme textu trochu přidat na výšce */
+body.hide-chords .lyric-line {
+  line-height: 1.8;
+}
+
+/* --- DEFINICE BAREV (Proměnné) --- */
+:root {
+  /* Výchozí barvy (Tmavý režim) */
+  --menu-bg: #2c2c2c;
+  --menu-border: #444;
+  --menu-item-bg: #3d3d3d;
+  --menu-text: #ffffff;
+  --menu-subtext: #888888;
+  --menu-transpose-bg: #1a1a1a;
+  --menu-accent: #ffd700; /* Zlatá pro nulu */
+}
+
+/* Pokud má body třídu pro světlý režim (uprav název třídy podle tvého kódu) */
+body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně používáš */
+  --menu-bg: #ffffff;
+  --menu-border: #cccccc;
+  --menu-item-bg: #f0f0f0;
+  --menu-text: #222222;
+  --menu-subtext: #666666;
+  --menu-transpose-bg: #e8e8e8;
+  --menu-accent: #d4af37; /* Trochu tmavší zlatá pro bílý podklad */
+}
+
+/* --- STYL MENU --- */
+.more-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0px;
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 180px;
+  padding: 12px;
+  color: var(--menu-text);
+}
+
+.more-menu-dropdown.is-open {
+  display: block;
+}
+
+.menu-label {
+  display: block;
+  font-size: 10px;
+  color: var(--menu-subtext);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.transpose-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--menu-transpose-bg);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.menu-btn, .grid-btn {
+  background: var(--menu-item-bg);
+  border: none;
+  color: var(--menu-text);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-btn {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+.grid-btn {
+  aspect-ratio: 1 / 1;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.menu-divider {
+  border: 0;
+  border-top: 1px solid var(--menu-border);
+  margin: 12px 0;
+}
+
+.shift-display-inline {
+  color: var(--menu-accent);
+  font-weight: bold;
+  font-size: 16px;
+}
+/* --- OPRAVA PRO MOBILY (Pod 600px) --- */
+@media (max-width: 600px) {
+  .btn-columns {
+    display: none !important;
+  }
+
+  .menu-icons-grid {
+    display: flex !important;
+    /* Rozmístí tlačítka na okraje */
+    justify-content: space-between; 
+    /* Toto odsazení zajistí, že tlačítka budou přesně pod těmi horními */
+    padding: 10px 15px 5px 15px; 
+  }
+
+  .menu-icons-grid .grid-btn {
+    /* Nastavíme šířku stejnou, jako mají tlačítka transpozice (asi 45-50px) */
+    width: 45px; 
+    height: 45px;
+    flex-grow: 0;
+  }
+}
+
+/* Bod 3: Skrytí transpozice, když jsou akordy vypnuté */
+body.hide-chords .transpose-section {
+  display: none;
+}
+@media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+}
+
+/* Neústupný styl pro široké tlačítko nahrávek */
+.icon-btn.audio-btn {
+    width: auto !important;
+    min-width: max-content !important; 
+    padding: 0 12px !important; /* Prostor po stranách textu */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important; /* Zakáže textu, aby se zalamoval nebo přetékal přes okraj */
+    flex: 0 0 auto !important; /* Absolutní zákaz smrskávání tlačítka! */
+}
+
+/* Na mobilech text schováme a tlačítko vrátíme do tvaru čtverečku */
+@media (max-width: 500px) {
+    .icon-btn.audio-btn .audio-text {
+        display: none !important;
+    }
+    .icon-btn.audio-btn {
+        min-width: 44px !important; /* Zpět na zhruba šířku ostatních tlačítek */
+        padding: 0 !important;
+    }
+}
+
+/* Roztáhneme vnitřní část lišty na celou šířku monitoru */
+.song-topbar-inner {
+    max-width: none !important; /* Zrušíme omezení šířky (to je ten hlavní viník) */
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* Základní zarovnání doleva */
+    padding: 0 30px !important; /* Mezera od levého a pravého okraje monitoru */
+    box-sizing: border-box !important;
+}
+
+/* Trik pro rozdělení: Název písničky odtlačí všechno napravo od sebe až na konec */
+.topbar-title {
+    margin-right: auto !important; /* Tímto název písničky „vyplní“ veškeré volné místo uprostřed */
+    margin-left: 15px !important;  /* Mezera mezi šipkou zpět a názvem */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Kdyby byl název moc dlouhý, udělá tečky */
+}
+
+/* Na mobilech lištu trochu víc „přimáčkneme“ k okrajům, ať máme místo */
+@media (max-width: 768px) {
+    .song-topbar-inner {
+        padding: 0 10px !important;
+    }
+    .topbar-title {
+        margin-left: 8px !important;
+    }
+}
+
+/* --- Sladění nabídky nahrávek s tmavým a kávovým režimem (OPRAVENO) --- */
+
+/* --- Tmavý režim (Srpek) --- */
+/* 1. Hlavní obal (neviditelný, splývá s lištou) */
+body.dark-mode .audio-drawer {
+    background-color: #1c1a19 !important; /* Barva hlavní lišty v tmavém režimu */
+    border: none !important;              /* Zrušíme ten ošklivý špičatý rámeček */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important; /* Přidáme stín, aby nabídka nesplynula s textem dole */
+    border-radius: 0 0 12px 12px !important; /* Lehce zakulatíme spodní rohy obalu */
+}
+/* 2. Samotná zakulacená tlačítka */
+body.dark-mode #audio-list > * {
+    background-color: #333333 !important; /* Tlačítka trochu světlejší, ať vyniknou */
+    color: #e0e0e0 !important;            
+    border: 1px solid #444444 !important; 
+}
+/* Ikonky uvnitř tlačítek */
+body.dark-mode #audio-list > * > * {
+    color: #e0e0e0 !important;
+}
+
+
+/* --- Režim Kafe (Pískový) --- */
+/* 1. Hlavní obal (neviditelný, splývá s lištou) */
+body.sand-mode .audio-drawer {
+    background-color: #eaddc5 !important; /* Odhad barvy hlavní lišty v režimu kafe */
+    border: none !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0 0 12px 12px !important;
+}
+/* 2. Samotná zakulacená tlačítka */
+body.sand-mode #audio-list > * {
+    background-color: #e8dfce !important; 
+    color: #333333 !important;            
+    border: 1px solid #d4c8b3 !important; 
+}
+/* Ikonky uvnitř tlačítek */
+body.sand-mode #audio-list > * > * {
+    color: #333333 !important;
+}
+
+/* --- 1. Sjednocení stínu a rohů pro denní režim (výchozí stav) --- */
+.audio-drawer {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0 0 12px 12px !important;
+    border: none !important; /* Pokud tam byl nějaký ostrý rámeček, zrušíme ho */
+}
+
+/* --- 2. Zvýraznění HRAJÍCÍ (aktivní) nahrávky pro všechny režimy --- */
+
+/* Denní režim (nahrazuje původní zelenou barvu) */
+#audio-list > .is-playing {
+    background-color: #ebdcc9 !important; /* Jemná zemitá/béžová */
+    border-color: #d0bba0 !important;     /* Tmavší béžový rámeček */
+}
+/* Změna barvy textu a ikonky uvnitř hrající nahrávky v denním režimu */
+#audio-list > .is-playing,
+#audio-list > .is-playing > * {
+    color: #4a3c31 !important; /* Tmavě hnědá, ladí s pozadím */
+    font-weight: bold !important;
+}
+
+/* Tmavý režim (Srpek) */
+body.dark-mode #audio-list > .is-playing {
+    background-color: #4d4d4d !important; /* Světlejší šedá, aby vystoupila z menu */
+    border-color: #777777 !important;
+}
+body.dark-mode #audio-list > .is-playing,
+body.dark-mode #audio-list > .is-playing > * {
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* Režim Kafe (Pískový) */
+body.sand-mode #audio-list > .is-playing {
+    background-color: #d4c2a5 !important; /* Tmavší "oříšková" káva */
+    border-color: #b8a280 !important;
+}
+body.sand-mode #audio-list > .is-playing,
+body.sand-mode #audio-list > .is-playing > * {
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+
+
 </style>
 </head>
 <body>
-<div class="song-topbar" id="song-topbar">
-  <div class="song-topbar-inner">
-    <a class="back-link" href="index.html" aria-label="Zpět na seznam">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <line x1="20" y1="12" x2="4" y2="12"></line>
-        <polyline points="10 18 4 12 10 6"></polyline>
-      </svg>
-    </a>    
-    <div class="topbar-title" id="topbar-title">Načítám…</div>
-    <div class="topbar-actions">
-      <button class="icon-btn" type="button" id="audio-toggle" aria-label="Přehrát (zobrazit nahrávky)">►</button>      <button class="icon-btn" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout počet sloupců">1 ⫿</button>
-      <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
-      <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
-      <button class="song-topbar-btn" type="button" onclick="toggleDarkMode()" title="Přepnout tmavý režim">🌙</button>
-      <span class="transpose-group" role="group" aria-label="Transpozice akordů (půltóny)">
-        <button class="icon-btn" type="button" onclick="changeShift(-1)" title="O půl tónu dolů" aria-label="Akordy o půl tónu dolů">♭</button>
-        <span class="shift-display" id="shift-display" title="Posun v půltónech">0</span>
-        <button class="icon-btn" type="button" onclick="changeShift(1)" title="O půl tónu nahoru" aria-label="Akordy o půl tónu nahoru">♯</button>
-      </span>
+  <div class="song-topbar" id="song-topbar">
+    <div class="song-topbar-inner">
+      <a class="back-link" href="index.html" aria-label="Zpět na seznam">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="20" y1="12" x2="4" y2="12"></line>
+          <polyline points="10 18 4 12 10 6"></polyline>
+        </svg>
+      </a>    
+      
+      <div class="topbar-title" id="topbar-title">Načítám…</div>
+      
+      <div class="topbar-actions">
+        <button class="icon-btn audio-btn" type="button" id="audio-toggle" aria-label="Nahrávky">
+          🐦<span class="audio-text">Nahrávky</span>
+        </button>        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
+        <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
+        
+        <button class="icon-btn desktop-only" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout sloupce">◫</button>
+        
+        <button class="icon-btn" type="button" onclick="toggleDarkMode()" title="Přepnout vzhled">🌙</button>
+        <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
+    
+        <div id="more-menu-dropdown" class="more-menu-dropdown">
+          
+          <div style="text-align: center; padding-bottom: 10px;">
+            <span class="menu-label" style="display: block; margin-bottom: 5px;">Akordy</span>
+            <button class="grid-btn" id="toggle-chords" title="Zobrazit/skrýt akordy" style="margin: 0 auto;">C</button>
+          </div>
+    
+          <div id="transpose-section" class="transpose-section">
+            <hr class="menu-divider" style="margin: 5px 0 10px 0;">
+            <div class="menu-group" style="text-align: center;">
+              <span class="menu-label">Transpozice</span>
+              <div class="transpose-row" style="justify-content: center; margin-top: 5px;">
+                <button class="menu-btn" onclick="changeShift(-1)">♭</button>
+                <span class="shift-display-inline" id="shift-display" style="min-width: 24px; text-align: center; display: inline-block;">0</span>
+                <button class="menu-btn" onclick="changeShift(1)">♯</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+    </div>
+  
+    <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
+      <div class="audio-list" id="audio-list"></div>
+      <audio id="audio-player" controls></audio>
     </div>
   </div>
-  <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
-    <div class="audio-list" id="audio-list"></div>
-    <audio id="audio-player" controls></audio>
-  </div>
-</div>
 <div id="page">
   <div id="loading">Načítám písničku…</div>
   <div id="error">Písničku se nepodařilo načíst. Zkontroluj URL.</div>
@@ -818,16 +1289,129 @@ body.dark-mode {
   (function() {
     window.currentSongObj = null;
   
-  // Tmavý režim
-  if (localStorage.getItem('samhita_dark') === 'true') {
-    document.body.classList.add('dark-mode');
-  }
-  
-  window.toggleDarkMode = function() {
-    const isDark = document.body.classList.toggle('dark-mode'); 
-    localStorage.setItem('samhita_dark', isDark);
+  // --- Nový systém 3 režimů ---
+  // --- Nový systém 3 režimů ---
+  window.setTheme = function(theme) {
+    document.body.classList.remove('dark-mode', 'sand-mode');
+    
+    // Univerzální hledání tlačítka podle jeho akce (funguje, i když nemá speciální ID)
+    const themeBtn = document.querySelector('button[onclick*="toggleDarkMode"]');
+    
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeBtn) themeBtn.textContent = '☕'; // Z tmavého do pískového
+    } else if (theme === 'sand') {
+      document.body.classList.add('sand-mode');
+      if (themeBtn) themeBtn.textContent = '☀️'; // Z pískového do světlého
+    } else {
+      // Světlý režim
+      if (themeBtn) themeBtn.textContent = '🌙'; // Ze světlého do tmy
+    }
+    
+    localStorage.setItem('samhita_theme', theme);
   };
-  
+
+  // Zpětná kompatibilita pro staré uložení
+  if (localStorage.getItem('samhita_dark') !== null) {
+    if (localStorage.getItem('samhita_dark') === 'true') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+    localStorage.removeItem('samhita_dark');
+  } else {
+    const savedTheme = localStorage.getItem('samhita_theme') || 'light';
+    setTheme(savedTheme);
+  }
+
+  // Přepínání na tlačítko
+  window.toggleDarkMode = function() {
+    const currentTheme = localStorage.getItem('samhita_theme') || 'light';
+    if (currentTheme === 'light') {
+      setTheme('dark');
+    } else if (currentTheme === 'dark') {
+      setTheme('sand');
+    } else {
+      setTheme('light');
+    }
+  };
+  // --- Konec nového systému ---
+
+// === PREVENCE VYPNUTÍ OBRAZOVKY - HYBRIDNÍ ŘEŠENÍ ===
+let wakeLock = null;
+let noSleep = null;
+let wakeLockInitialized = false;
+
+// 1. Moderní Wake Lock API (nejlepší řešení)
+async function enableWakeLock() {
+    if ('wakeLock' in navigator) {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('✅ Wake Lock API aktivováno');
+            
+            wakeLock.addEventListener('release', () => {
+                console.log('⚠️ Wake Lock uvolněno');
+            });
+            
+            return true;
+        } catch (err) {
+            console.log('❌ Wake Lock API selhalo:', err.message);
+            return false;
+        }
+    }
+    console.log('ℹ️ Wake Lock API není podporováno');
+    return false;
+}
+
+// 2. Fallback na NoSleep.js
+function enableNoSleepFallback() {
+    try {
+        if (!noSleep) {
+            noSleep = new NoSleep();
+        }
+        noSleep.enable();
+        console.log('✅ NoSleep.js aktivováno (fallback)');
+    } catch (err) {
+        console.log('❌ NoSleep.js selhalo:', err.message);
+    }
+}
+
+// 3. Aktivace při prvním dotyku/kliknutí
+async function preventScreenSleep() {
+    if (wakeLockInitialized) return;
+    wakeLockInitialized = true;
+    
+    const wakeLockSuccess = await enableWakeLock();
+    
+    if (!wakeLockSuccess) {
+        enableNoSleepFallback();
+    }
+    
+    console.log('🔒 Prevence vypnutí obrazovky inicializována');
+    
+    // Odstranit posluchače
+    document.removeEventListener('click', preventScreenSleep);
+    document.removeEventListener('touchstart', preventScreenSleep);
+}
+
+// 4. Znovu aktivovat Wake Lock po návratu na stránku
+document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible' && wakeLockInitialized) {
+        if ('wakeLock' in navigator && wakeLock !== null) {
+            try {
+                wakeLock = await navigator.wakeLock.request('screen');
+                console.log('🔄 Wake Lock reaktivováno po návratu');
+            } catch (err) {
+                console.log('⚠️ Reaktivace selhala:', err.message);
+            }
+        }
+    }
+});
+
+// 5. Naslouchat na první interakci
+document.addEventListener('click', preventScreenSleep, { once: true });
+document.addEventListener('touchstart', preventScreenSleep, { once: true, passive: true });
+
     const SCROLL_FRACTION = 0.75;
     const topbarTitleEl = document.getElementById('topbar-title');
     const shiftDisplayEl = document.getElementById('shift-display');
@@ -905,10 +1489,16 @@ body.dark-mode {
     };
   
     window.toggleColumns = () => {
-      currentCols = currentCols >= 6 ? 1 : currentCols + 1;
-      localStorage.setItem('samhita_columns', currentCols); 
-      window.applyColumnLayout();
-    };
+    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+    localStorage.setItem('samhita_columns', currentCols); 
+    window.applyColumnLayout();
+
+    // --- DOPLNĚNÍ ZDE ---
+    const colBtn = document.getElementById('col-toggle-btn');
+    if (colBtn) {
+        colBtn.innerText = `${currentCols} ⫿`;
+    }
+};
     // --------------------------------------------------------
   
     // --- OPRAVA RACE CONDITION A CACHOVÁNÍ ---
@@ -1008,12 +1598,19 @@ body.dark-mode {
       });
     }
   
-  function formatLyrics(text) {
+    function formatLyrics(text) {
     if (!text) return '';
+
+    // --- TENTO ŘÁDEK PŘIDEJ: Odstraní tagy {audio: ...} z viditelného textu ---
+    text = text.replace(/\{audio:.*?\}/gi, '');
+
+    // Zbytek tvého kódu zůstává stejný
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+    
     const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
     text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
+    
     const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
     text = text.replace(plainUrlPattern, (match, url) => {
       if (url) {
@@ -1021,8 +1618,9 @@ body.dark-mode {
       }
       return match;
     });
+    
     return text;
-  }
+}
   
   window.renderSong = function() {
   const app = document.getElementById('chord-app');
@@ -1063,6 +1661,25 @@ body.dark-mode {
     if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
       let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
       if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
+      continue;
+    }
+
+    /* --- NOVÉ: Zpracování autora (z předchozího kroku) --- */
+    if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
+      let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
+      if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
+      continue;
+    }
+
+    /* --- NOVÉ: Skrytí tagů (zpracovává je jen generátor JSONu) --- */
+    if (trimmed.toLowerCase().startsWith('{tag:') || trimmed.toLowerCase().startsWith('{tags:')) {
+      continue;
+    }
+
+    /* --- NOVÉ: Zpracování kategorie --- */
+    if (trimmed.toLowerCase().startsWith('{category:') || trimmed.toLowerCase().startsWith('{cat:')) {
+      let catMatch = line.match(/\{(?:category|cat):\s*(.*?)\}/i);
+      if (catMatch) html += `<div class="song-category">${catMatch[1]}</div>`;
       continue;
     }
 
@@ -1146,16 +1763,14 @@ body.dark-mode {
       // 1. ŠUPLÍK (s formátováním textu)
       if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
           // Tady proženeme text analýzy formátovačem, aby fungovaly hvězdičky a odkazy
-          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis);
+          let formattedAnalysis = formatLyrics(window.currentSongObj.analysis.trim());
           html += `
               <div class="analysis-container">
                   <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
                       <span>💡 Překlad a poznámky (zde)</span>
                       <span id="analysis-arrow">▼</span>
                   </div>
-                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">
-${formattedAnalysis}
-                  </div>
+                  <div id="analysis-content" class="analysis-content" style="font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
               </div>
           `;
       }
@@ -1212,6 +1827,65 @@ ${formattedAnalysis}
   }
   
   })();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. NASTAVENÍ SLOUPCŮ (Ošetření poskočení textu na mobilu)
+    const isMobile = window.innerWidth < 600;
+    if (isMobile) {
+        // Na mobilu vždy vynutíme 1 sloupec
+        currentCols = 1;
+    } else {
+        // Na PC/Tabletu načteme z paměti, nebo dáme 1 jako výchozí
+        currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
+    }
+
+    // Aplikujeme rozvržení a zaktualizujeme text v tlačítku menu
+    if (typeof window.applyColumnLayout === 'function') {
+        window.applyColumnLayout();
+    }
+    const colBtn = document.getElementById('col-toggle-btn');
+    if (colBtn) {
+        colBtn.innerText = `${currentCols} ⫿`;
+    }
+
+    // 2. AKORDY (Vypínání/Zapínání)
+    const toggleBtn = document.getElementById('toggle-chords');
+    if (toggleBtn) {
+        // Zkontrolujeme stav z paměti
+        const chordsHidden = localStorage.getItem('chords-hidden') === 'true';
+        if (chordsHidden) {
+            document.body.classList.add('hide-chords');
+            toggleBtn.style.opacity = "0.5";
+            toggleBtn.style.background = "var(--menu-transpose-bg)";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = document.body.classList.toggle('hide-chords');
+            localStorage.setItem('chords-hidden', isHidden);
+            
+            // Vizuální zpětná vazba pro tlačítko v menu
+            toggleBtn.style.opacity = isHidden ? "0.5" : "1";
+            toggleBtn.style.background = isHidden ? "var(--menu-transpose-bg)" : "var(--menu-item-bg)";
+        });
+    }
+
+    // 3. OVLÁDÁNÍ MENU (Šuplík)
+    const menuBtn = document.getElementById('more-menu-btn');
+    const menuDropdown = document.getElementById('more-menu-dropdown');
+
+    if (menuBtn && menuDropdown) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuDropdown.classList.toggle('is-open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuDropdown.contains(e.target)) {
+                menuDropdown.classList.remove('is-open');
+            }
+        });
+    }
+});
   </script>
 </body>
 </html>
