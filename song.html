@@ -405,7 +405,7 @@ body.dark-mode .analysis-header:hover {
     color: #ff7800;
     text-decoration: underline;
     word-break: break-all;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 .inline-link:hover {
@@ -482,6 +482,8 @@ body.dark-mode .analysis-header:hover {
     text-transform: uppercase;
     margin-bottom: 8px;
     letter-spacing: 1px;
+    border-bottom: 1.5px solid #245a2f;
+    display: inline-block;
   }
 
   .chord-stack {
@@ -1005,6 +1007,24 @@ body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně p
 
 .more-menu-dropdown.is-open {
   display: block;
+}
+
+/* --- ÚPRAVA PRO REŽIM KAFE --- */
+body.sand-mode {
+  --menu-bg: #f4ecd8;           /* Teplá béžová jako pozadí stránky */
+  --menu-border: #d3c4a1;       /* Tmavší béžová pro okraje */
+  --menu-item-bg: #e8dfc4;      /* O kousek tmavší pro položky/tlačítka */
+  --menu-text: #5d4037;         /* Tmavě hnědá místo černé */
+  --menu-subtext: #8d6e63;      /* Světlejší hnědá pro doplňky */
+  --menu-transpose-bg: #dccfb0; /* Pozadí pro tlačítka transpozice */
+  --menu-accent: #a0522d;       /* "Sienna" hnědá jako akcentní barva */
+}
+
+body.coffee-mode .more-menu-dropdown button,
+body.coffee-mode .transpose-buttons div {
+  background-color: var(--menu-item-bg) !important;
+  color: var(--menu-text) !important;
+  border-color: var(--menu-border) !important;
 }
 
 .menu-label {

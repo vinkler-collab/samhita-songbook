@@ -26,12 +26,12 @@
 [C]jo dā[G]yaku phala [.]cā[Am]ri|
 {eov}
 #
-{sov: ↑ Doha 2}
+{soc: ↑ Doha 2}
 [C]buddhi[.]hīna tanu [G]jāni[.]ke
 [C]sumirauṁ pa[F]vana-ku[C]mā[G]ra|
 [Am]bala budhi [F]vidyā [G]dehu mo[Am]hiṁ
 [C]harahu ka[G]leśa vi[.]kā[Am]ra ||
-{eov}
+{eoc}
 #
 {sov: ↓ 1-2}
 [Am]jaya hanu[F]māna [G]jñāna guna [Am]sāgara|
@@ -40,12 +40,12 @@
 [C]aṁjani-[G]putra pa[.]vanasuta [Am]nāmā ||2||
 {eov}
 #
-{sov: ↑ 3-4}
+{soc: ↑ 3-4}
 [C]mahā[.]vīra vi[G]krama vaja[.]raṁgī|
 [C]kumati ni[F]vāra su[C]mati ke [G]saṁgī ||3||
 [Am]kaṁcana [F]varana vi[G]rāja su[Am]besā|
 [C]kānana [G]kuṁḍala [.]kuṁcita [Am]kesā ||4||
-{eov}
+{eoc}
 #
 {sov: ↓ 5-6}
 [Am]hātha [F]vajra aura [G]dhvajā vi[Am]rājai|
@@ -54,7 +54,7 @@
 [C]teja pra[G]tāpa ma[.]hā jaga [Am]vaṁdana ||6||
 {eov}
 #
-{sov: ↑ 7-8}
+{soc: ↑ 7-8}
 [C]vidyā[.]vāna gu[G]nī ati [.]cātura|
 [C]rāma k[F]āja kari[C]be ko [G]ātura ||7||
 [Am]prabhu ca[F]ritra suni[G]be ko [Am]rasiyā|
@@ -68,7 +68,7 @@
 [C]rāma[G]caṁdra ke [.]kāja saṁ[Am]vāre ||10||
 {eov}
 #
-{sov: ↑ 11-12}
+{soc: ↑ 11-12}
 [C]lāya sa[.]jīvana [G]lakhana ji[.]yāye|
 [C]śrīraghu[F]vīra hara[C]ṣi ura [G]lāye ||11||
 [Am]raghupati [F]kīnhī [G]bahuta va[Am]rāī|
@@ -82,7 +82,7 @@
 [C]nārada [G]śārada [.]sahita a[Am]hīsā ||14||
 {eov}
 #
-{sov: ↑ 15-16}
+{soc: ↑ 15-16}
 [C]yama ku[.]bera diga[G]pāla ja[.]hāṁ te|
 [C]kavi ko[F]vida kahi [C]sake ka[G]hāṁ te ||15||
 [Am]tuma upa[F]kāra su[G]grīvahiṁ [Am]kīnhā|
@@ -96,7 +96,7 @@
 [C]līlyo [G]tāhi ma[.]dhura phala [Am]jānū ||18||
 {eov}
 #
-{sov: ↑ 19-20}
+{soc: ↑ 19-20}
 [C]prabhu m[.]udrikā [G]meli mukha [.]māhīṁ|
 [C]jaladhi [F]lāṁghi gaye [C]acaraja [G]nāhīṁ ||19||
 [Am]durgama [F]kāja ja[G]gata ke [Am]jete|
@@ -110,7 +110,7 @@
 [C]tuma ra[G]cchaka kā[.]hū ko [Am]ḍara nā ||22||
 {eov}
 #
-{sov: ↑ 23-24}
+{soc: ↑ 23-24}
 [C]āpana [.]teja sam[G]hāro [.]āpai|
 [C]tīnoṁ [F]loka h[C]āṁka teṁ [G]kāṁpai ||23||
 [Am]bhūta pi[F]sāca ni[G]kaṭa nahiṁ [Am]āvai|
@@ -124,7 +124,7 @@
 [C]mana krama [G]bacana dh[.]yāna jo [Am]lāvai ||26||
 {eov}
 #
-{sov: ↑ 27-28}
+{soc: ↑ 27-28}
 [C]saba para [.]rāma ta[G]pasvī [.]rājā|
 [C]tina ke [F]kāja sa[C]kala tuma [G]sājā ||27||
 [Am]aura ma[F]noratha [G]jo koi [Am]lāvai|
@@ -138,7 +138,7 @@
 [C]asura ni[G]kaṁdana [.]rāma du[Am]lāre ||30||
 {eov}
 #
-{sov: ↑ 31-32}
+{soc: ↑ 31-32}
 [C]aṣṭa s[.]iddhi nau [G]nidhi ke [.]dātā|
 [C]asa vara [F]dīna j[C]ānakī [G]mātā ||31||
 [Am]rāma ra[F]sāyana [G]tumhare [Am]pāsā|
@@ -152,7 +152,7 @@
 [C]jahāṁ [G]janma hari-[.]bhakta ka[Am]hāī ||34||
 {eov}
 #
-{sov: ↑ 35-36}
+{soc: ↑ 35-36}
 [C]aura [.]devatā cit[G]ta na [.]dharaī|
 [C]hanumata [F]seī [C]sarba sukha [G]karaī ||35||
 [Am]saṁkaṭa ka[F]ṭai mi[G]ṭai saba [Am]pīrā|
@@ -166,7 +166,7 @@
 [C]chūṭahi [G]vaṁdi ma[.]hā sukha [Am]hoī ||38||
 {eov}
 #
-{sov: ↑ 39-40}
+{soc: ↑ 39-40}
 [C]jo yaha [.]paṛhai hanu[G]māna ca[.]līsā|
 [C]hoya s[F]iddhi sā[C]khī gau[G]rīsā ||39||
 [Am]tulasī[F]dāsa sa[G]dā hari [Am]cerā|
@@ -180,7 +180,7 @@
 [C]hṛdaya va[G]sahu sura [.]bhū[Am]pa ||
 {eov}
 #
-{sov: ↑ Maṁgala}
+{soc: ↑ Maṁgala}
 [C]maṁgala [.]mūratī [G]māruta [.]naṁdana
 [C]sakala a[F]maṁgala [C]mūla ni[G]kaṁdana
 [Am]maṁgala [F]mūratī [G]māruta [Am]naṁdana
@@ -194,7 +194,7 @@
 [C]śrī rām [G]jai  rām  [.]jai  jai  [Am]rām
 {eov}
 #
-{sov: ↑ 3x}
+{soc: ↑ 3x}
 sitá [C]rām sitá [.]rām sitá [G]rām sitá [.]rām
 sitá [C]rām sitá [F]rām sitá [C]rām sitá [G]rām
 [Am]śrī rām [F]jai  rām  [G]jai  jai  [Am]rām
