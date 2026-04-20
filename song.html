@@ -1235,6 +1235,50 @@ body.sand-mode #audio-list > .is-playing > * {
     font-weight: bold !important;
 }
 
+/* Barvy IAST ve slovníčku v šuplíku */
+/* 1. Výchozí barva (Světlý režim) - např. elegantní vínová */
+.analysis-container strong, 
+.analysis-container b {
+  color: #ac2800; 
+  font-weight: normal;
+}
+
+/* 2. Tmavý režim - světlejší pastelová barva, aby byla čitelná na tmavém pozadí */
+/* Změň '.theme-dark' na třídu, kterou tvůj web skutečně používá pro tmavý režim */
+body.dark-mode .analysis-container strong,
+body.dark-mode .analysis-container b {
+  color: #ff9da6; 
+  font-weight: normal;
+}
+
+/* 3. Sépiový režim - např. tmavší rezavá/hnědá */
+/* Změň '.theme-sepia' na třídu pro sépiový režim */
+body.sand-mode .analysis-container strong,
+body.sand-mode .analysis-container b {
+  color: #8b4513; 
+  font-weight: normal;
+}
+
+/* Zacílení na vše v šuplíku analýzy */
+.analysis-container p, 
+.analysis-container div {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important; /* Velmi malá mezera mezi odstavci */
+    line-height: 1.4 !important;  /* Zmenší i mezery mezi řádky v rámci jednoho textu */
+}
+
+/* Oprava pro nadpisy uvnitř analýzy */
+.analysis-container h3 {
+    margin-top: 10px !important;    /* Mezera NAD Slokou/Dohou */
+    margin-bottom: -20px !important;  /* Mezera POD ní - teď už nemusíš dávat minusové hodnoty */
+    padding: 0 !important;
+}
+
+.analysis-container .chytramezera {
+    display: block;
+    height: 15px; /* Tady si nastav velikost podle sebe - zkus třeba 8px, 12px nebo 15px */
+    margin: 0 !important;
+}
 
 </style>
 </head>
@@ -1629,6 +1673,10 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
     // Zbytek tvého kódu zůstává stejný
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+    /* Nový řádek pro nadpisy ### */
+    text = text.replace(/^###\s+(.*)/gm, '<h3>$1</h3>');
+    /* NOVÝ ŘÁDEK: Promění prázdné řádky na kontrolovatelnou mezeru */
+    text = text.replace(/\r?\n\s*\r?\n/g, '<div class="chytramezera"></div>');
     
     const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
     text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
@@ -1789,7 +1837,7 @@ if (window.currentSongObj) {
         html += `
             <div class="analysis-container">
                 <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
-                    <span>💡 Překlad a poznámky (zde)</span>
+                    <span>🔆 Překlad a poznámky</span>
                     <span id="analysis-arrow">${analysisOpen ? "▲" : "▼"}</span>
                 </div>
                 <div id="analysis-content" class="analysis-content" style="display: ${analysisOpen ? 'block' : 'none'}; font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
@@ -1801,7 +1849,7 @@ if (window.currentSongObj) {
           html += `
               <a href="pdfs/${window.currentSongObj.file}.pdf" class="pdf-link">
                   <div class="pdf-link-inner" style="font-size: ${currentFontSize * 0.8}px;">
-                      <span>📄 Překlad a poznámky (PDF)</span>
+                      <span>🔆 PDF</span>
                       <span style="opacity: 0.5;">▶</span>
                   </div>
               </a>

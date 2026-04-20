@@ -123,7 +123,6 @@ Rama |[Ami]Rama Ha[G]reee Ha|[F]re|
 {eov}
 ##########################################
 {start_of_analysis}
-{start_of_analysis}
 rādhe kiśorī dayā karo
 śyāmā lāḍalī dayā karo
 
@@ -158,4 +157,8 @@ yahi āsa te dvār paryo
 __Jednoho dne se snad nade mnou smiluješ, ó Šjámo. S touto nadějí jsem padl k tvým dveřím.__
 
 • **kabahu** = někdy, snad jednou; • **to** = tak, pak (zdůraznění); • **karuṇā** = soucit, milosrdenství; • **karogī** = uděláš, projevíš; • **śyāmā** = ó Šjámo; • **yahi** = právě tato; • **āsa** = naděje; • **te** = z (z této naděje); • **dvār** = dveře, práh; • **paryo** = padl jsem, ležím;
+
+<iframe width="100%" height="315" src="//www.youtube.com/embed/dnph3MpSwIA?si=pmbQf5yYqwYJ5_WZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+<iframe width="100%" height="315" src="//www.youtube.com/embed/HkoxTXHH5yY?si=V4y9_I5UfFa78LRr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 {end_of_analysis}

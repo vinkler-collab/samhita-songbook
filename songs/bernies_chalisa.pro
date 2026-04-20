@@ -202,7 +202,7 @@ sitá [C]rām sitá [F]rām sitá [C]rām sitá [G]rām
 {eov}
 ##########################################
 {start_of_analysis}
-**Doha 1a**
+### Doha 1a
 śrīguru carana saroja raja
 nija manu mukuru sudhāri
 
@@ -212,17 +212,17 @@ nija manu mukuru sudhāri
 __Prachem z lotosových nohou gurua__
 __čistím zrcadlo své mysli.__
 
-**Doha 1b**
+### Doha 1b
 baranauṁ raghuvara vimala jasu
 jo dāyaku phala cāri
 
 • **baranauṁ** = recitace; • **raghuvara** = nejlepší-z-rodu-Raghu; • **vimala** = bez-poskvrny; • **jasu** = útočiště
 • **jo** = jenž; • **dāyaku** = dává; • **phala** = plody; • **cāri** = čtyři
 
-**Opěvuji útočiště u Rámy, jenž je bez poskvrny**
-**a obdarovává čtveřicí plodů.**
+__Opěvuji útočiště u Rámy, jenž je bez poskvrny__
+__a obdarovává čtveřicí plodů.__
 
-**Doha 2a**
+### Doha 2a
 buddhihīna tanu jānike
 sumirauṁ pavana kumāra
 
@@ -232,7 +232,7 @@ sumirauṁ pavana kumāra
 __Vědom si své nerozumné přirozenosti,__
 __připomínám si syna Větru, Hanumána.__
 
-**Doha 2b**
+### Doha 2b
 bala budhi vidyā dehu mohiṁ
 harahu kaleśa vikāra
 
@@ -242,7 +242,7 @@ harahu kaleśa vikāra
 __Kéž mi dá sílu, intelekt a poznání__
 __a odstraní nemoci těla i mysli.__
 
-**Chaupai 1**
+### Chaupai 1
 jaya hanumāna jñāna guna sāgara
 jaya kapīśa tihuṁ loka ujāgara
 
@@ -252,7 +252,7 @@ jaya kapīśa tihuṁ loka ujāgara
 __Vítězství Hanumánovi, oceánu poznání a kvalit.__
 __Vítězství pánu opic, který ozařuje tři světy. (1)__
 
-**Chaupai 2**
+### Chaupai 2
 rāma dūta atulita bala dhāmā
 aṁjani putra pavanasuta nāmā
 
@@ -262,7 +262,7 @@ aṁjani putra pavanasuta nāmā
 __Je poslem Rámy a příbytkem s ničím nesrovnatelné síly.__
 __Je synem Andžaní, pojmenovaný jako syn Větru. (2)__
 
-**Chaupai 3**
+### Chaupai 3
 mahāvīra vikrama vajaraṁgī
 kumati nivāra sumati ke saṁgī
 
@@ -272,7 +272,7 @@ kumati nivāra sumati ke saṁgī
 __Je velkým hrdinou, který vše překoná, neboť má tělo pevné jako vadžra.__
 __Špatného chápání zbavuje a s dobrým spojuje. (3)__
 
-**Chaupai 4**
+### Chaupai 4
 kaṁcana varana virāja subesā
 kānana kuṁḍala kuṁcita kesā
 
@@ -282,7 +282,7 @@ kānana kuṁḍala kuṁcita kesā
 __Má zlatou barvu a zářivý oděv,__
 __velké náušnice v uších a dlouhé vlnité vlasy. (4)__
 
-**Chaupai 5**
+### Chaupai 5
 hātha vajra aura dhvajā virājai
 kāṁdhe mūṁja janeū sājai
 
@@ -292,7 +292,7 @@ kāṁdhe mūṁja janeū sājai
 __Září na bojové vlajce se zbraní vadžra v ruce__
 __a s posvátnou šňůrou z trávy múndža přes rameno. (5)__
 
-**Chaupai 6**
+### Chaupai 6
 śaṁkara suvana kesarī naṁdana
 teja pratāpa mahā jaga vaṁdana
 
@@ -302,7 +302,7 @@ teja pratāpa mahā jaga vaṁdana
 __Paprskem naděje je syn Šivy a syn krále Késarí,__
 __jehož světlo a síla získaly úctu celého světa. (6)__
 
-**Chaupai 7**
+### Chaupai 7
 vidyāvāna gunī ati cātura
 rāma kāja karibe ko ātura
 
@@ -312,7 +312,7 @@ rāma kāja karibe ko ātura
 __Znalec učení, obdařený mnoha kvalitami,__
 __horlivě touží vykonávat práci pro Rámu. (7)__
 
-**Chaupai 8**
+### Chaupai 8
 prabhu caritra sunibe ko rasiyā
 rāma lakhana sītā mana vasiyā
 
@@ -322,7 +322,7 @@ rāma lakhana sītā mana vasiyā
 __Vyslechl s láskou příběh Rámy, přičemž si__
 __Ráma, Lakšmana a Sítá získali jeho srdce a mysl. (8)__
 
-**Chaupai 9**
+### Chaupai 9
 sūkṣma rūpa dhari siyahiṁ dikhāvā
 vikaṭa rūpa dhari laṁka jarāvā
 
@@ -332,7 +332,7 @@ vikaṭa rūpa dhari laṁka jarāvā
 __V malém těle ses zjevil před Sítou,__
 __ve velkém těle jsi zapálil Srí Lanku, (9)__
 
-**Chaupai 10**
+### Chaupai 10
 bhīma rūpa dhari asura saṁhāre
 rāmacaṁdra ke kāja saṁvāre
 
@@ -342,7 +342,7 @@ rāmacaṁdra ke kāja saṁvāre
 __v hrozivé podobě jsi zničil démony,__
 __a vykonal tak práci pro Rámu. (10)__
 
-**Chaupai 11**
+### Chaupai 11
 lāya sajīvana lakhana jiyāye
 śrīraghuvīra haraṣi ura lāye
 
@@ -352,7 +352,7 @@ lāya sajīvana lakhana jiyāye
 __Přinesl jsi bylinu, jež oživila Lakšmanu,__
 __a božský Ráma objal Tvou hruď. (11)__
 
-**Chaupai 12**
+### Chaupai 12
 raghupati kīnhī bahuta varāī
 tuma mama priya bharatahi sama bhāī
 
@@ -362,7 +362,7 @@ tuma mama priya bharatahi sama bhāī
 __Ráma vyjádřil velké uznání, když pravil:__
 __„Jsi mi drahý stejně jako bratr Bharata.“ (12)__
 
-**Chaupai 13**
+### Chaupai 13
 sahasa vadana tumharo jasa gāvaiṁ
 asa kahi śrīpati kaṁṭha lagāvaiṁ
 
@@ -372,7 +372,7 @@ asa kahi śrīpati kaṁṭha lagāvaiṁ
 __„Máš tisíc podob a zpívá se o tvé slávě“,__
 __říká Ráma, když objímá záda Hanumána. (13)__
 
-**Chaupai 14**
+### Chaupai 14
 sanakādika brahmādi munīsā
 nārada śārada sahita ahīsā
 
@@ -382,7 +382,7 @@ nārada śārada sahita ahīsā
 __Sanaka a další, Brahmá a další, nejlepší z mudrců,__
 __Nárada, Šárada i had Ádišéša (14)__
 
-**Chaupai 15**
+### Chaupai 15
 yama kubera digapāla jahāṁ te
 kavi kovida kahi sake kahāṁ te
 
@@ -392,7 +392,7 @@ kavi kovida kahi sake kahāṁ te
 __Jama, Kubéra, strážci směrů, ti všichni jsou Ti poddáni.__
 __Co o Tobě může říci básník a učenec? (15)__
 
-**Chaupai 16**
+### Chaupai 16
 tuma upakāra sugrīvahiṁ kīnhā
 rāma milāya rāja pada dīnhā
 
@@ -402,7 +402,7 @@ rāma milāya rāja pada dīnhā
 __Pomohl jsi Sugrívovi setkat se s Rámou__ 
 __a ten mu zajistil královský trůn. (16)__
 
-**Chaupai 17**
+### Chaupai 17
 tumharo maṁtra vibhīṣana mānā
 laṁkeśvara bhae saba jaga jānā
 
@@ -412,7 +412,7 @@ laṁkeśvara bhae saba jaga jānā
 __Vibhíšana opakoval Tvoji mantru__
 __a stal se králem Srí Lanky. To ví celý svět. (17)__
 
-**Chaupai 18**
+### Chaupai 18
 yuga sahastra yojana para bhānū
 līlyo tāhi madhura phala jānū
 
@@ -422,7 +422,7 @@ līlyo tāhi madhura phala jānū
 __Dvanáct tisíc jódžan vzdálené Slunce__
 __jsi považoval za sladký plod a chtěl ho pozřít. (18)__
 
-**Chaupai 19**
+### Chaupai 19
 prabhu mudrikā meli mukha māhīṁ
 jaladhi lāṁghi gaye acaraja nāhīṁ
 
@@ -432,14 +432,14 @@ jaladhi lāṁghi gaye acaraja nāhīṁ
 __S pomocí pečetního prstenu Rámy v ústech__
 __není divu, že jsi překročil oceán. (19)__
 
-**Chaupai 20**
+### Chaupai 20
 durgama kāja jagata ke jete
 sugama anugraha tumhare tete
 
 • **durgama** = obtížný; • **kāja** = práce; • **jagata** = svět; • **ke** = od; • **jete** = jak
 • **sugama** = snadný; • **anugraha** = milost; • **tumhare** = Tvoje; • **tete** = tak
 
-**Chaupai 21**
+### Chaupai 21
 rāma duāre tuma rakhavāre
 hota na ājñā binu paisāre
 
@@ -449,7 +449,7 @@ hota na ājñā binu paisāre
 __Jsi strážce dveří k Rámovi,__
 __a kdo nepřinese ohňovou oběť, nemá povolení k přístupu. (21)__
 
-**Chaupai 22**
+### Chaupai 22
 saba sukha lahai tumhārī śaranā
 tuma racchaka kāhū ko ḍara nā
 
@@ -459,7 +459,7 @@ tuma racchaka kāhū ko ḍara nā
 __Veškeré štěstí pochází z Tvého útočiště.__
 __Kdo má Tebe za ochránce, nemá strach. (22)__
 
-**Chaupai 23**
+### Chaupai 23
 āpana teja samhāro āpai
 tīnoṁ loka hāṁka teṁ kāṁpai
 
@@ -469,7 +469,7 @@ tīnoṁ loka hāṁka teṁ kāṁpai
 __Ty sám ovládáš svou životní sílu__
 __a tvůj řev otřásá třemi světy. (23)__
 
-**Chaupai 24**
+### Chaupai 24
 bhūta pisāca nikaṭa nahiṁ āvai
 mahāvīra jaba nāma sunāvai
 
@@ -479,7 +479,7 @@ mahāvīra jaba nāma sunāvai
 __Zlí duchové a démoni se nepřiblíží,__
 __je-li vysloveno Tvé jméno, velký hrdino. (24)__
 
-**Chaupai 25**
+### Chaupai 25
 nāsai roga harai saba pīrā
 japata niraṁtara hanumata vīrā
 
@@ -489,7 +489,7 @@ japata niraṁtara hanumata vīrā
 __Nemoci odejdou a všechno trápení odpadne,__
 __je-li bez ustání opakováno jméno vítězného hrdiny Hanumána. (25)__
 
-**Chaupai 26**
+### Chaupai 26
 saṁkaṭa teṁ hanumāna chuṛāvai
 mana krama bacana dhyāna jo lāvai
 
@@ -499,7 +499,7 @@ mana krama bacana dhyāna jo lāvai
 __Hanumán zbavuje problémů toho,__
 __kdo rozjímá v myšlenkách, činech i slovech. (26)__
 
-**Chaupai 27**
+### Chaupai 27
 saba para rāma tapasvī rājā
 tina ke kāja sakala tuma sājā
 
@@ -509,7 +509,7 @@ tina ke kāja sakala tuma sājā
 __Králem všech trpících byl Ráma__
 __a všechny jejich úkoly vykonáváš Ty. (27)__
 
-**Chaupai 28**
+### Chaupai 28
 aura manoratha jo koi lāvai
 soi amita jīvana phala pāvai
 
@@ -519,7 +519,7 @@ soi amita jīvana phala pāvai
 __Navíc jsi tím, kdo zbavuje jakékoli touhy,__
 __a očišťuje plod neomezeného života. (28)__
 
-**Chaupai 29**
+### Chaupai 29
 cāroṁ yuga paratāpa tumhārā
 hai parasiddha jagata ujiyārā
 
@@ -529,7 +529,7 @@ hai parasiddha jagata ujiyārā
 __Po čtyři věky tu jsi Ty, obdařený mocí a silou,__
 __ó nejvyšší mudrci, siddho, který ozařuješ svět! (29)__
 
-**Chaupai 30**
+### Chaupai 30
 sādhu saṁta ke tuma rakhavāre
 asura nikaṁdana rāma dulāre
 
@@ -539,7 +539,7 @@ asura nikaṁdana rāma dulāre
 __Jsi ochránce světců a dobrých lidí__
 __a ničitel zlých duší, Ty, Rámou milovaný. (30)__
 
-**Chaupai 31**
+### Chaupai 31
 aṣṭa siddhi nau nidhi ke dātā
 asa vara dīna jānakī mātā
 
@@ -549,7 +549,7 @@ asa vara dīna jānakī mātā
 __Obdarováváš osmi druhy sil a devíti druhy bohatství,__
 __což je požehnání od pokorné Síty, vtělení bohyně Lakšmí. (31)__
 
-**Chaupai 32**
+### Chaupai 32
 rāma rasāyana tumhare pāsā
 sadā raho raghupati ke dāsā
 
@@ -559,7 +559,7 @@ sadā raho raghupati ke dāsā
 __Jsi obšťastněn elixírem Rámy__
 __a navždy ses odevzdal Pánu z rodu Raghu. (32)__
 
-**Chaupai 33**
+### Chaupai 33
 tumhare bhajana rāma ko pāvai
 janama janama ke dukha visarāvai
 
@@ -569,7 +569,7 @@ janama janama ke dukha visarāvai
 __Oddané uctívání Tebe očišťuje a přivádí k Rámovi,__
 __rozpouští utrpení opakovaných zrození. (33)__
 
-**Chaupai 34**
+### Chaupai 34
 aṁta kāla raghuvara pura jāī
 jahāṁ janma hari-bhakta kahāī
 
@@ -579,7 +579,7 @@ jahāṁ janma hari-bhakta kahāī
 __Dojde k ukončení času v příbytku Rámy,__
 __k ukončení dalších zrození. To říká haribhakta, oddaný boha Višnu. (34)__
 
-**Chaupai 35**
+### Chaupai 35
 aura devatā citta na dharaī
 hanumata seī sarba sukha karaī
 
@@ -589,7 +589,7 @@ hanumata seī sarba sukha karaī
 __Nemyslí na jiné bohy,__
 __slouží Hanumánovi a to mu dává veškeré štěstí. (35)__
 
-**Chaupai 36**
+### Chaupai 36
 saṁkaṭa kaṭai miṭai saba pīrā
 jo sumirai hanumata balavīrā
 
@@ -599,7 +599,7 @@ jo sumirai hanumata balavīrā
 __Problémy se odstraní a veškeré trápení se rozpustí__
 __u toho, kdo si připomíná mocného hrdinu Hanumána. (36)__
 
-**Chaupai 37**
+### Chaupai 37
 jai jai jai hanumāna gosāīṁ
 kṛpā karahu guru deva kī nāīṁ
 
@@ -609,7 +609,7 @@ kṛpā karahu guru deva kī nāīṁ
 __Vítězství Pánu nebeské říše, Hanumánovi!__
 __Kéž udělí Božský guru milost tomu, kdo za ním přijde. (37)__
 
-**Chaupai 38**
+### Chaupai 38
 jo sata vāra pāṭha kara koī
 chūṭahi vaṁdi mahā sukha hoī
 
@@ -619,7 +619,7 @@ chūṭahi vaṁdi mahā sukha hoī
 __Kdo toto zpívá (recituje) sto dní za sebou,__
 __odstraní pouta a dojde velkého štěstí. (38)__
 
-**Chaupai 39**
+### Chaupai 39
 jo yaha paṛhai hanumāna calīsā
 hoya siddhi sākhī gaurīsā
 
@@ -629,7 +629,7 @@ hoya siddhi sākhī gaurīsā
 __Ten, kdo studuje Hanumán čalísu,__
 __dosáhne naplnění. Šiva je toho svědkem. (39)__
 
-**Chaupai 40**
+### Chaupai 40
 tulasīdāsa sadā hari cerā
 kī jai nātha hṛdaya mahaṁ ḍerā
 
@@ -639,7 +639,7 @@ kī jai nātha hṛdaya mahaṁ ḍerā
 __Tulsídás je navždy oddán Rámovi.__
 __Vítězství ochránci, jenž srdce a mysl učinil příbytkem boha Hari. (40)__
 
-**Doha 3a**
+### Doha 3a
 pavana-tanaya saṁkaṭa harana
 maṁgala mūrati rūpa
 
@@ -649,7 +649,7 @@ maṁgala mūrati rūpa
 __Synu boha větru, ničiteli problémů,__
 __Hanumáne ve šťastné formě,__
 
-**Doha 3b**
+### Doha 3b
 rāma lakhana sītā sahita
 hṛdaya vasahu sura bhūpa
 
@@ -659,7 +659,7 @@ hṛdaya vasahu sura bhūpa
 __kéž spolu s Rámou, Lakšmanou a Sítou__
 __přebýváš v mém srdci a mysli, božský ochránče,__
 
-**Mangala**
+### Mangala
 maṁgala mūratī māruta naṁdana
 sakala amaṁgala mūla nikaṁdana
 
@@ -669,13 +669,4 @@ sakala amaṁgala mūla nikaṁdana
 __synu boha Větru v nadějeplném vtělení,__
 __ničiteli kořenů veškerého neštěstí.__
 
-**Mangala**
-maṁgala mūratī māruta naṁdana
-sakala amaṁgala mūla nikaṁdana
-
-• **maṁgala** = nadějeplný; • **mūratī** = forma,-vtělení; • **māruta** = bůh-větru; • **naṁdana** = syn
-• **sakala** = všechen; • **amaṁgala** = neštěstí,-zlo; • **mūla** = kořen,-původ; • **nikaṁdana** = ničitel
-
-__synu boha Větru v nadějeplném vtělení,__
-__ničiteli kořenů veškerého neštěstí.__
 {end_of_analysis}
