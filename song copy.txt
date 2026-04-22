@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zpěvník</title>
+<style>
+/* --- Sjednocený vzhled prvků pod písní --- */
+.analysis-container, .pdf-link {
+    display: block;
+    margin: 15px 0;
+    border: 1px solid #ddd; /* HLAVNÍ VNĚJŠÍ RÁMEČEK (Zůstává) */
+    border-radius: 8px;
+    background: #f1f3f4;
+    text-decoration: none;
+    color: #333 !important;
+    font-weight: bold;
+    transition: background 0.2s;
+    overflow: hidden;
+    column-span: all;
+    /* PŘIDÁNO: Vynulujeme jakékoliv stíny, které by dělaly falešné čáry */
+    box-shadow: none !important;
+}
+
+.analysis-header, .pdf-link-inner {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    /* PŘIDÁNO: Absolutní jistota, že hlavička nemá okraj NIKDE */
+    border: none !important;
+    margin: 0 !important;
+}
+
+/* Definitivní přebití zbloudilé mezery */
+.analysis-container .analysis-header,
+.analysis-container .analysis-content {
+    margin: 0 !important;
+}
+
+/* VNITŘEK ŠUPLÍKU */
+.analysis-content {
+    padding: 20px;
+    display: none;
+    background: #ffffff;
+    color: #333;
+    /* OPRAVA: Zde MUSÍ BÝT 1px, aby oddělil text od nadpisu po otevření */
+    border-top: 1px solid #ddd !important; 
+    border-bottom: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    line-height: 1.6;
+    font-weight: normal;
+    white-space: pre-wrap; 
+    /* PŘIDÁNO: Aby se okraj nenalepil přímo na případný text nad ním */
+    margin: 0 !important;
+}
+
+/* --- Tmavý režim (Dark Mode) --- */
+body.dark-mode .analysis-container, 
+body.dark-mode .pdf-link {
+    background-color: #403c38;
+    border-color: #5d5650;
+    color: #e6e2dd !important;
+}
+
+body.dark-mode .analysis-content {
+    background-color: #33302d; 
+    color: #e6e2dd;
+    border-top-color: #5d5650;
+}
+
+body.dark-mode .pdf-link:hover, 
+body.dark-mode .analysis-header:hover {
+    background-color: #504b46;
+}
+
+ .pdf-viewer {
+    width: 100%;
+    height: 1000px;
+    border: none;
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+  .song-img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+    border-radius: 8px;
+    display: block;
+}
+/* --- VÍCESLOUPCOVÝ LAYOUT --- */
+#chord-app {
+    --col-count: 1;
+  }
+
+  #output-area {
+    column-count: var(--col-count);
+    column-gap: 15px;
+    column-rule: 1px dashed #e0c5b0;
+  }
+
+  /* --- SJEDNOCENÁ HLAVIČKA PÍSNĚ --- */
+  /* Toto je nový obal, který Safari zkrotí */
+  .song-header {
+    column-span: all;
+    display: block;
+    margin-bottom: 1.2em; /* Mezera mezi hlavičkou a textem písně */
+  }
+
+  /* Skupinové nastavení pro celou hlavičku */
+  .song-title, 
+  .song-subtitle, 
+  .song-author, 
+  .song-category {
+    column-span: none !important; 
+    display: block;
+    line-height: 1.2;
+    margin: 0; 
+  }
+
+  .song-title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #143464;
+    padding-bottom: 2px;
+  }
+
+  .song-subtitle {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+    padding-bottom: 4px;
+  }
+
+  .song-author {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444;
+    padding-bottom: 4px;
+  }
+
+  /* 1. KATEGORIE - upraveno */
+  .song-category {
+    font-size: 15px !important; /* Změněno na PX, aby se to nehlo ani o milimetr */
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: sans-serif;
+    margin: 0 !important; /* Vynulujeme všechno... */
+    margin-bottom: 15px !important; /* ...a necháme jen tuhle pevnou mezeru dole */
+    line-height: 1.2 !important; /* Pevná výška řádku zabrání "nafukování" */
+  }
+
+  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
+  body.dark-mode .song-category {
+    color: #a8a39d !important;
+  }
+  
+  /* Nastavení klikatelného odkazu kategorie */
+  .song-category-link {
+    text-decoration: none;
+  }
+  .song-category-link:hover .song-category {
+    color: #d35400;
+  }
+
+  /* Aby byla kategorie pěkně vidět i v tmavém režimu */
+  body.dark-mode .song-category {
+    color: #a8a39d !important;
+  }
+
+  .verse-block, .chorus-block, .line {
+    break-inside: auto;
+    page-break-inside: auto;
+  }
+
+  #output-area {
+    column-count: var(--col-count);
+    column-gap: 30px;
+    column-rule: 2px dashed #e0c5b0;
+    column-fill: balance;
+  }
+
+  #page, .song-topbar-inner {
+    transition: max-width 0.3s ease;
+  }
+
+  @media (max-width: 800px) {
+    #output-area { column-count: 1 !important; }
+    #col-toggle-btn { display: none !important; }
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Gentium+Book+Plus:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-family: 'Gentium Book Plus', serif;
+  }
+
+  :root { 
+    --topbar-h: 52px; 
+    --mezera-mezi-slokami: 1em;
+  }
+
+  #page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: calc(var(--topbar-h) + 12px) 16px 80px 16px;
+  }
+
+  /* Fixní horní lišta (sticky header) */
+  .song-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: #fdf3ec;
+    border-bottom: 1px solid #f0d5c0;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.08);
+  }
+
+  .song-topbar-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    height: var(--topbar-h);
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .topbar-title {
+    min-width: 0;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    color: #333;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .topbar-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .transpose-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  .transpose-group .icon-btn {
+    min-width: 32px;
+    padding: 0 6px;
+    font-size: 15px;
+  }
+
+  .shift-display {
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    color: #555;
+    min-width: 1.6em;
+    text-align: center;
+    line-height: 1;
+  }
+
+  .icon-btn {
+    appearance: none;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: #fff;
+    color: #333;
+    height: 36px;
+    min-width: 36px;
+    padding: 0 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: transform 0.06s, border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    user-select: none;
+  }
+
+  .icon-btn:hover { border-color: rgba(0,0,0,0.18); }
+  .icon-btn:active { transform: translateY(1px); }
+  .icon-btn:focus-visible { outline: 2px solid rgba(211,84,0,0.55); outline-offset: 2px; }
+
+  .icon-btn.is-active {
+    border-color: rgba(36, 90, 47, 0.22);
+    background: #e6f7e8;
+    color: #245a2f;
+  }
+
+  /* Audio drawer */
+  .audio-drawer {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 10px 10px;
+    display: none;
+  }
+
+  .audio-drawer.is-open { display: block; }
+
+  .audio-drawer--single {
+    padding-top: 2px;
+  }
+
+  .audio-drawer--single .audio-list:empty {
+    display: none;
+  }
+
+  .audio-drawer--single #audio-player {
+    margin-top: 8px;
+  }
+
+  .audio-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding-top: 8px;
+  }
+
+  .audio-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: #fff;
+    font-family: sans-serif;
+    cursor: pointer;
+    transition: background 0.18s ease, border-color 0.18s ease;
+  }
+
+  .audio-item:hover { border-color: rgba(0,0,0,0.18); }
+
+  .audio-item.is-playing {
+    background: #e5efe7;
+    border-color: rgba(45, 106, 79, 0.28);
+  }
+
+  .audio-item.is-playing .audio-item-title {
+    color: #2d4a38;
+  }
+
+  .audio-item.is-playing .audio-item-meta {
+    color: #4a7a62;
+  }
+
+  .audio-item-title {
+    font-weight: 800;
+    font-size: 13px;
+    color: #333;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .audio-item-meta {
+    font-size: 12px;
+    color: #777;
+    flex-shrink: 0;
+  }
+
+  #audio-player {
+    width: 100%;
+    height: 40px;
+    display: none;
+    margin-top: 10px;
+  }
+
+  .back-link {
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: #245a2f;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 10px;
+    border-radius: 12px;
+    background: #e6f7e8;
+    border: 1px solid rgba(36, 90, 47, 0.14);
+  }
+
+  .back-link:hover,
+  .back-link:focus-visible {
+    background: #d7f2da;
+    border-color: rgba(36, 90, 47, 0.22);
+    color: #1f4d28;
+  }
+
+  .back-link:active {
+    transform: translateY(1px);
+  }
+
+  .inline-link {
+    color: #ff7800;
+    text-decoration: underline;
+    word-break: break-all;
+    font-weight: normal;
+}
+
+.inline-link:hover {
+  color: #e66c00;
+}
+
+  
+  body.dark-mode .song-author {
+    color: #d1d5db !important; /* Světle šedá pro noční režim */
+  }
+
+.verse-block {
+  display: block;
+  margin-bottom: var(--mezera-mezi-slokami);
+  break-inside: auto;
+}
+
+  .verse-label {
+    font-family: sans-serif;
+    font-weight: 800;
+    color: #245a2f;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    border-bottom: 1.5px solid #245a2f;
+    display: inline-block;
+  }
+
+  /* 2. TROJICE (Capo, Time, Tempo) - upraveno */
+  .song-capo, .song-time, .song-tempo {
+    font-family: sans-serif;
+    font-size: 14px !important;
+    font-weight: 500;
+    color: #555;
+    background: #f4f4f4;
+    border: 1px solid #dcdcdc;
+    padding: 3px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    
+    /* KLÍČOVÁ ZMĚNA TADY: */
+    margin-top: 0px !important;    /* Žádná mezera nad nimi (tu už drží kategorie) */
+    margin-bottom: 22px !important; /* Mezera pod nimi směrem k textu */
+    margin-right: 6px;
+    
+    line-height: 1.4 !important; /* Vlastní výška řádku, ignoruje kontejner */
+    vertical-align: top;         /* Zarovnání, aby se nepohupovaly */
+  }
+
+  .song-capo::before {
+    content: "🎸 ";
+    font-size: 1.0em;
+    margin-right: 4px;
+  }
+
+.chorus-block {
+  display: block;
+  margin-bottom: var(--mezera-mezi-slokami);
+  border-left: 4px solid #d35400;
+  padding-left: 15px;
+  background: rgba(211, 84, 0, 0.04);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0 8px 8px 0;
+  break-inside: auto;
+}
+
+  .chorus-label {
+    font-family: sans-serif;
+    font-weight: 800;
+    color: #245a2f;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    border-bottom: 1.5px solid #245a2f;
+    display: inline-block;
+  }
+
+  .chord-stack {
+    display: inline-flex;
+    flex-direction: column;
+    vertical-align: bottom;
+  }
+
+  .chord {
+    color: #d35400;
+    font-family: sans-serif;
+    font-size: 0.85em;
+    font-weight: bold;
+    height: 1.4em;
+    line-height: 1.4em;
+    text-align: left;
+  }
+
+  .lyric {
+    line-height: 1.2;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #000;
+  }
+
+.line {
+  margin-bottom: 8px;
+  display: block;
+}
+
+/* OPRAVA: Poznámky vždy na novém řádku a jemnější písmo */
+  .comment {
+    display: block; /* Vynutí nový řádek (zlom) */
+    width: fit-content; /* Ohraničí jen samotný text */
+    max-width: 100%;
+    background-color: #f3f4f6;
+    padding: 6px 12px;
+    border-radius: 6px;
+    margin: 5px 0 15px 0;
+    color: #374151; 
+    font-weight: normal; /* Jemnější tloušťka fontu */
+    font-style: italic;
+    border-left: 4px solid #d1d5db;
+    font-family: sans-serif;
+    font-size: 0.95em;
+  }
+
+  .spacer { height: 0.8em; }
+
+  #loading {
+    color: #999;
+    font-family: sans-serif;
+    padding: 20px 0;
+  }
+
+  #error {
+    color: #c0392b;
+    font-family: sans-serif;
+    padding: 20px 0;
+    display: none;
+  }
+
+.scroll-nav {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+}
+
+.scroll-btn {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 120, 0, 0.6);
+  color: white;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.scroll-btn:active {
+  background: rgba(255, 120, 0, 0.9);
+  transform: scale(0.9);
+}
+
+audio {
+    border-radius: 8px !important;
+    overflow: hidden !important;
+    outline: none !important;
+  }
+
+  audio::-webkit-media-controls-enclosure {
+    border-radius: 8px !important;
+  }
+
+/* NOVÝ Pískový / Čtecí režim */
+body.sand-mode {
+    background-color: #f4ecd8; /* Pískové pozadí */
+    color: #4a3b32; /* Tmavě hnědý text */
+}
+
+/* =========================================
+   PÍSKOVÝ (SAND) REŽIM - HLAVNÍ BARVY
+========================================= */
+body.sand-mode {
+  background-color: #f4ecd8 !important; /* Pískové pozadí */
+  color: #4a3b32 !important; /* Tmavě hnědý text */
+}
+
+/* --- Texty a nadpisy --- */
+body.sand-mode .lyric,
+body.sand-mode .song-title,
+body.sand-mode .verse-label,
+body.sand-mode .chorus-label,
+body.sand-mode .song-tempo,
+body.sand-mode .song-capo,
+body.sand-mode .song-time,
+body.sand-mode .topbar-title,
+body.sand-mode #topbar-title,
+body.sand-mode .shift-display {
+  color: #4a3b32 !important;
+}
+
+body.sand-mode .song-subtitle {
+  color: #7a6352 !important; /* Utlumená hnědá pro podtitul */
+}
+
+/* --- Akordy --- */
+body.sand-mode .chord {
+  color: #b85d00 !important; /* Tmavší cihlově oranžová pro dobrou čitelnost na písku */
+}
+
+/* --- Horní lišta (Topbar) --- */
+body.sand-mode .song-topbar {
+  background-color: #eaddc5 !important; /* O něco tmavší písková pro oddělení lišty */
+  border-bottom: 1px solid #d4c2a5 !important;
+}
+
+/* --- Tlačítka v liště --- */
+body.sand-mode .topbar-actions button,
+body.sand-mode .song-topbar .back-link,
+body.sand-mode .song-topbar-btn {
+  background-color: #f4ecd8 !important;
+  border: 1px solid #d4c2a5 !important;
+  color: #4a3b32 !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+}
+
+body.sand-mode .topbar-actions button:hover,
+body.sand-mode .song-topbar .back-link:hover {
+  background-color: #eaddc5 !important;
+  border-color: #b85d00 !important;
+  color: #b85d00 !important;
+}
+
+/* --- Informační štítky (Capo, Tempo, Čas) --- */
+body.sand-mode .song-capo,
+body.sand-mode .song-time,
+body.sand-mode .song-tempo {
+  background-color: #eaddc5 !important;
+  color: #4a3b32 !important;
+  border: 1px solid #d4c2a5 !important;
+}
+
+/* --- Refrén a Komentáře --- */
+body.sand-mode .chorus-block {
+  background: rgba(184, 93, 0, 0.05) !important; /* Velmi jemný teplý nádech pod refrénem */
+  border-left: 3px solid #b85d00 !important;
+}
+
+body.sand-mode .comment {
+  background-color: #eaddc5 !important;
+  color: #4a3b32 !important;
+  border-left-color: #b85d00 !important;
+}
+
+/* --- Rozdělení sloupců --- */
+body.sand-mode #output-area {
+  column-rule: 1px dashed #d4c2a5 !important;
+}
+
+/* --- Audio přehrávač --- */
+body.sand-mode audio,
+body.sand-mode #audio-container,
+body.sand-mode .audio-wrapper,
+body.sand-mode .audio-player {
+  background-color: #eaddc5 !important;
+  border: 1px solid #d4c2a5 !important;
+}
+/* U audia schválně vynecháváme color-scheme: dark, přehrávač zůstane ve světlém stylu */
+
+/* --- Šuplík analýzy (Vylepšené barvy hlavičky) --- */
+
+/* 1. Režim Kafe (Pískový) */
+body.sand-mode .analysis-container {
+  background-color: #e3d5be !important; /* Pozadí celého šuplíku */
+  border-color: #d4c2a5 !important;
+  color: #4a3b32 !important;
+}
+body.sand-mode .analysis-header {
+  background-color: #d4c2a5 !important; /* TMAVŠÍ hlavička pro Kafe */
+  color: #4a3b32 !important;
+}
+body.sand-mode .analysis-content {
+  background-color: transparent !important;
+}
+body.sand-mode .analysis-header:hover {
+  background-color: #cbb492 !important; /* Ještě o kousek tmavší při najetí */
+}
+
+/* 2. Denní režim (Výchozí) */
+body:not(.dark-mode):not(.sand-mode) .analysis-container {
+  background-color: #f0f2f5 !important; /* Pozadí celého šuplíku */
+  border-color: #e5e7eb !important;
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-header {
+  background-color: #e5e7eb !important; /* TMAVŠÍ hlavička pro Denní režim */
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-content {
+  background-color: transparent !important;
+}
+body:not(.dark-mode):not(.sand-mode) .analysis-header:hover {
+  background-color: #dadddf !important; /* Ještě o kousek tmavší při najetí */
+}
+/* === TMAVÝ REŽIM === */
+body.dark-mode {
+    background-color: #33302d !important;
+    color: #e6e2dd !important; 
+  }
+
+  body.dark-mode .lyric,
+  body.dark-mode .song-title,
+  body.dark-mode .verse-label,
+  body.dark-mode .chorus-label,
+  body.dark-mode .song-tempo,
+  body.dark-mode .song-capo,
+  body.dark-mode .song-time {
+    color: #e6e2dd !important;
+  }
+
+  body.dark-mode .song-subtitle {
+    color: #a8a39d !important; /* Lehce utlumená barva podtitulu pro tmavý režim */
+  }
+
+  body.dark-mode .topbar-title,
+  body.dark-mode #topbar-title,
+  body.dark-mode .back-link {
+    color: #e6e2dd !important;
+  }
+
+  body.dark-mode .back-link {
+    background-color: #403c38 !important;
+    color: #e6e2dd !important;
+    border: 1px solid #5d5650 !important;
+  }
+
+  body.dark-mode .back-link:hover {
+    background-color: #504b46 !important; 
+    color: #ff9f43 !important;
+  }
+
+  body.dark-mode .chord {
+    color: #ff9f43 !important; 
+  }
+
+  /* Tmavý režim pro poznámky (komentáře) */
+  body.dark-mode .comment {
+    background-color: #3d3a37;
+    color: #e6e2dd;
+    border-left-color: #ff9f43; /* Oranžový pruh pro hezký detail */
+  }
+
+  body.dark-mode .song-topbar {
+    background-color: #1c1a19 !important;
+    border-bottom: 1px solid #4d4640 !important;
+  }
+  
+  body.dark-mode .song-topbar-title {
+    color: #e6e2dd !important;
+  }
+
+  body.dark-mode .song-topbar-btn {
+    background: #403c38 !important;
+    border-color: #5d5650 !important;
+    color: #e6e2dd !important;
+  }
+
+  body.dark-mode .chorus-block {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border-left: 3px solid #ff9f43 !important;
+  }
+
+  body.dark-mode #output-area {
+    column-rule: 1px dashed #5d5650 !important;
+  }
+
+/* Tvůj Dark Mode - ponechán tak, jak ho máš, je skvělý */
+body.dark-mode .song-capo,
+  body.dark-mode .song-time,
+  body.dark-mode .song-tempo {
+    background-color: #403c38 !important;
+    color: #e6e2dd !important;
+    border: 1px solid #5d5650 !important;
+    box-shadow: none !important;
+  }
+
+  /* Toto je důležité pro ty ikonky/symboly před textem */
+  body.dark-mode .song-capo::before,
+  body.dark-mode .song-time::before,
+  body.dark-mode .song-tempo::before {
+    filter: brightness(1.2);
+  }
+
+  body.dark-mode audio,
+  body.dark-mode #audio-container,
+  body.dark-mode .audio-wrapper,
+  body.dark-mode .audio-player {
+    background-color: #262422 !important;
+    border: 1px solid #5d5650 !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3) !important;
+    margin-top: 8px !important;
+    padding: 2px !important;
+  }
+
+  body.dark-mode audio {
+    color-scheme: dark; 
+  }
+
+  /* === TMAVÝ REŽIM PRO ŠUPLÍK ANALÝZY === */
+  body.dark-mode .analysis-container {
+      border-color: #5d5650 !important;
+      background: #262422 !important;
+  }
+  body.dark-mode .analysis-header {
+      background-color: #403c38 !important;
+      color: #e6e2dd !important;
+  }
+  body.dark-mode .analysis-header:hover {
+      background-color: #504b46 !important;
+  }
+  body.dark-mode .analysis-content {
+      border-top-color: #5d5650 !important;
+      background-color: #262422 !important;
+      color: #e6e2dd !important;
+  }
+
+  .topbar-actions button,
+  .song-topbar .back-link {
+    appearance: none;
+    background-color: #ffffff !important;
+    border: 1px solid #dcd6d0 !important;
+    color: #333333 !important;
+    border-radius: 8px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    flex-shrink: 0 !important;
+    padding: 0 !important;
+    margin: 0 2px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05) !important;
+  }
+
+  .topbar-actions button:hover,
+  .song-topbar .back-link:hover {
+    background-color: #f5f0eb !important;
+    border-color: #ff9f43 !important;
+    color: #ff9f43 !important;
+  }
+
+  body.dark-mode .topbar-actions button,
+  body.dark-mode .song-topbar .back-link {
+    background-color: #403c38 !important;
+    border: 1px solid #5d5650 !important;
+    color: #e6e2dd !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2) !important;
+  }
+
+  body.dark-mode .topbar-actions button:hover,
+  body.dark-mode .song-topbar .back-link:hover {
+    background-color: #504b46 !important;
+    border-color: #ff9f43 !important;
+    color: #ff9f43 !important;
+  }
+
+  .song-topbar .back-link svg {
+    width: 20px !important;
+    height: 20px !important;
+    transform: translateX(-1px) !important;
+  }
+
+  #audio-toggle {
+    font-size: 18px !important;
+    transform: translateX(1px) !important;
+  }
+
+  #col-toggle-btn {
+    letter-spacing: 2px !important;
+    font-size: 17px !important;
+  }
+
+  .transpose-group button {
+    font-size: 22px !important;
+    font-weight: 900 !important;
+  }
+
+  .topbar-actions button {
+    vertical-align: middle !important;
+    box-sizing: border-box !important;
+  }
+
+  .transpose-group button[onclick*="changeShift(-1)"] {
+    transform: none !important;
+    padding-top: 6px !important;
+    padding-bottom: 0 !important;    
+    font-size: 24px !important;
+  }
+
+ .transpose-group button[onclick*="changeShift(1)"] {
+    transform: none !important;
+    padding-bottom: 4px !important;
+    padding-top: 0 !important;
+    font-size: 22px !important;
+  }
+
+  .shift-display {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    font-weight: bold;
+    color: #333333;
+    margin: 0 4px;
+  }
+  
+  body.dark-mode .shift-display {
+    color: #e6e2dd !important;
+  }
+
+  @media (max-width: 768px) {
+    .song-topbar #topbar-title,
+    .song-topbar .topbar-title {
+      display: none !important;
+    }
+    .song-topbar-inner {
+      justify-content: flex-end !important;
+    }
+    .song-topbar .back-link {
+      margin-right: auto !important; 
+    }
+  }
+
+  /* Styl pro skrytí akordů */
+body.hide-chords .chord, 
+body.hide-chords .ch {
+  display: none !important;
+}
+
+/* Volitelně: Pokud se po skrytí akordů řádky moc nalepí na sebe, 
+   můžeme textu trochu přidat na výšce */
+body.hide-chords .lyric-line {
+  line-height: 1.8;
+}
+
+/* --- DEFINICE BAREV (Proměnné) --- */
+:root {
+  /* Výchozí barvy (Tmavý režim) */
+  --menu-bg: #2c2c2c;
+  --menu-border: #444;
+  --menu-item-bg: #3d3d3d;
+  --menu-text: #ffffff;
+  --menu-subtext: #888888;
+  --menu-transpose-bg: #1a1a1a;
+  --menu-accent: #ffd700; /* Zlatá pro nulu */
+}
+
+/* Pokud má body třídu pro světlý režim (uprav název třídy podle tvého kódu) */
+body.light-mode, body:not(.dark-mode) { /* Přizpůsob podle toho, co reálně používáš */
+  --menu-bg: #ffffff;
+  --menu-border: #cccccc;
+  --menu-item-bg: #f0f0f0;
+  --menu-text: #222222;
+  --menu-subtext: #666666;
+  --menu-transpose-bg: #e8e8e8;
+  --menu-accent: #d4af37; /* Trochu tmavší zlatá pro bílý podklad */
+}
+
+/* --- STYL MENU --- */
+.more-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 55px;
+  right: 0px;
+  background: var(--menu-bg);
+  border: 1px solid var(--menu-border);
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  z-index: 1000;
+  width: 180px;
+  padding: 12px;
+  color: var(--menu-text);
+}
+
+.more-menu-dropdown.is-open {
+  display: block;
+}
+
+/* --- ÚPRAVA PRO REŽIM KAFE --- */
+body.sand-mode {
+  --menu-bg: #f4ecd8;           /* Teplá béžová jako pozadí stránky */
+  --menu-border: #d3c4a1;       /* Tmavší béžová pro okraje */
+  --menu-item-bg: #e8dfc4;      /* O kousek tmavší pro položky/tlačítka */
+  --menu-text: #5d4037;         /* Tmavě hnědá místo černé */
+  --menu-subtext: #8d6e63;      /* Světlejší hnědá pro doplňky */
+  --menu-transpose-bg: #dccfb0; /* Pozadí pro tlačítka transpozice */
+  --menu-accent: #a0522d;       /* "Sienna" hnědá jako akcentní barva */
+}
+
+body.coffee-mode .more-menu-dropdown button,
+body.coffee-mode .transpose-buttons div {
+  background-color: var(--menu-item-bg) !important;
+  color: var(--menu-text) !important;
+  border-color: var(--menu-border) !important;
+}
+
+.menu-label {
+  display: block;
+  font-size: 10px;
+  color: var(--menu-subtext);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.transpose-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--menu-transpose-bg);
+  padding: 8px;
+  border-radius: 10px;
+}
+
+.menu-btn, .grid-btn {
+  background: var(--menu-item-bg);
+  border: none;
+  color: var(--menu-text);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.menu-btn {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+.grid-btn {
+  aspect-ratio: 1 / 1;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.menu-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.menu-divider {
+  border: 0;
+  border-top: 1px solid var(--menu-border);
+  margin: 12px 0;
+}
+
+.shift-display-inline {
+  color: var(--menu-accent);
+  font-weight: bold;
+  font-size: 16px;
+}
+/* --- OPRAVA PRO MOBILY (Pod 600px) --- */
+@media (max-width: 600px) {
+  .btn-columns {
+    display: none !important;
+  }
+
+  .menu-icons-grid {
+    display: flex !important;
+    /* Rozmístí tlačítka na okraje */
+    justify-content: space-between; 
+    /* Toto odsazení zajistí, že tlačítka budou přesně pod těmi horními */
+    padding: 10px 15px 5px 15px; 
+  }
+
+  .menu-icons-grid .grid-btn {
+    /* Nastavíme šířku stejnou, jako mají tlačítka transpozice (asi 45-50px) */
+    width: 45px; 
+    height: 45px;
+    flex-grow: 0;
+  }
+}
+
+/* Bod 3: Skrytí transpozice, když jsou akordy vypnuté */
+body.hide-chords .transpose-section {
+  display: none;
+}
+@media (max-width: 768px) {
+    .desktop-only { display: none !important; }
+}
+
+/* Neústupný styl pro široké tlačítko nahrávek */
+.icon-btn.audio-btn {
+    width: auto !important;
+    min-width: max-content !important; 
+    padding: 0 12px !important; /* Prostor po stranách textu */
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+    white-space: nowrap !important; /* Zakáže textu, aby se zalamoval nebo přetékal přes okraj */
+    flex: 0 0 auto !important; /* Absolutní zákaz smrskávání tlačítka! */
+}
+
+/* Na mobilech text schováme a tlačítko vrátíme do tvaru čtverečku */
+@media (max-width: 500px) {
+    .icon-btn.audio-btn .audio-text {
+        display: none !important;
+    }
+    .icon-btn.audio-btn {
+        min-width: 44px !important; /* Zpět na zhruba šířku ostatních tlačítek */
+        padding: 0 !important;
+    }
+}
+
+/* Roztáhneme vnitřní část lišty na celou šířku monitoru */
+.song-topbar-inner {
+    max-width: none !important; /* Zrušíme omezení šířky (to je ten hlavní viník) */
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important; /* Základní zarovnání doleva */
+    padding: 0 30px !important; /* Mezera od levého a pravého okraje monitoru */
+    box-sizing: border-box !important;
+}
+
+/* Trik pro rozdělení: Název písničky odtlačí všechno napravo od sebe až na konec */
+.topbar-title {
+    margin-right: auto !important; /* Tímto název písničky „vyplní“ veškeré volné místo uprostřed */
+    margin-left: 15px !important;  /* Mezera mezi šipkou zpět a názvem */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Kdyby byl název moc dlouhý, udělá tečky */
+}
+
+/* Na mobilech lištu trochu víc „přimáčkneme“ k okrajům, ať máme místo */
+@media (max-width: 768px) {
+    .song-topbar-inner {
+        padding: 0 10px !important;
+    }
+    .topbar-title {
+        margin-left: 8px !important;
+    }
+}
+
+/* --- Sladění nabídky nahrávek s tmavým a kávovým režimem (OPRAVENO) --- */
+
+/* --- Tmavý režim (Srpek) --- */
+/* 1. Hlavní obal (neviditelný, splývá s lištou) */
+body.dark-mode .audio-drawer {
+    background-color: #1c1a19 !important; /* Barva hlavní lišty v tmavém režimu */
+    border: none !important;              /* Zrušíme ten ošklivý špičatý rámeček */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4) !important; /* Přidáme stín, aby nabídka nesplynula s textem dole */
+    border-radius: 0 0 12px 12px !important; /* Lehce zakulatíme spodní rohy obalu */
+}
+/* 2. Samotná zakulacená tlačítka */
+body.dark-mode #audio-list > * {
+    background-color: #333333 !important; /* Tlačítka trochu světlejší, ať vyniknou */
+    color: #e0e0e0 !important;            
+    border: 1px solid #444444 !important; 
+}
+/* Ikonky uvnitř tlačítek */
+body.dark-mode #audio-list > * > * {
+    color: #e0e0e0 !important;
+}
+
+
+/* --- Režim Kafe (Pískový) --- */
+/* 1. Hlavní obal (neviditelný, splývá s lištou) */
+body.sand-mode .audio-drawer {
+    background-color: #eaddc5 !important; /* Odhad barvy hlavní lišty v režimu kafe */
+    border: none !important;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0 0 12px 12px !important;
+}
+/* 2. Samotná zakulacená tlačítka */
+body.sand-mode #audio-list > * {
+    background-color: #e8dfce !important; 
+    color: #333333 !important;            
+    border: 1px solid #d4c8b3 !important; 
+}
+/* Ikonky uvnitř tlačítek */
+body.sand-mode #audio-list > * > * {
+    color: #333333 !important;
+}
+
+/* --- 1. Sjednocení stínu a rohů pro denní režim (výchozí stav) --- */
+.audio-drawer {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 0 0 12px 12px !important;
+    border: none !important; /* Pokud tam byl nějaký ostrý rámeček, zrušíme ho */
+}
+
+/* --- 2. Zvýraznění HRAJÍCÍ (aktivní) nahrávky pro všechny režimy --- */
+
+/* Denní režim (nahrazuje původní zelenou barvu) */
+#audio-list > .is-playing {
+    background-color: #ebdcc9 !important; /* Jemná zemitá/béžová */
+    border-color: #d0bba0 !important;     /* Tmavší béžový rámeček */
+}
+/* Změna barvy textu a ikonky uvnitř hrající nahrávky v denním režimu */
+#audio-list > .is-playing,
+#audio-list > .is-playing > * {
+    color: #4a3c31 !important; /* Tmavě hnědá, ladí s pozadím */
+    font-weight: bold !important;
+}
+
+/* Tmavý režim (Srpek) */
+body.dark-mode #audio-list > .is-playing {
+    background-color: #4d4d4d !important; /* Světlejší šedá, aby vystoupila z menu */
+    border-color: #777777 !important;
+}
+body.dark-mode #audio-list > .is-playing,
+body.dark-mode #audio-list > .is-playing > * {
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+/* Režim Kafe (Pískový) */
+body.sand-mode #audio-list > .is-playing {
+    background-color: #d4c2a5 !important; /* Tmavší "oříšková" káva */
+    border-color: #b8a280 !important;
+}
+body.sand-mode #audio-list > .is-playing,
+body.sand-mode #audio-list > .is-playing > * {
+    color: #333333 !important;
+    font-weight: bold !important;
+}
+
+/* Barvy IAST ve slovníčku v šuplíku */
+/* 1. Výchozí barva (Světlý režim) - např. elegantní vínová */
+.analysis-container strong, 
+.analysis-container b {
+  color: #ac2800; 
+  font-weight: normal;
+}
+
+/* 2. Tmavý režim - světlejší pastelová barva, aby byla čitelná na tmavém pozadí */
+/* Změň '.theme-dark' na třídu, kterou tvůj web skutečně používá pro tmavý režim */
+body.dark-mode .analysis-container strong,
+body.dark-mode .analysis-container b {
+  color: #ff9da6; 
+  font-weight: normal;
+}
+
+/* 3. Sépiový režim - např. tmavší rezavá/hnědá */
+/* Změň '.theme-sepia' na třídu pro sépiový režim */
+body.sand-mode .analysis-container strong,
+body.sand-mode .analysis-container b {
+  color: #8b4513; 
+  font-weight: normal;
+}
+
+/* Zacílení na vše v šuplíku analýzy */
+.analysis-container p, 
+.analysis-container div {
+    margin-top: 0px !important;
+    margin-bottom: 2px !important; /* Velmi malá mezera mezi odstavci */
+    line-height: 1.4 !important;  /* Zmenší i mezery mezi řádky v rámci jednoho textu */
+}
+
+/* Oprava pro nadpisy uvnitř analýzy */
+.analysis-container h3 {
+    margin-top: 10px !important;    /* Mezera NAD Slokou/Dohou */
+    margin-bottom: -20px !important;  /* Mezera POD ní - teď už nemusíš dávat minusové hodnoty */
+    padding: 0 !important;
+}
+
+.analysis-container .chytramezera {
+    display: block;
+    height: 15px; /* Tady si nastav velikost podle sebe - zkus třeba 8px, 12px nebo 15px */
+    margin: 0 !important;
+}
+
+</style>
+</head>
+<body>
+  <div class="song-topbar" id="song-topbar">
+    <div class="song-topbar-inner">
+      <a class="back-link" href="index.html" aria-label="Zpět na seznam">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="20" y1="12" x2="4" y2="12"></line>
+          <polyline points="10 18 4 12 10 6"></polyline>
+        </svg>
+      </a>    
+      
+      <div class="topbar-title" id="topbar-title">Načítám…</div>
+      
+      <div class="topbar-actions">
+        <button class="icon-btn audio-btn" type="button" id="audio-toggle" aria-label="Nahrávky">
+          🎧<span class="audio-text">Nahrávky</span>
+        </button>        <button class="icon-btn" type="button" onclick="changeSize(-2)" aria-label="Zmenšit písmo">A−</button>
+        <button class="icon-btn" type="button" onclick="changeSize(2)" aria-label="Zvětšit písmo">A+</button>
+        
+        <button class="icon-btn desktop-only" type="button" id="col-toggle-btn" onclick="toggleColumns()" title="Přepnout sloupce">◫</button>
+        
+        <button class="icon-btn" type="button" onclick="toggleDarkMode()" title="Přepnout vzhled">🌙</button>
+        <button class="icon-btn" type="button" id="more-menu-btn" style="font-size: 20px;">⋮</button>
+    
+        <div id="more-menu-dropdown" class="more-menu-dropdown">
+          
+          <div style="text-align: center; padding-bottom: 10px;">
+            <span class="menu-label" style="display: block; margin-bottom: 5px;">Akordy</span>
+            <button class="grid-btn" id="toggle-chords" title="Zobrazit/skrýt akordy" style="margin: 0 auto;">C</button>
+          </div>
+    
+          <div id="transpose-section" class="transpose-section">
+            <hr class="menu-divider" style="margin: 5px 0 10px 0;">
+            <div class="menu-group" style="text-align: center;">
+              <span class="menu-label">Transpozice</span>
+              <div class="transpose-row" style="justify-content: center; margin-top: 5px;">
+                <button class="menu-btn" onclick="changeShift(-1)">♭</button>
+                <span class="shift-display-inline" id="shift-display" style="min-width: 24px; text-align: center; display: inline-block;">0</span>
+                <button class="menu-btn" onclick="changeShift(1)">♯</button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
+    </div>
+  
+    <div class="audio-drawer" id="audio-drawer" aria-label="Audio nahrávky">
+      <div class="audio-list" id="audio-list"></div>
+      <audio id="audio-player" controls></audio>
+    </div>
+  </div>
+<div id="page">
+  <div id="loading">Načítám písničku…</div>
+  <div id="error">Písničku se nepodařilo načíst. Zkontroluj URL.</div>
+  <div id="chord-app" style="display:none;"></div>
+</div>
+
+<div class="scroll-nav">
+  <button class="scroll-btn" onclick="window.scrollBy({top: -window.innerHeight*0.8, behavior: 'smooth'})" title="Nahoru">⏶</button>
+  <button class="scroll-btn" onclick="window.scrollBy({top: window.innerHeight*0.8, behavior: 'smooth'})" title="Dolů">⏷</button>
+</div>
+
+<script>
+  (function() {
+    window.currentSongObj = null;
+  
+  // --- Nový systém 3 režimů ---
+  // --- Nový systém 3 režimů ---
+  window.setTheme = function(theme) {
+    document.body.classList.remove('dark-mode', 'sand-mode');
+    
+    // Univerzální hledání tlačítka podle jeho akce (funguje, i když nemá speciální ID)
+    const themeBtn = document.querySelector('button[onclick*="toggleDarkMode"]');
+    
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+      if (themeBtn) themeBtn.textContent = '☕'; // Z tmavého do pískového
+    } else if (theme === 'sand') {
+      document.body.classList.add('sand-mode');
+      if (themeBtn) themeBtn.textContent = '☀️'; // Z pískového do světlého
+    } else {
+      // Světlý režim
+      if (themeBtn) themeBtn.textContent = '🌙'; // Ze světlého do tmy
+    }
+    
+    localStorage.setItem('samhita_theme', theme);
+  };
+
+  // Zpětná kompatibilita pro staré uložení
+  if (localStorage.getItem('samhita_dark') !== null) {
+    if (localStorage.getItem('samhita_dark') === 'true') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+    localStorage.removeItem('samhita_dark');
+  } else {
+    const savedTheme = localStorage.getItem('samhita_theme') || 'light';
+    setTheme(savedTheme);
+  }
+
+  // Přepínání na tlačítko
+  window.toggleDarkMode = function() {
+    const currentTheme = localStorage.getItem('samhita_theme') || 'light';
+    if (currentTheme === 'light') {
+      setTheme('dark');
+    } else if (currentTheme === 'dark') {
+      setTheme('sand');
+    } else {
+      setTheme('light');
+    }
+  };
+  // --- Konec nového systému ---
+
+// === PREVENCE VYPNUTÍ OBRAZOVKY - HYBRIDNÍ ŘEŠENÍ ===
+let wakeLock = null;
+let noSleep = null;
+let wakeLockInitialized = false;
+
+// 1. Moderní Wake Lock API (nejlepší řešení)
+async function enableWakeLock() {
+    if ('wakeLock' in navigator) {
+        try {
+            wakeLock = await navigator.wakeLock.request('screen');
+            console.log('✅ Wake Lock API aktivováno');
+            
+            wakeLock.addEventListener('release', () => {
+                console.log('⚠️ Wake Lock uvolněno');
+            });
+            
+            return true;
+        } catch (err) {
+            console.log('❌ Wake Lock API selhalo:', err.message);
+            return false;
+        }
+    }
+    console.log('ℹ️ Wake Lock API není podporováno');
+    return false;
+}
+
+// 2. Fallback na NoSleep.js
+function enableNoSleepFallback() {
+    try {
+        if (!noSleep) {
+            noSleep = new NoSleep();
+        }
+        noSleep.enable();
+        console.log('✅ NoSleep.js aktivováno (fallback)');
+    } catch (err) {
+        console.log('❌ NoSleep.js selhalo:', err.message);
+    }
+}
+
+// 3. Aktivace při prvním dotyku/kliknutí
+async function preventScreenSleep() {
+    if (wakeLockInitialized) return;
+    wakeLockInitialized = true;
+    
+    const wakeLockSuccess = await enableWakeLock();
+    
+    if (!wakeLockSuccess) {
+        enableNoSleepFallback();
+    }
+    
+    console.log('🔒 Prevence vypnutí obrazovky inicializována');
+    
+    // Odstranit posluchače
+    document.removeEventListener('click', preventScreenSleep);
+    document.removeEventListener('touchstart', preventScreenSleep);
+}
+
+// 4. Znovu aktivovat Wake Lock po návratu na stránku
+document.addEventListener('visibilitychange', async () => {
+    if (document.visibilityState === 'visible' && wakeLockInitialized) {
+        if ('wakeLock' in navigator && wakeLock !== null) {
+            try {
+                wakeLock = await navigator.wakeLock.request('screen');
+                console.log('🔄 Wake Lock reaktivováno po návratu');
+            } catch (err) {
+                console.log('⚠️ Reaktivace selhala:', err.message);
+            }
+        }
+    }
+});
+
+// 5. Naslouchat na první interakci
+document.addEventListener('click', preventScreenSleep, { once: true });
+document.addEventListener('touchstart', preventScreenSleep, { once: true, passive: true });
+
+    const SCROLL_FRACTION = 0.75;
+    const topbarTitleEl = document.getElementById('topbar-title');
+    const shiftDisplayEl = document.getElementById('shift-display');
+  
+    function isTypingInField(el) {
+      if (!el) return false;
+      const tag = (el.tagName || '').toLowerCase();
+      return tag === 'input' || tag === 'textarea' || el.isContentEditable;
+    }
+  
+    window.addEventListener('keydown', (e) => {
+      if (e.defaultPrevented) return;
+      if (isTypingInField(e.target)) return;
+  
+      const key = e.key;
+      const down = key === 'PageDown' || key === 'ArrowDown';
+      const up = key === 'PageUp' || key === 'ArrowUp';
+      if (!down && !up) return;
+  
+      e.preventDefault();
+      const delta = Math.round(window.innerHeight * SCROLL_FRACTION) * (down ? 1 : -1);
+      window.scrollBy({ top: delta, left: 0, behavior: 'smooth' });
+    });
+  
+    const params = new URLSearchParams(window.location.search);
+    const songName = params.get('s');
+    const audioParam = params.get('audio');
+  
+    let audioData = null;
+    let audioList = [];
+    let songData = '';
+    
+    // --- OBNOVENÉ GLOBÁLNÍ PROMĚNNÉ A FUNKCE PRO TLAČÍTKA ---
+    const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+    let currentShift = parseInt(localStorage.getItem(`samhita_shift_${songName}`)) || 0;
+    let currentFontSize = parseInt(localStorage.getItem('samhita_fontSize')) || 21;
+    let currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
+    let analysisOpen = false; // Tady si budeme pamatovat stav šuplíku
+
+    if (shiftDisplayEl) shiftDisplayEl.textContent = currentShift;
+  
+    window.changeSize = function(amount) {
+        currentFontSize += amount;
+        if (currentFontSize < 10) currentFontSize = 10;
+        if (currentFontSize > 60) currentFontSize = 60;
+        localStorage.setItem('samhita_fontSize', currentFontSize);
+        if (songData) window.renderSong(); // Okamžitě překreslí písničku
+    };
+  
+    window.changeShift = function(amount) {
+        currentShift += amount;
+        if (currentShift > 11) currentShift -= 12;
+        if (currentShift < -11) currentShift += 12;
+        localStorage.setItem(`samhita_shift_${songName}`, currentShift);
+        if (shiftDisplayEl) shiftDisplayEl.textContent = currentShift;
+        if (songData) window.renderSong(); // Okamžitě překreslí akordy
+    };
+  
+    window.applyColumnLayout = () => {
+      const appEl = document.getElementById('chord-app');
+      const pageEl = document.getElementById('page');
+      const topbarInner = document.querySelector('.song-topbar-inner');
+      const btn = document.getElementById('col-toggle-btn');
+      
+      if (appEl) appEl.style.setProperty('--col-count', currentCols);
+      
+      let newMaxWidth = '800px';
+      if (currentCols === 2) newMaxWidth = '1200px';
+      if (currentCols === 3) newMaxWidth = '1600px';
+      if (currentCols >= 4)  newMaxWidth = '95%';
+      
+      if (pageEl) pageEl.style.maxWidth = newMaxWidth;
+      if (topbarInner) topbarInner.style.maxWidth = newMaxWidth;
+      
+      if (btn) btn.innerHTML = `${currentCols} ⫿`;
+    };
+  
+    window.toggleColumns = () => {
+    currentCols = currentCols >= 6 ? 1 : currentCols + 1;
+    localStorage.setItem('samhita_columns', currentCols); 
+    window.applyColumnLayout();
+
+    // --- DOPLNĚNÍ ZDE ---
+    const colBtn = document.getElementById('col-toggle-btn');
+    if (colBtn) {
+        colBtn.innerText = `${currentCols} ⫿`;
+    }
+};
+    // --------------------------------------------------------
+  
+    // --- OPRAVA RACE CONDITION A CACHOVÁNÍ ---
+    // Přidáno ?t=... zabrání mobilu načíst starý JSON bez PDF šuplíku
+    fetch('songs.json?t=' + new Date().getTime())
+      .then(r => r.json())
+      .then(songs => {
+        const song = songs.find(s => s.file === songName);
+        if (song) {
+          window.currentSongObj = song; 
+          
+          // POJISTKA: Pokud se .pro soubor načetl rychleji než JSON, vykresli ho znovu!
+          if (songData !== '') {
+              window.renderSong(); 
+          }
+  
+          if (song.audio) {
+              audioData = song.audio;
+              renderAudio();
+          }
+        }
+      })
+      .catch(err => {
+        console.log('Nepodařilo se načíst songs.json:', err);
+        if (audioParam) {
+          audioData = audioParam;
+          renderAudio();
+        }
+      });
+  
+    function renderAudio() {
+      const toggleBtn = document.getElementById('audio-toggle');
+      const drawer = document.getElementById('audio-drawer');
+      const listEl = document.getElementById('audio-list');
+      const player = document.getElementById('audio-player');
+      if (!audioData || !toggleBtn || !drawer || !listEl || !player) return;
+  
+      if (typeof audioData === 'string') {
+        audioList = [{ url: audioData, label: null }];
+      } else if (Array.isArray(audioData)) {
+        audioList = audioData.map(item => {
+          if (typeof item === 'string') return { url: item, label: null };
+          return item;
+        });
+      }
+  
+      toggleBtn.style.display = audioList.length ? 'inline-flex' : 'none';
+      drawer.classList.toggle('audio-drawer--single', audioList.length === 1);
+  
+      function setPlayingTrackItem(activeBtn) {
+        listEl.querySelectorAll('.audio-item').forEach((btn) => btn.classList.remove('is-playing'));
+        if (activeBtn) activeBtn.classList.add('is-playing');
+      }
+  
+      listEl.innerHTML = '';
+    // ZMĚNA ZDE: Bylo > 1, teď je > 0, takže se seznam vykreslí i pro 1 nahrávku
+    if (audioList.length > 0) { 
+      audioList.forEach((a, idx) => {
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'audio-item';
+        
+        // Zkusí použít label, nebo title. Pokud nic není, napíše "Nahrávka 1"
+        const title = a.label || a.title || (audioList.length === 1 ? 'Přehrát nahrávku' : `Nahrávka ${idx + 1}`);
+        
+        item.innerHTML = `<span class="audio-item-title">${title}</span><span class="audio-item-meta">▶</span>`;
+        item.onclick = () => {
+          player.src = a.url;
+          player.style.display = 'block';
+          drawer.classList.add('is-open');
+          toggleBtn.classList.add('is-active');
+          setPlayingTrackItem(item);
+          player.play().catch(() => {});
+        };
+        listEl.appendChild(item);
+      });
+    }
+
+    // Navíc upravíme otevírací tlačítko, aby rovnou "rozsvítilo" i tu první nahrávku, když ji samo spustí
+    toggleBtn.addEventListener('click', () => {
+      const open = drawer.classList.toggle('is-open');
+      toggleBtn.classList.toggle('is-active', open);
+      if (open && audioList.length === 1 && !player.src) {
+        player.src = audioList[0].url;
+        player.style.display = 'block';
+        player.play().catch(() => {});
+        // Vybere jediné tlačítko v seznamu a označí ho jako hrající
+        setPlayingTrackItem(listEl.querySelector('.audio-item')); 
+      }
+    });    }
+  
+    function transposeChord(chord, amount) {
+      if (chord === '.') return '.';
+      return chord.replace(/[A-G][b#]?/g, (match) => {
+        let note = match;
+        const flats = { 'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'Bb': 'A#' };
+        if (note.endsWith('b')) note = flats[note] || note;
+        let index = notes.indexOf(note);
+        if (index === -1) return match;
+        let newIndex = (index + amount) % 12;
+        while (newIndex < 0) newIndex += 12;
+        return notes[newIndex];
+      });
+    }
+  
+    function formatLyrics(text) {
+    if (!text) return '';
+
+    // --- TENTO ŘÁDEK PŘIDEJ: Odstraní tagy {audio: ...} z viditelného textu ---
+    text = text.replace(/\{audio:.*?\}/gi, '');
+
+    // Zbytek tvého kódu zůstává stejný
+    text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    text = text.replace(/__(.*?)__/g, '<em>$1</em>');
+    /* Nový řádek pro nadpisy ### */
+    text = text.replace(/^###\s+(.*)/gm, '<h3>$1</h3>');
+    /* NOVÝ ŘÁDEK: Promění prázdné řádky na kontrolovatelnou mezeru */
+    text = text.replace(/\r?\n\s*\r?\n/g, '<div class="chytramezera"></div>');
+    
+    const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
+    text = text.replace(pipeLinkPattern, '<a href="$2" target="_blank" class="inline-link">$1</a>');
+    
+    const plainUrlPattern = /<a\b[^>]*>[\s\S]*?<\/a>|(\bhttps?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/ig;
+    text = text.replace(plainUrlPattern, (match, url) => {
+      if (url) {
+        return `<a href="${url}" target="_blank" class="inline-link">${url}</a>`;
+      }
+      return match;
+    });
+    
+    return text;
+}
+  
+  window.renderSong = function() {
+  const app = document.getElementById('chord-app');
+  if (!app || !songData) return;
+
+  const lines = songData.trim().split('\n');
+  let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
+
+  for (let i = 0; i < lines.length; i++) {
+    let line = lines[i];
+    const trimmed = line.trim();
+
+    if (trimmed.toLowerCase() === '{start_of_analysis}') break; 
+    if (trimmed.startsWith('#')) continue; 
+
+    if (trimmed.toLowerCase().startsWith('{t:') || trimmed.toLowerCase().startsWith('{title:')) {
+      let tMatch = line.match(/\{(?:t|title):\s*(.*?)\}/i);
+      if (tMatch) {
+        document.getElementById('topbar-title').textContent = tMatch[1]; 
+        html += `<div class="song-title">${tMatch[1]}</div>`;
+      }
+      continue;
+    }
+
+    if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
+      let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
+      if (stMatch) html += `<div class="song-subtitle">${stMatch[1]}</div>`;
+      continue;
+    }
+
+    if (trimmed.toLowerCase().startsWith('{st:') || trimmed.toLowerCase().startsWith('{subtitle:')) {
+      let stMatch = line.match(/\{(?:st|subtitle):\s*(.*?)\}/i);
+      if (stMatch) html += `<div class="song-subtitle">${stMatch[1]}</div>`;
+      continue;
+    }
+
+    /* --- NOVÉ: Zpracování autora --- */
+    if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
+      let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
+      if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
+      continue;
+    }
+
+    /* --- NOVÉ: Zpracování autora (z předchozího kroku) --- */
+    if (trimmed.toLowerCase().startsWith('{a:') || trimmed.toLowerCase().startsWith('{author:')) {
+      let aMatch = line.match(/\{(?:a|author):\s*(.*?)\}/i);
+      if (aMatch) html += `<div class="song-author">${aMatch[1]}</div>`;
+      continue;
+    }
+
+    /* --- NOVÉ: Skrytí tagů (zpracovává je jen generátor JSONu) --- */
+    if (trimmed.toLowerCase().startsWith('{tag:') || trimmed.toLowerCase().startsWith('{tags:')) {
+      continue;
+    }
+
+    /* --- NOVÉ: Zpracování kategorie --- */
+    if (trimmed.toLowerCase().startsWith('{category:') || trimmed.toLowerCase().startsWith('{cat:')) {
+      let catMatch = line.match(/\{(?:category|cat):\s*(.*?)\}/i);
+      if (catMatch) html += `<div class="song-category">${catMatch[1]}</div>`;
+      continue;
+    }
+
+    if (trimmed.toLowerCase().startsWith('{capo:')) {
+      let match = line.match(/\{capo:\s*(.*?)\}/i);
+      if (match) html += `<span class="song-capo">Capo ${match[1]}</span>`;
+      continue;
+    }
+    
+    if (trimmed.toLowerCase().startsWith('{time:')) {
+      let match = line.match(/\{time:\s*(.*?)\}/i);
+      if (match) html += `<span class="song-time">⏱ ${match[1]}</span>`;
+      continue;
+    }
+    
+    if (trimmed.toLowerCase().startsWith('{tempo:')) {
+      let match = line.match(/\{tempo:\s*(.*?)\}/i);
+      if (match) html += `<span class="song-tempo">♩ ${match[1]}</span>`;
+      continue;
+    }
+
+    if (trimmed.toLowerCase().startsWith('{soc')) {
+      let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
+      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="chorus-block">${labelHtml}`; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{eoc')) { 
+      html += '</div>'; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{sov')) {
+      let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
+      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
+      let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="verse-block">${labelHtml}`; 
+      continue; 
+    }
+    if (trimmed.toLowerCase().startsWith('{eov')) { 
+      html += '</div>'; 
+      continue; 
+    }
+
+    if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
+      let cMatch = line.match(/\{(?:c|comment):\s*(.*?)\}/i);
+      if (cMatch) html += `<div class="comment">${cMatch[1]}</div>`;
+      continue;
+    }
+
+    let lineHtml = '';
+    if (line.includes('[')) {
+      let parts = line.split(/\[([^\]]+)\]/);
+      if (parts[0]) {
+        lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
+      }
+      for (let j = 1; j < parts.length; j += 2) {
+        let chord = parts[j];
+        let lyric = parts[j+1] || '';
+        let transposed = transposeChord(chord, currentShift);
+        lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
+      }
+    } else {
+      lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
+    }
+
+    if (trimmed === '') {
+        html += `<div class="spacer"></div>`;
+    } else {
+        html += `<div class="line">${lineHtml}</div>`;
+    }
+  }
+  
+  html += `</div>`; 
+
+// =========================================================
+// VYKRESLENÍ ŠUPLÍKU A PDF
+// =========================================================
+if (window.currentSongObj) {
+    
+    // 1. ŠUPLÍK (s formátováním textu a pamětí stavu)
+    if (window.currentSongObj.analysis && window.currentSongObj.analysis.trim() !== "") {
+        let formattedAnalysis = formatLyrics(window.currentSongObj.analysis.trim());
+        
+        html += `
+            <div class="analysis-container">
+                <div class="analysis-header" onclick="toggleAnalysis()" style="font-size: ${currentFontSize * 0.8}px;">
+                    <span>🔆 Překlad a poznámky</span>
+                    <span id="analysis-arrow">${analysisOpen ? "▲" : "▼"}</span>
+                </div>
+                <div id="analysis-content" class="analysis-content" style="display: ${analysisOpen ? 'block' : 'none'}; font-size: ${currentFontSize * 0.9}px;">${formattedAnalysis}</div>
+            </div>
+        `;
+    }
+      // 2. PDF
+      if (window.currentSongObj.hasPDF) {
+          html += `
+              <a href="pdfs/${window.currentSongObj.file}.pdf" class="pdf-link">
+                  <div class="pdf-link-inner" style="font-size: ${currentFontSize * 0.8}px;">
+                      <span>🔆 PDF</span>
+                      <span style="opacity: 0.5;">▶</span>
+                  </div>
+              </a>
+          `;
+      }
+  }
+
+  app.innerHTML = html;
+  app.style.display = 'block';
+  document.getElementById('loading').style.display = 'none';
+  window.applyColumnLayout();
+};
+  
+window.toggleAnalysis = function() {
+    // 1. Přepneme stav v naší paměti (true -> false / false -> true)
+    analysisOpen = !analysisOpen; 
+
+    const content = document.getElementById('analysis-content');
+    const arrow = document.getElementById('analysis-arrow');
+
+    if (content && arrow) {
+        // 2. Nastavíme zobrazení podle naší paměti
+        content.style.display = analysisOpen ? "block" : "none";
+        arrow.textContent = analysisOpen ? "▲" : "▼";
+    }
+};
+  
+  if (songName) {
+    document.title = songName + " - Zpěvník";
+    fetch(`songs/${songName}.pro`)
+      .then(r => {
+        if (!r.ok) throw new Error('Network response was not ok');
+        return r.text();
+      })
+      .then(text => {
+        songData = text;
+        window.renderSong(); 
+      })
+      .catch(err => {
+        document.getElementById('loading').style.display = 'none';
+        document.getElementById('error').style.display = 'block';
+        console.error(err);
+      });
+  } else {
+    document.getElementById('loading').innerHTML = "Chybí název písničky v URL.";
+  }
+  
+  })();
+  
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1. NASTAVENÍ SLOUPCŮ (Ošetření poskočení textu na mobilu)
+    const isMobile = window.innerWidth < 600;
+    if (isMobile) {
+        // Na mobilu vždy vynutíme 1 sloupec
+        currentCols = 1;
+    } else {
+        // Na PC/Tabletu načteme z paměti, nebo dáme 1 jako výchozí
+        currentCols = parseInt(localStorage.getItem('samhita_columns')) || 1;
+    }
+
+    // Aplikujeme rozvržení a zaktualizujeme text v tlačítku menu
+    if (typeof window.applyColumnLayout === 'function') {
+        window.applyColumnLayout();
+    }
+    const colBtn = document.getElementById('col-toggle-btn');
+    if (colBtn) {
+        colBtn.innerText = `${currentCols} ⫿`;
+    }
+
+    // 2. AKORDY (Vypínání/Zapínání)
+    const toggleBtn = document.getElementById('toggle-chords');
+    if (toggleBtn) {
+        // Zkontrolujeme stav z paměti
+        const chordsHidden = localStorage.getItem('chords-hidden') === 'true';
+        if (chordsHidden) {
+            document.body.classList.add('hide-chords');
+            toggleBtn.style.opacity = "0.5";
+            toggleBtn.style.background = "var(--menu-transpose-bg)";
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const isHidden = document.body.classList.toggle('hide-chords');
+            localStorage.setItem('chords-hidden', isHidden);
+            
+            // Vizuální zpětná vazba pro tlačítko v menu
+            toggleBtn.style.opacity = isHidden ? "0.5" : "1";
+            toggleBtn.style.background = isHidden ? "var(--menu-transpose-bg)" : "var(--menu-item-bg)";
+        });
+    }
+
+    // 3. OVLÁDÁNÍ MENU (Šuplík)
+    const menuBtn = document.getElementById('more-menu-btn');
+    const menuDropdown = document.getElementById('more-menu-dropdown');
+
+    if (menuBtn && menuDropdown) {
+        menuBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menuDropdown.classList.toggle('is-open');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!menuDropdown.contains(e.target)) {
+                menuDropdown.classList.remove('is-open');
+            }
+        });
+    }
+});
+  </script>
+</body>
+</html>
