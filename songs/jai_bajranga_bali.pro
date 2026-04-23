@@ -11,9 +11,10 @@
 # {category: Indické - ostatní}
 # {category: Písně}
 ##########################################
-{capo: 4}
+{capo: 5}
+{capo: 0 ---> od Dm}
 {time: 4/4}
-{tempo: 80}
+# {tempo: 80}
 {tags: Hanuman, Rama}
 {audio: https://samhita.cz/zpivani/audio/dzej_vadzrang_bali_ih1_2015_09_02_k.mp3 | Samhita: 2015_09_02}
 ##########################################

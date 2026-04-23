@@ -11,9 +11,9 @@
 # {category: Indické - ostatní}
 # {category: Písně}
 ##########################################
-{capo: 0}
+# {capo: 0}
 {time: 4/4}
-{tempo: 80}
+# {tempo: 80}
 {tags: Lakshmi, Kršna, Govinda}
 {audio: audio/karagre_vasate.mp3 | Ancient Chants from India - Volume 2}
 ##########################################

@@ -11,16 +11,18 @@
 # {category: Indické - ostatní}
 # {category: Písně}
 ##########################################š
-{capo: 4}
-{time: 3/4}
-{tempo: 80}
+{capo: 3}
+{time: 4/4}
+# {tempo: 80}
 {tags: Govinda, Kršna}
 {audio: https://samhita.cz/zpivani/audio/govinda_gopal_ik17_2015_04_08_k.mp3 | Samhita: 2015_04_08}
 ##########################################
-Govinda Gopāla bhaja mana Kṛṣṇa Hari
-He Prabhu Dīna Dayāla bhaja mana Kṛṣṇa Hari
+|: [Am]Govin|[C]da Go|[Am]pāla |. . . . |
+| [C]. bhaja mana |[G]Kṛṣṇa Ha|[Am]ri . . . |. . . . :|
+|: [C]. He Prabhu |[Dm]Dīna Dayā|[Am]la . . . |. . . . :| 
+| [C]. bhaja mana |[G]Kṛṣṇa Ha|[Am]ri . . . |. . . . :|
 
-<img src="images/govinda_gopal.png" class="song-img">
+# <img src="images/govinda_gopal.png" class="song-img">
 ##########################################
 {start_of_analysis}
 {start_of_analysis}

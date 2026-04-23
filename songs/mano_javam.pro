@@ -11,9 +11,9 @@
 # {category: Indické - ostatní}
 # {category: Písně}
 ##########################################
-{capo: 3}
+# {capo: 3}
 {time: 4/4}
-{tempo: 80}
+# {tempo: 80}
 {tags: Hanuman, Ráma}
 ##########################################
 |[G]mano ja|vaṁ mā|ruta tulya |vegaṁ |

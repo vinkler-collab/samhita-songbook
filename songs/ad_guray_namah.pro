@@ -13,7 +13,7 @@
 # #########################################
 {capo: 2}
 {time: 4/4}
-{tempo: 80}
+# {tempo: 80}
 {tags: Guru, Mangala charan mantra}
 {audio: https://samhita.cz/zpivani/audio/ad_gure_name_io6_2014_12_03_k.mp3 | Samhita - 2014_12_03}
 ##########################################
