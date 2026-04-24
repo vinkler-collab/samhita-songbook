@@ -1,5 +1,24 @@
 [
   {
+    "name": "1. Chapter 1 Summary",
+    "category": "Indické - základní",
+    "file": "bhaga_test",
+    "audio": [
+      {
+        "url": "https://samhita.cz/zpivani/audio/hanuman_bolo_ih5_2016_04_06_k.mp3",
+        "label": "Samhita: Verze 1 - 2016_04_06",
+        "title": "Samhita: Verze 1 - 2016_04_06"
+      }
+    ],
+    "tags": [
+      "tag1",
+      "tag2"
+    ],
+    "dateAdded": "2026-04-24",
+    "hasPDF": false,
+    "analysis": "<iframe data-testid=\"embed-iframe\" style=\"border-radius:12px\" src=\"//open.spotify.com/embed/episode/7hfRQab6EVK5t861oQCw7R?utm_source=generator\" width=\"100%\" height=\"352\" frameBorder=\"0\" allowfullscreen=\"\" allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>"
+  },
+  {
     "name": "Ād guray namaḥ",
     "category": "Indické - ostatní",
     "file": "ad_guray_namah",
