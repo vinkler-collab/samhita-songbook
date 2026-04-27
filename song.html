@@ -1275,7 +1275,12 @@ body.sand-mode #audio-list > .is-playing > * {
 /* Barvy IAST ve slovníčku v šuplíku */
 /* 1. Výchozí barva (Světlý režim) - např. elegantní vínová */
 .analysis-container strong, 
-.analysis-container b {
+.analysis-container b,
+.lyric strong,
+.lyric b,
+.comment strong,
+.comment b,
+.slovnicek-slovo {
   color: #ac2800; 
   font-weight: normal;
 }
@@ -1283,7 +1288,12 @@ body.sand-mode #audio-list > .is-playing > * {
 /* 2. Tmavý režim - světlejší pastelová barva, aby byla čitelná na tmavém pozadí */
 /* Změň '.theme-dark' na třídu, kterou tvůj web skutečně používá pro tmavý režim */
 body.dark-mode .analysis-container strong,
-body.dark-mode .analysis-container b {
+body.dark-mode .analysis-container b,
+body.dark-mode .lyric strong,
+body.dark-mode .lyric b,
+body.dark-mode .comment strong,
+body.dark-mode .comment b,
+body.dark-mode .slovnicek-slovo {
   color: #ff9da6; 
   font-weight: normal;
 }
@@ -1291,7 +1301,12 @@ body.dark-mode .analysis-container b {
 /* 3. Sépiový režim - např. tmavší rezavá/hnědá */
 /* Změň '.theme-sepia' na třídu pro sépiový režim */
 body.sand-mode .analysis-container strong,
-body.sand-mode .analysis-container b {
+body.sand-mode .analysis-container b,
+body.sand-mode .lyric strong,
+body.sand-mode .lyric b,
+body.sand-mode .comment strong,
+body.sand-mode .comment b,
+body.sand-mode .slovnicek-slovo {
   color: #8b4513; 
   font-weight: normal;
 }
@@ -1317,6 +1332,53 @@ body.sand-mode .analysis-container b {
     margin: 0 !important;
 }
 
+/* V supliku musi byt nazev sloky/refrainu na samostatnem radku. */
+.analysis-content .verse-label,
+.analysis-content .chorus-label {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+}
+/* --- STYLY PRO PŘEKLADY {sot} --- */
+.translation-block {
+    margin: 15px 0;
+    padding: 12px 15px; /* Přidali jsme padding i nahoru a dolů, aby text nebyl nalepený na kraji obdélníku */
+    border-left: 5px solid #888; /* Silnější linka pro lepší akcent */
+    background: rgba(0, 0, 0, 0.05); /* Velmi jemný šedý obdélník */
+    border-radius: 0 4px 4px 0; /* Zaoblení jen vpravo, u linky ne */
+    font-style: normal; /* Kurzíva odstraněna */
+    color: #444;
+    line-height: 1.5;
+}
+
+.translation-label {
+    font-weight: bold;
+    font-style: normal; /* Případný nadpis překladu nebude kurzívou */
+    margin-bottom: 5px;
+    color: #333;
+}
+/* Úprava pro tmavý (noční) režim */
+body.dark-mode .translation-block {
+    background: rgba(255, 255, 255, 0.07); /* Světlý nádech na tmavém pozadí */
+    color: #ddd;
+    border-left-color: #666;
+}
+
+/* Úprava pro režim Sepie */
+body.sepia-mode .translation-block {
+    background: rgba(0, 0, 0, 0.04);
+    color: #4a3c2c;
+    border-left-color: #a69076;
+}
+/* 1. Oprava pro Noční režim */
+body.dark-mode .translation-label {
+    color: #eee !important; /* Světlá barva, aby label zářil */
+}
+
+/* 2. Oprava pro Sepii */
+body.sand-mode .translation-label {
+    color: #4a3c2c !important; /* Tmavě hnědá pro dobrý kontrast na krémové */
+}
 </style>
 </head>
 <body>
@@ -1701,18 +1763,73 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
       });
     }
   
-    function formatLyrics(text) {
+   function formatLyrics(text, isInVerseContext = false) {
     if (!text) return '';
-
-    // --- TENTO ŘÁDEK PŘIDEJ: Odstraní tagy {audio: ...} z viditelného textu ---
+  
+    // Barveni slovnicku aplikujeme pouze uvnitr bloku {sov ...} ... {eov}.
+    const glossarySeparatorsPattern = /(^|;\s*)([^<>\n]+?)(\s*—\s*|\s*–\s*|\s+-\s+)/g;
+    const hasVerseTags = /\{sov(?::\s*.*)?\}|\{eov\}/i.test(text);
+    if (hasVerseTags) {
+      let inVerseBlock = false;
+      text = text
+        .split(/\r?\n/)
+        .map((line) => {
+          const trimmed = line.trim();
+          if (/^\{sov(?::\s*.*)?\}$/i.test(trimmed)) {
+            inVerseBlock = true;
+            return line;
+          }
+          if (/^\{eov\}$/i.test(trimmed)) {
+            inVerseBlock = false;
+            return line;
+          }
+          if (!inVerseBlock) return line;
+          return line.replace(glossarySeparatorsPattern, '$1<strong>$2</strong>$3');
+        })
+        .join('\n');
+    } else if (isInVerseContext) {
+      text = text.replace(glossarySeparatorsPattern, '$1<strong>$2</strong>$3');
+    }
+  
+    // Odstraní tagy {audio: ...} z viditelného textu
     text = text.replace(/\{audio:.*?\}/gi, '');
+  
+    // --- CHORDPRO BLOKY (sov/soc/sot) ---
+    // Spotrebujeme i koncovy newline, aby nevznikal prazdny radek navic.
+    
+    // 1. VERŠE {sov}
+    text = text.replace(/^[ \t]*\{sov:\s*([^}]+)\}[ \t]*(?:\r?\n)?/gim, '<div class="verse-block"><div class="verse-label">$1</div>');
+    text = text.replace(/^[ \t]*\{sov\}[ \t]*(?:\r?\n)?/gim, '<div class="verse-block">');
+    text = text.replace(/^[ \t]*\{eov\}[ \t]*(?:\r?\n)?/gim, '</div>');
+    
+    // 2. REFRÉNY {soc}
+    text = text.replace(/^[ \t]*\{soc:\s*([^}]+)\}[ \t]*(?:\r?\n)?/gim, '<div class="chorus-block"><div class="chorus-label">$1</div>');
+    text = text.replace(/^[ \t]*\{soc\}[ \t]*(?:\r?\n)?/gim, '<div class="chorus-block">');
+    text = text.replace(/^[ \t]*\{eoc\}[ \t]*(?:\r?\n)?/gim, '</div>');
 
-    // Zbytek tvého kódu zůstává stejný
+    // 3. PŘEKLADY {sot} (NOVĚ PŘIDÁNO)
+    text = text.replace(/^[ \t]*\{sot:\s*([^}]+)\}[ \t]*(?:\r?\n)?/gim, '<div class="translation-block"><div class="translation-label">$1</div>');
+    text = text.replace(/^[ \t]*\{sot\}[ \t]*(?:\r?\n)?/gim, '<div class="translation-block">');
+    text = text.replace(/^[ \t]*\{eot\}[ \t]*(?:\r?\n)?/gim, '</div>');
+  
+    // --- FALLBACKY (pokud tag nezustane na samostatnem radku) ---
+    text = text.replace(/\{sov:\s*([^}]+)\}/gi, '<div class="verse-block"><div class="verse-label">$1</div>');
+    text = text.replace(/\{sov\}/gi, '<div class="verse-block">');
+    text = text.replace(/\{eov\}/gi, '</div>');
+    
+    text = text.replace(/\{soc:\s*([^}]+)\}/gi, '<div class="chorus-block"><div class="chorus-label">$1</div>');
+    text = text.replace(/\{soc\}/gi, '<div class="chorus-block">');
+    text = text.replace(/\{eoc\}/gi, '</div>');
+
+    text = text.replace(/\{sot:\s*([^}]+)\}/gi, '<div class="translation-block"><div class="translation-label">$1</div>');
+    text = text.replace(/\{sot\}/gi, '<div class="translation-block">');
+    text = text.replace(/\{eot\}/gi, '</div>');
+    // ----------------------------------------------------------------
+  
+    // Zbytek tvého kódu
     text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     text = text.replace(/__(.*?)__/g, '<em>$1</em>');
-    /* Nový řádek pro nadpisy ### */
     text = text.replace(/^###\s+(.*)/gm, '<h3>$1</h3>');
-    /* NOVÝ ŘÁDEK: Promění prázdné řádky na kontrolovatelnou mezeru */
     text = text.replace(/\r?\n\s*\r?\n/g, '<div class="chytramezera"></div>');
     
     const pipeLinkPattern = /\(([^|)]+)\|\s*(https?:\/\/[^)]+)\)/g;
@@ -1735,6 +1852,7 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
 
   const lines = songData.trim().split('\n');
   let html = `<div id="output-area" style="font-size: ${currentFontSize}px;">`;
+  let activeBlockType = null;
 
   for (let i = 0; i < lines.length; i++) {
     let line = lines[i];
@@ -1808,27 +1926,34 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
       continue;
     }
 
-    if (trimmed.toLowerCase().startsWith('{soc')) {
-      let labelMatch = line.match(/\{soc:\s*(.*?)\}/i);
-      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-      let labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-      html += `<div class="chorus-block">${labelHtml}`; 
-      continue; 
+    const socMatch = trimmed.match(/^\{soc(?::\s*(.*?))?\}$/i);
+    if (socMatch) {
+      const labelText = socMatch[1] ? socMatch[1].trim() : '';
+      const labelHtml = labelText ? `<div class="chorus-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="chorus-block">${labelHtml}`;
+      activeBlockType = 'chorus';
+      continue;
     }
-    if (trimmed.toLowerCase().startsWith('{eoc')) { 
-      html += '</div>'; 
-      continue; 
+
+    if (/^\{eoc\}$/i.test(trimmed)) {
+      html += '</div>';
+      if (activeBlockType === 'chorus') activeBlockType = null;
+      continue;
     }
-    if (trimmed.toLowerCase().startsWith('{sov')) {
-      let labelMatch = line.match(/\{sov:\s*(.*?)\}/i);
-      let labelText = labelMatch && labelMatch[1] ? labelMatch[1] : '';
-      let labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
-      html += `<div class="verse-block">${labelHtml}`; 
-      continue; 
+
+    const sovMatch = trimmed.match(/^\{sov(?::\s*(.*?))?\}$/i);
+    if (sovMatch) {
+      const labelText = sovMatch[1] ? sovMatch[1].trim() : '';
+      const labelHtml = labelText ? `<div class="verse-label" style="font-size:${currentFontSize * 0.9}px;">${labelText}</div>` : '';
+      html += `<div class="verse-block">${labelHtml}`;
+      activeBlockType = 'verse';
+      continue;
     }
-    if (trimmed.toLowerCase().startsWith('{eov')) { 
-      html += '</div>'; 
-      continue; 
+
+    if (/^\{eov\}$/i.test(trimmed)) {
+      html += '</div>';
+      if (activeBlockType === 'verse') activeBlockType = null;
+      continue;
     }
 
     if (trimmed.toLowerCase().startsWith('{c:') || trimmed.toLowerCase().startsWith('{comment:')) {
@@ -1841,16 +1966,16 @@ document.addEventListener('touchstart', preventScreenSleep, { once: true, passiv
     if (line.includes('[')) {
       let parts = line.split(/\[([^\]]+)\]/);
       if (parts[0]) {
-        lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0])}</span></span>`;
+        lineHtml += `<span class="chord-stack"><span class="chord">&nbsp;</span><span class="lyric">${formatLyrics(parts[0], activeBlockType === 'verse')}</span></span>`;
       }
       for (let j = 1; j < parts.length; j += 2) {
         let chord = parts[j];
         let lyric = parts[j+1] || '';
         let transposed = transposeChord(chord, currentShift);
-        lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric)}</span></span>`;
+        lineHtml += `<span class="chord-stack"><span class="chord">${transposed}</span><span class="lyric">${lyric === '' ? '&nbsp;' : formatLyrics(lyric, activeBlockType === 'verse')}</span></span>`;
       }
     } else {
-      lineHtml = `<span class="lyric">${formatLyrics(line)}</span>`;
+      lineHtml = `<span class="lyric">${formatLyrics(line, activeBlockType === 'verse')}</span>`;
     }
 
     if (trimmed === '') {
