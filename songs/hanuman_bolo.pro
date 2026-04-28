@@ -26,20 +26,19 @@
 |[G]Jai jai [.]Hanumān |[D]jai jai [.]Hanumān |[Em]jai jai [.]Hanu|[C]mān
 ##########################################
 {start_of_analysis}
+{sov}
 Rāma bolo Rāma bolo bolo bolo Rām
 Sītā bolo Sītā bolo bolo Sītā Rām
 Hanumān bolo Hanumān bolo bolo Hanumān
 Jai jai Hanumān jai jai Hanumān jai jai Hanumān
 
-__Zpívej jméno Rámy, zpívej jméno Síty,__ 
-__neustále zpívej jméno Síta Rám.__ 
-__Zpívej o Hanumánovi.__ 
-__Sláva, sláva Hanumánovi.__
+Rāma – hrdina eposu Rámájana, inkarnace Boha; bolo – zpívej, vyslovuj, opakuj (z hindského bolnā); Rām – zkrácená forma jména Ráma; Sītā – Rámova božská choť, zosobnění oddanosti; Hanumān – opičí bůh, symbol dokonalé služby a oddanosti Rámovi; jai – sláva, vítězství;
+{eov}
 
-• **Rāma** = hrdina eposu Rámájana, inkarnace Boha;
-• **bolo** = zpívej, vyslovuj, opakuj (z hindského bolnā);
-• **Rām** = zkrácená forma jména Ráma;
-• **Sītā** = Rámova božská choť, zosobnění oddanosti;
-• **Hanumān** = opičí bůh, symbol dokonalé služby a oddanosti Rámovi;
-• **jai** = sláva, vítězství;
+{sot}
+Zpívej jméno Rámy, zpívej jméno Síty, 
+neustále zpívej jméno Síta Rám. 
+Zpívej o Hanumánovi. 
+Sláva, sláva Hanumánovi.
+{eot}
 {end_of_analysis}

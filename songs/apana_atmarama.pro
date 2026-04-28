@@ -49,50 +49,56 @@
 ##########################################
 {start_of_analysis}
 
-### Sloka 1.
+{sov: Sloka 1.}
 āpaṇa ātmārāma akarta he jari dṛuḍha kaḻaleṁ ||
 kāya kāja saṁkalpa vikalpahi manīṁ uṭhale nimale ||1||
 
-__Jakmile člověk s pevnou jistotou pochopí, že jeho pravé Já (Átmárám) je nekonající, na čem pak záleží, že v mysli vyvstávají a zase zanikají touhy a pochybnosti?__
+āpaṇa – my / člověk sám / ty; ātmārāma – pravé Já (Átma), které spočívá samo v sobě (Ráma); akarta – nekonající (ten, kdo není konatelem); he – toto; jari – jestliže / jakmile; dṛuḍha – pevně (s neochvějným přesvědčením); kaḻaleṁ – je pochopeno / uvědoměno; kāya kāja – jaký to má význam / jaký je důvod se starat; saṁkalpa – záměry / představy / touhy; vikalpahi – a pochybnosti / protichůdné myšlenlenky; manīṁ – v mysli; uṭhale – vyvstávají (zvedají se); nimale – rozpouštějí se (zanikají);
+{eov}
 
-**• āpaṇa** = my / člověk sám / ty; **• ātmārāma** = pravé Já (Átma), které spočívá samo v sobě (Ráma); **• akarta** = nekonající (ten, kdo není konatelem); **• he** = toto; **• jari** = jestliže / jakmile; **• dṛuḍha** = pevně (s neochvějným přesvědčením); **• kaḻaleṁ** = je pochopeno / uvědoměno; **• kāya kāja** = jaký to má význam / jaký je důvod se starat; **• saṁkalpa** = záměry / představy / touhy; **• vikalpahi** = a pochybnosti / protichůdné myšlenlenky; **• manīṁ** = v mysli; **• uṭhale** = vyvstávají (zvedají se); **• nimale** = rozpouštějí se (zanikají);
+{sot}Jakmile člověk s pevnou jistotou pochopí, že jeho pravé Já (Átmárám) je nekonající, na čem pak záleží, že v mysli vyvstávají a zase zanikají touhy a pochybnosti?{eot}
 
-### Sloka 2.
+{sov: Sloka 2.}
 guṇeṁ guṇāsī ādarileṁ jari iṁdriya viṣayālā |
 baravevāīṭa dharma jyāce tayā kaśāsa tulā ||2||
 
-__Jestliže přírodní síly (guny) přirozeně reagují na jiné guny a smysly se samy přitahují ke svým objektům, proč by ses měl ty trápit jejich dobrou nebo špatnou povahou?__
+guṇeṁ – vlastnosti přírody (guny); guṇāsī – s vlastnostmi přírody; ādarileṁ – vstupují do interakce / zabývají se; jari – jestliže; iṁdriya – smysly; viṣayālā – se smyslovými objekty (tím, co smysly vnímají); baravevāīṭa – dobré a špatné (barave – dobré, vāīṭa – špatné); dharma – přirozenost / vlastnost / role; jyāce – jejichž; tayā – jich (těch vlastností); kaśāsa – proč (by to mělo vadit); tulā – tobě;
+{eov}
 
-**• guṇeṁ** = vlastnosti přírody (guny); **• guṇāsī** = s vlastnostmi přírody; **• ādarileṁ** = vstupují do interakce / zabývají se; **• jari** = jestliže; **• iṁdriya** = smysly; **• viṣayālā** = se smyslovými objekty (tím, co smysly vnímají); **• baravevāīṭa** = dobré a špatné (barave = dobré, vāīṭa = špatné); **• dharma** = přirozenost / vlastnost / role; **• jyāce** = jejichž; **• tayā** = jich (těch vlastností); **• kaśāsa** = proč (by to mělo vadit); **• tulā** = tobě;
+{sot}Jestliže přírodní síly (guny) přirozeně reagují na jiné guny a smysly se samy přitahují ke svým objektům, proč by ses měl ty trápit jejich dobrou nebo špatnou povahou?{eot}
 
-### Sloka 3.
+{sov: Sloka 3.}
 jalataraṁga he uṭhatī nimatī kāya jalā hānī |
 anaṁta vṛuttī laharī tujavarī kāya karitī koṇī ||3||
 
-__Když se na vodě zvedají a klesají vlny, jakou škodu to vodě způsobí? Stejně tak – co ti mohou udělat nekonečné vlny myšlenek a sklonů mysli?__
+jalataraṁga – vodní vlny; he – tyto; uṭhatī – zvedají se; nimatī – klesají / utichají; kāya – jaká; jalā – pro vodu; hānī – ztráta / škoda; anaṁta – nekonečné; vṛuttī – hnutí mysli / myšlenky / tendence; laharī – vlny; tujavarī – tobě / na tebe; kāya karitī – co mohou udělat; koṇī – komukoli / jakkoli;
+{eov}
 
-**• jalataraṁga** = vodní vlny; **• he** = tyto; **• uṭhatī** = zvedají se; **• nimatī** = klesají / utichají; **• kāya** = jaká; **• jalā** = pro vodu; **• hānī** = ztráta / škoda; **• anaṁta** = nekonečné; **• vṛuttī** = hnutí mysli / myšlenky / tendence; **• laharī** = vlny; **• tujavarī** = tobě / na tebe; **• kāya karitī** = co mohou udělat; **• koṇī** = komukoli / jakkoli;
+{sot}Když se na vodě zvedají a klesají vlny, jakou škodu to vodě způsobí? Stejně tak – co ti mohou udělat nekonečné vlny myšlenek a sklonů mysli?{eot}
 
-### Sloka 4.
+{sov: Sloka 4.}
 citta ciṁtanīṁ ahaṁkāra kari kārya āpa āpuleṁ |
 yā sarvāhūni bhinna ase tū kāya tujhe geleṁ ||4||
 
-__Mysl ať se klidně zabývá přemýšlením a ego ať dál plní svou vlastní funkci. Ty jsi od toho všeho naprosto oddělen – tak o co bys mohl přijít?__
+citta – mysl / vědomí (nástroj vnímání); ciṁtanīṁ – v přemýšlení / úvahách; ahaṁkāra – ego / pocit "já jsem konatel"; kari – dělá; kārya – práci / funkci; āpa āpuleṁ – svou vlastní; yā sarvāhūni – od tohoto všeho; bhinna – odlišný / oddělený; ase – jsi (stavem); tū – ty; kāya – co; tujhe – tvého; geleṁ – je ztraceno / o co jsi přišel;
+{eov}
 
-**• citta** = mysl / vědomí (nástroj vnímání); **• ciṁtanīṁ** = v přemýšlení / úvahách; **• ahaṁkāra** = ego / pocit "já jsem konatel"; **• kari** = dělá; **• kārya** = práci / funkci; **• āpa āpuleṁ** = svou vlastní; **• yā sarvāhūni** = od tohoto všeho; **• bhinna** = odlišný / oddělený; **• ase** = jsi (stavem); **• tū** = ty; **• kāya** = co; **• tujhe** = tvého; **• geleṁ** = je ztraceno / o co jsi přišel;
+{sot}Mysl ať se klidně zabývá přemýšlením a ego ať dál plní svou vlastní funkci. Ty jsi od toho všeho naprosto oddělen – tak o co bys mohl přijít?{eot}
 
-### Sloka 5.
+{sov: Sloka 5.}
 viṣaya iṁdriyeṁ mana budhdyādika mithyā dṛuḍha kaḻatāṁ |
 baḻeṁ satyapaṇa deūni tyāsī vikṣepī maratāṁ ||5||
 
-__Když už s jistotou víš, že smyslové objekty, samotné smysly, mysl, intelekt i vše ostatní je jen iluze (mithja), proč se jim snažíš uměle vdechovat realitu a zbytečně se tak trápíš ve zmatku?__
+viṣaya – objekty smyslů (svět); iṁdriyeṁ – smysly; mana – mysl; budhdyādika – intelekt a vše další; mithyā – iluze / klam (to, co není skutečné); dṛuḍha kaḻatāṁ – když se pevně pochopí; baḻeṁ – násilím / uměle / tvrdohlavě; satyapaṇa – realitu / pravdivost; deūni – dávat (tím, že jim dodáváš); tyāsī – jim; vikṣepī – v rozptýlení / ve zmatku (iluzorního světa); maratāṁ – umíráš / trpíš;
+{eov}
 
-**• viṣaya** = objekty smyslů (svět); **• iṁdriyeṁ** = smysly; **• mana** = mysl; **• budhdyādika** = intelekt a vše další; **• mithyā** = iluze / klam (to, co není skutečné); **• dṛuḍha kaḻatāṁ** = když se pevně pochopí; **• baḻeṁ** = násilím / uměle / tvrdohlavě; **• satyapaṇa** = realitu / pravdivost; **• deūni** = dávat (tím, že jim dodáváš); **• tyāsī** = jim; **• vikṣepī** = v rozptýlení / ve zmatku (iluzorního světa); **• maratāṁ** = umíráš / trpíš;
+{sot}Když už s jistotou víš, že smyslové objekty, samotné smysly, mysl, intelekt i vše ostatní je jen iluze (mithja), proč se jim snažíš uměle vdechovat realitu a zbytečně se tak trápíš ve zmatku?{eot}
 
-### Sloka 6.
+{sov: Sloka 6.}
 kaḻaleṁ mī jari asaṁga citghana bhāgya tujheṁ phaḻale |
 karūni akartā tūṁ paramātmā mīpaṇa jari gaḻaleṁ ||6||
 
-__Jakmile jsi pochopil: „Jsem ničím nedotčené, ryzí vědomí,“ tvé nejvyšší štěstí přineslo své ovoce. Ač tělo koná, ty zůstáváš nekonajícím Nejvyšším Já (Paramátma) – jakmile iluze osobního „já“ zcela odpadne.__
+kaḻaleṁ – (je) pochopeno; mī – já; jari – jestliže / jakmile; asaṁga – nepřipoutané / ničím nedotčené; citghana – ryzí, hutné vědomí (cit – vědomí, ghana – pevná hmota/masa); bhāgya – osud / štěstí; tujheṁ – tvé; phaḻale – přineslo ovoce / naplnilo se; karūni – ačkoliv konáš (prostřednictvím těla); akartā – nekonatel; tūṁ – ty; paramātmā – Nejvyšší Já / Absolutno; mīpaṇa – pocit "já" / ego / osobnost; gaḻaleṁ – odpadne / odplyne;
+{eov}
 
-**• kaḻaleṁ** = (je) pochopeno; **• mī** = já; **• jari** = jestliže / jakmile; **• asaṁga** = nepřipoutané / ničím nedotčené; **• citghana** = ryzí, hutné vědomí (cit = vědomí, ghana = pevná hmota/masa); **• bhāgya** = osud / štěstí; **• tujheṁ** = tvé; **• phaḻale** = přineslo ovoce / naplnilo se; **• karūni** = ačkoliv konáš (prostřednictvím těla); **• akartā** = nekonatel; **• tūṁ** = ty; **• paramātmā** = Nejvyšší Já / Absolutno; **• mīpaṇa** = pocit "já" / ego / osobnost; **• gaḻaleṁ** = odpadne / odplyne;
+{sot}Jakmile jsi pochopil: „Jsem ničím nedotčené, ryzí vědomí,“ tvé nejvyšší štěstí přineslo své ovoce. Ač tělo koná, ty zůstáváš nekonajícím Nejvyšším Já (Paramátma) – jakmile iluze osobního „já“ zcela odpadne.{eot}

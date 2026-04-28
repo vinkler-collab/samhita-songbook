@@ -148,47 +148,52 @@
 {eoc}
 ##########################################
 {start_of_analysis}
-### Refrén
+{sov: Refrén}
 माझी देवपूजा पाय तुझे गुरुराया॥१॥
 mājhī devapūjā pāya tujhe gururāyā ||dhru||
 
-__Moje uctívání Boha spocívá u tvých nohou, ó králi mezi Guruy.__
+mājhī – moje; devapūjā – uctívání Boha; pāya – nohy (chodidla); tujhe – tvé; gururāyā – králi Guruů (vznešený Guru);
+{eov}
 
-• **mājhī** = moje; • **devapūjā** = uctívání Boha; • **pāya** = nohy (chodidla); • **tujhe** = tvé; • **gururāyā** = králi Guruů (vznešený Guru);
+{sot}Moje uctívání Boha spocívá u tvých nohou, ó králi mezi Guruy.{eot}
 
-### Sloka 1
+{sov: Sloka 1.}
 गुरु चरणाची माति तेचि माझी भागीरथी॥२॥
 guru caraṇācī māti teci mājhī bhāgīrathī ||1||
 
-__Prach z Guruových nohou, právě ten je mou svatou řekou Gangou.__
+guru caraṇācī – Guruových nohou; māti – prach / hlína; teci – právě to; mājhī – moje; bhāgīrathī – řeka Ganga;
+{eov}
 
-• **guru caraṇācī** = Guruových nohou; • **māti** = prach / hlína; • **teci** = právě to; • **mājhī** = moje; • **bhāgīrathī** = řeka Ganga;
+{sot}Prach z Guruových nohou, právě ten je mou svatou řekou Gangou.{eot}
 
-### Sloka 2
+{sov: Sloka 2.}
 गुरुचरणाचा बिंदु तोचि माझा क्षीरसिंधू॥३॥
 gurucaraṇācā biṁdu toci mājhā kṣīrasiṁdhū ||2||
 
-__Jediná kapka z Guruových nohou, právě ta je mým Oceánem mléka.__
+gurucaraṇācā – Guruových nohou; biṁdu – kapka; toci – právě ten; mājhā – můj; kṣīrasiṁdhū – Oceán mléka (kṣīraságara);
+{eov}
 
-• **gurucaraṇācā** = Guruových nohou; • **biṁdu** = kapka; • **toci** = právě ten; • **mājhā** = můj; • **kṣīrasiṁdhū** = Oceán mléka (kṣīraságara);
+{sot}Jediná kapka z Guruových nohou, právě ta je mým Oceánem mléka.{eot}
 
-### Sloka 3
+{sov: Sloka 3.}
 गुरुचरणांचे ध्यान तेचि माझे संध्यास्नान॥४॥
 gurucaraṇāṁce dhyāna teci mājhe saṁdhyāsnāna ||3||
 
-__Meditace na Guruovy nohy, právě ta je mou ocistnou koupelí a denním rituálem.__
+gurucaraṇāṁce – na Guruovy nohy; dhyāna – meditace / soustředění; teci – právě to; mājhe – moje; saṁdhyāsnāna – vecerní rituál / ocistná koupel;
+{eov}
 
-• **gurucaraṇāṁce** = na Guruovy nohy; • **dhyāna** = meditace / soustředění; • **teci** = právě to; • **mājhe** = moje; • **saṁdhyāsnāna** = vecerní rituál / ocistná koupel;
+{sot}Meditace na Guruovy nohy, právě ta je mou ocistnou koupelí a denním rituálem.{eot}
 
-### Sloka 4
+{sov: Sloka 4.}
 शिवदिन केसरी पाही सद्गुरुविना दैवत नाही॥५॥
 śivadina kesarī pāhī sadguruvinā daivata nāhī ||4||
 
-__Šivadina Kesarí říká: Pohleď, kromě pravého Gurua neexistuje žádné jiné Božstvo.__
+śivadina kesarī – Šivdin Kesarí (autor); pāhī – pohleď / viz; sadguruvinā – bez Sadgurua / kromě Sadgurua; daivata – božstvo; nāhī – není;
+{eov}
 
-• **śivadina kesarī** = Šivdin Kesarí (autor); • **pāhī** = pohleď / viz; • **sadguruvinā** = bez Sadgurua / kromě Sadgurua; • **daivata** = božstvo; • **nāhī** = není;
+{sot}Šivadina Kesarí říká: Pohleď, kromě pravého Gurua neexistuje žádné jiné Božstvo.{eot}
 
-### O autorovi tohoto abhangu:
+O autorovi tohoto abhangu:
 Šivadina (1698 – 1774) byl básník-světec z města Paithan ve státě Maháráštra v Indii. Od jedenácti let byl žákem Gurua Késari Nátha, Nátha Jógina, který pocházel z linie Nivrittinátha, Gurua a bratra Šrí Džňánéšvara Maharádže.
 
 Díky milosti svého Gurua dokázal Šivadina vnímat Šivu v celém projeveném světě. Mnoho jeho abhangů a básní je zaměřeno na Guru-bhakti, oddanost Guruovi. Tento abhang velebí Guruovy nohy, které symbolizují sílu Guruovy milosti.

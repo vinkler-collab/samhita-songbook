@@ -709,14 +709,16 @@ body.sand-mode .analysis-container {
   border-color: #d4c2a5 !important;
   color: #4a3b32 !important;
 }
-body.sand-mode .analysis-header {
+body.sand-mode .analysis-header,
+body.sand-mode .pdf-link-inner {
   background-color: #d4c2a5 !important; /* TMAVŠÍ hlavička pro Kafe */
   color: #4a3b32 !important;
 }
 body.sand-mode .analysis-content {
   background-color: transparent !important;
 }
-body.sand-mode .analysis-header:hover {
+body.sand-mode .analysis-header:hover,
+body.sand-mode .pdf-link:hover .pdf-link-inner {
   background-color: #cbb492 !important; /* Ještě o kousek tmavší při najetí */
 }
 
@@ -725,13 +727,15 @@ body:not(.dark-mode):not(.sand-mode) .analysis-container {
   background-color: #f0f2f5 !important; /* Pozadí celého šuplíku */
   border-color: #e5e7eb !important;
 }
-body:not(.dark-mode):not(.sand-mode) .analysis-header {
+body:not(.dark-mode):not(.sand-mode) .analysis-header,
+body:not(.dark-mode):not(.sand-mode) .pdf-link-inner {
   background-color: #e5e7eb !important; /* TMAVŠÍ hlavička pro Denní režim */
 }
 body:not(.dark-mode):not(.sand-mode) .analysis-content {
   background-color: transparent !important;
 }
-body:not(.dark-mode):not(.sand-mode) .analysis-header:hover {
+body:not(.dark-mode):not(.sand-mode) .analysis-header:hover,
+body:not(.dark-mode):not(.sand-mode) .pdf-link:hover .pdf-link-inner {
   background-color: #dadddf !important; /* Ještě o kousek tmavší při najetí */
 }
 /* === TMAVÝ REŽIM === */
@@ -2012,7 +2016,7 @@ if (window.currentSongObj) {
               <a href="pdfs/${window.currentSongObj.file}.pdf" class="pdf-link">
                   <div class="pdf-link-inner" style="font-size: ${currentFontSize * 0.8}px;">
                       <span>🔆 PDF</span>
-                      <span style="opacity: 0.5;">▶</span>
+                      <span>▶</span>
                   </div>
               </a>
           `;
